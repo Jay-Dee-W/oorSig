@@ -21,11 +21,11 @@ export const environment = new Environment({
         accept: 'application/json',
       },
     }),
-    authMiddleware({
-      // this middleware automatically adds 'Bearer ' at the start of the Authorization header
-      token: () =>
-        window.localStorage.getItem(LOCAL_STORAGE_USER_TOKEN_KEY) ?? '',
-    }),
+    // authMiddleware({
+    //   // this middleware automatically adds 'Bearer ' at the start of the Authorization header
+    //   token: () =>
+    //     window.localStorage.getItem(LOCAL_STORAGE_USER_TOKEN_KEY) ?? '',
+    // }),
     next => async req => {
       const res = await next(req);
       setTimeout(() => {
@@ -41,7 +41,7 @@ export const environment = new Environment({
   store: new Store(getInitialRecords()),
 });
 
-function getInitialRecords(): RecordSource {
+function getInitialRecords(): RecordSource  {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_RELAY_RECORDS_KEY);
     if (!raw) return new RecordSource();
