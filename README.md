@@ -14,7 +14,7 @@ On Windows:
 
 Or any Node version above 16.x will work (we recommend 18.x)
 
-2. generate the realy filies and build the project
+2. generate the Relay filies and build the project
   
    ```bash
     npm run relay
