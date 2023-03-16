@@ -9,7 +9,7 @@ import {
   authMiddleware,
 } from 'react-relay-network-modern';
 
-export const LOCAL_STORAGE_USER_TOKEN_KEY = 'user_token';
+export const LOCAL_STORAGE_USER_TOKEN_KEY = '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';
 export const LOCAL_STORAGE_RELAY_RECORDS_KEY = 'relay_records';
 
 export const environment = new Environment({
@@ -21,11 +21,12 @@ export const environment = new Environment({
         accept: 'application/json',
       },
     }),
-    // authMiddleware({
-    //   // this middleware automatically adds 'Bearer ' at the start of the Authorization header
-    //   token: () =>
-    //     window.localStorage.getItem(LOCAL_STORAGE_USER_TOKEN_KEY) ?? '',
-    // }),
+    authMiddleware({
+      // this middleware automatically adds 'Bearer ' at the start of the Authorization header
+      token: () =>
+        // window.localStorage.getItem(LOCAL_STORAGE_USER_TOKEN_KEY) ?? '',
+       "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"
+    }),
     next => async req => {
       const res = await next(req);
       setTimeout(() => {
