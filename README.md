@@ -14,7 +14,17 @@ On Windows:
 
 Or any Node version above 16.x will work (we recommend 18.x)
 
-2. Running local server in dev mode
+2. generate the realy filies and build the project
+  
+   ```bash
+    npm run relay
+    npm run build
+   ```
+3. setup the REACT_APP_GITHUB_AUTH_TOKEN ( NOTE: this is temporary untill the login part is built )
+  create your own persoanl github access token as described here : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+  create a .env file from the .env.example file provided and add your personal access token to the REACT_APP_GITHUB_AUTH_TOKEN="your personal access token here" line
+  
+4. Running local server in dev mode
 
 ```bash
 npm run dev
