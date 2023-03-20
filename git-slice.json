@@ -1,7 +1,7 @@
 
 
 {
-  "repoUrl": "https://github.com/GitStartHQ/gitstart-oorSig.git",
+  "repoUrl": "https://gitstart@github.com/GitStartHQ/gitstart-oorSig.git",
   "folders": ["./"],
   "branch": "master",
   "ignore": [
