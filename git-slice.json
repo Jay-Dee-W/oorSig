@@ -1,0 +1,15 @@
+
+
+{
+  "repoUrl": "https://github.com/GitStartHQ/gitstart-oorSig.git",
+  "folders": ["./"],
+  "branch": "master",
+  "ignore": [
+    "git-slice.json",
+    ".github/workflows/git-slice-v2.yml",
+    ".github/pull_request_template.md",
+    ".github/workflows/app-checks.yml",
+    ".github/workflows/push-checks.yml",
+    "CODEOWNERS"
+  ]
+}
