@@ -31,7 +31,7 @@ export function useQueryLoader<TQuery extends OperationType>(
     return () => {
       disposeQuery();
     };
-  }, [router.isReady]);
+  }, [router.isReady, loadQuery, disposeQuery, variables, loadQueryOptions]);
 
   return { queryRef, loadQuery };
 }
