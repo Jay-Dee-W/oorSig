@@ -3,8 +3,8 @@ import type { AppProps } from 'next/app';
 import { x } from '@xstyled/emotion';
 import { useRouter } from 'next/router';
 
-import { Providers } from '@oorsig/elements/Providers';
-import { ErrorBoundary } from '@oorsig/elements/ErrorBoundary';
+import { Providers } from '@elements/Providers';
+import { ErrorBoundary } from '@elements/ErrorBoundary';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

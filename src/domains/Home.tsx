@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { MembersList } from '@oorsig/domains/Memebers/MembersList';
-import { homeQuery$data } from '@oorsig/relay/__generated__/homeQuery.graphql';
+import { MembersList } from '@domains/Memebers/MembersList';
+import { homeQuery$data } from '@relay/__generated__/homeQuery.graphql';
 
 export const Home:React.FC<homeQuery$data> = ({viewer}) => {
 

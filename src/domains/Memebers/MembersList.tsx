@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'relay-runtime';
 import { useFragment } from 'react-relay';
 
-import type { MembersList_members$key } from '@oorsig/relay/__generated__/MembersList_members.graphql';
+import type { MembersList_members$key } from '@relay/__generated__/MembersList_members.graphql';
 import { Member } from './Members';
 
 type MembersListProps = {

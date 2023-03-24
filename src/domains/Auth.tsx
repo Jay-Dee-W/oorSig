@@ -2,9 +2,9 @@ import { x } from '@xstyled/emotion';
 import LockClosedIcon from '@heroicons/react/outline/LockClosedIcon';
 import { useForm } from 'react-hook-form';
 
-import { Input } from '@oorsig/atoms/Input';
-import { Button } from '@oorsig/atoms/Button';
-import { useAuth } from '@oorsig/utils/useAuth';
+import { Input } from '@atoms/Input';
+import { Button } from '@atoms/Button';
+import { useAuth } from '@utils/useAuth';
 
 export const LOCAL_STORAGE_USER_TOKEN_KEY = 'user_token';
 

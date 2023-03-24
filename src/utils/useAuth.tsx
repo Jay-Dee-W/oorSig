@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { fetchQuery, graphql } from 'react-relay';
 import { useRouter } from 'next/router';
 
-import { environment } from '@oorsig/relay/environment';
-import { useAuthQuery as useAuthQueryType } from '@oorsig/relay/__generated__/useAuthQuery.graphql';
-import { useLocalStorage } from '@oorsig/utils/useLocalStorage';
+import { environment } from '@relay/environment';
+import { useAuthQuery as useAuthQueryType } from '@relay/__generated__/useAuthQuery.graphql';
+import { useLocalStorage } from '@utils/useLocalStorage';
 
 const useAuthQuery = graphql`
   query useAuthQuery {

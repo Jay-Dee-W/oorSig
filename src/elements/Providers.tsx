@@ -1,8 +1,8 @@
-import { RelayEnvironmentProvider } from '@oorsig/relay/environment';
-// import { AuthGateway } from '@oorsig/elements/AuthGateway';
-import { ErrorBoundary } from '@oorsig/elements/ErrorBoundary';
-import { NoSsr } from '@oorsig/elements/NoSsr';
-import { StyledProvider } from '@oorsig/elements/StyledProviders';
+import { RelayEnvironmentProvider } from '@relay/environment';
+// import { AuthGateway } from '@elements/AuthGateway';
+import { ErrorBoundary } from '@elements/ErrorBoundary';
+import { NoSsr } from '@elements/NoSsr';
+import { StyledProvider } from '@elements/StyledProviders';
 
 // Providers + any other wrapper
 export const Providers: React.FC<{ children: React.ReactNode }> = ({

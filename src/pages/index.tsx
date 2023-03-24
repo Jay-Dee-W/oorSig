@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import {RelayEnvironmentProvider } from 'react-relay/hooks'
 
-import { Auth } from '@oorsig/domains/Auth';
-import {environment} from '@oorsig/relay/environment'
+import { Auth } from '@domains/Auth';
+import {environment} from '@relay/environment'
 
 
 const AuthPage: NextPage = () => {

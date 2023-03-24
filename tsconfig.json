@@ -30,7 +30,13 @@
       "baseUrl": ".",
       "paths": {
         "@oorsig/*": ["src/*"],
-        "@oorsig/test/*": [".vitest/*"]
+        "@oorsig/test/*": [".vitest/*"],
+        "@atoms/*": ["src/atoms/*"],
+        "@domains/*": ["src/domains/*"],
+        "@elements/*": ["src/elements/*"],
+        "@pages/*": ["src/pages/*"],
+        "@relay/*": ["src/relay/*"],
+        "@utils/*": ["src/utils/*"],
       },
       "types": ["vitest/globals"]
     },

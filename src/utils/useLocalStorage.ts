@@ -1,7 +1,7 @@
 import {
   LOCAL_STORAGE_RELAY_RECORDS_KEY,
   LOCAL_STORAGE_USER_TOKEN_KEY,
-} from '@oorsig/relay/environment';
+} from '@relay/environment';
   
 type LocalStorageKey =
   | typeof LOCAL_STORAGE_RELAY_RECORDS_KEY

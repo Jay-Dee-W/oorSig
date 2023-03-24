@@ -5,11 +5,9 @@ import { loadQuery } from 'react-relay';
 import { graphql } from 'relay-runtime';
 import { usePreloadedQuery } from 'react-relay/hooks';
 
-import { Home } from "@oorsig/domains/Home"
-import { environment } from '@oorsig/relay/environment';
-import { homeQuery } from '@oorsig/relay/__generated__/homeQuery.graphql'
-
-
+import { Home } from "@domains/Home"
+import { environment } from '@relay/environment';
+import { homeQuery } from '@relay/__generated__/homeQuery.graphql'
 
 const assignedToFragment = graphql`
 fragment homeAssignedTo on PullRequest {

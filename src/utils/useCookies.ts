@@ -1,6 +1,6 @@
 import { get, set, remove } from 'es-cookie';
 
-import { LOCAL_STORAGE_USER_TOKEN_KEY } from '@oorsig/relay/environment';
+import { LOCAL_STORAGE_USER_TOKEN_KEY } from '@relay/environment';
 
 type CookieKeys = typeof LOCAL_STORAGE_USER_TOKEN_KEY;
 
