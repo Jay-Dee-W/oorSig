@@ -1,14 +1,11 @@
-
- import  {MembersList}  from '@github/domains/Memebers/MembersList';
-import { homeQuery$data } from '@github/relay/__generated__/homeQuery.graphql';
 import React from 'react';
 
+import { MembersList } from '@oorsig/domains/Memebers/MembersList';
+import { homeQuery$data } from '@oorsig/relay/__generated__/homeQuery.graphql';
 
 export const Home:React.FC<homeQuery$data> = ({viewer}) => {
 
-
   const repos = viewer?.organization?.team?.repositories?.nodes?.filter((repo) => ( !repo?.isArchived )) || [];
-
 
   return (
     <div className='App'>

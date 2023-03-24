@@ -29,8 +29,8 @@
       "jsx": "preserve",
       "baseUrl": ".",
       "paths": {
-        "@github/*": ["src/*"],
-        "@github/test/*": [".vitest/*"]
+        "@oorsig/*": ["src/*"],
+        "@oorsig/test/*": [".vitest/*"]
       },
       "types": ["vitest/globals"]
     },

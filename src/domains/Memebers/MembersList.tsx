@@ -1,15 +1,15 @@
 import React from 'react';
 import { graphql } from 'relay-runtime';
-import type { MembersList_members$key } from '@github/relay/__generated__/MembersList_members.graphql';
 import { useFragment } from 'react-relay';
+
+import type { MembersList_members$key } from '@oorsig/relay/__generated__/MembersList_members.graphql';
 import { Member } from './Members';
 
 type MembersListProps = {
-    members: MembersList_members$key;
-  };
+  members: MembersList_members$key;
+};
   
 export const  MembersList:React.FC<MembersListProps> = ( props ) => {
-
 
   console.log("props", props)
 
@@ -46,4 +46,3 @@ export const  MembersList:React.FC<MembersListProps> = ( props ) => {
       </div>
     );
   }
-
