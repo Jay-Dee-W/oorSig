@@ -1,1 +1,1 @@
-export * from './teamFragment'
+export * from './teamFragment';

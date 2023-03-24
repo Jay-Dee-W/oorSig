@@ -30,24 +30,21 @@ export const useAuth = () => {
     password: string;
   }) => {
     try {
-      const result = await fetch(
-        `https://api.github.com/graphql`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `bearer ${REACT_APP_GITHUB_AUTH_TOKEN}`,
-            accept: 'application/json',
-            'content-type': 'application/json',
+      const result = await fetch(`https://api.github.com/graphql`, {
+        method: 'POST',
+        headers: {
+          Authorization: `bearer ${REACT_APP_GITHUB_AUTH_TOKEN}`,
+          accept: 'application/json',
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: {
+            email,
+            password,
           },
-          body: JSON.stringify({
-            user: {
-              email,
-              password,
-            },
-          }),
-        }
-      );
-console.log("result:", result)
+        }),
+      });
+      console.log('result:', result);
 
       if (!result.ok) {
         throw 'Something went wrong. Please try again.';
@@ -136,4 +133,3 @@ export async function getClientUsers() {
     {}
   ).toPromise();
 }
- 

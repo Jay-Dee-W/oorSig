@@ -1,1 +1,1 @@
-export * from './organizationFragment'
+export * from './organizationFragment';

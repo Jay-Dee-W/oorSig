@@ -7,7 +7,6 @@ type MemberProps = {
   member: Members_member$key;
 };
 
-
 export function Member(props: MemberProps) {
   const data = useFragment(
     graphql`
@@ -16,16 +15,12 @@ export function Member(props: MemberProps) {
         avatarUrl
       }
     `,
-    props.member,
+    props.member
   );
 
   return (
     <div>
       <p>{data.login}</p>
-
     </div>
   );
 }
-
-
-
