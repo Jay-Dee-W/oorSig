@@ -35641,6 +35641,16 @@ A valid x509 certificate string
 """
 scalar X509Certificate
 
+type RootQueryType {
+  people: [People!]!
+  listOfPeople: [People!]! @listLength(min: 1, max: 5)
+}
+
+type People {
+  name: String! @fake(type: name)
+  organization: String! @examples(values: ["gitstart"])
+}
+
 enum fake__Locale {
   az
   cz
