@@ -4,6 +4,7 @@ With Oorsig you can manage your GitHub activity(filtering and searching pull req
 Oorsig is a modern web app built with Next.js, using the GitHub GraphQL API and Relay for data management. The UI is styled using xstyled, resulting in a sleek and responsive user interface.
 ## Repository structure 
 This project is structured with the following parts:
+
 **`scripts/` :**The scripts folder in a GitHub API management project contains files for project management and configuration, such as generating GraphQL operation types and merging schemas.
 
 **`src/` :** Contain the following folder structure:
@@ -15,8 +16,11 @@ This project is structured with the following parts:
 - **`elements/` :**This folder contains various utility components for the oorsig project. Here's a brief description of each of the files:
 
     `ErrorBoundary.tsx`: This is a higher-order component (HOC) that catches errors thrown by its child components and displays an error message instead of crashing the whole application.
+
     `NoSsr.tsx`: This is a component that conditionally renders its children based on whether the client is capable of rendering the content or not. It's typically used for components that rely on the browser API and should not be rendered on the server.
+
     `Providers.tsx`: This is a component that provides various context providers to its children. It's typically used for setting up global state or theme providers.
+    
     `StyledProviders.tsx`: This is a component that provides styled components themes and global styles to its children.
 
 - **`pages/`**: This folder contains the pages for the Next.js application. Each file represents a page and is written in TypeScript. The `_app.tsx` file is the root component of the application and can be used to wrap the pages with common layout components.
