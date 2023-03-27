@@ -13,7 +13,7 @@ This project is structured with the following parts:
 
 - **`domains/`:** In oorsig project that manages GitHub API using GraphQL (GQL), the domain folder contains sub-folders for various business domains such as organization, team, and member. Each of these sub-folders contains files that represent the different entities within that domain, such as Organization, Team, and Member respectively.
 
-- **`elements/`:**This folder contains various utility components for the oorsig project. Here's a brief description of each of the files:
+- **`elements/`:** This folder contains various utility components for the oorsig project. Here's a brief description of each of the files:
 
     `ErrorBoundary.tsx`: This is a higher-order component (HOC) that catches errors thrown by its child components and displays an error message instead of crashing the whole application.
 
