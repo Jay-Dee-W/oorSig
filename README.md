@@ -1,33 +1,7 @@
-## Setup Instructions
-
-1. Install correct version of NodeJS using NVM
-
-On Linux/Mac:
-
-- Install [nvm](https://github.com/nvm-sh/nvm#install--update-script)
-- Run `nvm use`
-
-On Windows:
-
-- Install [nvm-windows](https://github.com/coreybutler/nvm-windows#installation--upgrades) for windows (don't uninstall the your current version of node just click on manage with nvm when popup shows while installing nvm)
-- Run `nvm use $(cat .nvmrc)`
-
-Or any Node version above 16.x will work (we recommend 18.x)
-
-2. generate the Relay filies and build the project
-  
-   ```bash
-    npm run relay
-    npm run build
-   ```
-3. setup the REACT_APP_GITHUB_AUTH_TOKEN ( NOTE: this is temporary untill the login part is built )
-  create your own persoanl github access token as described here : https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-  create a .env file from the .env.example file provided and add your personal access token to the REACT_APP_GITHUB_AUTH_TOKEN="your personal access token here" line
-  
-4. Running local server in dev mode
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the dashboard.
+# Oorsig  web app
+With Oorsig you can manage your GitHub activity(filtering and searching pull requests by date and status, PR reviewed, approved PR ...)
+![oorsig](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fa134aeb7-d7c7-4947-b9e0-9566413dc621%2FUntitled.png?id=9be896b5-6d11-4fc4-8847-4710da40f25c&table=block&spaceId=97b29050-49e5-4a0a-827c-5ceae0892251&width=2000&userId=fcf7c6ec-4dd7-433a-beee-1d12d7c9f5a0&cache=v2)
+Oorsig is a modern web app built with Next.js, using the GitHub GraphQL API and Relay for data management. The UI is styled using xstyled, resulting in a sleek and responsive user interface.
+## Repository structure 
+## Contribution
+Contribution in the form of bug reports, user feedback, or actual code is always welcome! We do have a [contribution guide](), There is also a [setup guide]() for building and running locally.
