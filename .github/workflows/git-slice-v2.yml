@@ -1,6 +1,6 @@
 name: GitSlice v2 CI
 
-on: 
+on:
   push:
   schedule:
     - cron: '0 0 * * *'
@@ -65,7 +65,7 @@ jobs:
           git config --global user.email ${{ env.SLICE_GIT_EMAIL }}
           git config --global user.name  ${{ env.SLICE_GIT_USERNAME }}
           git config --global pull.rebase true
-          
+
       - name: Merge main/master
         run: |
           git fetch -f
@@ -75,7 +75,7 @@ jobs:
           git merge origin/${{ env.GIT_SLICE_DEFAULT_BRANCH }}
           git push origin ${{ github.event.inputs.branch }}
           git status
-             
+
       - name: Git Slice Push
         uses: GitStartHQ/actions/GitSlicePush@git-slice
         with:
