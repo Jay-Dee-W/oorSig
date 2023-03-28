@@ -12,9 +12,7 @@ export const Providers: React.FC<{ children: React.ReactNode }> = ({
     <StyledProvider>
       <ErrorBoundary>
         <RelayEnvironmentProvider>
-          <NoSsr>
-            {children}
-          </NoSsr>
+          <NoSsr>{children}</NoSsr>
         </RelayEnvironmentProvider>
       </ErrorBoundary>
     </StyledProvider>

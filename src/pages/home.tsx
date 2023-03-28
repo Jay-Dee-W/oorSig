@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
+<<<<<<< HEAD
 import { loadQuery } from 'react-relay';
 import { graphql } from 'relay-runtime';
 import { usePreloadedQuery } from 'react-relay/hooks';
@@ -61,17 +62,17 @@ const preloadedQuery = loadQuery<homeQuery>(environment, TeamHustleQuery, {
   /* query variables */
 });
 
+=======
+import { Home } from '../domains/Home';
+>>>>>>> main
 
 const HomePage: NextPage = () => {
-
-  const data = usePreloadedQuery(TeamHustleQuery, preloadedQuery) ;
-
   return (
     <>
       <Head>
         <title>GitStart Team Hustle</title>
       </Head>
-      <Home viewer={data.viewer}  />
+      <Home />
     </>
   );
 };

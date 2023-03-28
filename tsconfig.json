@@ -1,34 +1,34 @@
 {
-    "compilerOptions": {
-      "strict": true,
-      "strictFunctionTypes": true,
-      "strictNullChecks": true,
-      "alwaysStrict": true,
-  
-      "noImplicitAny": true,
-      "noImplicitThis": true,
-      "noFallthroughCasesInSwitch": true,
-      "noUnusedLocals": true,
-      "noUncheckedIndexedAccess": true,
-      "noUnusedParameters": true,
-      "noEmit": true,
-  
-      "forceConsistentCasingInFileNames": true,
-      "module": "ESNext",
-      "target": "ESNext",
-      "lib": ["DOM", "DOM.Iterable", "ESNext"],
-      "moduleResolution": "Node",
-      "useDefineForClassFields": true,
-      "allowJs": true,
-      "skipLibCheck": true,
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "resolveJsonModule": true,
-      "isolatedModules": true,
-      "incremental": true,
-      "jsx": "preserve",
-      "baseUrl": ".",
-      "paths": {
+  "compilerOptions": {
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "moduleResolution": "Node",
+    "useDefineForClassFields": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
         "@oorsig/*": ["src/*"],
         "@oorsig/test/*": [".vitest/*"],
         "@atoms/*": ["src/atoms/*"],
@@ -38,9 +38,8 @@
         "@relay/*": ["src/relay/*"],
         "@utils/*": ["src/utils/*"],
       },
-      "types": ["vitest/globals"]
-    },
-    "include": ["src", "test"],
-    "exclude": ["node_modules"]
-  }
-  
+    "types": ["vitest/globals"]
+  },
+  "include": ["src", "test"],
+  "exclude": ["node_modules"]
+}
