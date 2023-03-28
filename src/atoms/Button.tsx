@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { SystemProps, x } from '@xstyled/emotion';
 
 const paddingForSize = {

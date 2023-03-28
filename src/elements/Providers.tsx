@@ -1,7 +1,6 @@
-import { RelayEnvironmentProvider } from '@relay/environment';
-// import { AuthGateway } from '@elements/AuthGateway';
 import { ErrorBoundary } from '@elements/ErrorBoundary';
 import { NoSsr } from '@elements/NoSsr';
+import { RelayEnvironmentProvider } from '@relay/environment';
 import { StyledProvider } from '@elements/StyledProviders';
 
 // Providers + any other wrapper
