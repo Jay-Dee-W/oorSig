@@ -1,6 +1,9 @@
 # Oorsig  web app
-With Oorsig you can manage your GitHub activity(filtering and searching pull requests by date and status, PR reviewed, approved PR ...)
+Oorsig takes your GitHub data to the next level with easy-to-read charts and data visualization tools.
+These tools allow you to get a clear understanding of your GitHub activity and identify areas for improvement. Whether you're a developer, project manager, or team leader, Oorsig can help you streamline your workflow and achieve your goals.
+
 ![Oorsig](https://user-images.githubusercontent.com/42426067/227998739-7d8e8b1e-9784-4c8c-a156-ab87c44cc2af.png)
+
 Oorsig is a modern web app built with Next.js, using the GitHub GraphQL API and Relay for data management. The UI is styled using xstyled, resulting in a sleek and responsive user interface.
 ## Repository structure 
 This project is structured with the following parts:
@@ -13,15 +16,7 @@ This project is structured with the following parts:
 
 - **`domains/`:** In oorsig project that manages GitHub API using GraphQL (GQL), the domain folder contains sub-folders for various business domains such as organization, team, and member. Each of these sub-folders contains files that represent the different entities within that domain, such as Organization, Team, and Member respectively.
 
-- **`elements/`:** This folder contains various utility components for the oorsig project. Here's a brief description of each of the files:
-
-    `ErrorBoundary.tsx`: This is a higher-order component (HOC) that catches errors thrown by its child components and displays an error message instead of crashing the whole application.
-
-    `NoSsr.tsx`: This is a component that conditionally renders its children based on whether the client is capable of rendering the content or not. It's typically used for components that rely on the browser API and should not be rendered on the server.
-
-    `Providers.tsx`: This is a component that provides various context providers to its children. It's typically used for setting up global state or theme providers.
-
-    `StyledProviders.tsx`: This is a component that provides styled components themes and global styles to its children.
+- **`elements/`:** This folder contains various utility components for the oorsig project.
 
 - **`pages/`:** This folder contains the pages for the Next.js application. Each file represents a page and is written in TypeScript. The `_app.tsx` file is the root component of the application and can be used to wrap the pages with common layout components.
 
