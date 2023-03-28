@@ -7,6 +7,7 @@ Before you get started, please review the following guidelines:
 - Next.js
 - GraphQL
 - Xstyled
+- React Relay
 
 ## Reporting Bugs and Issues
 
