@@ -1,9 +1,10 @@
-import React from 'react';
 import type { AppProps } from 'next/app';
-import { ErrorBoundary } from '../elements/ErrorBoundary';
-import { x } from '@xstyled/emotion';
+import React from 'react';
 import { useRouter } from 'next/router';
-import { Providers } from '../elements/Providers';
+import { x } from '@xstyled/emotion';
+
+import { ErrorBoundary } from '@elements/ErrorBoundary';
+import { Providers } from '@elements/Providers';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

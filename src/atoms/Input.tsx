@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { x, SystemProps } from '@xstyled/emotion';
 
 interface InputProps extends SystemProps {
