@@ -1,4 +1,3 @@
-import React from 'react';
 import { Environment, Store, RecordSource } from 'relay-runtime';
 import { RelayEnvironmentProvider as RelayRelayEnvironmentProvider } from 'react-relay';
 import 'regenerator-runtime/runtime'; // required for react-relay-network-modern
@@ -8,6 +7,7 @@ import {
   urlMiddleware,
   authMiddleware,
 } from 'react-relay-network-modern';
+import React from 'react';
 
 export const LOCAL_STORAGE_USER_TOKEN_KEY =
   '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';
