@@ -31,4 +31,4 @@ This project is structured with the following parts:
 
 ## Contribution
 
-Contribution in the form of bug reports, user feedback, or actual code is always welcome! We do have a [contribution guide](), There is also a [setup guide]() for building and running locally.
+Contribution in the form of bug reports, user feedback, or actual code is always welcome! We do have a [contribution guide](https://github.com/GitStartHQ/client-gitstart-oorSig/blob/main/CONTRIBUTING.md), There is also a [setup guide](https://github.com/GitStartHQ/client-gitstart-oorSig/blob/main/CONTRIBUTING.md#setting-up-the-project) for building and running locally.
