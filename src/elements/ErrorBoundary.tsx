@@ -1,9 +1,9 @@
-import { x } from '@xstyled/emotion';
-import React from 'react';
 import {
   FallbackProps,
   ErrorBoundary as ReactErrorBoundary,
 } from 'react-error-boundary';
+import React from 'react';
+import { x } from '@xstyled/emotion';
 
 interface ErrorBoundaryProps {
   children: React.ReactNode;

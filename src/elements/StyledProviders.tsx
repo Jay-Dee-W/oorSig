@@ -1,14 +1,11 @@
-import React from 'react';
-
-import { th, defaultTheme, ThemeProvider, Preflight } from '@xstyled/emotion';
-
 import { createGlobalStyle } from '@xstyled/emotion';
+import React from 'react';
+import { th, defaultTheme, ThemeProvider, Preflight } from '@xstyled/emotion';
 
 export const GlobalStyle = createGlobalStyle`
   :root, body, #root {
     height: 100%;
   }
-
   a {
     text-decoration: none;
   }
