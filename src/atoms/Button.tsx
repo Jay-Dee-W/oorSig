@@ -52,14 +52,34 @@ const colorsForVariant = {
 };
 
 interface ButtonProps extends SystemProps {
+  /**
+   * Is this the principal call to action on the page?
+   */
   variant?: 'primary' | 'secondary' | 'white';
+  /**
+   * How large should the button be?
+   */
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  /**
+   * Optional click handler
+   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Disable Button if needed
+   */
   disabled?: boolean;
+  /**
+   * Loading Option on Button
+   */
   loading?: boolean;
+  /**
+   * Adding other JSX inside Button when used as a tag
+   */
   children: React.ReactNode;
 }
-
+/**
+ * Primary UI component for user interaction
+ */
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
