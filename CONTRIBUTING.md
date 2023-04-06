@@ -44,3 +44,19 @@ To ensure consistency and readability in the codebase, we ask that you follow th
 2. When adding a new folder to the `src` directory, it is important to update the paths in the `tsconfig.json` file to include a relative path for the new folder. This ensures that the TypeScript compiler can properly resolve the module imports and prevent errors in the code.
 3. Use a linter to enforce coding standards and catch common errors. We recommend using `ESLint`or if you want to do it manually run `npm run lint`.
 4. Use camelCase for variable and function names.
+
+## Storybook
+
+to run storybook
+
+1. ```
+      npm run storybook
+   ```
+
+   Open [http://localhost:6006/](http://localhost:6006/) with your browser to see the storybook visual representation.
+
+2. you can also build your stories by running
+
+```
+npm run build-storybook
+```
