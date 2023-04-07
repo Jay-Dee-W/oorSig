@@ -9,7 +9,7 @@ interface SelectProps extends SystemProps {
   options: Option[];
   value?: string;
   placeholder?: string;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -19,7 +19,6 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   ...systemProps
 }) => {
-
   return (
     <x.select
       value={value}
@@ -40,14 +39,13 @@ export const Select: React.FC<SelectProps> = ({
       border="0.5px solid #C8CACB"
       {...systemProps}
       color="white"
-      
     >
       {placeholder && (
         <option value="" disabled selected hidden>
           {placeholder}
         </option>
       )}
-      {options.map((option) => (
+      {options.map(option => (
         <option key={option.value} value={option.value}>
           {option.label}
         </option>
