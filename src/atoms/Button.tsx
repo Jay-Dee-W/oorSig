@@ -1,6 +1,8 @@
 import React from 'react';
 import { SystemProps, x } from '@xstyled/emotion';
 
+import { Spinner } from './Spinner';
+
 const paddingForSize = {
   xs: {
     px: 2.5,
@@ -34,51 +36,44 @@ const textForSize = {
 
 const colorsForVariant = {
   primary: {
-    bg: 'primary-600',
-    hover: 'primary-300',
+    bg: '#007AFF',
+    hover: '#439bfa',
     text: 'white',
   },
   secondary: {
-    bg: 'primary-100',
-    hover: 'primary-200',
-    text: 'primary-700',
+    bg: 'primary-700',
+    hover: 'primary-500',
+    text: 'white',
   },
-  white: {
-    bg: 'white',
-    hover: 'gray-50',
-    text: 'gray-700',
+  success: {
+    bg: '#6FCF97',
+    hover: '#81cca0',
+    text: 'white',
+  },
+  danger: {
+    bg: '#EB5545',
+    hover: '#f06759',
+    text: 'white',
+  },
+  light: {
+    bg: '#D9D9D9',
+    hover: 'primary-400',
+    text: 'black',
   },
 };
 
 interface ButtonProps extends SystemProps {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  variant?: 'primary' | 'secondary' | 'white';
-  /**
-   * How large should the button be?
-   */
+  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'light';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  /**
-   * Optional click handler
-   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  /**
-   * Disable Button if needed
-   */
   disabled?: boolean;
-  /**
-   * Loading Option on Button
-   */
   loading?: boolean;
-  /**
-   * Adding other JSX inside Button when used as a tag
-   */
   children: React.ReactNode;
+  icon?: React.ReactNode;
+  title?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
-/**
- * Primary UI component for user interaction
- */
+
 export const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
   size = 'md',
@@ -86,36 +81,58 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   loading,
   children,
+  icon,
+  title,
+  type='button',
   ...systemProps
 }) => {
-  disabled = loading ? true : disabled;
-
   return (
     <x.button
       onClick={onClick}
       display="inline-flex"
       alignItems="center"
+      justifyContent="center"
+      w='130px'
+      h='57px'
       px={paddingForSize[size].px}
       py={paddingForSize[size].py}
       border
-      borderColor={variant === 'white' ? 'gray-300' : 'transparent'}
+      borderColor={'transparent'}
       text={textForSize[size]}
       lineHeight={size === 'sm' ? 4 : undefined}
       fontWeight="medium"
       bg={{
-        _: colorsForVariant[variant].bg,
+        //disabled
+        // _: !disabled ? colorsForVariant[variant].bg : undefined,
         hover: !disabled ? colorsForVariant[variant].hover : undefined,
       }}
       opacity={disabled ? 0.6 : 1}
-      cursor={disabled ? 'default' : undefined}
+      cursor={disabled ? 'not-allowed' : undefined}
       color={colorsForVariant[variant].text}
-      borderRadius="default"
+      borderRadius='4px'
       boxShadow="sm"
       disabled={disabled}
       animation={loading ? 'pulse' : undefined}
+      title={title}
+      type={type}
       {...systemProps}
     >
-      {children}
+      {
+        loading ? (<Spinner active={true} borderColor={colorsForVariant[variant].text}></Spinner>):
+          <>
+            {icon && (
+                <x.span
+                  display="inline-flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  mr={2}
+                >
+                  {icon}
+                </x.span>
+              )}
+              {children}
+        </>
+      } 
     </x.button>
   );
 };

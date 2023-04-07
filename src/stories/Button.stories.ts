@@ -8,9 +8,9 @@ const meta: Meta<typeof Button> = {
   component: Button,
   tags: ['autodocs'],
   argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
+    // backgroundColor: {
+    //   control: 'color',
+    // },
     onClick: { action: 'Button-Clicked' },
   },
 };
@@ -21,24 +21,8 @@ type Story = StoryObj<typeof Button>;
 // More on writing stories with args: https://storybook.js.org/docs/7.0/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    variant: 'primary',
+    variant: 'danger',
     children: 'Primary',
     size: 'lg',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    variant: 'secondary',
-    children: 'Secondary',
-    size: 'md',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    variant: 'white',
-    size: 'sm',
-    children: 'Small',
   },
 };
