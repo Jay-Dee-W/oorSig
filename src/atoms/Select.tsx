@@ -7,26 +7,23 @@ interface Option {
 
 interface SelectProps extends SystemProps {
   options: Option[];
+  value?: string;
   placeholder?: string;
-  onChange?: (value: string ) => void;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>
 }
 
 export const Select: React.FC<SelectProps> = ({
   options,
+  value,
   placeholder,
   onChange,
   ...systemProps
 }) => {
-  const onChangeOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    if (onChange) {
-      onChange((event.target.value));
-      console.log(event.target.value)
-    }
-  };
 
   return (
     <x.select
-      onChange={onChangeOption}
+      value={value}
+      onChange={onChange}
       boxSizing="border-box"
       display="flex"
       flexDirection="row"
