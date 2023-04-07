@@ -29,9 +29,9 @@ export const Default: Story = {
   },
 };
 
-export const Montly: Story = {
+export const Monthly: Story = {
   args: {
     options,
-    placeholder: 'Montly',
+    placeholder: 'Monthly',
   },
 };
