@@ -15,7 +15,7 @@ export const Spinner: React.FC<SpinnerProps> = ({ active= true , ...systemProps 
         w={8}
         h={8}
         border={3}
-        borderColor={'red'}
+        borderColor={'white'}
         borderTopColor={'primary-600'}
         borderRadius="full"
         animation="spin"

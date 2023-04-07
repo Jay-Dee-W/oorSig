@@ -7,6 +7,7 @@ const meta: Meta<typeof Spinner> = {
   tags: ['autodocs'],
     argTypes: {
     active: { control: { type: 'boolean' } }, 
+    borderColor: { control: { type: 'color' } }, 
   },
 };
 
@@ -15,7 +16,7 @@ type Story = StoryObj<typeof Spinner>;
 
 export const Default: Story = {
   args: {
-        active: true,
+    active: true,
+    borderColor:"black"
   },
 };
-
