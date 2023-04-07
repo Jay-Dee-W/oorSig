@@ -3,7 +3,7 @@ import React from 'react';
 import { SystemProps, x } from '@xstyled/emotion';
 
 interface SpinnerProps extends SystemProps {
-  active: boolean;
+  active?: boolean;
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({ active= true , ...systemProps }) => {
@@ -15,7 +15,7 @@ export const Spinner: React.FC<SpinnerProps> = ({ active= true , ...systemProps 
         w={8}
         h={8}
         border={3}
-        borderColor={'white'}
+        borderColor={'red'}
         borderTopColor={'primary-600'}
         borderRadius="full"
         animation="spin"
