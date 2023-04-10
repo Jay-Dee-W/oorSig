@@ -102,13 +102,12 @@ export const Button: React.FC<ButtonProps> = ({
       lineHeight={size === 'sm' ? 4 : undefined}
       fontWeight="medium"
       bg={{
-        //disabled
-        // _: !disabled ? colorsForVariant[variant].bg : undefined,
-        hover: !disabled ? colorsForVariant[variant].hover : undefined,
+        _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg,
+        hover: disabled ? undefined :colorsForVariant[variant].hover ,
       }}
       opacity={disabled ? 0.6 : 1}
       cursor={disabled ? 'not-allowed' : undefined}
-      color={colorsForVariant[variant].text}
+      color={disabled ? colorsForVariant['light'].text : colorsForVariant[variant].text}
       borderRadius='4px'
       boxShadow="sm"
       disabled={disabled}

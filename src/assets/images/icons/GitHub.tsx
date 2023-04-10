@@ -2,7 +2,7 @@ import React from 'react'
 import { SystemProps, x } from '@xstyled/emotion';
 
 interface GitHunProps {
-  color?:string,
+  color?: string; 
 }
 // (property) FillProps < T extends ITheme = Theme >.
 //   fill ?: (SystemProp<string | number | true | symbol | {} | (string & {}), Theme> & string) | undefined
