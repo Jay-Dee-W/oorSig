@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
-import { x } from '@xstyled/emotion';
+import { x, SystemProps } from '@xstyled/emotion';
 
+const colorsForVariant = {
+  danger: {
+    bg: '#F3D8DB',
+    text: '#7A282B',
+  },
+  success: {
+    bg: '#D6E6DF',
+    text: '#265035',
+  },
+  info: {
+    bg: '#44494B',
+    text: 'white',
+  },
+};
 
-interface AlertProps {
-    message: string;
-    backgroundColor?: string;
-    onDismiss?: () => void;
+interface AlertProps extends SystemProps {
+  message: string;
+  variant: 'success' | 'danger' | 'info';
+  onDismiss?: () => void;
 }
+
 export const Alert: React.FC<AlertProps> = ({
-    message,
-    backgroundColor = '#F3D8DB',
-    onDismiss,
-  }) => {
-    const [dismissed, setDismissed] = useState(false);
+  message,
+  variant = 'success',
+  onDismiss,
+  ...systemProps
+}) => {
+  const [dismissed, setDismissed] = useState(false);
 
   const handleClick = () => {
     setDismissed(true);
@@ -24,54 +40,46 @@ export const Alert: React.FC<AlertProps> = ({
   if (dismissed) {
     return null;
   }
-return (
-  <x.div
-    display="flex"
-    flexDirection="column"
-    justifyContent="center"
-    alignItems="center"
-    padding="17px 18px"
-    gap="10px"
-    position="absolute"
-    w="368px"
-    h="58px"
-    left="20px"
-    top="20px"
-    background={backgroundColor}
-    borderRadius="4px"
-  >
-    <x.span
-      w="258px"
-      h="24px"
-      fontFamily="Inter"
-      fontStyle="normal"
-      fontWeight="400"
-      fontSize="16px"
-      lineHeight="24px"
-      color="#7A282B"
-      flex="none"
-      order="0"
-      flexGrow="0"
-      textAlign="center"
-      whiteSpace="nowrap"
-      overflow="hidden"
-      textOverflow="ellipsis"
+  return (
+    <x.div
+      {...systemProps}
+      display="flex"
+      flexDirection="row"
+      justifyContent="center"
+      alignItems="center"
+      padding="17px 18px"
+      gap="10px"
+      position="absolute"
+      w="368px"
+      left="20px"
+      top="20px"
+      bg={colorsForVariant[variant].bg}
+      color={colorsForVariant[variant].text}
+      borderRadius="4px"
     >
-      { message }
-    </x.span>
-    <x.span
-      w="12px"
-      h="12px"
-      flex="none"
-      order="1"
-      left="320px"
-      top="6px"
-      flexGrow="0"
-      cursor="pointer"
-      onClick={handleClick}
+      <x.span
+        w="258px"
+        h="24px"
+        fontFamily="Inter"
+        fontStyle="normal"
+        fontWeight="400"
+        fontSize="16px"
+        lineHeight="24px"
+        flex="1"
+        overflow="hidden"
+        textOverflow="ellipsis"
       >
-          &#215;
-    </x.span>
-  </x.div>
-)
-}
+        {message}
+      </x.span>
+      <x.span
+        h="12px"
+        w="12px"
+        flex="none"
+        cursor="pointer"
+        onClick={handleClick}
+      >
+        &#215;
+      </x.span>
+    </x.div>
+  );
+};
