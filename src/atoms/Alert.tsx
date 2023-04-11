@@ -18,7 +18,7 @@ const colorsForVariant = {
 
 interface AlertProps extends SystemProps {
   message: string;
-  variant: 'success' | 'danger' | 'info';
+  variant?: 'success' | 'danger' | 'info';
   onDismiss?: () => void;
 }
 
@@ -47,7 +47,7 @@ export const Alert: React.FC<AlertProps> = ({
       flexDirection="row"
       justifyContent="center"
       alignItems="center"
-      padding="1.0625rem 1.125rem"
+      p="1.0625rem 1.125rem"
       gap="0.625rem"
       position="absolute"
       w="23rem"
