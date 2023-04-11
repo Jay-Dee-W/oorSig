@@ -1,2 +1,2 @@
-export { Button } from "./Button";
-export { Spinner } from "./Spinner";
+export { Button } from './Button';
+export { Spinner } from './Spinner';

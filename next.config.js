@@ -26,4 +26,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([moduleExports,withSvgr], nextConfig);
+module.exports = withPlugins([moduleExports, withSvgr], nextConfig);

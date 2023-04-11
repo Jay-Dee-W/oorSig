@@ -83,7 +83,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   icon,
   title,
-  type='button',
+  type = 'button',
   ...systemProps
 }) => {
   return (
@@ -96,8 +96,8 @@ export const Button: React.FC<ButtonProps> = ({
       display="inline-flex"
       alignItems="center"
       justifyContent="center"
-      w='130px'
-      h='57px'
+      w="130px"
+      h="57px"
       px={paddingForSize[size].px}
       py={paddingForSize[size].py}
       border
@@ -107,31 +107,41 @@ export const Button: React.FC<ButtonProps> = ({
       fontWeight="medium"
       opacity={disabled ? 0.6 : 1}
       cursor={disabled ? 'not-allowed' : undefined}
-      color={disabled ? colorsForVariant['light'].text : colorsForVariant[variant].text}
-      borderRadius='4px'
+      color={
+        disabled
+          ? colorsForVariant['light'].text
+          : colorsForVariant[variant].text
+      }
+      borderRadius="4px"
       boxShadow="sm"
       bg={{
-        _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg,
-        hover: disabled ? undefined :colorsForVariant[variant].hover ,
+        _: disabled
+          ? colorsForVariant['light'].bg
+          : colorsForVariant[variant].bg,
+        hover: disabled ? undefined : colorsForVariant[variant].hover,
       }}
       {...systemProps}
     >
-      {
-        loading ? (<Spinner active={true} borderColor={colorsForVariant[variant].text}></Spinner>):
-          <>
-            {icon && (
-                <x.span
-                  display="inline-flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  mr={2}
-                >
-                  {icon}
-                </x.span>
-              )}
-              {children}
+      {loading ? (
+        <Spinner
+          active={true}
+          borderColor={colorsForVariant[variant].text}
+        ></Spinner>
+      ) : (
+        <>
+          {icon && (
+            <x.span
+              display="inline-flex"
+              alignItems="center"
+              justifyContent="center"
+              mr={2}
+            >
+              {icon}
+            </x.span>
+          )}
+          {children}
         </>
-      } 
+      )}
     </x.button>
   );
 };

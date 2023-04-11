@@ -9,21 +9,21 @@ const meta: Meta<typeof Button> = {
   tags: ['autodocs'],
   argTypes: {
     variant: {
-      options: [ 'primary' , 'secondary' , 'success' , 'danger' , 'light'],
+      options: ['primary', 'secondary', 'success', 'danger', 'light'],
       control: { type: 'radio' },
     },
     size: {
-      options: [ 'xs' , 'sm' , 'md' , 'lg' , 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
       control: { type: 'radio' },
     },
     onClick: { action: 'Button-Clicked' },
-    disabled: { control: { type: 'boolean' } }, 
-    loading: { control: { type: 'boolean' } }, 
-    children:{ control :{type:'text'}},
-    icon:{control:{type:'object'}},
-    title:{control:{type:'text'}},
+    disabled: { control: { type: 'boolean' } },
+    loading: { control: { type: 'boolean' } },
+    children: { control: { type: 'text' } },
+    icon: { control: { type: 'object' } },
+    title: { control: { type: 'text' } },
     type: {
-      options: [ 'button' , 'submit' , 'reset'],
+      options: ['button', 'submit', 'reset'],
       control: { type: 'radio' },
     },
   },
@@ -82,7 +82,7 @@ export const Disabled: Story = {
     children: 'Disabled',
     size: 'md',
     icon: <GitHub />,
-    disabled: true
+    disabled: true,
   },
 };
 
@@ -91,14 +91,14 @@ export const Loading: Story = {
     children: 'Loading',
     size: 'md',
     icon: <GitHub />,
-    loading: true
+    loading: true,
   },
 };
 
 export const NoIcon: Story = {
   args: {
     children: 'NoIcon',
-    size: 'md', 
+    size: 'md',
   },
 };
 
@@ -107,6 +107,6 @@ export const NoRadius: Story = {
     children: 'No Radius',
     size: 'md',
     icon: <GitHub />,
-    borderRadius:'none'
+    borderRadius: 'none',
   },
 };
