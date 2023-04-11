@@ -38,26 +38,90 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/react/writing-stories/args
+// export const Default: Story = (args) => <Button {...args} />;
+// Default.args = {
+//   children: 'primary',
+//   variant: 'primary',
+//   size: 'md',
+  // icon: <GitHub />,
+// };
+
 export const Default: Story = {
   args: {
-    children: 'primary',
+    children: 'Primary',
     variant: 'primary',
     size: 'md',
     // icon: <GitHub />,
   },
 };
 
-// export const Default: Story = (args) => <Button {...args} />;
-// Default.args = {
-//   children: 'primary',
-//   variant: 'primary',
-//   size: 'md',
-//   icon: <GitHub />,
-// };
 export const Secondary: Story = {
   args: {
-    children: 'secondary',
+    children: 'Secondary',
     variant: 'secondary',
     size: 'md',
+    // icon: <GitHub />,
+  },
+};
+
+export const Success: Story = {
+  args: {
+    children: 'Success',
+    variant: 'success',
+    size: 'md',
+    // icon: <GitHub />,
+  },
+};
+
+export const Danger: Story = {
+  args: {
+    children: 'Danger',
+    variant: 'danger',
+    size: 'md',
+    // icon: <GitHub />,
+  },
+};
+
+export const Light: Story = {
+  args: {
+    children: 'Light',
+    variant: 'light',
+    size: 'md',
+    // icon: <GitHub />,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    children: 'Disabled',
+    size: 'md',
+    // icon: <GitHub />,
+    disabled: true
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    children: 'Loading',
+    size: 'md',
+    // icon: <GitHub />,
+    loading: true
+  },
+};
+
+export const NoIcon: Story = {
+  args: {
+    children: 'NoIcon',
+    size: 'md',
+    // icon: <GitHub />,
+  },
+};
+
+export const NORadius: Story = {
+  args: {
+    children: 'NoIcon',
+    size: 'md',
+    // icon: <GitHub />,
+    borderRadius:'none'
   },
 };
