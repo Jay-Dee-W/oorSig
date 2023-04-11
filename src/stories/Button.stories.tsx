@@ -3,9 +3,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@atoms/Button';
 import { GitHub } from '@icons/index';
 
-type IconProps = {
-  icon: React.ReactNode;
-};
+// type IconProps = {
+//   icon: React.ReactNode;
+// };
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
@@ -51,7 +51,7 @@ export const Default: Story = {
     children: 'Primary',
     variant: 'primary',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
   },
 };
 
@@ -60,7 +60,7 @@ export const Secondary: Story = {
     children: 'Secondary',
     variant: 'secondary',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
   },
 };
 
@@ -69,7 +69,7 @@ export const Success: Story = {
     children: 'Success',
     variant: 'success',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
   },
 };
 
@@ -78,7 +78,7 @@ export const Danger: Story = {
     children: 'Danger',
     variant: 'danger',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
   },
 };
 
@@ -87,7 +87,7 @@ export const Light: Story = {
     children: 'Light',
     variant: 'light',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
   },
 };
 
@@ -95,7 +95,7 @@ export const Disabled: Story = {
   args: {
     children: 'Disabled',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
     disabled: true
   },
 };
@@ -104,7 +104,7 @@ export const Loading: Story = {
   args: {
     children: 'Loading',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
     loading: true
   },
 };
@@ -112,16 +112,15 @@ export const Loading: Story = {
 export const NoIcon: Story = {
   args: {
     children: 'NoIcon',
-    size: 'md',
-    // icon: <GitHub />,
+    size: 'md', 
   },
 };
 
-export const NORadius: Story = {
+export const NoRadius: Story = {
   args: {
-    children: 'NoIcon',
+    children: 'No Radius',
     size: 'md',
-    // icon: <GitHub />,
+    icon: <GitHub />,
     borderRadius:'none'
   },
 };
