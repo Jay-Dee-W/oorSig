@@ -3,9 +3,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '@atoms/Button';
 import { GitHub } from '@icons/index';
 
-// type IconProps = {
-//   icon: React.ReactNode;
-// };
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
@@ -34,18 +31,9 @@ const meta: Meta<typeof Button> = {
 };
 
 export default meta;
-// type Story = StoryObj<typeof Button , IconProps>;
 type Story = StoryObj<typeof Button>;
 
 // More on writing stories with args: https://storybook.js.org/docs/7.0/react/writing-stories/args
-// export const Default: Story = (args) => <Button {...args} />;
-// Default.args = {
-//   children: 'primary',
-//   variant: 'primary',
-//   size: 'md',
-  // icon: <GitHub />,
-// };
-
 export const Default: Story = {
   args: {
     children: 'Primary',

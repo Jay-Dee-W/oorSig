@@ -53,9 +53,7 @@
     "regenerator-runtime": "^0.13.9",
     "rehype-raw": "^6.1.1",
     "relay-runtime": "^14.0.0",
-    "remark-gfm": "^3.0.1",
-    "storybook-addon-styled-component-theme": "^2.0.0",
-    "styled-components": "^5.3.9"
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.2",
