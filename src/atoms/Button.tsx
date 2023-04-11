@@ -94,7 +94,6 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       title={title}
       type={type}
-      {...systemProps}
       animation={loading ? 'pulse' : undefined}
       display="inline-flex"
       alignItems="center"
@@ -122,11 +121,12 @@ export const Button: React.FC<ButtonProps> = ({
       // }}
 
       // bg={colorsForVariant[variant].bg}
-      bg={bg}
+      // bg={bg}
       // bg={{
       //   _: bg,
       //   hover:hover
       // }}
+      {...systemProps}
     >
       {
         loading ? (<Spinner active={true} borderColor={colorsForVariant[variant].text}></Spinner>):
