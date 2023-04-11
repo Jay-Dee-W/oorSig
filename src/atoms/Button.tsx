@@ -86,8 +86,6 @@ export const Button: React.FC<ButtonProps> = ({
   type='button',
   ...systemProps
 }) => {
-  const bg = disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg;
-  const hover = disabled ? undefined :colorsForVariant[variant].hover 
   return (
     <x.button
       onClick={onClick}
@@ -112,20 +110,10 @@ export const Button: React.FC<ButtonProps> = ({
       color={disabled ? colorsForVariant['light'].text : colorsForVariant[variant].text}
       borderRadius='4px'
       boxShadow="sm"
-      // bg={{
-        // _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg,
-        // hover: disabled ? undefined :colorsForVariant[variant].hover ,
-      // }}
-
-      // bg={{ _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg
-      // }}
-
-      // bg={colorsForVariant[variant].bg}
-      // bg={bg}
-      // bg={{
-      //   _: bg,
-      //   hover:hover
-      // }}
+      bg={{
+        _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg,
+        hover: disabled ? undefined :colorsForVariant[variant].hover ,
+      }}
       {...systemProps}
     >
       {
