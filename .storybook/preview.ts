@@ -13,25 +13,3 @@ const preview: Preview = {
 };
 
 export default preview;
-
-// import { ThemeProvider } from '@xstyled/emotion';
-
-// export const decorators = [
-//   (Story) => (
-//     <>
-//       <ThemeProvider>
-//         <Story />
-//       </ThemeProvider>
-//     </>
-//   ),
-// ];
-
-// export const parameters = {
-//   actions: { argTypesRegex: '^on[A-Z].*' },
-//   controls: {
-//     matchers: {
-//       color: /(background|color)$/i,
-//       date: /Date$/,
-//     },
-//   },
-// };

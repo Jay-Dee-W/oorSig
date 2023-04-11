@@ -41,7 +41,7 @@ const colorsForVariant = {
     text: 'white',
   },
   secondary: {
-    bg: 'primary-700',
+    bg: '#5B5B5B',
     hover: 'primary-500',
     text: 'white',
   },
@@ -86,9 +86,16 @@ export const Button: React.FC<ButtonProps> = ({
   type='button',
   ...systemProps
 }) => {
+  const bg = disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg;
+  const hover = disabled ? undefined :colorsForVariant[variant].hover 
   return (
     <x.button
       onClick={onClick}
+      disabled={disabled}
+      title={title}
+      type={type}
+      {...systemProps}
+      animation={loading ? 'pulse' : undefined}
       display="inline-flex"
       alignItems="center"
       justifyContent="center"
@@ -101,20 +108,25 @@ export const Button: React.FC<ButtonProps> = ({
       text={textForSize[size]}
       lineHeight={size === 'sm' ? 4 : undefined}
       fontWeight="medium"
-      bg={{
-        _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg,
-        hover: disabled ? undefined :colorsForVariant[variant].hover ,
-      }}
       opacity={disabled ? 0.6 : 1}
       cursor={disabled ? 'not-allowed' : undefined}
       color={disabled ? colorsForVariant['light'].text : colorsForVariant[variant].text}
       borderRadius='4px'
       boxShadow="sm"
-      disabled={disabled}
-      animation={loading ? 'pulse' : undefined}
-      title={title}
-      type={type}
-      {...systemProps}
+      // bg={{
+        // _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg,
+        // hover: disabled ? undefined :colorsForVariant[variant].hover ,
+      // }}
+
+      // bg={{ _: disabled ? colorsForVariant['light'].bg : colorsForVariant[variant].bg
+      // }}
+
+      // bg={colorsForVariant[variant].bg}
+      bg={bg}
+      // bg={{
+      //   _: bg,
+      //   hover:hover
+      // }}
     >
       {
         loading ? (<Spinner active={true} borderColor={colorsForVariant[variant].text}></Spinner>):

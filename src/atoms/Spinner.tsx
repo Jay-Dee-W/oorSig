@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SystemProps, x } from '@xstyled/emotion';
+import { SystemProps, keyframes, x } from '@xstyled/emotion';
 
 interface SpinnerProps extends SystemProps {
   active: boolean;
@@ -12,15 +12,24 @@ export const Spinner: React.FC<SpinnerProps> = ({ active= true , ...systemProps 
     <x.div display="flex" justifyContent="center" alignItems="center">
       <x.div
         display="inline-block"
-        w={8}
-        h={8}
+        w={30}
+        h={30}
         border={3}
         borderColor={'white'}
-        borderTopColor={'primary-600'}
-        borderRadius="full"
-        animation="spin"
+        borderTopColor='gray'
+        borderRadius='50%'
+        animation={`1s infinite linear ${animations['spin']}`}
         {...systemProps}
       />
     </x.div>
   );
 };
+
+const animations = {
+  spin: keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+  `,
+};
+
