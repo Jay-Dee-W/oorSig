@@ -26,16 +26,13 @@ const WidthHeightSize = {
 };
 
 interface SpinnerProps extends SystemProps {
-  active?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({
-  active = true,
   size = 'md',
   ...systemProps
 }) => {
-  if (!active) return null;
   return (
     <x.div display="flex" justifyContent="center" alignItems="center">
       <x.div
