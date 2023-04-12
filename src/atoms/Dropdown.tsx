@@ -62,6 +62,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         display="flex"
         flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
         bg="#2C2F30"
         border="0.03125rem solid #C8CACB"
         w="13.343rem"
@@ -87,13 +89,29 @@ export const Dropdown: React.FC<DropdownProps> = ({
             ? options.find(option => option.value === selectedValue)?.label
             : placeholder}
         </x.span>
-        <x.svg viewBox="0 0 16 16" w="0.99rem" flex="none" left="11.063rem">
+        <x.svg
+          width="20"
+          flex="none"
+          left="11.063rem"
+          height="12"
+          viewBox="0 0 20 12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
-            d="M8 12l-4-4M8 12l4-4"
-            fill="none"
+            d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
             stroke="#C8CACB"
-            strokeWidth="0.12rem"
-            strokeLinecap="round"
+            stroke-width="1.92"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
+            stroke="black"
+            stroke-opacity="0.2"
+            stroke-width="1.92"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           />
         </x.svg>
       </x.button>
