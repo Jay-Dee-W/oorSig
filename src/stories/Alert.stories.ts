@@ -7,7 +7,7 @@ const meta: Meta<typeof Alert> = {
   component: Alert,
   tags: ['autodocs'],
   argTypes: {
-    variant: {
+    type: {
       options: ['success', 'info', 'danger'],
       control: { type: 'radio' },
     },
@@ -20,21 +20,21 @@ type Story = StoryObj<typeof Alert>;
 
 export const Default: Story = {
   args: {
-    variant: 'success',
+    type: 'success',
     message: 'Some helpful text to alert the user',
   },
 };
 
 export const Danger: Story = {
   args: {
-    variant: 'danger',
+    type: 'danger',
     message: 'Some helpful text to alert the user',
   },
 };
 
 export const Info: Story = {
   args: {
-    variant: 'info',
+    type: 'info',
     message: 'Some helpful text to alert the user',
   },
 };
