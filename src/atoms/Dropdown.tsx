@@ -90,10 +90,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
             : placeholder}
         </x.span>
         <x.svg
-          width="20"
+          w="20"
           flex="none"
           left="11.063rem"
-          height="12"
+          h="12"
           viewBox="0 0 20 12"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
