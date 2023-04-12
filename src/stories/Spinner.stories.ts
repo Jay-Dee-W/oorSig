@@ -8,6 +8,10 @@ const meta: Meta<typeof Spinner> = {
   argTypes: {
     active: { control: { type: 'boolean' } },
     borderColor: { control: { type: 'color' } },
+    size: {
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
+      control: { type: 'radio' },
+    },
   },
 };
 
