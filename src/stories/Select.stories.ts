@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select } from '@atoms/Select';
+import { Dropdown } from '@oorsig/atoms/Dropdown';
 
 const options = [
   { label: 'Option 1', value: 'option1' },
@@ -7,20 +7,20 @@ const options = [
   { label: 'Option 3', value: 'option3' },
 ];
 
-const meta: Meta<typeof Select> = {
-  title: 'Atoms/Select',
-  component: Select,
+const meta: Meta<typeof Dropdown> = {
+  title: 'Atoms/Dropdown',
+  component: Dropdown,
   tags: ['autodocs'],
   argTypes: {
     options: { control: { type: 'object' } },
-    value: { control: { type: 'text' } },
+    defaultValue: { control: { type: 'text' } },
     placeholder: { control: { type: 'text' } },
     onChange: { action: 'selected' },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Select>;
+type Story = StoryObj<typeof Dropdown>;
 
 export const Default: Story = {
   args: {
