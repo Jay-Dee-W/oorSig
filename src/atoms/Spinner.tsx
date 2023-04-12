@@ -37,8 +37,8 @@ export const Spinner: React.FC<SpinnerProps> = ({
     <x.div display="flex" justifyContent="center" alignItems="center">
       <x.div
         display="inline-block"
-        w={WidthHeightSize[size].w || systemProps}
-        h={WidthHeightSize[size].w || systemProps}
+        w={WidthHeightSize[size].w}
+        h={WidthHeightSize[size].w}
         border={3}
         borderColor={'white'}
         borderTopColor="#C8C8C8"
