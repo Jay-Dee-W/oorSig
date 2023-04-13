@@ -1,0 +1,56 @@
+import { x } from '@xstyled/emotion';
+import { Spinner } from '@atoms/index';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import Head from 'next/head';
+
+<MDXWrapper>
+<Head>
+	<title>Spinner Doc | OORSIG</title>
+</Head>
+
+# Spinner
+
+## Introduction
+
+Spinners are graphical elements that show the progress or status of a process, commonly used to indicate an unspecified wait time or display ongoing tasks.
+
+## Basic Usage
+
+Firstly, you have to import `Spinner` atom so that you can start to use it
+
+```
+	import { Spinner } from "@atoms/Spinner";
+
+	or
+	
+	import { Spinner } from "@atoms/index";
+
+	<Spinner/>
+```
+
+## Sizes
+
+Spinners can be customized in size using the 'size' prop, which accepts six different options: ```'xs', 'sm', 'md', 'lg', and 'xl'``` and the default size is ```md```. This allows you to easily adjust the size of the spinner to suit your needs.
+
+```
+	<Spinner borderColor="#000" size='md' />
+	<Spinner borderColor="#000" size='xl' />
+	<Spinner borderColor="#000" size='xs' />
+	<Spinner borderColor="#000" size='sm' />
+	<Spinner borderColor="#000" size='lg' />
+```
+
+<x.div display='inline-flex' gap={6}>
+	<Spinner borderColor="#000" size='md' />
+	<Spinner borderColor="#000" size='xl' />
+	<Spinner borderColor="#000" size='xs' />
+	<Spinner borderColor="#000" size='sm' />
+	<Spinner borderColor="#000" size='lg' />
+</x.div>
+
+## systemProps
+In addition to the size prop, you can further customize spinners by passing system props such as borderColor , border and other as props. These additional props provide more flexibility in styling, with the default borderColor being set to white.
+
+<Spinner borderColor="#000" />
+
+</MDXWrapper>
