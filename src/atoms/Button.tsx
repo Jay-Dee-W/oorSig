@@ -123,10 +123,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...systemProps}
     >
       {loading ? (
-        <Spinner
-          active={true}
-          borderColor={colorsForVariant[variant].text}
-        ></Spinner>
+        <Spinner borderColor={colorsForVariant[variant].text}></Spinner>
       ) : (
         <>
           {icon && (
