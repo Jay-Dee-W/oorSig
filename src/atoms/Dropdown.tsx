@@ -1,74 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { x } from '@xstyled/emotion';
+import React from 'react';
+import { x, SystemProps } from '@xstyled/emotion';
+import { useSelect } from 'downshift';
 
-export interface DropdownOption {
-  value: string;
+interface DropdownOption {
   label: string;
+  value: string;
 }
 
-interface DropdownProps {
+interface DropdownProps extends SystemProps{
   options: DropdownOption[];
-  defaultValue?: string;
   placeholder?: string;
-  onChange?: (selectedValue: string) => void;
 }
 
 export const Dropdown: React.FC<DropdownProps> = ({
   options,
-  defaultValue,
   placeholder = 'Select',
-  onChange,
   ...systemProps
 }) => {
-  const [selectedValue, setSelectedValue] = useState<string | undefined>('');
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onOutsideClick = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node) &&
-        (event.target as HTMLElement).nodeName !== 'OPTION'
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('click', onOutsideClick);
-
-    return () => {
-      document.removeEventListener('click', onOutsideClick);
-    };
-  }, []);
-
-  const onOptionClick = (value: string) => {
-    setSelectedValue(value);
-    setIsOpen(false);
-
-    if (onChange) {
-      onChange(value);
-    }
-  };
+  const {
+    isOpen,
+    selectedItem,
+    getToggleButtonProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect<DropdownOption>({
+    items: options,
+  });
 
   return (
-    <x.div
-      display="inline-block"
-      position="relative"
-      {...systemProps}
-      ref={dropdownRef}
-    >
-      <x.button
-        onClick={() => setIsOpen(!isOpen)}
+    <x.div  w="13.343rem" h="2.773rem">
+      <x.div
         display="flex"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="center"
+        flexDirection="column"
         bg="#2C2F30"
         border="0.03125rem solid #C8CACB"
-        w="13.343rem"
-        h="2.773rem"
-        p="0.61rem 1.067rem 0.61rem 0.933rem"
+        p="11px 17px 11px 15px"
         cursor="pointer"
         color="white"
         fontStyle="normal"
@@ -78,67 +45,91 @@ export const Dropdown: React.FC<DropdownProps> = ({
         fontWeight="400"
         fontSize="1rem"
         lineHeight="1.5rem"
+        { ...systemProps }
+        {...getToggleButtonProps()}
       >
-        <x.span
-          overflow="hidden"
-          textOverflow="ellipsis"
-          flex="1"
-          textAlign="left"
-        >
-          {selectedValue
-            ? options.find(option => option.value === selectedValue)?.label
-            : placeholder}
-        </x.span>
-        <x.svg
-          w="20"
-          flex="none"
-          left="11.063rem"
-          h="12"
-          viewBox="0 0 20 12"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
-            stroke="#C8CACB"
-            stroke-width="1.92"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
-            stroke="black"
-            stroke-opacity="0.2"
-            stroke-width="1.92"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </x.svg>
-      </x.button>
-      {isOpen && (
-        <x.ul
-          position="absolute"
-          top="100%"
-          color="white"
-          w="13.343rem"
-          listStyleType="none"
-          bg="#2C2F30"
-          borderRadius="0.367rem"
-        >
-          {options.map(option => (
+        <x.div display="flex" cursor="pointer">
+          <x.span
+            flex="1"
+            textOverflow="ellipsis"
+            whiteSpace="nowrap"
+            overflow="hidden"
+          >
+            {selectedItem ? selectedItem.label : placeholder}
+          </x.span>
+          <x.span flex="none" display="flex" alignItems="center">
+            {isOpen ? (
+              <x.svg
+                w="17.49px"
+                viewBox="0 0 20 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
+                  stroke="#C8CACB"
+                  strokeWidth="1.92"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
+                  stroke="black"
+                  strokeOpacity="0.2"
+                  strokeWidth="1.92"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </x.svg>
+            ) : (
+              <x.svg
+                w="17.49px"
+                viewBox="0 0 20 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
+                  stroke="#C8CACB"
+                  stroke-width="1.92"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
+                  stroke="black"
+                  stroke-opacity="0.2"
+                  stroke-width="1.92"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </x.svg>
+            )}
+          </x.span>
+        </x.div>
+      </x.div>
+      <x.ul
+        color="white"
+        w="13.343rem"
+        bg="#2C2F30"
+        borderRadius="0.367rem"
+        {...getMenuProps()}
+      >
+        {isOpen &&
+          options.map((item, index) => (
             <x.li
-              key={option.value}
+              flex="flex-col"
               p="0.533rem"
               cursor="pointer"
-              bg={{ hover: '#C8CACB' }}
-              borderRadius={{ hover: '0.367rem' }}
-              onClick={() => onOptionClick(option.value)}
+              bg={highlightedIndex === index ? '#C8CACB' : 'transparent'}
+              borderRadius={highlightedIndex === index ? '0.367rem' : ''}
+              key={index}
+              {...getItemProps({ item, index })}
             >
-              {option.label}
+              <x.span>{item.label}</x.span>
             </x.li>
           ))}
-        </x.ul>
-      )}
+      </x.ul>
     </x.div>
   );
 };
