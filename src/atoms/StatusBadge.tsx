@@ -3,24 +3,24 @@ import { SystemProps, x } from '@xstyled/emotion';
 
 const WidthHeightSize = {
   xs: {
-    w: 12,
-    h: 12,
+    w: '1.3rem',
+    h: '1.3rem',
   },
   sm: {
-    w: "200px",
-    h: "200px",
+    w: '1.5rem',
+    h: '1.5rem',
   },
   md: {
-    w: 24,
-    h: 24,
+    w: '2rem',
+    h: '2rem',
   },
   lg: {
-    w: 30,
-    h: 30,
+    w: '2.5rem',
+    h: '2.5rem',
   },
   xl: {
-    w: 36,
-    h: 36,
+    w: '3rem',
+    h: '3rem',
   },
 };
 
@@ -43,21 +43,23 @@ export const StatusBadge: React.FC<StatusBadge> = ({
     >
       {isAdmin ? (
         <x.svg
-          w={WidthHeightSize[size].w}
-          h={WidthHeightSize[size].w}
-          viewBox="0 0 76 129"
+          width="36"
+          height="35"
+          viewBox="0 0 36 35"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          w={WidthHeightSize[size].w}
+          h={WidthHeightSize[size].w}
         >
           <x.ellipse
-            cx="37.541"
-            cy="91.257"
+            cx="18.1913"
+            cy="17.3604"
             rx="17.541"
             ry="17.0382"
             fill="#C8FFEB"
           />
           <x.path
-            d="M45.8745 85.3145L34.8745 96.3145L29.8745 91.3145"
+            d="M26.5248 11.4178L15.5248 22.4178L10.5248 17.4178"
             stroke="#265035"
             stroke-width="2"
             stroke-linecap="round"
@@ -66,15 +68,17 @@ export const StatusBadge: React.FC<StatusBadge> = ({
         </x.svg>
       ) : (
         <x.svg
-          w={WidthHeightSize[size].w}
-          h={WidthHeightSize[size].w}
-          viewBox="0 0 76 129"
+          width="36"
+          height="35"
+          viewBox="0 0 36 35"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          w={WidthHeightSize[size].w}
+          h={WidthHeightSize[size].w}
         >
           <x.ellipse
-            cx="37.541"
-            cy="37.1808"
+            cx="18.1913"
+            cy="17.4956"
             rx="17.541"
             ry="17.0382"
             fill="#F3D8DB"
@@ -82,7 +86,7 @@ export const StatusBadge: React.FC<StatusBadge> = ({
           <x.path
             fill-rule="evenodd"
             clip-rule="evenodd"
-            d="M44.4145 31.898C44.8107 31.5132 44.8199 30.8801 44.4351 30.4839C44.0503 30.0878 43.4172 30.0785 43.021 30.4634L37.5407 35.7866L32.0604 30.4634C31.6642 30.0785 31.0311 30.0878 30.6463 30.4839C30.2615 30.8801 30.2707 31.5132 30.6669 31.898L36.1055 37.1807L30.6669 42.4634C30.2707 42.8482 30.2615 43.4813 30.6463 43.8774C31.0311 44.2736 31.6642 44.2828 32.0604 43.898L37.5407 38.5748L43.021 43.898C43.4172 44.2828 44.0503 44.2736 44.4351 43.8774C44.8199 43.4813 44.8107 42.8482 44.4145 42.4634L38.9759 37.1807L44.4145 31.898Z"
+            d="M25.0648 12.2128C25.4609 11.828 25.4701 11.1949 25.0853 10.7987C24.7005 10.4026 24.0674 10.3934 23.6713 10.7782L18.191 16.1014L12.7107 10.7782C12.3145 10.3934 11.6814 10.4026 11.2966 10.7987C10.9118 11.1949 10.921 11.828 11.3172 12.2128L16.7557 17.4955L11.3172 22.7782C10.921 23.163 10.9118 23.7961 11.2966 24.1922C11.6814 24.5884 12.3145 24.5976 12.7107 24.2128L18.191 18.8896L23.6713 24.2128C24.0674 24.5976 24.7005 24.5884 25.0853 24.1922C25.4701 23.7961 25.4609 23.163 25.0648 22.7782L19.6262 17.4955L25.0648 12.2128Z"
             fill="#EB5545"
           />
         </x.svg>

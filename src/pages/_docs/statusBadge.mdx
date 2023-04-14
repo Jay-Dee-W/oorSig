@@ -13,11 +13,11 @@ import { StatusBadge } from '@atoms/index';
 
 ## Introduction
 
-Spinners are graphical elements that show the progress or status of a process, commonly used to indicate an unspecified wait time or display ongoing tasks.
+StatusBadges can act as labels in applications by utilizing the isAdmin prop. When isAdmin is true, the StatusBadge is rendered a checkmark label indicating privileged or admin status. When isAdmin is false (default), the StatusBadge have the dismiss mark label appearance.
 
 ## Basic Usage
 
-Firstly, you have to import `Spinner` atom so that you can start to use it
+Firstly, you have to import `StatusBadge` atom so that you can start to use it
 
 ```
 	import { StatusBadge } from "@atoms/StatusBadge";
@@ -27,31 +27,48 @@ Firstly, you have to import `Spinner` atom so that you can start to use it
 	import { StatusBadge } from "@atoms/index";
 
 	<StatusBadge/>
+	<StatusBadge isAdmin={true} />
+
 ```
+
+<StatusBadge />
+<StatusBadge isAdmin={true} />
 
 ## Sizes
 
-Spinners can be customized in size using the 'size' prop, which accepts five different options: `'xs', 'sm', 'md', 'lg', and 'xl'` and the default size is `md`. This allows you to easily adjust the size of the spinner to suit your needs.
+StatusBadges can be customized in size using the 'size' prop, which accepts five different options: `'xs', 'sm', 'md', 'lg', and 'xl'`, and the default size is `'md'`. This allows you to easily adjust the size of the StatusBadge to suit your needs.
 
 ```
-	<StatusBadge  size='xl' />
-	<StatusBadge  size='md' />
 	<StatusBadge  size='xs' />
-	<StatusBadge  size='lg' />
-	<StatusBadge  size='sm' />
+    <StatusBadge  size='md' />
+    <StatusBadge  size='lg' />
+    <StatusBadge  size='xl' />
+    <StatusBadge  size='sm' />
+
+	<StatusBadge  size='xs' isAdmin={true}/>
+    <StatusBadge  size='sm' isAdmin={true}/>
+    <StatusBadge  size='md' isAdmin={true}/>
+    <StatusBadge  size='lg' isAdmin={true}/>
+    <StatusBadge  size='xl' isAdmin={true}/>
 ```
 
-<x.div display="inline-flex" gap={6}>
-	<StatusBadge  size='xl' />
-	<StatusBadge  size='md' />
-	<StatusBadge  size='xs' />
-	<StatusBadge  size='lg' />
-	<StatusBadge  size='sm' />
+<x.div>
+  <StatusBadge size="xs" />
+  <StatusBadge size="sm" />
+  <StatusBadge size="md" />
+  <StatusBadge size="lg" />
+  <StatusBadge size="xl" />
+</x.div>
+<x.div>
+  <StatusBadge size="xs" isAdmin={true} />
+  <StatusBadge size="sm" isAdmin={true} />
+  <StatusBadge size="md" isAdmin={true} />
+  <StatusBadge size="lg" isAdmin={true} />
+  <StatusBadge size="xl" isAdmin={true} />
 </x.div>
 
 ## systemProps
 
-In addition to the size prop, you can further customize spinners by passing system props such as borderColor , border and other as props. These additional props provide more flexibility in styling, with the default borderColor being set to white.
-
+In addition to the size prop, you can further customize statusBadge by passing system props. These additional props provide more flexibility in styling.
 
 </MDXWrapper>
