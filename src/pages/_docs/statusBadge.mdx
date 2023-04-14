@@ -1,0 +1,57 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { x } from '@xstyled/emotion';
+
+import { StatusBadge } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>StatusBadge Doc | OORSIG</title>
+</Head>
+
+# StatusBadge
+
+## Introduction
+
+Spinners are graphical elements that show the progress or status of a process, commonly used to indicate an unspecified wait time or display ongoing tasks.
+
+## Basic Usage
+
+Firstly, you have to import `Spinner` atom so that you can start to use it
+
+```
+	import { StatusBadge } from "@atoms/StatusBadge";
+
+	or
+
+	import { StatusBadge } from "@atoms/index";
+
+	<StatusBadge/>
+```
+
+## Sizes
+
+Spinners can be customized in size using the 'size' prop, which accepts five different options: `'xs', 'sm', 'md', 'lg', and 'xl'` and the default size is `md`. This allows you to easily adjust the size of the spinner to suit your needs.
+
+```
+	<StatusBadge  size='xl' />
+	<StatusBadge  size='md' />
+	<StatusBadge  size='xs' />
+	<StatusBadge  size='lg' />
+	<StatusBadge  size='sm' />
+```
+
+<x.div display="inline-flex" gap={6}>
+	<StatusBadge  size='xl' />
+	<StatusBadge  size='md' />
+	<StatusBadge  size='xs' />
+	<StatusBadge  size='lg' />
+	<StatusBadge  size='sm' />
+</x.div>
+
+## systemProps
+
+In addition to the size prop, you can further customize spinners by passing system props such as borderColor , border and other as props. These additional props provide more flexibility in styling, with the default borderColor being set to white.
+
+
+</MDXWrapper>

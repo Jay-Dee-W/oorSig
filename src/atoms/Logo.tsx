@@ -28,7 +28,7 @@ interface StatusBadge extends SystemProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const StatusBadge: React.FC<StatusBadge> = ({
+export const Logo: React.FC<StatusBadge> = ({
   size = 'md',
   ...systemProps
 }) => {

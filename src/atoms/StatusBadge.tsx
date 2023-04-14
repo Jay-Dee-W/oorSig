@@ -7,8 +7,8 @@ const WidthHeightSize = {
     h: 12,
   },
   sm: {
-    w: 18,
-    h: 18,
+    w: "200px",
+    h: "200px",
   },
   md: {
     w: 24,
