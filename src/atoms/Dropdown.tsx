@@ -7,7 +7,7 @@ interface DropdownOption {
   value: string;
 }
 
-interface DropdownProps extends SystemProps{
+interface DropdownProps extends SystemProps {
   options: DropdownOption[];
   placeholder?: string;
 }
@@ -29,7 +29,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   });
 
   return (
-    <x.div  w="13.343rem" h="2.773rem">
+    <x.div w="13.343rem" h="2.773rem">
       <x.div
         display="flex"
         flexDirection="column"
@@ -45,7 +45,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         fontWeight="400"
         fontSize="1rem"
         lineHeight="1.5rem"
-        { ...systemProps }
+        {...systemProps}
         {...getToggleButtonProps()}
       >
         <x.div display="flex" cursor="pointer">
