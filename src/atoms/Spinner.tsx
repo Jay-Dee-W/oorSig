@@ -26,7 +26,7 @@ interface SpinnerProps extends SystemProps {
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({
-  size = 'md',
+  size = 'xs',
   ...systemProps
 }) => {
   return (
