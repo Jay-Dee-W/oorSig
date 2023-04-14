@@ -4,29 +4,25 @@ import { SystemProps, keyframes, x } from '@xstyled/emotion';
 
 const WidthHeightSize = {
   xs: {
+    w: 8,
+    h: 8,
+  },
+  sm: {
     w: 12,
     h: 12,
   },
-  sm: {
-    w: 24,
-    h: 24,
-  },
   md: {
-    w: 30,
-    h: 30,
+    w: 16,
+    h: 16,
   },
   lg: {
-    w: 36,
-    h: 36,
-  },
-  xl: {
-    w: 42,
-    h: 42,
+    w: 24,
+    h: 24,
   },
 };
 
 interface SpinnerProps extends SystemProps {
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 }
 
 export const Spinner: React.FC<SpinnerProps> = ({
