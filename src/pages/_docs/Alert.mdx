@@ -1,0 +1,46 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { Alert } from '@atoms/Alert';
+
+<MDXWrapper>
+<Head>
+	<title>Alert Doc | OORSIG</title>
+</Head>
+# Alert
+
+## Introduction
+
+The `Alert` component displays a dismissible alert message with different color variants.
+
+## Props
+
+### `message`: `string`
+
+- The alert message to be displayed.
+
+### `variant`: `'success' | 'danger' | 'info'` (optional)
+
+- The color variant of the alert. Defaults to `'success'`.
+
+### `onDismiss`: `() => void` (optional)
+
+- A callback function that will be called when the dismiss button is clicked.
+
+## Basic Usage
+
+Here's an example of how to use the `Alert` component:
+
+```jsx
+import React from 'react';
+import { Alert } from '@atoms/Alert';
+
+<Alert message="This is a success alert" variant="success" />;
+```
+<x.div display="flex">
+    <Alert
+        message="This is a success alert"
+        variant="success"
+    />
+</x.div>
+</MDXWrapper>
