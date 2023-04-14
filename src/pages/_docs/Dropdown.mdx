@@ -13,6 +13,25 @@ import { Dropdown } from '@atoms/Dropdown';
 
 The `Dropdown` component is a custom dropdown implementation using `downshift` and `@xstyled/emotion` libraries.
 
+## Props
+
+### options (required)
+
+An array of objects representing the options in the dropdown.
+Each object should have a label and a value property. For example:
+
+```
+const options = [
+  { label: 'Option 1', value: 'option1' },
+  { label: 'Option 2', value: 'option2' },
+  { label: 'Option 3', value: 'option3' },
+];
+```
+
+### placeholder (optional)
+
+A string that specifies the placeholder text to be displayed in the dropdown when no option is selected. Default value is "Select".
+
 ## Basic Usage
 
 This is just a basic usage and customization example.
@@ -34,38 +53,9 @@ const options = [
     { label: 'Option 3', value: 'option3' },
   ]}
   placeholder="Weekly"
-  bg="#F0F2F5"
-  border="1px solid #A9AEB4"
-  borderRadius="4px"
-  color="#333"
-  fontSize="16px"
 />;
 ```
 
-## Props
-
-### options (required)
-
-An array of objects representing the options in the dropdown.
-Each object should have a label and a value property. For example:
-
-```
-const options = [
-  { label: 'Option 1', value: 'option1' },
-  { label: 'Option 2', value: 'option2' },
-  { label: 'Option 3', value: 'option3' },
-];
-```
-
-### placeholder (optional)
-
-A string that specifies the placeholder text to be displayed in the dropdown when no option is selected. Default value is "Select".
-
-### ...SystemProps (optional)
-
-Additional system props from the `@xstyled/emotion` library can be passed to customize
-the styling of the Dropdown component. For example, `bg`, `border`, `p`, `cursor`,
-`color`, `fontStyle`, `fontFamily`, `borderRadius`, `fontWeight`, `fontSize`, `lineHeight`, etc.
 
 <x.div>
   <Dropdown
@@ -75,7 +65,7 @@ the styling of the Dropdown component. For example, `bg`, `border`, `p`, `cursor
       { label: 'Option 3', value: 'option3' },
     ]}
     placeholder="Weekly"
-    bg="#2C2F30"
+    bg="red"
     border="0.03125rem solid #C8CACB"
     borderRadius="4px"
     color="white"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { x, SystemProps } from '@xstyled/emotion';
+import { x } from '@xstyled/emotion';
 import { useSelect } from 'downshift';
 
 interface DropdownOption {
@@ -7,7 +7,7 @@ interface DropdownOption {
   value: string;
 }
 
-interface DropdownProps extends SystemProps {
+interface DropdownProps {
   options: DropdownOption[];
   placeholder?: string;
 }
@@ -15,7 +15,6 @@ interface DropdownProps extends SystemProps {
 export const Dropdown: React.FC<DropdownProps> = ({
   options,
   placeholder = 'Select',
-  ...systemProps
 }) => {
   const {
     isOpen,
@@ -45,7 +44,6 @@ export const Dropdown: React.FC<DropdownProps> = ({
         fontWeight="400"
         fontSize="1rem"
         lineHeight="1.5rem"
-        {...systemProps}
         {...getToggleButtonProps()}
       >
         <x.div display="flex" cursor="pointer">
