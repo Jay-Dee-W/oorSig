@@ -6,24 +6,24 @@ import { Card } from '@atoms/index';
 
 <MDXWrapper>
 <Head>
-	<title>Avatar Doc | OORSIG</title>
+	<title>Card Doc | OORSIG</title>
 </Head>
 
 # Avatar
 
 ## Introduction
 
-Avatar are graphical elements that show visual form representing a user oneself and one's identity wished
+Card are graphical elements that show visual form representing a card with header
 
 ## Basic Usage
 
-Firstly, you have to import `Avatar` atom so that you can start to use it
+Firstly, you have to import `Card` atom so that you can start to use it
 
 ```
-	import { Avatar } from "@atoms/Avatar";
+	import { Card } from "@atoms/Card";
 	or
-	import { Avatar } from "@atoms/index";
-	<Avatar/>
+	import { Card } from "@atoms/index";
+	<Card />
 ```
 
 ## Sizes
@@ -31,40 +31,17 @@ Firstly, you have to import `Avatar` atom so that you can start to use it
 Avatar can be customized in size using the 'size' prop, which accepts four different options: `10, 20` and the default size is `10`. This allows you to easily adjust the size of the avatar to suit your needs.
 
 ```
-	<Avatar size='10' />
-	<Avatar size='20' />
-	<Avatar size='30' />
+    <Card bg="white" p={4} borderRadius={4} boxShadow="lg">
+      <h2>Card title</h2>
+      <p>Some card content goes here</p>
+    </Card>
 ```
 
 <x.div display="inline-flex" gap={6}>
-  <Avatar size="10" />
-  <Avatar size="20" />
-  <Avatar size="30" />
+  <Card bg="white" p={4} borderRadius={4} boxShadow="lg">
+    <h2>Card title</h2>
+    <p>Some card content goes here</p>
+  </Card>
 </x.div>
-
-## Src
-
-Avatar can be customized in size using the 'src' prop, which accepts image url
-
-```
-	<Avatar borderColor="#000" size='20' src='https://gravatar.com/avatar/4213bb0627246966c1c4341da2d8544e?s=200&d=robohash&r=x' />
-```
-
-<x.div display="inline-flex" gap={6}>
-  <Avatar
-    size="20"
-    src="https://gravatar.com/avatar/4213bb0627246966c1c4341da2d8544e?s=200&d=robohash&r=x"
-  />
-</x.div>
-
-## systemProps
-
-In addition to the size prop, you can further customize avatars by passing system props such as borderColor , border and other as props. These additional props provide more flexibility in styling, with the default borderColor being set to white.
-
-<Avatar
-  size="20"
-  alt="Avatar"
-  src="https://gravatar.com/avatar/4213bb0627246966c1c4341da2d8544e?s=200&d=robohash&r=x"
-/>
 
 </MDXWrapper>
