@@ -1,10 +1,10 @@
 import React from 'react';
 import { x } from '@xstyled/emotion';
 
-export const GitHub: React.FC = ({ ...props }) => {
+export const GitHub: React.FC = ({ ...systemProps }) => {
   return (
     <x.svg
-      {...props}
+      {...systemProps}
       w="30"
       h="30"
       viewBox="0 0 30 30"
