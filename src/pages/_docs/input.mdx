@@ -3,7 +3,7 @@ import { x } from '@xstyled/emotion';
 
 import { Input } from '@atoms/index';
 import { MDXWrapper } from '@elements/MDXWrapper';
-import { SearchIcon } from '@icons/index'
+import { SearchIcon } from '@icons/index';
 
 <MDXWrapper>
 <Head>
@@ -36,6 +36,7 @@ Firstly, you have to import `Input` atom so that you can start to use it
 ```
 
 {' '}
+
 <Input
   onChange={() => {
     console.log('onchange');
@@ -132,6 +133,7 @@ The ref prop is a reference to the underlying input element. It can be used to a
 
 `Icon` (optional)
 The input atoms in our component library accept an icon prop, which allows you to add an icon to the input element. This can be useful for adding visual cues to help users understand the input's purpose.
+
 ```
 <Input type="search" icon={<SearchIcon/>} />
 ```
