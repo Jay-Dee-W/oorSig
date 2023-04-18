@@ -37,7 +37,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
         h={WidthHeightSize[size].w}
         border={3}
         borderColor={'white'}
-        borderTopColor="#C8C8C8"
+        borderTopColor="#000"
         borderRadius="50%"
         animation={`1s infinite linear ${animations['spin']}`}
         {...systemProps}
