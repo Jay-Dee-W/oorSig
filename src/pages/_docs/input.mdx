@@ -1,0 +1,121 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+
+import { Input} from '@atoms/index';
+import { MDXWrapper } from '@elements/MDXWrapper';
+
+<MDXWrapper>
+<Head>
+	<title>Input Doc | OORSIG</title>
+</Head>
+
+# Input
+The Input component is a customizable input field component that allows users to input data.
+
+## Basic Usage
+
+Firstly, you have to import `Input` atom so that you can start to use it
+
+```
+	import { Input } from "@atoms/Input";
+
+	or
+
+	import { Input } from "@atoms/index";
+
+	<Input
+    onChange={() => { console.log('onchange'); }}
+    onBlur={() => { console.log('onBlure'); }}
+    name="sreachTeam"
+    placeholder="sreach team"
+    type="search"
+    searchIcon={true}
+  />
+```
+
+ <Input
+    onChange={() => { console.log('onchange'); }}
+    onBlur={() => { console.log('onBlure'); }}
+    name="sreachTeam"
+    placeholder="sreach team"
+    type="search"
+    searchIcon={true} 
+  />
+
+## Props
+
+### error
+ ` error` (object, optional)
+The error prop is an object that contains an optional message property, which specifies an error message to be displayed below the input field when an error occurs.
+```
+  <Input
+    error={{ message: 'Please enter a valid value' }}
+  />
+
+```
+
+### onChange
+`onChange` (function, optional)
+The onChange prop is a callback function that is called when the input value changes. It receives the ChangeEvent object as an argument, which contains information about the input event.
+```
+  const handleInputChange = (e) => {
+    console.log('Input value changed:', e.target.value);
+  };
+
+  <Input onChange={handleInputChange} />
+
+```
+
+### onBlur
+`onBlur` (function, optional)
+The onBlur prop is a callback function that is called when the input field loses focus. It receives the FocusEvent object as an argument, which contains information about the focus event.
+```
+  const handleInputBlur = (e) => {
+    console.log('Input field blurred:', e.target.value);
+  };
+
+  <Input onBlur={handleInputBlur} />
+```
+
+### name
+`name` (string, optional)
+The name prop specifies the name of the input field, which is used when the form containing the input field is submitted.
+```
+  <Input name="username" />
+```
+
+### placeholder  
+`placeholder` (string, optional)
+The placeholder prop specifies a placeholder text to be displayed in the input field when it is empty.
+```
+  <Input placeholder="Enter your email" />
+```
+
+### type
+`type` (string, optional)
+The type prop specifies the type of the input field. It is an optional prop and should be one of the following values:
+"text": for a regular text input field.
+"search": for a search input field.
+Default value: "text".
+```
+<Input type="search" />
+```
+
+### ref
+`ref` (React.Ref, optional)
+The ref prop is a reference to the underlying input element. It can be used to access and manipulate the input element directly.
+```
+  <Input ref={inputRef} />
+```
+
+### searchIcon 
+`searchIcon` (boolean, optional)
+The searchIcon prop is a boolean value that determines whether to display a search icon within the input field for search type inputs. When set to true, the search icon will be rendered on the left side of the input field.
+```
+<Input type="search" searchIcon={true} />
+```
+## SystemProps
+
+In addition to the other props, you can further customize input by passing system props. These additional props provide more flexibility in styling.
+
+</MDXWrapper>

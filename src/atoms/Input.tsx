@@ -1,16 +1,17 @@
 import React from 'react';
 import { x, SystemProps } from '@xstyled/emotion';
 
+import { SearchIcon } from '@icons';
+
 interface InputProps extends SystemProps {
-  label: string;
-  helper?: string;
   error?: { message?: string };
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   name?: string;
   placeholder?: string;
-  type?: React.HTMLInputTypeAttribute;
+  type?: 'text' | 'search';
   ref?: React.Ref<HTMLInputElement>;
+  searchIcon?: boolean;
 }
 
 export const Input: React.FC<InputProps> = React.forwardRef<
@@ -19,28 +20,40 @@ export const Input: React.FC<InputProps> = React.forwardRef<
 >(
   (
     {
-      label,
-      helper,
       error,
       onChange,
       onBlur,
       name,
       placeholder,
-      type,
-      ...styleProps
+      type = 'text',
+      searchIcon = false,
+      ...systemProps
     },
     ref
   ) => {
+    const isSearchInput = type === 'search';
     return (
-      <x.div w="full" {...styleProps}>
+      <x.div w="full" {...systemProps}>
         <x.label fontSize="sm" fontWeight="md" color="gray-700">
-          {label}
-          <x.div mt={1}>
+          <x.div mt={1} position="relative">
+            {isSearchInput && searchIcon && (
+              <x.div
+                position="absolute"
+                left="0.5rem"
+                top="50%"
+                transform="translateY(-50%)"
+                pointerEvents="none"
+                color="#fff"
+              >
+                <SearchIcon />
+              </x.div>
+            )}
             <x.input
               display="block"
               w="full"
               p={2}
               px={3}
+              pl={isSearchInput && searchIcon ? '2.5rem' : '1rem'}
               type={type}
               ring={{ focus: 1 }}
               ringColor={{
@@ -54,8 +67,8 @@ export const Input: React.FC<InputProps> = React.forwardRef<
                 focus: !error ? 'primary-300' : 'red-500',
               }}
               fontSize={{ _: 'default', sm: 'sm' }}
-              color={error ? 'red-900' : undefined}
-              // Use form hook connection
+              color={error ? 'red-900' : '#ffffff'}
+              background="#2C2F30"
               name={name}
               onChange={onChange}
               onBlur={onBlur}
@@ -64,13 +77,8 @@ export const Input: React.FC<InputProps> = React.forwardRef<
             />
           </x.div>
         </x.label>
-        {!error && helper && (
-          <x.p mt={2} fontSize="sm" color="gray-500">
-            {helper}
-          </x.p>
-        )}
         {error?.message && (
-          <x.p mt={2} fontSize="sm" color="red-600">
+          <x.p mt={2} fontSize="sm" color="red">
             {error.message}
           </x.p>
         )}
