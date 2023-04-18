@@ -1,11 +1,21 @@
+import Head from 'next/head';
 import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+
 import Typography from '@atoms/Typography';
 
-<x.h1 fontSize="40">fontSize and lineHeight</x.h1>
+<MDXWrapper>
+<Head>
+	<title>Typography Doc | OORSIG</title>
+</Head>
 
-In the OORSIG design system, font sizes are defined with the following values: xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl. These values can be used as the values for the fontSize tag when applying typography styles to your text elements.
+# FontSize and lineHeight
 
-# Examples:
+In the OORSIG design system, font sizes are defined with the following values: xs,
+sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl. These values can be used as the values
+for the fontSize tag when applying typography styles to your text elements.
+
+## Examples:
 
 <x.h1 fontSize="6xl">Lorem ipsum dolor sit amet</x.h1>
 <x.h2 fontSize="5xl">Lorem ipsum dolor sit amet</x.h2>
@@ -18,7 +28,7 @@ In the OORSIG design system, font sizes are defined with the following values: x
 <x.p fontSize="sm">Lorem ipsum dolor sit amet</x.p>
 <x.p fontSize="sx">Lorem ipsum dolor sit amet</x.p>
 
-# Codes:
+## Codes:
 
 ```
 <x.h1 fontSize="6xl">Lorem ipsum dolor sit amet</x.h1>
@@ -43,7 +53,7 @@ For example, if you are using a font size of base, you should also use a line he
 
 By using the appropriate line height for each font size, you can ensure that your text is legible and visually appealing, while maintaining a consistent look and feel across your design.
 
-# Examples:
+## Examples:
 
 <x.h1 fontSize="6xl" lineHeight="6xl">
   Lorem ipsum dolor sit amet
@@ -76,7 +86,7 @@ By using the appropriate line height for each font size, you can ensure that you
   Lorem ipsum dolor sit amet
 </x.p>
 
-# Codes:
+## Codes:
 
 ```
 <x.h1 fontSize="6xl" lineHeight="6xl"> Lorem ipsum... </x.h1>
@@ -92,7 +102,7 @@ By using the appropriate line height for each font size, you can ensure that you
 
 ```
 
-# using Typography component
+# Using Typography component
 
 The Typography component is used to render text content in a specific font size and HTML element. The component accepts a size prop, which determines the font size and line height based on the defined values in the OORSIG design system. The variant prop is used to specify the HTML element in which the content should be rendered, such as h1, h2, p, span, and so on.
 
@@ -102,7 +112,7 @@ It's important to note that the size prop must be used in conjunction with an ap
 
 Overall, the Typography component is a flexible and customizable way to display text content in a consistent and visually appealing manner within a project that uses the OORSIG design system.
 
-# Examples:
+## Examples:
 
 <Typography size="6xl" variant="h1">
   Lorem ipsum dolor...
@@ -132,7 +142,7 @@ Overall, the Typography component is a flexible and customizable way to display 
   Lorem ipsum dolor...
 </Typography>
 
-# Codes:
+## Codes:
 
 ```
 <Typography size="6xl" variant="h1">Lorem ipsum dolor...</Typography>
@@ -145,3 +155,5 @@ Overall, the Typography component is a flexible and customizable way to display 
 <Typography size="sm" variant="span">Lorem ipsum dolor...</Typography>
 <Typography size="xs" variant="p">Lorem ipsum dolor...</Typography>
 ```
+
+</MDXWrapper>

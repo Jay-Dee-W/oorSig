@@ -1,8 +1,11 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
 import { x } from '@xstyled/emotion';
 
-<x.h1 fontSize="40">Colors</x.h1>
+<MDXWrapper>
+# Colors
 
-# Primary color
+## Primary color
 
 <x.div display="inline-flex">
   <x.div bg="primary-100" p="4" w="150" color="white">
@@ -19,7 +22,7 @@ import { x } from '@xstyled/emotion';
   </x.div>
 </x.div>
 
-# Gray color
+## Gray color
 
 <x.div display="inline-flex">
   <x.div bg="gray-100" p="4" w="150" color="white">
@@ -36,7 +39,7 @@ import { x } from '@xstyled/emotion';
   </x.div>
 </x.div>
 
-# Green color
+## Green color
 
 <x.div display="inline-flex">
   <x.div bg="green-100" p="4" w="150" color="white">
@@ -53,7 +56,7 @@ import { x } from '@xstyled/emotion';
   </x.div>
 </x.div>
 
-# Red color
+## Red color
 
 <x.div display="inline-flex">
   <x.div bg="red-100" p="4" w="150" color="white">
@@ -69,3 +72,5 @@ import { x } from '@xstyled/emotion';
     red-400
   </x.div>
 </x.div>
+
+</MDXWrapper>
