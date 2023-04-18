@@ -1,8 +1,6 @@
 import React from 'react';
 import { x, SystemProps } from '@xstyled/emotion';
 
-import { SearchIcon } from '@icons';
-
 interface InputProps extends SystemProps {
   error?: { message?: string };
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -11,7 +9,7 @@ interface InputProps extends SystemProps {
   placeholder?: string;
   type?: 'text' | 'search';
   ref?: React.Ref<HTMLInputElement>;
-  searchIcon?: boolean;
+  icon?: React.ReactNode;
 }
 
 export const Input: React.FC<InputProps> = React.forwardRef<
@@ -26,17 +24,15 @@ export const Input: React.FC<InputProps> = React.forwardRef<
       name,
       placeholder,
       type = 'text',
-      searchIcon = false,
+      icon,
       ...systemProps
     },
     ref
   ) => {
-    const isSearchInput = type === 'search';
     return (
       <x.div w="full" {...systemProps}>
-        <x.label fontSize="sm" fontWeight="md" color="gray-700">
-          <x.div mt={1} position="relative">
-            {isSearchInput && searchIcon && (
+        <x.div mt={1} position="relative"  color="gray-700">
+            {icon && (
               <x.div
                 position="absolute"
                 left="0.5rem"
@@ -45,7 +41,7 @@ export const Input: React.FC<InputProps> = React.forwardRef<
                 pointerEvents="none"
                 color="#fff"
               >
-                <SearchIcon />
+                { icon }
               </x.div>
             )}
             <x.input
@@ -53,7 +49,7 @@ export const Input: React.FC<InputProps> = React.forwardRef<
               w="full"
               p={2}
               px={3}
-              pl={isSearchInput && searchIcon ? '2.5rem' : '1rem'}
+              pl={ icon ? '2.5rem' : '1rem'}
               type={type}
               ring={{ focus: 1 }}
               ringColor={{
@@ -76,7 +72,6 @@ export const Input: React.FC<InputProps> = React.forwardRef<
               placeholder={placeholder}
             />
           </x.div>
-        </x.label>
         {error?.message && (
           <x.p mt={2} fontSize="sm" color="red">
             {error.message}

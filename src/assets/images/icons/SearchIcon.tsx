@@ -1,7 +1,7 @@
 import React from 'react';
-import { SystemProps, x } from '@xstyled/emotion';
+import { x } from '@xstyled/emotion';
 
-export const SearchIcon: React.FC = ({ ...SystemProps }) => {
+export const SearchIcon: React.FC = ({ ...systemProps }) => {
   return (
     <x.svg
       width="20"
@@ -9,7 +9,7 @@ export const SearchIcon: React.FC = ({ ...SystemProps }) => {
       viewBox="0 0 20 21"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...SystemProps}
+      {...systemProps}
     >
       <x.path
         fill-rule="evenodd"
