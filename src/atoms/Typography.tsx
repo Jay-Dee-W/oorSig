@@ -33,7 +33,7 @@ interface TypographyProps extends Omit<SystemProps<Theme>, 'children'> {
   children: React.ReactNode;
 }
 
-const XTag = (variant: Variant) => {
+const variantTag = (variant: Variant) => {
   switch (variant) {
     case 'h1':
       return x.h1;
@@ -70,7 +70,7 @@ const Typography: FC<TypographyProps> = ({
   children,
   ...props
 }) => {
-  const Tag = XTag(variant);
+  const Tag = variantTag(variant);
 
   return (
     <Tag fontSize={size} lineHeight={size} {...props}>
