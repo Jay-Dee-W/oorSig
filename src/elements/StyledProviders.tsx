@@ -37,6 +37,10 @@ const theme = {
     ['green-200']: '#27AE60',
     ['green-300']: '#219653',
     ['green-400']: '#106C37',
+    ['secondary-100']: '#FFF793',
+    ['secondary-200']: '#FFF02D',
+    ['secondary-300']: '#D1C412',
+    ['secondary-400']: '#736A00',
   },
   fontSizes: {
     xs: '0.75rem',
