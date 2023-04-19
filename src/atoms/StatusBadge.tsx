@@ -26,11 +26,11 @@ const WidthHeightSize = {
 
 interface StatusBadge extends SystemProps {
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-  isAdmin?: boolean;
+  isActive?: boolean;
 }
 
 export const StatusBadge: React.FC<StatusBadge> = ({
-  isAdmin = false,
+  isActive = false,
   size = 'md',
   ...systemProps
 }) => {
@@ -41,7 +41,7 @@ export const StatusBadge: React.FC<StatusBadge> = ({
       justifyContent="center"
       {...systemProps}
     >
-      {isAdmin ? (
+      {isActive ? (
         <x.svg
           width="36"
           height="35"
@@ -49,7 +49,7 @@ export const StatusBadge: React.FC<StatusBadge> = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           w={WidthHeightSize[size].w}
-          h={WidthHeightSize[size].w}
+          h={WidthHeightSize[size].h}
         >
           <x.ellipse
             cx="18.1913"
@@ -74,7 +74,7 @@ export const StatusBadge: React.FC<StatusBadge> = ({
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           w={WidthHeightSize[size].w}
-          h={WidthHeightSize[size].w}
+          h={WidthHeightSize[size].h}
         >
           <x.ellipse
             cx="18.1913"

@@ -13,7 +13,7 @@ import { StatusBadge } from '@atoms/index';
 
 ## Introduction
 
-The StatusBadge component can act as a label in applications by utilizing the isAdmin prop, which is a boolean prop. When the isAdmin prop is set to true, the StatusBadge is rendered with a checkmark label indicating privileged or admin status. When the isAdmin prop is set to false (which is the default), the StatusBadge has the dismiss mark label appearance.
+The StatusBadge component can act as a label in applications by utilizing the isActive prop, which is a boolean prop. When the isActive prop is set to true, the StatusBadge is rendered with a checkmark label indicating privileged or admin status. When the isActive prop is set to false (which is the default), the StatusBadge has the dismiss mark label appearance.
 
 ## Basic Usage
 
@@ -27,12 +27,12 @@ Firstly, you have to import `StatusBadge` atom so that you can start to use it
 	import { StatusBadge } from "@atoms/index";
 
 	<StatusBadge/>
-	<StatusBadge isAdmin={true} />
+	<StatusBadge isActive={true} />
 
 ```
 
 <StatusBadge />
-<StatusBadge isAdmin={true} />
+<StatusBadge isActive={true} />
 
 ## Sizes
 
@@ -45,11 +45,11 @@ StatusBadges can be customized in size using the 'size' prop, which accepts five
     <StatusBadge  size='xl' />
     <StatusBadge  size='sm' />
 
-	<StatusBadge  size='xs' isAdmin={true}/>
-    <StatusBadge  size='sm' isAdmin={true}/>
-    <StatusBadge  size='md' isAdmin={true}/>
-    <StatusBadge  size='lg' isAdmin={true}/>
-    <StatusBadge  size='xl' isAdmin={true}/>
+	<StatusBadge  size='xs' isActive={true}/>
+    <StatusBadge  size='sm' isActive={true}/>
+    <StatusBadge  size='md' isActive={true}/>
+    <StatusBadge  size='lg' isActive={true}/>
+    <StatusBadge  size='xl' isActive={true}/>
 ```
 
 <x.div>
@@ -60,11 +60,11 @@ StatusBadges can be customized in size using the 'size' prop, which accepts five
   <StatusBadge size="xl" />
 </x.div>
 <x.div>
-  <StatusBadge size="xs" isAdmin={true} />
-  <StatusBadge size="sm" isAdmin={true} />
-  <StatusBadge size="md" isAdmin={true} />
-  <StatusBadge size="lg" isAdmin={true} />
-  <StatusBadge size="xl" isAdmin={true} />
+  <StatusBadge size="xs" isActive={true} />
+  <StatusBadge size="sm" isActive={true} />
+  <StatusBadge size="md" isActive={true} />
+  <StatusBadge size="lg" isActive={true} />
+  <StatusBadge size="xl" isActive={true} />
 </x.div>
 
 ## systemProps
