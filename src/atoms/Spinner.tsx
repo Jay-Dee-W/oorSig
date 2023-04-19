@@ -34,7 +34,7 @@ export const Spinner: React.FC<SpinnerProps> = ({
       <x.div
         display="inline-block"
         w={WidthHeightSize[size].w}
-        h={WidthHeightSize[size].w}
+        h={WidthHeightSize[size].h}
         border={3}
         borderColor={'white'}
         borderTopColor="#000"
