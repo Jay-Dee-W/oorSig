@@ -1,7 +1,7 @@
 {
-  "name": "github-project",
+  "name": "project-oorsig",
   "version": "1.0.0",
-  "description": "personal gistart github project",
+  "description": "gitstart github project",
   "main": "index.js",
   "scripts": {
     "postinstall": "cp .env.example .env",
