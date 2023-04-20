@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { x } from '@xstyled/emotion';
 import { MDXWrapper } from '@elements/MDXWrapper';
-import { Alert } from '@atoms/Alert';
+import { Alert } from '@atoms/index';
 
 <MDXWrapper>
 <Head>
@@ -21,7 +21,7 @@ The `Alert` component displays a dismissible alert message with different color 
 
 ### `variant`: `'success' | 'danger' | 'info'` (optional)
 
-- The color variant of the alert. Defaults to `'success'`.
+- The color variant of the alert. Defaults to `'info'`.
 
 ### `onDismiss`: `() => void` (optional)
 
@@ -35,13 +35,21 @@ Here's an example of how to use the `Alert` component:
 import React from 'react';
 import { Alert } from '@atoms/Alert';
 
-<Alert message="This is a success alert" variant="success" />;
+<Alert message="This is an information alert" variant="info" />;
 ```
 
-<x.div display="flex">
+<x.div gap={6} display="flex">
+    <Alert
+        message="This is a success alert"
+        variant="info"
+    />
     <Alert
         message="This is a success alert"
         variant="success"
+    />
+    <Alert
+        message="This is a danger alert"
+        variant="danger"
     />
 </x.div>
 </MDXWrapper>

@@ -3,19 +3,19 @@ import { x } from '@xstyled/emotion';
 
 const colorsVariant = {
   danger: {
-    bg: '#F3D8DB',
-    text: '#7A282B',
-    iconColor: '#7A282B',
+    bg: 'red-100',
+    text: 'red-400',
+    iconColor: 'red-400',
   },
   success: {
-    bg: '#D6E6DF',
-    text: '#265035',
-    iconColor: '#265035',
+    bg: 'green-100',
+    text: 'green-400',
+    iconColor: 'green-400',
   },
   info: {
-    bg: '#44494B',
+    bg: 'gray-200',
     text: 'white',
-    iconColor: '#FEFEFF',
+    iconColor: 'white',
   },
 };
 
@@ -27,7 +27,7 @@ interface AlertProps {
 
 export const Alert: React.FC<AlertProps> = ({
   message,
-  variant = 'success',
+  variant = 'info',
   onDismiss,
   ...systemProps
 }) => {
@@ -44,27 +44,21 @@ export const Alert: React.FC<AlertProps> = ({
   return (
     <x.div
       display="flex"
-      flexDirection="row"
       justifyContent="center"
       alignItems="center"
       p="1.0625rem 1.125rem"
-      gap="0.625rem"
       w="23rem"
-      left="1.25rem"
-      top="1.25rem"
       bg={colorsVariant[variant].bg}
       color={colorsVariant[variant].text}
       borderRadius="0.25rem"
       {...systemProps}
     >
       <x.span
-        w="16.125rem"
-        h="1.5rem"
         fontFamily="Inter"
         fontStyle="normal"
         fontWeight="400"
-        fontSize="1rem"
-        lineHeight="1.5rem"
+        fontSize="base"
+        lineHeight="base"
         flex="1"
         overflow="hidden"
         textOverflow="ellipsis"
@@ -83,13 +77,10 @@ export const Alert: React.FC<AlertProps> = ({
             w="12px"
             h="12px"
             viewBox="0 0 12 12"
-            fill="none"
+            fill={colorsVariant[variant].iconColor}
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M12 1.20857L10.7914 0L6 4.79143L1.20857 0L0 1.20857L4.79143 6L0 10.7914L1.20857 12L6 7.20857L10.7914 12L12 10.7914L7.20857 6L12 1.20857Z"
-              fill={colorsVariant[variant].iconColor}
-            />
+            <path d="M12 1.20857L10.7914 0L6 4.79143L1.20857 0L0 1.20857L4.79143 6L0 10.7914L1.20857 12L6 7.20857L10.7914 12L12 10.7914L7.20857 6L12 1.20857Z" />
           </x.svg>
         </x.span>
       )}
