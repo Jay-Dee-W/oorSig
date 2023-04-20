@@ -6,7 +6,7 @@ interface LogoProps extends SizingProps {}
 export const Logo: React.FC<LogoProps> = ({ ...sizingProps }) => (
   <x.svg
     width="1435"
-    height="276"
+    height="5rem"
     viewBox="0 0 1435 276"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
