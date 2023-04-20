@@ -33,8 +33,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
         w="full"
         display="flex"
         flexDirection="column"
-        bg="#2C2F30"
-        border="0.03125rem solid #C8CACB"
+        bg="gray-300"
+        border="0.03125rem solid #5B5B5B"
         p="11px 17px 11px 15px"
         cursor="pointer"
         color="white"
@@ -43,8 +43,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
         borderRadius="0.367rem"
         boxSizing="border-box"
         fontWeight="400"
-        fontSize="1rem"
-        lineHeight="1.5rem"
+        fontSize="base"
+        lineHeight="base"
         {...getToggleButtonProps()}
       >
         <x.div display="flex" cursor="pointer">
@@ -109,8 +109,10 @@ export const Dropdown: React.FC<DropdownProps> = ({
       </x.div>
       <x.ul
         color="white"
-        bg="#2C2F30"
+        bg="gray-300"
         borderRadius="0.367rem"
+        m="0"
+        p="0"
         {...getMenuProps()}
       >
         {isOpen &&
@@ -120,7 +122,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
               cursor="pointer"
               display="flex"
               flexDirection="column"
-              bg={highlightedIndex === index ? '#C8CACB' : 'transparent'}
+              bg={highlightedIndex === index ? 'gray-100' : 'transparent'}
               borderRadius={highlightedIndex === index ? '0.367rem' : ''}
               key={index}
               {...getItemProps({ item, index })}
