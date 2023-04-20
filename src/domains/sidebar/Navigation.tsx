@@ -1,4 +1,4 @@
-import { Logo } from './Logo';
+import { Logo } from '@oorsig/atoms/Logo';
 import { x } from '@xstyled/emotion';
 import Link from 'next/link';
 

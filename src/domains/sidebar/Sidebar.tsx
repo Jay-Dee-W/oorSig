@@ -1,6 +1,6 @@
-import { x} from '@xstyled/emotion';
+// import { x} from '@xstyled/emotion';
 
-import { Navigation } from '@atoms/Navigation';
+import { Navigation } from './Navigation';
 
 export const Sidebar: React.FC = () => {
   return (
