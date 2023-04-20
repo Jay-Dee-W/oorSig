@@ -1,0 +1,42 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { x } from '@xstyled/emotion';
+
+import { Divider } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Divider Doc | OORSIG</title>
+</Head>
+
+# Divider
+
+## Introduction
+
+The `Divider` component is a custom divider that can be used to visually separate content. It is built using the `@xstyled/emotion` library.
+
+## Basic Usage
+
+Firstly, you have to import `Divider` atom so that you can start to use it
+
+```
+	import { Divider } from "@atoms/Divider";
+
+	or
+
+	import { Divider } from "@atoms/index";
+
+	<Divider/>
+```
+
+## spaceProps
+
+The `Divider` component accepts all standard `spaceProps` that can be used to add padding, margin, etc.
+
+```
+    <Divider mb={4} />
+```
+
+<Divider mb={4} />
+
+</MDXWrapper>
