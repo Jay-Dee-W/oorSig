@@ -28,7 +28,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   });
 
   return (
-    <x.div>
+    <x.div position="relative">
       <x.div
         w="full"
         display="flex"
@@ -108,9 +108,15 @@ export const Dropdown: React.FC<DropdownProps> = ({
         </x.div>
       </x.div>
       <x.ul
+        position="absolute"
+        w="full"
+        top="100%"
+        left="0"
         color="white"
         bg="gray-300"
         borderRadius="0.367rem"
+        listStyleType="none"
+        zIndex="10"
         m="0"
         p="0"
         {...getMenuProps()}
@@ -120,8 +126,6 @@ export const Dropdown: React.FC<DropdownProps> = ({
             <x.li
               p="0.533rem"
               cursor="pointer"
-              display="flex"
-              flexDirection="column"
               bg={highlightedIndex === index ? 'gray-100' : 'transparent'}
               borderRadius={highlightedIndex === index ? '0.367rem' : ''}
               key={index}
