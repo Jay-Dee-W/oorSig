@@ -1,6 +1,6 @@
 import { Typography } from '@oorsig/atoms';
 import Card from '@oorsig/atoms/Card';
-import { LineChart } from '@oorsig/atoms/Chart';
+// import { LineChart } from '@oorsig/atoms/Chart';
 import styled, { x } from '@xstyled/emotion';
 import React from 'react';
 
@@ -63,13 +63,10 @@ export const Dashboard: React.FC = () => {
 
       <x.div
         p="1rem"
-        gap="4"
-        row
-        gridTemplateColumns={6}
         backgroundColor="gray-300"
-      >
-        <x.div col={6 / 8}>
-          <x.div display="flex" mb="3" gap="2" alignItems="center">
+        w="100%"
+      >     
+      <x.div display="flex" mb="3" gap="2" alignItems="center">
             <Typography size="3xl">🤖</Typography>
             <Typography size="sm">
               Lorem ipsum dolor sit amet consectetur. Tellus pellentesque
@@ -78,11 +75,15 @@ export const Dashboard: React.FC = () => {
             </Typography>
           </x.div>
 
-          <x.div h="300">
-            <LineChart />
+
+        <x.div display="flex">
+     
+
+          <x.div h="300" flex="1">
+            {/* <LineChart /> */}
           </x.div>
-        </x.div>
-        <x.div display="grid" gridTemplateColumns="2" col gap="5">
+       
+        <x.div display="grid" gridTemplateColumns="2" col gap="5" maxW="340">
           <Card title="Merged PRs" value="120" theme="success" />
           <Card title="Organizations" value="3" />
           <Card title="Open PRs" value="120" theme="primary" />
@@ -90,6 +91,7 @@ export const Dashboard: React.FC = () => {
           <Card title="Closed PRs" value="120" theme="danger" />
           <Card title="Contribution" value="120" />
         </x.div>
+      </x.div> 
       </x.div>
 
       <x.div maxW="1200" mx="auto" px="4">

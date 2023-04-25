@@ -39,7 +39,7 @@ export const Card: React.FC<CardProps> = ({ title, value, theme = 'gray' }) => {
       color={CardTheme[theme].color}
       borderRadius="0.2rem"
       maxH="5.6rem"
-      maxW="10rem"
+      w="10rem"
     >
       <Typography>{title}</Typography>
       <Typography size="4xl">{value}</Typography>
