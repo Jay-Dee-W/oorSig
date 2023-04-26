@@ -8,7 +8,8 @@ interface Props {
 const Wrapper = styled(x.div)`
   font-size: 1rem;
   padding: 1.5rem;
-  background-color: #fff;
+  background-color: #000000;
+  color: #ffffff;
   min-height: 100vh;
   > p,
   > h1,
@@ -20,7 +21,6 @@ const Wrapper = styled(x.div)`
   ul,
   ol,
   li {
-    color: #24292f;
     font-size: 1rem;
     font-weight: 500;
     margin: 1rem 0;
@@ -85,6 +85,9 @@ const Wrapper = styled(x.div)`
   }
   ol {
     list-style: decimal;
+  }
+  a {
+    color: #ffffff;
   }
 `;
 
