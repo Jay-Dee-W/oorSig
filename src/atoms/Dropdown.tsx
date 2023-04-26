@@ -56,59 +56,43 @@ export const Dropdown: React.FC<DropdownProps> = ({
           >
             {selectedItem ? selectedItem.label : placeholder}
           </x.span>
-          <x.span flex="none" display="flex" alignItems="center">
-            {isOpen ? (
-              <x.svg
-                w="17.49px"
-                viewBox="0 0 20 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
-                  stroke="#C8CACB"
-                  strokeWidth="1.92"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
-                  stroke="black"
-                  strokeOpacity="0.2"
-                  strokeWidth="1.92"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </x.svg>
-            ) : (
-              <x.svg
-                w="17.49px"
-                viewBox="0 0 20 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
-                  stroke="#C8CACB"
-                  stroke-width="1.92"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M1 1.33984L9.74561 10.0854L18.4912 1.33984"
-                  stroke="black"
-                  stroke-opacity="0.2"
-                  stroke-width="1.92"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </x.svg>
-            )}
+          <x.span
+            flex="none"
+            display="flex"
+            alignItems="center"
+            ml="2px"
+            transform={isOpen ? 'rotate(-180deg)' : ''}
+            transition="all 0.2s ease-in-out"
+          >
+            <x.svg
+              w="17.49px"
+              viewBox="0 0 20 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
+                stroke="#C8CACB"
+                strokeWidth="1.92"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
+                stroke="black"
+                strokeOpacity="0.2"
+                strokeWidth="1.92"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </x.svg>
           </x.span>
         </x.div>
       </x.div>
       <x.ul
+        display={isOpen ? 'block' : 'none'}
         position="absolute"
+        boxShadow="0px 2px 10px rgba(0, 0, 0, 0.25)"
         w="full"
         top="100%"
         left="0"
