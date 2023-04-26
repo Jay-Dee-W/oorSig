@@ -1,2 +1,2 @@
 export { Spinner } from './Spinner';
-export { Dropdown } from './Dropdown'
+export { Dropdown } from './Dropdown';
