@@ -34,10 +34,10 @@ export const Spinner: React.FC<SpinnerProps> = ({
       <x.div
         display="inline-block"
         w={WidthHeightSize[size].w}
-        h={WidthHeightSize[size].w}
+        h={WidthHeightSize[size].h}
         border={3}
         borderColor={'white'}
-        borderTopColor="#C8C8C8"
+        borderTopColor="#000000"
         borderRadius="50%"
         animation={`1s infinite linear ${animations['spin']}`}
         {...systemProps}
