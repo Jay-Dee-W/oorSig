@@ -64,7 +64,7 @@ const variantTag = (variant: Variant) => {
   }
 };
 
-const Typography: FC<TypographyProps> = ({
+export const Typography: FC<TypographyProps> = ({
   size = 'base',
   variant = 'p',
   children,
@@ -78,5 +78,3 @@ const Typography: FC<TypographyProps> = ({
     </Tag>
   );
 };
-
-export default Typography;

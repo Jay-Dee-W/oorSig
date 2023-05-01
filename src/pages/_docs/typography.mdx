@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { x } from '@xstyled/emotion';
 import { MDXWrapper } from '@elements/MDXWrapper';
 
-import Typography from '@atoms/Typography';
+import {Typography} from '@atoms/index';
 
 <MDXWrapper>
 <Head>
@@ -108,13 +108,38 @@ The Typography component is used to render text content in a specific font size 
 
 In addition to the size and variant props, the Typography component also accepts any props available in the xstyled library, such as p, m, color, and backgroundColor. These props can be used to further customize the appearance of the text.
 
+## Examples
+
+<Typography variant="span" color='gray-100'>
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color='gray-200'>
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color='red'>
+  Lorem ipsum dolor...
+</Typography>
+
+## Codes
+
+```
+<Typography variant="span" color='gray-100'>
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color='gray-200'>
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color='red'>
+  Lorem ipsum dolor...
+</Typography>
+```
 It's important to note that the size prop must be used in conjunction with an appropriate variant prop. For example, if the size prop is set to 6xl, the variant prop should be set to h1, which is the appropriate HTML element for the largest heading size. The defined font sizes in the OORSIG design system are: xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, and 6xl, and they are named to correspond with the HTML element names for easier reference.
 
 Overall, the Typography component is a flexible and customizable way to display text content in a consistent and visually appealing manner within a project that uses the OORSIG design system.
 
 ## Examples:
 
-<Typography size="6xl" variant="h1">
+<Typography size="6xl" variant="h1" color='red'>
   Lorem ipsum dolor...
 </Typography>
 <Typography size="5xl" variant="h2">
@@ -135,9 +160,6 @@ Overall, the Typography component is a flexible and customizable way to display 
 <Typography size="base" variant="p">
   Lorem ipsum dolor...
 </Typography>
-<Typography size="sm" variant="span">
-  Lorem ipsum dolor...
-</Typography>
 <Typography size="xs" variant="p">
   Lorem ipsum dolor...
 </Typography>
@@ -152,7 +174,6 @@ Overall, the Typography component is a flexible and customizable way to display 
 <Typography size="2xl" variant="h5">Lorem ipsum dolor...</Typography>
 <Typography size="lg" variant="h6">Lorem ipsum dolor...</Typography>
 <Typography size="base" variant="p">Lorem ipsum dolor...</Typography>
-<Typography size="sm" variant="span">Lorem ipsum dolor...</Typography>
 <Typography size="xs" variant="p">Lorem ipsum dolor...</Typography>
 ```
 
