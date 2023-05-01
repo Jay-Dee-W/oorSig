@@ -1,0 +1,44 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { x } from '@xstyled/emotion';
+
+import { Logo } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Logo Doc | OORSIG</title>
+</Head>
+
+# Logo
+
+## Introduction
+
+The Logo Atom is a visually appealing and minimalist logo design that represents the core essence of your application in a simple and memorable way.
+
+## Basic Usage
+
+Firstly, you have to import `Logo` atom so that you can start to use it
+
+```
+	import { Logo } from "@atoms/Logo";
+
+	or
+
+	import { Logo } from "@atoms/index";
+
+	<Logo/>
+```
+
+    <Logo w={"30rem"} h={"10rem"}/>
+
+## sizingProps
+
+Additional sizing properties to customize the logo's dimensions.
+
+```
+	<Logo width="150px" height="100px" />
+```
+
+    <Logo width="150px" height="100px" />
+
+</MDXWrapper>
