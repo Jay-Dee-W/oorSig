@@ -36,7 +36,8 @@
       "@elements/*": ["src/elements/*"],
       "@pages/*": ["src/pages/*"],
       "@relay/*": ["src/relay/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@icons/*": ["src/assets/images/icons/*"]
     },
     "types": ["vitest/globals"]
   },

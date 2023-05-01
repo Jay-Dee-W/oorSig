@@ -1,0 +1,181 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+
+import { Typography } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Typography Doc | OORSIG</title>
+</Head>
+
+# FontSize and lineHeight
+
+In the OORSIG design system, font sizes are defined with the following values: xs,
+sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, 6xl. These values can be used as the values
+for the fontSize tag when applying typography styles to your text elements.
+
+## Examples:
+
+<x.h1 fontSize="6xl">Lorem ipsum dolor sit amet</x.h1>
+<x.h2 fontSize="5xl">Lorem ipsum dolor sit amet</x.h2>
+<x.h3 fontSize="4xl">Lorem ipsum dolor sit amet</x.h3>
+<x.h4 fontSize="3xl">Lorem ipsum dolor sit amet</x.h4>
+<x.h5 fontSize="2xl">Lorem ipsum dolor sit amet</x.h5>
+<x.h6 fontSize="xl">Lorem ipsum dolor sit amet</x.h6>
+<x.p fontSize="lg">Lorem ipsum dolor sit amet</x.p>
+<x.p fontSize="base">Lorem ipsum dolor sit amet</x.p>
+<x.p fontSize="sm">Lorem ipsum dolor sit amet</x.p>
+<x.p fontSize="sx">Lorem ipsum dolor sit amet</x.p>
+
+## Codes:
+
+```
+<x.h1 fontSize="6xl">Lorem ipsum dolor sit amet</x.h1>
+<x.h2 fontSize="5xl">Lorem ipsum dolor sit amet</x.h2>
+<x.h3 fontSize="4xl">Lorem ipsum dolor sit amet</x.h3>
+<x.h4 fontSize="3xl">Lorem ipsum dolor sit amet</x.h4>
+<x.h5 fontSize="2xl">Lorem ipsum dolor sit amet</x.h5>
+<x.h6 fontSize="xl">Lorem ipsum dolor sit amet</x.h6>
+<x.p fontSize="lg">Lorem ipsum dolor sit amet</x.p>
+<x.p fontSize="base">Lorem ipsum dolor sit amet</x.p>
+<x.p fontSize="sm">Lorem ipsum dolor sit amet</x.p>
+<x.p fontSize="sx">Lorem ipsum dolor sit amet</x.p>
+```
+
+# Using lineHeight
+
+In the OORSIG design system, we have defined a set of line heights that correspond to our font sizes. These line heights, which are named xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, and 6xl, are designed to make it easier for you to remember which line height to use with a particular font size.
+
+To achieve the best visual results and improve the readability of your text, it is important to use the appropriate line height for each font size. This means that when you use a particular font size, you should also use the corresponding line height.
+
+For example, if you are using a font size of base, you should also use a line height of base to ensure that your text is properly spaced and easy to read. Similarly, if you are using a font size of 3xl, you should use a line height of 3xl.
+
+By using the appropriate line height for each font size, you can ensure that your text is legible and visually appealing, while maintaining a consistent look and feel across your design.
+
+## Examples:
+
+<x.h1 fontSize="6xl" lineHeight="6xl">
+  Lorem ipsum dolor sit amet
+</x.h1>
+<x.h2 fontSize="5xl" lineHeight="5xl">
+  Lorem ipsum dolor sit amet
+</x.h2>
+<x.h3 fontSize="4xl" lineHeight="4xl">
+  Lorem ipsum dolor sit amet
+</x.h3>
+<x.h4 fontSize="3xl" lineHeight="3xl">
+  Lorem ipsum dolor sit amet
+</x.h4>
+<x.h5 fontSize="2xl" lineHeight="2xl">
+  Lorem ipsum dolor sit amet
+</x.h5>
+<x.h6 fontSize="xl" lineHeight="xl">
+  Lorem ipsum dolor sit amet
+</x.h6>
+<x.p fontSize="lg" lineHeight="lg">
+  Lorem ipsum dolor sit amet
+</x.p>
+<x.p fontSize="base" lineHeight="base">
+  Lorem ipsum dolor sit amet
+</x.p>
+<x.p fontSize="sm" lineHeight="sm">
+  Lorem ipsum dolor sit amet
+</x.p>
+<x.p fontSize="sx" lineHeight="sx">
+  Lorem ipsum dolor sit amet
+</x.p>
+
+## Codes:
+
+```
+<x.h1 fontSize="6xl" lineHeight="6xl"> Lorem ipsum... </x.h1>
+<x.h2 fontSize="5xl" lineHeight="5xl"> Lorem ipsum... </x.h2>
+<x.h3 fontSize="4xl" lineHeight="4xl"> Lorem ipsum... </x.h3>
+<x.h4 fontSize="3xl" lineHeight="3xl"> Lorem ipsum... </x.h4>
+<x.h5 fontSize="2xl" lineHeight="2xl"> Lorem ipsum... </x.h5>
+<x.h6 fontSize="xl" lineHeight="xl"> Lorem ipsum... </x.h6>
+<x.p fontSize="lg" lineHeight="lg"> Lorem ipsum... </x.p>
+<x.p fontSize="base" lineHeight="base"> Lorem ipsum... </x.p>
+<x.p fontSize="sm" lineHeight="sm"> Lorem ipsum... </x.p>
+<x.p fontSize="sx" lineHeight="sx"> Lorem ipsum... </x.p>
+
+```
+
+# Using Typography component
+
+The Typography component is used to render text content in a specific font size and HTML element. The component accepts a size prop, which determines the font size and line height based on the defined values in the OORSIG design system. The variant prop is used to specify the HTML element in which the content should be rendered, such as h1, h2, p, span, and so on.
+
+In addition to the size and variant props, the Typography component also accepts any props available in the xstyled library, such as p, m, color, and backgroundColor. These props can be used to further customize the appearance of the text.
+
+## Examples
+
+<Typography variant="span" color="gray-100">
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color="gray-200">
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color="red">
+  Lorem ipsum dolor...
+</Typography>
+
+## Codes
+
+```
+<Typography variant="span" color='gray-100'>
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color='gray-200'>
+  Lorem ipsum dolor...
+</Typography>
+<Typography variant="span" color='red'>
+  Lorem ipsum dolor...
+</Typography>
+```
+
+It's important to note that the size prop must be used in conjunction with an appropriate variant prop. For example, if the size prop is set to 6xl, the variant prop should be set to h1, which is the appropriate HTML element for the largest heading size. The defined font sizes in the OORSIG design system are: xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl, and 6xl, and they are named to correspond with the HTML element names for easier reference.
+
+Overall, the Typography component is a flexible and customizable way to display text content in a consistent and visually appealing manner within a project that uses the OORSIG design system.
+
+## Examples:
+
+<Typography size="6xl" variant="h1" color="red">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="5xl" variant="h2">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="4xl" variant="h3">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="3xl" variant="h4">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="2xl" variant="h5">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="lg" variant="h6">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="base" variant="p">
+  Lorem ipsum dolor...
+</Typography>
+<Typography size="xs" variant="p">
+  Lorem ipsum dolor...
+</Typography>
+
+## Codes:
+
+```
+<Typography size="6xl" variant="h1">Lorem ipsum dolor...</Typography>
+<Typography size="5xl" variant="h2">Lorem ipsum dolor...</Typography>
+<Typography size="4xl" variant="h3">Lorem ipsum dolor...</Typography>
+<Typography size="3xl" variant="h4">Lorem ipsum dolor...</Typography>
+<Typography size="2xl" variant="h5">Lorem ipsum dolor...</Typography>
+<Typography size="lg" variant="h6">Lorem ipsum dolor...</Typography>
+<Typography size="base" variant="p">Lorem ipsum dolor...</Typography>
+<Typography size="xs" variant="p">Lorem ipsum dolor...</Typography>
+```
+
+</MDXWrapper>
