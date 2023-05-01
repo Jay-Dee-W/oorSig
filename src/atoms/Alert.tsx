@@ -13,9 +13,9 @@ const colorsVariant = {
     iconColor: 'green-400',
   },
   info: {
-    bg: 'gray-200',
-    text: 'white',
-    iconColor: 'white',
+    bg: 'yellow-100',
+    text: 'yellow-400',
+    iconColor: 'yellow-400',
   },
 };
 
