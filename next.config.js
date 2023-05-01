@@ -1,5 +1,6 @@
 const relayConfig = require('./relay.config.js');
 const withPlugins = require('next-compose-plugins');
+const withSvgr = require('next-svgr');
 
 const withMDX = require('@next/mdx')({
   extension: /\.(md|mdx)$/,
@@ -9,7 +10,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 const moduleExports = withBundleAnalyzer(
   withMDX({
-    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
+    pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx', 'svg'],
   })
 );
 
@@ -25,4 +26,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withPlugins([moduleExports], nextConfig);
+module.exports = withPlugins([moduleExports, withSvgr], nextConfig);
