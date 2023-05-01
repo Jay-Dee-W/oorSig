@@ -1,0 +1,147 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+
+import { Button, Spinner } from '@atoms/index';
+import { GitHub } from '@icons/index';
+import { MDXWrapper } from '@elements/MDXWrapper';
+
+<MDXWrapper>
+<Head>
+	<title>Button Doc | OORSIG</title>
+</Head>
+
+# Button
+
+The button is a fundamental UI element that enables user interaction.The label of the button is passed as a child component to the Button component, allowing you to easily define the button label as: ` <Button>Button Label</Button>`.This approach also enables you to include inline icons within the button for added customization it accept `icon` props.
+
+## Basic Usage
+
+Firstly, you have to import `Button` atom so that you can start to use it
+
+```
+	import { Button } from "@atoms/Button";
+
+	or
+
+	import { Button } from "@atoms/index";
+
+	<Button icon={<GitHub/>} >primary</Button>
+```
+
+    <Button icon={<GitHub/>} >primary</Button>
+
+## Sizes
+
+Button can be customized in size using the 'size' prop, which accepts five different options: `'xs', 'sm', 'md', 'lg', and 'xl'` and the default size is `md`. This allows you to easily adjust the size of the button to suit your needs.
+
+```
+    <Button size='xs'>primary</Button>
+    <Button size='sm'>primary</Button>
+    <Button size='md'>primary</Button>
+    <Button size='lg'>primary</Button>
+    <Button size='xl'>primary</Button>
+
+```
+
+## Variants
+
+The Button component can be easily customized in terms of its variant using the 'variant' prop, which accepts five different options: `'primary', 'secondary', 'success', 'danger', and 'light'`. The default variant is set to `'primary'`, allowing you to easily adjust the color of the button to suit your specific requirements.
+
+```
+	<Button variant="primary">primary</Button>
+    <Button  variant="secondary">secondary</Button>
+    <Button  variant="success">success</Button>
+    <Button  variant="danger">danger</Button>
+    <Button  variant="light">light </Button>
+```
+
+<x.div display="inline-flex" gap={6}>
+  <Button>primary</Button>
+  <Button variant="secondary">secondary</Button>
+  <Button variant="success">success</Button>
+  <Button variant="danger">danger</Button>
+  <Button variant="light">light </Button>
+</x.div>
+
+## Loading
+
+The Button component has a `'loading'` prop, a boolean value that displays a loading indicator when set to `'true'`. This provides visual feedback during asynchronous tasks or data loading. Set `'loading'` to `'true'` or `'false'` as needed to control the loading state of the button in your application.
+
+```
+	<Button loading={true}>primary</Button>
+```
+
+<x.div>
+  <Button loading={true}>primary</Button>
+</x.div>
+
+## Disable
+
+The `'disabled'` prop can be easily set to `'true'` or `'false'` as needed, allowing you to control the disabled state of the button in your application.
+
+```
+	<Button icon={<GitHub />} disabled={true}>primary</Button>
+```
+
+<x.div>
+  <Button icon={<GitHub />} disabled={true}>
+    primary
+  </Button>
+</x.div>
+
+## OnClick
+
+The Button component also has an `'onClick'` prop, which is a callback function that is triggered when the button is clicked. You can assign your own custom function to the `'onClick'` prop to define the logic or actions to be performed in response to the click event. This allows you to easily add interactivity and functionality to the button component in your application.
+
+```
+	<Button onClick={()=>{console.log('clicked')}}>primary</Button>
+```
+
+<x.div>
+  <Button
+    onClick={() => {
+      console.log('clicked');
+    }}
+  >
+    primary
+  </Button>
+</x.div>
+
+## Title
+
+You can easily set the `'title'` prop to a string of your choice, allowing you to provide descriptive text or context for the button in your application.
+
+```
+	<Button icon={<GitHub />} title="title">primary</Button>
+```
+
+<x.div>
+  <Button icon={<GitHub />} title="title">
+    primary
+  </Button>
+</x.div>
+
+## Type
+
+Button can be customized in type using the 'type' prop, which accepts three different options: `'button' , 'submit' , and 'reset'` and the default type is `botton`. This allows you to easily adjust the type of the button to suit your needs.
+
+```
+	<Button  type="button">primary</Button>
+	<Button  type="submit">primary</Button>
+	<Button  type="reset">primary</Button>
+
+```
+
+## SystemProps
+
+In addition to the other props, you can further customize button by passing system props. These additional props provide more flexibility in styling.
+
+```
+<Button borderRadius='none'>primary</Button>
+```
+
+<x.div>
+  <Button borderRadius="none">primary</Button>
+</x.div>
+
+</MDXWrapper>
