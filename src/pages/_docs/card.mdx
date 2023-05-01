@@ -1,0 +1,65 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { x } from '@xstyled/emotion';
+
+import { Card } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Card Doc | OORSIG</title>
+</Head>
+
+# Card
+
+## Introduction
+
+Card are graphical elements that show visual form representing a card with header
+
+## Basic Usage
+
+Firstly, you have to import `Card` atom so that you can start to use it
+
+```
+	import { Card } from "@atoms/Card";
+	or
+	import { Card } from "@atoms/index";
+	<Card />
+```
+
+## Card with some texts and custom background color, boxShadow, and borderRadius
+
+Card can be customized in using the 'bg | p | borderRadius | boxShadow' prop, which accepts four different options. This allows you to easily adjust to suit your needs.
+
+```
+    <Card bg="white" p={4} borderRadius={4} boxShadow="lg">
+      <h2>Card title</h2>
+      <p>Some card content goes here</p>
+    </Card>
+```
+
+<x.div display="inline-flex" gap={6}>
+  <Card bg="white" p={4} borderRadius={4} boxShadow="lg">
+    <h2>Card title</h2>
+    <p>Some card content goes here</p>
+  </Card>
+</x.div>
+
+## A card with an image and some text content:
+
+Card can contain an image and texts
+
+```
+<Card>
+    <img src="https://placeimg.com/640/480/animals" alt="Cute animal" />
+    <p>This is a card with an image</p>
+    <p>It also has some text content</p>
+</Card>
+```
+
+<Card>
+  <img src="https://placeimg.com/640/480/animals" alt="Cute animal" />
+  <p>This is a card with an image</p>
+  <p>It also has some text content</p>
+</Card>
+
+</MDXWrapper>
