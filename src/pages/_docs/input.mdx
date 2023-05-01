@@ -3,7 +3,7 @@ import { x } from '@xstyled/emotion';
 
 import { Input } from '@atoms/index';
 import { MDXWrapper } from '@elements/MDXWrapper';
-import { SearchIcon } from '@icons/index';
+import { SearchIcon } from '@atoms/index';
 
 <MDXWrapper>
 <Head>
@@ -30,7 +30,7 @@ Firstly, you have to import `Input` atom so that you can start to use it
     onBlur={() => { console.log('onBlur'); }}
     name="searchTeam"
     placeholder="search team"
-    type="search"
+    type="text"
     icon={<SearchIcon/>}
   />
 ```
@@ -132,10 +132,16 @@ The ref prop is a reference to the underlying input element. It can be used to a
 ```
 
 `Icon` (optional)
-The input atoms in our component library accept an icon prop, which allows you to add an icon to the input element. This can be useful for adding visual cues to help users understand the input's purpose.
-
+The input atom in our component library accepts an icon prop, which allows you to add an icon to the input element as a prefix. This can be useful for adding visual cues to help users understand the input's purpose.
+Firstly, import the icon you want to use as the prefix then pass the icon to the input.
 ```
-<Input type="search" icon={<SearchIcon/>} />
+	import { SearchIcon } from "@atoms/SearchIcon";
+
+	or
+
+	import { SearchIcon } from "@atoms/index";
+
+  <Input type="search" icon={<SearchIcon/>} />
 ```
 
 ## SystemProps
