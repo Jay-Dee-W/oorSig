@@ -1,9 +1,14 @@
-// import { x} from '@xstyled/emotion';
+import { x } from '@xstyled/emotion';
 
-import { Navigation } from './Navigation';
+import { SidebarNavigation } from './SidebarNavigation';
+import { SidebarBottom } from './SiderbarBottom';
 
 export const Sidebar: React.FC = () => {
+
   return (
-    <Navigation >test</Navigation>
+    <x.div bg="#2C2F30" w="17.82125rem" color="#ffffff">
+      <SidebarNavigation  title='test'></SidebarNavigation>
+      <SidebarBottom ></SidebarBottom>
+    </x.div>
   );
 }

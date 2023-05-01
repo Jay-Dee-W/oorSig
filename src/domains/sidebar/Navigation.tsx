@@ -7,14 +7,16 @@ interface NavigationProps {
 }
 
 export const Navigation: React.FC<NavigationProps> = ({ children }) => (
-  <x.div bg="#2C2F30" w="17.82125rem" color="#ffffff">
+  <x.div>
     <Link href="/home">
-      <x.div cursor="pointer" px={2}>
-        <Logo w="16.50rem"/>
+      <x.div cursor="pointer">
+        <Logo w="12.50rem" />
       </x.div>
     </Link>
     <x.div display="flex" flexDirection="column">
-      {children}
+      <x.nav>
+        {children}
+      </x.nav>
     </x.div>
   </x.div>
 );
