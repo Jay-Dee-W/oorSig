@@ -1,2 +1,2 @@
 export { Spinner } from './Spinner';
-export { Typography } from './Typography'
+export { Typography } from './Typography';
