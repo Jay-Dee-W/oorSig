@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 
 import { environment } from '@relay/environment';
+import { Auth } from '@oorsig/domains/Auth';
 
 const AuthPage: NextPage = () => {
   return (
@@ -10,7 +11,7 @@ const AuthPage: NextPage = () => {
       <Head>
         <title>Login | GitStart</title>
       </Head>
-      <p>LOGIN PAGE</p>
+      <Auth />
     </RelayEnvironmentProvider>
   );
 };
