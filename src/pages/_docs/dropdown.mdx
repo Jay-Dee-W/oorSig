@@ -1,0 +1,69 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { Dropdown } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Dropdown Doc | OORSIG</title>
+</Head>
+# Dropdown
+
+## Introduction
+
+The `Dropdown` component is a custom dropdown implementation using `downshift` and `@xstyled/emotion` libraries.
+
+## Props
+
+### options (required)
+
+An array of objects representing the options in the dropdown.
+Each object should have a label and a value property. For example:
+
+```
+const options = [
+  { label: 'Option 1', value: 'option1' },
+  { label: 'Option 2', value: 'option2' },
+  { label: 'Option 3', value: 'option3' },
+];
+```
+
+### placeholder (optional)
+
+A string that specifies the placeholder text to be displayed in the dropdown when no option is selected. Default value is "Select".
+
+## Basic Usage
+
+This is just a basic usage and customization example.
+
+```jsx
+import React from 'react';
+import { Dropdown } from '@atoms/Select';
+
+const options = [
+  { label: 'Option 1', value: 'option1' },
+  { label: 'Option 2', value: 'option2' },
+  { label: 'Option 3', value: 'option3' },
+];
+
+<Dropdown
+  options={[
+    { label: 'Option 1', value: 'option1' },
+    { label: 'Option 2', value: 'option2' },
+    { label: 'Option 3', value: 'option3' },
+  ]}
+  placeholder="Weekly"
+/>;
+```
+
+<x.div>
+  <Dropdown
+    options={[
+      { label: 'Option 1', value: 'option1' },
+      { label: 'Option 2', value: 'option2' },
+      { label: 'Option 3', value: 'option3' },
+    ]}
+    placeholder="Weekly"
+  />
+</x.div>
+</MDXWrapper>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { SystemProps, x } from '@xstyled/emotion';
 
+import { Spinner } from './Spinner';
+
 const paddingForSize = {
   xs: {
     px: 2.5,
@@ -34,29 +36,42 @@ const textForSize = {
 
 const colorsForVariant = {
   primary: {
-    bg: 'primary-600',
-    hover: 'primary-300',
+    bg: '#007AFF',
+    hover: '#439bfa',
     text: 'white',
   },
   secondary: {
-    bg: 'primary-100',
-    hover: 'primary-200',
-    text: 'primary-700',
+    bg: '#5B5B5B',
+    hover: 'primary-500',
+    text: 'white',
   },
-  white: {
-    bg: 'white',
-    hover: 'gray-50',
-    text: 'gray-700',
+  success: {
+    bg: '#6FCF97',
+    hover: '#81cca0',
+    text: 'white',
+  },
+  danger: {
+    bg: '#EB5545',
+    hover: '#f06759',
+    text: 'white',
+  },
+  light: {
+    bg: '#D9D9D9',
+    hover: 'primary-400',
+    text: 'black',
   },
 };
 
 interface ButtonProps extends SystemProps {
-  variant?: 'primary' | 'secondary' | 'white';
+  variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'light';
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
   loading?: boolean;
   children: React.ReactNode;
+  icon?: React.ReactNode;
+  title?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -66,36 +81,64 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   loading,
   children,
+  icon,
+  title,
+  type = 'button',
   ...systemProps
 }) => {
-  disabled = loading ? true : disabled;
-
   return (
     <x.button
       onClick={onClick}
+      disabled={disabled}
+      title={title}
+      type={type}
+      animation={loading ? 'pulse' : undefined}
       display="inline-flex"
       alignItems="center"
+      justifyContent="center"
+      w="130px"
+      h="57px"
       px={paddingForSize[size].px}
       py={paddingForSize[size].py}
       border
-      borderColor={variant === 'white' ? 'gray-300' : 'transparent'}
+      borderColor={'transparent'}
       text={textForSize[size]}
       lineHeight={size === 'sm' ? 4 : undefined}
       fontWeight="medium"
-      bg={{
-        _: colorsForVariant[variant].bg,
-        hover: !disabled ? colorsForVariant[variant].hover : undefined,
-      }}
       opacity={disabled ? 0.6 : 1}
-      cursor={disabled ? 'default' : undefined}
-      color={colorsForVariant[variant].text}
-      borderRadius="default"
+      cursor={disabled ? 'not-allowed' : undefined}
+      color={
+        disabled
+          ? colorsForVariant['light'].text
+          : colorsForVariant[variant].text
+      }
+      borderRadius="4px"
       boxShadow="sm"
-      disabled={disabled}
-      animation={loading ? 'pulse' : undefined}
+      bg={{
+        _: disabled
+          ? colorsForVariant['light'].bg
+          : colorsForVariant[variant].bg,
+        hover: disabled ? undefined : colorsForVariant[variant].hover,
+      }}
       {...systemProps}
     >
-      {children}
+      {loading ? (
+        <Spinner borderColor={colorsForVariant[variant].text}></Spinner>
+      ) : (
+        <>
+          {icon && (
+            <x.span
+              display="inline-flex"
+              alignItems="center"
+              justifyContent="center"
+              mr={2}
+            >
+              {icon}
+            </x.span>
+          )}
+          {children}
+        </>
+      )}
     </x.button>
   );
 };

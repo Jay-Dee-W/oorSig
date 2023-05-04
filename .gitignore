@@ -51,3 +51,6 @@ yarn-error.log*
 .env
 
 /src/relay/__generated__/
+
+#storybook-build-static
+/storybook-static

@@ -1,0 +1,74 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { x } from '@xstyled/emotion';
+
+import { StatusBadge } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>StatusBadge Doc | OORSIG</title>
+</Head>
+
+# StatusBadge
+
+## Introduction
+
+The StatusBadge component can act as a label in applications by utilizing the isActive prop, which is a boolean prop. When the isActive prop is set to true, the StatusBadge is rendered with a checkmark label indicating privileged or admin status. When the isActive prop is set to false (which is the default), the StatusBadge has the dismiss mark label appearance.
+
+## Basic Usage
+
+Firstly, you have to import `StatusBadge` atom so that you can start to use it
+
+```
+	import { StatusBadge } from "@atoms/StatusBadge";
+
+	or
+
+	import { StatusBadge } from "@atoms/index";
+
+	<StatusBadge/>
+	<StatusBadge isActive={true} />
+
+```
+
+<StatusBadge />
+<StatusBadge isActive={true} />
+
+## Sizes
+
+StatusBadges can be customized in size using the 'size' prop, which accepts five different options: `'xs', 'sm', 'md', 'lg', and 'xl'`, and the default size is `'md'`. This allows you to easily adjust the size of the StatusBadge to suit your needs.
+
+```
+	<StatusBadge  size='xs' />
+  <StatusBadge  size='md' />
+  <StatusBadge  size='lg' />
+  <StatusBadge  size='xl' />
+  <StatusBadge  size='sm' />
+
+	<StatusBadge  size='xs' isActive={true}/>
+  <StatusBadge  size='sm' isActive={true}/>
+  <StatusBadge  size='md' isActive={true}/>
+  <StatusBadge  size='lg' isActive={true}/>
+  <StatusBadge  size='xl' isActive={true}/>
+```
+
+<x.div>
+  <StatusBadge size="xs" />
+  <StatusBadge size="sm" />
+  <StatusBadge size="md" />
+  <StatusBadge size="lg" />
+  <StatusBadge size="xl" />
+</x.div>
+<x.div>
+  <StatusBadge size="xs" isActive={true} />
+  <StatusBadge size="sm" isActive={true} />
+  <StatusBadge size="md" isActive={true} />
+  <StatusBadge size="lg" isActive={true} />
+  <StatusBadge size="xl" isActive={true} />
+</x.div>
+
+## systemProps
+
+In addition to the size prop, you can further customize statusBadge by passing system props. These additional props provide more flexibility in styling.
+
+</MDXWrapper>
