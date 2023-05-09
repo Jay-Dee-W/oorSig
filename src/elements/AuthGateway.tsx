@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
-import { ViewSpinner } from '@amani/elements/ViewSpinner';
 import { useRouter } from 'next/router';
-import { useLocalStorage } from '@amani/utils/useLocalStorage';
-import { getClientUsers } from '@amani/utils/useAuth';
-import { useCookies } from '@amani/utils/useCookies';
+import { useSession } from 'next-auth/react';
 
 export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const router = useRouter();
-  const { getFromLocalStorage, setInLocalStorage } = useLocalStorage();
-  const { getCookie, removeCookie } = useCookies();
+  const {data:session} = useSession()
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
@@ -19,27 +15,18 @@ export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
       setAuthLoading(false);
       return;
     }
-
-    const userTokenFromCookies = getCookie('user_token');
-    if (userTokenFromCookies) removeCookie('user_token');
-
-    const userToken = getFromLocalStorage('user_token') || userTokenFromCookies;
-    if (!userToken || userToken === 'undedfined') {
-      setAuthLoading(false);
+    if (!useSession) {
+      setAuthLoading(true);
       return;
     }
-    setInLocalStorage('user_token', userToken);
-
-    getClientUsers().then(data => {
-      if (data?.viewer?.name) {
+      if (session?.user?.name) {
         router.replace(`/home`);
       }
-      setAuthLoading(false);
-    });
-  }, []);
+      setAuthLoading(false)
+  }, [router, session?.user?.name]);
 
   if (authLoading) {
-    return <ViewSpinner />;
+    return <p>loading</p>;
   }
 
   return <>{children}</>;
