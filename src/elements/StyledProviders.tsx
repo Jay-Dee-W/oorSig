@@ -5,6 +5,8 @@ import { th, defaultTheme, ThemeProvider, Preflight } from '@xstyled/emotion';
 export const GlobalStyle = createGlobalStyle`
   :root, body, #root {
     height: 100%;
+    margin: 0;
+    padding: 0;
   }
   a {
     text-decoration: none;
