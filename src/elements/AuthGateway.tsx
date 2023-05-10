@@ -15,15 +15,16 @@ export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
       setAuthLoading(false);
       return;
     }
-    if (!useSession) {
-      setAuthLoading(true);
+    if (!session) {
+      setAuthLoading(false);
+      // router.replace('/')
       return;
     }
       if (session?.user?.name) {
         router.replace(`/home`);
       }
       setAuthLoading(false)
-  }, [router, session?.user?.name]);
+  }, [router, session]);
 
   if (authLoading) {
     return <p>loading</p>;
