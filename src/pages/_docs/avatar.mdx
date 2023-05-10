@@ -1,0 +1,70 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { x } from '@xstyled/emotion';
+
+import { Avatar } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Avatar Doc | OORSIG</title>
+</Head>
+
+# Avatar
+
+## Introduction
+
+An Avatar is a graphical elements that shows a digital image or representation of a user
+
+## Basic Usage
+
+Firstly, you have to import `Avatar` atom so that you can start to use it
+
+```
+	import { Avatar } from "@atoms/Avatar";
+	or
+	import { Avatar } from "@atoms/index";
+	<Avatar/>
+```
+
+## Sizes
+
+Avatar can be customized in size using the 'size' prop, which accepts different options: `10, 20` and the default size is `10`. This allows you to easily adjust the size of the avatar to suit your needs.
+
+```
+	<Avatar size='10' />
+	<Avatar size='20' />
+	<Avatar size='30' />
+```
+
+<x.div display="inline-flex" gap={6}>
+  <Avatar size="10" />
+  <Avatar size="20" />
+  <Avatar size="30" />
+</x.div>
+
+## Src
+
+Avatar can be customized in size using the 'src' prop, which accepts image url
+
+```
+	<Avatar size='20' src='https://gravatar.com/avatar/4213bb0627246966c1c4341da2d8544e?s=200&d=robohash&r=x' />
+```
+
+<x.div display="inline-flex" gap={6}>
+  <Avatar
+    size="20"
+    src="https://gravatar.com/avatar/4213bb0627246966c1c4341da2d8544e?s=200&d=robohash&r=x"
+  />
+</x.div>
+
+## systemProps
+
+In addition to the other props, you can further customize avatar by passing system props. These additional props provide more flexibility in styling.
+
+<Avatar
+  size="20"
+  alt="Avatar"
+  src="https://gravatar.com/avatar/4213bb0627246966c1c4341da2d8544e?s=200&d=robohash&r=x"
+/>
+
+</MDXWrapper>
