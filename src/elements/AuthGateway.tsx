@@ -6,7 +6,7 @@ export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const router = useRouter();
-  const {data:session} = useSession()
+  const { data: session } = useSession();
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
@@ -20,10 +20,10 @@ export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
       // router.replace('/')
       return;
     }
-      if (session?.user?.name) {
-        router.replace(`/home`);
-      }
-      setAuthLoading(false)
+    if (session?.user?.name) {
+      router.replace(`/home`);
+    }
+    setAuthLoading(false);
   }, [router, session]);
 
   if (authLoading) {

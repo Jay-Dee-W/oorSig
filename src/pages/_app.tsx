@@ -8,7 +8,10 @@ import { Providers } from '@elements/Providers';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
 
-function MyApp({ Component, pageProps }: AppProps,  session: Session | null | undefined ) {
+function MyApp(
+  { Component, pageProps }: AppProps,
+  session: Session | null | undefined
+) {
   const router = useRouter();
 
   return (
