@@ -1,6 +1,6 @@
-import { Logo } from '@oorsig/atoms/Logo';
-import { x } from '@xstyled/emotion';
 import Link from 'next/link';
+import { x } from '@xstyled/emotion';
+import { Logo } from '@atoms/index';
 
 interface NavigationProps {
   children: React.ReactNode;
@@ -14,9 +14,7 @@ export const Navigation: React.FC<NavigationProps> = ({ children }) => (
       </x.div>
     </Link>
     <x.div display="flex" flexDirection="column">
-      <x.nav>
-        {children}
-      </x.nav>
+      <x.nav>{children}</x.nav>
     </x.div>
   </x.div>
 );

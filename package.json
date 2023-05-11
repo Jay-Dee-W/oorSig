@@ -32,8 +32,6 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
-    "@floating-ui/core": "^1.2.6",
-    "@floating-ui/react": "^0.24.0",
     "@heroicons/react": "^1.0.6",
     "@mdx-js/loader": "^2.1.2",
     "@next/bundle-analyzer": "^12.2.2",
