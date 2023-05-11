@@ -46,7 +46,7 @@ export const SidebarBottom: React.FC = () => {
       >
         <Avatar src={undefined} alt={'unkown'} />
         <Typography flex={1} color="white">
-          Janvier
+          Username
         </Typography>
         <MdOutlineMoreVert size="1.6rem" />
       </x.div>

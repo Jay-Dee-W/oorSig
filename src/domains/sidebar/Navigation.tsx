@@ -9,7 +9,7 @@ interface NavigationProps {
 export const Navigation: React.FC<NavigationProps> = ({ children }) => (
   <x.div>
     <Link href="/home">
-      <x.div cursor="pointer">
+      <x.div cursor="pointer" w="80%" m="auto">
         <Logo w="12.50rem" />
       </x.div>
     </Link>
