@@ -1,8 +1,12 @@
 import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { FC } from 'react';
+import { TopNavigation } from './TopNavigation';
 
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
+
+import { MdSpaceDashboard } from 'react-icons/md';
+import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
@@ -14,8 +18,44 @@ export const Sidebar: FC<SidebarProps> = props => {
       flexDirection={'column'}
       w="17.82125rem"
     >
-      <SidebarNavigation></SidebarNavigation>
-      <SidebarBottom></SidebarBottom>
+      <x.div flex={1}>
+        <TopNavigation />
+        <x.div mt="3rem">
+          {[
+            {
+              icon: MdSpaceDashboard,
+              title: 'Dashboard',
+              href: '#',
+            },
+            {
+              icon: GoRepo,
+              title: 'Repositories',
+              href: '#',
+            },
+            {
+              icon: GoGitPullRequest,
+              title: 'Pull Requests',
+              href: '#',
+            },
+            {
+              icon: GoIssueOpened,
+              title: 'Issues',
+              href: '#',
+            },
+          ].map((e, i) => {
+            const Icon = e.icon;
+            return (
+              <SidebarNavigation
+                href={e.href}
+                key={i}
+                title={e.title}
+                icon={<Icon size="1.5rem" />}
+              />
+            );
+          })}
+        </x.div>
+      </x.div>
+      <SidebarBottom />
     </Container>
   );
 };

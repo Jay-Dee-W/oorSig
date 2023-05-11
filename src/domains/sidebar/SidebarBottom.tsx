@@ -1,12 +1,13 @@
 import { MdOutlineMoreVert, MdLogout } from 'react-icons/md';
 import { useState } from 'react';
 import { x } from '@xstyled/emotion';
-import { Typography } from '@atoms/index';
 import { Avatar } from '@atoms/index';
 import { Button } from '@atoms/index';
+import { Typography } from '@atoms/index';
 
 export const SidebarBottom: React.FC = () => {
   const [showLogout, setShowLogout] = useState(false);
+  const currentYear = new Date().getFullYear();
 
   const handleLogout = () => {
     setShowLogout(!showLogout);
@@ -41,16 +42,17 @@ export const SidebarBottom: React.FC = () => {
         borderRadius="0.4rem"
         alignItems={'center'}
         gap="2"
+        onClick={handleLogout}
         cursor="pointer"
       >
         <Avatar src={undefined} alt={'unkown'} />
         <Typography flex={1} color="white">
           Username
         </Typography>
-        <MdOutlineMoreVert size="1.6rem" onClick={handleLogout} />
+        <MdOutlineMoreVert size="1.6rem" />
       </x.div>
       <Typography size="xs" color="gray-50">
-        Copyright © 2023 Gitstart <br />
+        Copyright © {currentYear} Gitstart <br />
         All right reserved
       </Typography>
     </x.div>
