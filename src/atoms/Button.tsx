@@ -57,7 +57,7 @@ const colorsForVariant = {
   },
   light: {
     bg: '#D9D9D9',
-    hover: 'primary-400',
+    hover: "#A9A9A9",
     text: 'black',
   },
 };

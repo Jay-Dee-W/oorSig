@@ -1,14 +1,25 @@
-import { x } from '@xstyled/emotion';
+import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
+import { FC } from 'react';
 
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SiderbarBottom';
 
-export const Sidebar: React.FC = () => {
+interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
+
+export const Sidebar: FC<SidebarProps> = (props) => {
 
   return (
-    <x.div bg="#2C2F30" w="17.82125rem" color="#ffffff">
-      <SidebarNavigation  title='test'></SidebarNavigation>
+    <Container {...props} display={'flex'} flexDirection={'column'} w="17.82125rem">
+      <SidebarNavigation></SidebarNavigation>
       <SidebarBottom ></SidebarBottom>
-    </x.div>
+    </Container>
   );
 }
+
+const Container = styled(x.div)`
+  padding: 1rem;
+  border-right: 1;
+  border-right-color: gray-200;
+  background-color: gray-300;
+  positoin:relative;
+`;
