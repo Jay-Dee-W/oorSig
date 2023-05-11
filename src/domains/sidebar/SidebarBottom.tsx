@@ -14,6 +14,7 @@ export const SidebarBottom: React.FC = () => {
   };
   return (
     <x.div position="fixed" bottom="0" w="15.203rem">
+      {/* will change that part to dropdown  */}
       {showLogout && (
         <x.div m={3}>
           <Button
