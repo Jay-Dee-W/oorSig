@@ -41,14 +41,13 @@ export const SidebarBottom: React.FC = () => {
         borderRadius="0.4rem"
         alignItems={'center'}
         gap="2"
-        onClick={handleLogout}
         cursor="pointer"
       >
         <Avatar src={undefined} alt={'unkown'} />
         <Typography flex={1} color="white">
           Username
         </Typography>
-        <MdOutlineMoreVert size="1.6rem" />
+        <MdOutlineMoreVert size="1.6rem" onClick={handleLogout} />
       </x.div>
       <Typography size="xs" color="gray-50">
         Copyright © 2023 Gitstart <br />

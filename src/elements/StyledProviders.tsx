@@ -27,6 +27,7 @@ const theme = {
     ['primary-200']: '#007AFF',
     ['primary-300']: '#016ADC',
     ['primary-400']: '#0052AB',
+    ['gray-50']: '#A0A2A2',
     ['gray-100']: '#5B5B5B',
     ['gray-200']: '#44494B',
     ['gray-300']: '#2C2F30',

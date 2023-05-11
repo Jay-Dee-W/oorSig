@@ -2,7 +2,7 @@ import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { FC } from 'react';
 
 import { SidebarNavigation } from './SidebarNavigation';
-import { SidebarBottom } from './SiderbarBottom';
+import { SidebarBottom } from './SidebarBottom';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
