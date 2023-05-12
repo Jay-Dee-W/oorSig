@@ -45,7 +45,6 @@ export const SidebarNavigation: React.FC<Props> = ({
                   cursor="pointer"
                   justifyContent="space-between"
                   bg={{ _: backgroundColor, hover: activeColor }}
-                  // bg={{ _: 'transparent', hover: 'gray-250', active:'gray-250' }}
                 >
                   <x.div
                     display="flex"
