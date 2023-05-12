@@ -1,20 +1,31 @@
 import { Typography } from '@oorsig/atoms';
 import { SystemProps, Theme, x } from '@xstyled/emotion';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { ReactNode, useMemo } from 'react';
+import { useRouter } from 'next/router';
 interface Props extends SystemProps<Theme> {
   href?: string;
   title?: string;
   icon?: ReactNode;
   children?: ReactNode;
   label?: string;
+  active?: (path: string) => boolean;
 }
 
 export const SidebarNavigation: React.FC<Props> = ({
   href = '#',
   title,
   icon,
+  active = () => false,
 }) => {
+  const router = useRouter();
+  const isActive = active?.(router.asPath) ?? router.asPath === href;
+  const activeColor = 'gray-250';
+  const backgroundColor = useMemo(() => {
+    if (isActive) return activeColor;
+    return 'transparent';
+  }, [isActive]);
+
   return (
     <x.div display={'flex'} flexDirection={'column'} gap="0.3rem">
       <x.div display="flex" flexDirection="column">
@@ -26,13 +37,15 @@ export const SidebarNavigation: React.FC<Props> = ({
                   display="flex"
                   pt="18px"
                   pr="18px"
-                  pb="18px"
+                  pb="16px"
                   pl="19px"
+                  mb="2px"
                   alignItems="center"
                   borderRadius="6px"
                   cursor="pointer"
                   justifyContent="space-between"
-                  bg={{ _: 'transparent', hover: 'gray-250' }}               
+                  bg={{ _: backgroundColor, hover: activeColor }}
+                  // bg={{ _: 'transparent', hover: 'gray-250', active:'gray-250' }}
                 >
                   <x.div
                     display="flex"

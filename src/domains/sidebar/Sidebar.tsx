@@ -1,5 +1,5 @@
 import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { TopNavigation } from './TopNavigation';
 
 import { SidebarNavigation } from './SidebarNavigation';
@@ -11,6 +11,10 @@ import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
 export const Sidebar: FC<SidebarProps> = props => {
+  const activeIfIncludes = useCallback(
+    (match: string) => (path: string) => path.includes(match),
+    []
+  );
   return (
     <Container
       {...props}
@@ -25,7 +29,7 @@ export const Sidebar: FC<SidebarProps> = props => {
             {
               icon: MdSpaceDashboard,
               title: 'Dashboard',
-              href: '#',
+              href: '/home',
             },
             {
               icon: GoRepo,
@@ -50,6 +54,7 @@ export const Sidebar: FC<SidebarProps> = props => {
                 key={i}
                 title={e.title}
                 icon={<Icon size="1.5rem" />}
+                active={activeIfIncludes(e.href)}
               />
             );
           })}
