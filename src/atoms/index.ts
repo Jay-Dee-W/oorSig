@@ -10,3 +10,4 @@ export { Input } from './Input';
 export { SearchIcon } from './SearchIcon';
 export { Alert } from './Alert';
 export { Dropdown } from './Dropdown';
+export { SearchableDropdown } from './SearchableDropdown';
