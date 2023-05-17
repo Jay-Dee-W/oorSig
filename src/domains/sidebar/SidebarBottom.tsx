@@ -1,61 +1,84 @@
-import { MdOutlineMoreVert, MdLogout } from 'react-icons/md';
-import { useState } from 'react';
 import { x } from '@xstyled/emotion';
-import { Avatar } from '@atoms/index';
-import { Button } from '@atoms/index';
-import { Typography } from '@atoms/index';
+import { MdLogout, MdOutlineMoreVert, MdSettings } from 'react-icons/md';
+import { Avatar } from '@atoms/Avatar';
+import { Popover, PopoverContent, PopoverTrigger } from '@atoms/Popover';
+import { Typography } from '@atoms/Typography';
 
 export const SidebarBottom: React.FC = () => {
-  const [showLogout, setShowLogout] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  const handleLogout = () => {
-    setShowLogout(!showLogout);
-  };
   return (
-    <x.div position="fixed" bottom="0" w="15.203rem">
-      {/* will change that part to dropdown  */}
-      {showLogout && (
-        <x.div m={3}>
-          <Button
-            icon={<MdLogout />}
-            h="3.041rem"
-            w="13.203rem"
-            borderRadius="none"
-            variant="light"
-            position="absolute"
-            bottom="8rem"
-            zIndex="999"
-            onClick={() => {
-              // need to add the logout function here
-            }}
+    <x.div>
+      <Popover placement="top-start">
+        <PopoverTrigger>
+          <x.div
+            display="flex"
+            p="0.7rem"
+            border="1"
+            borderColor="gray-200"
+            mb="1rem"
+            borderRadius="0.4rem"
+            alignItems={'center'}
+            gap="2"
+            cursor="pointer"
           >
-            Logout
-          </Button>
-        </x.div>
-      )}
-      <x.div
-        display="flex"
-        p="0.7rem"
-        border="1"
-        borderColor="gray-200"
-        mb="1rem"
-        borderRadius="0.4rem"
-        alignItems={'center'}
-        gap="2"
-        onClick={handleLogout}
-        cursor="pointer"
-      >
-        <Avatar src={undefined} alt={'unkown'} />
-        <Typography flex={1} color="white">
-          Username
-        </Typography>
-        <MdOutlineMoreVert size="1.6rem" />
-      </x.div>
+            <Avatar src={undefined} alt={'unkown'} />
+            <Typography flex={1} color="white">
+              Username
+            </Typography>
+            <MdOutlineMoreVert size="1.6rem" />
+          </x.div>
+        </PopoverTrigger>
+        <PopoverContent>
+          <x.div
+            w="15.2rem"
+            display="flex"
+            flexDirection="column"
+            backgroundColor="gray-300"
+            p={2}
+            spaceY={2}
+          >
+            <MenuItem
+              icon={<MdLogout />}
+              // onClick={function for setting}
+            >
+              <x.span>Logout</x.span>
+            </MenuItem>
+            <MenuItem
+              icon={<MdSettings />}
+              // onClick={ function for setting}
+            >
+              <x.span>setting</x.span>
+            </MenuItem>
+          </x.div>
+        </PopoverContent>
+      </Popover>
       <Typography size="xs" color="gray-50">
         Copyright © {currentYear} Gitstart <br />
         All right reserved
       </Typography>
+    </x.div>
+  );
+};
+
+interface MenuItemProps {
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+  onClick?: () => void;
+}
+
+const MenuItem: React.FC<MenuItemProps> = ({ children, icon, onClick }) => {
+  return (
+    <x.div
+      p={4}
+      display="flex"
+      backgroundColor={{ hover: 'gray-250' }}
+      onClick={onClick}
+      fontSize="20px"
+      cursor="pointer"
+    >
+      <x.span pr={3}>{icon}</x.span>
+      {children}
     </x.div>
   );
 };
