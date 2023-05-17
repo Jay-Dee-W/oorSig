@@ -1,0 +1,33 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+
+<MDXWrapper>
+<Head>
+	<title>PopoverDoc | OORSIG</title>
+</Head>
+
+# Popover
+
+## Introduction
+
+
+# usePopover
+
+usePopover hook provides functionality for managing a popover component.
+
+
+
+## Props
+`placement` (Placement): The placement of the popover. Default is 'top'.
+`offset` (number | [number, number]): The offset value for the popover position. Default is 8.
+`initialOpen` (boolean): The initial open state of the popover. Default is false.
+`open` (boolean): The controlled open state of the popover.
+`onOpenChange` ((open: boolean) => void): The callback function for open state change.
+
+
+## PopoverContext
+PopoverContext represents the context for the popover component.
+const context = useContext(PopoverContext);
+
+
+</MDXWrapper>
