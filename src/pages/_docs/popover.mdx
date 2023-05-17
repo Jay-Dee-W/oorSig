@@ -1,33 +1,113 @@
 import Head from 'next/head';
+import { x } from '@xstyled/emotion';
 import { MDXWrapper } from '@elements/MDXWrapper';
+import { Popover, PopoverContent, PopoverTrigger } from '@atoms/Popover';
 
 <MDXWrapper>
 <Head>
 	<title>PopoverDoc | OORSIG</title>
 </Head>
 
+## PopoverContext
+
+PopoverContext represents the context for the popover component.
+const context = useContext(PopoverContext);
+
 # Popover
 
 ## Introduction
 
+The `Popover` component provides a popover functionality for displaying content in a floating window. It consists of several companion components and hooks.
 
-# usePopover
+## Basic Usage
 
-usePopover hook provides functionality for managing a popover component.
+Firstly, you have to import `Popover` atom so that you can start to use it
 
+```
+	import { Popover, PopoverContent, PopoverTrigger } from '@atoms/Popover';
 
+    <Popover placement="top-start">
+        <PopoverTrigger>
+            PopoverTrigger
+        </PopoverTrigger>
+        <PopoverContent>
+            <x.span bg='#fff' color="#000" >
+                PopoverContent
+            </x.span> 
+        </PopoverContent>
+    </Popover>
+```
 
-## Props
-`placement` (Placement): The placement of the popover. Default is 'top'.
-`offset` (number | [number, number]): The offset value for the popover position. Default is 8.
-`initialOpen` (boolean): The initial open state of the popover. Default is false.
-`open` (boolean): The controlled open state of the popover.
-`onOpenChange` ((open: boolean) => void): The callback function for open state change.
+## usePopover Hook
 
+The `usePopover` hook is a custom hook that provides the popover state and interactions. It accepts the following props:
 
-## PopoverContext
-PopoverContext represents the context for the popover component.
-const context = useContext(PopoverContext);
+- `placement` (optional): The placement of the popover. Default is `'top'`.
+- `offset` (optional): The offset of the popover from its reference element. It can be a number or an array of two numbers. Default is `8`.
+- `initialOpen` (optional): The initial state of the popover. Default is `false`.
+- `open` (optional): Controlled state for the popover. If provided, the popover will be controlled externally.
+- `onOpenChange` (optional): Callback function invoked when the popover's open state changes.
 
+```jsx
+const popover = usePopover({
+  placement: 'top',
+  offset: 8,
+  initialOpen: false,
+  open: controlledOpen,
+  onOpenChange: setControlledOpen,
+});
+```
 
+## Popover Component
+
+The Popover component is a wrapper component that provides the popover context to its children. It accepts the same props as the usePopover hook.
+
+```
+<Popover placement="top" offset={8} initialOpen={false} open={controlledOpen} onOpenChange={setControlledOpen}>
+  {/* Content */}
+</Popover>
+```
+
+## PopoverTrigger Component
+
+The PopoverTrigger component is used as a trigger for the popover. It must be a child of the Popover component and should wrap the element that triggers the popover.
+
+```
+<PopoverTrigger>
+  {/* Trigger element */}
+</PopoverTrigger>
+```
+
+## PopoverContent Component
+
+The PopoverContent component renders the content of the popover. It should be a child of the Popover component and is responsible for positioning the popover using the FloatingPortal and FloatingFocusManager components.
+
+```
+<PopoverContent>
+  {/* Popover content */}
+</PopoverContent>
+```
+
+## PopoverClose Component
+
+The PopoverClose component is a utility component that can be used to close the popover when clicked. It should be used as a child of the PopoverContent component.
+
+```
+<PopoverClose>
+  {/* Close button or text */}
+</PopoverClose>
+```
+
+<x.div>
+    <Popover placement="top-start">
+        <PopoverTrigger>
+            PopoverTrigger
+        </PopoverTrigger>
+        <PopoverContent>
+            <x.span bg='#fff' color="#000" >
+                PopoverContent
+            </x.span> 
+        </PopoverContent>
+    </Popover>
+</x.div>
 </MDXWrapper>
