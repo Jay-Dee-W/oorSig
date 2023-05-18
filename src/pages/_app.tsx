@@ -1,12 +1,11 @@
-import type { AppProps } from 'next/app';
-import React from 'react';
-import { useRouter } from 'next/router';
-import { x } from '@xstyled/emotion';
-
 import { ErrorBoundary } from '@elements/ErrorBoundary';
 import { Providers } from '@elements/Providers';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
+import { useRouter } from 'next/router';
+import React from 'react';
+import type { AppProps } from 'next/app';
+import { x } from '@xstyled/emotion';
 
 function MyApp(
   { Component, pageProps }: AppProps,

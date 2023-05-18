@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
+
 export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -10,14 +11,12 @@ export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
   const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    // if not on the Auth page, then we let ErrorBoundary handle it
     if (router.asPath !== '/') {
       setAuthLoading(false);
       return;
     }
     if (!session) {
       setAuthLoading(false);
-      // router.replace('/')
       return;
     }
     if (session?.user?.name) {
