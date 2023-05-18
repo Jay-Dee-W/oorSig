@@ -4,7 +4,7 @@ import {
   useFloating,
   autoUpdate,
   offset as offsetMiddleware,
-  flip as flipMiddlware,
+  flip as flipMiddleware,
   shift as shiftMiddleware,
   useClick,
   useDismiss,
@@ -15,6 +15,7 @@ import {
   FloatingPortal,
   FloatingFocusManager,
 } from '@floating-ui/react';
+
 import {
   cloneElement,
   createContext,
@@ -41,10 +42,8 @@ export const usePopover = ({
   onOpenChange: setControlledOpen,
 }: UsePopoverProps = {}) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
-
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-
   const offsetSetting: OffsetSetting = useMemo(() => {
     if (Array.isArray(offset)) {
       const [mainAxis, crossAxis] = offset;
@@ -65,19 +64,17 @@ export const usePopover = ({
     whileElementsMounted: autoUpdate,
     middleware: [
       offsetMiddleware(offsetSetting),
-      flipMiddlware(),
+      flipMiddleware(),
       shiftMiddleware(),
     ],
   });
 
   const { context } = data;
-
   const click = useClick(context, {
     enabled: controlledOpen == null,
   });
   const dismiss = useDismiss(context);
   const role = useRole(context);
-
   const interactions = useInteractions([click, dismiss, role]);
 
   return useMemo(
@@ -126,7 +123,6 @@ interface PopoverTriggerProps {
   asChild?: boolean;
 }
 
-// eslint-disable-next-line react/display-name
 export const PopoverTrigger = forwardRef<
   HTMLElement,
   React.HTMLProps<HTMLElement> & PopoverTriggerProps
@@ -150,8 +146,8 @@ export const PopoverTrigger = forwardRef<
     })
   );
 });
+PopoverTrigger.displayName = 'PopoverTrigger';
 
-// eslint-disable-next-line react/display-name
 export const PopoverContent = forwardRef<
   HTMLDivElement,
   React.HTMLProps<HTMLDivElement>
@@ -181,8 +177,8 @@ export const PopoverContent = forwardRef<
     </FloatingPortal>
   );
 });
+PopoverContent.displayName = 'PopoverContent';
 
-// eslint-disable-next-line react/display-name
 export const PopoverClose = forwardRef<
   HTMLDivElement,
   React.ButtonHTMLAttributes<HTMLDivElement>
@@ -194,3 +190,4 @@ export const PopoverClose = forwardRef<
     </div>
   );
 });
+PopoverClose.displayName = 'PopoverClose';
