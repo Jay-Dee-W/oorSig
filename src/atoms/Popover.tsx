@@ -4,7 +4,7 @@ import {
   useFloating,
   autoUpdate,
   offset as offsetMiddleware,
-  flip as flipMiddlware,
+  flip as flipMiddleware,
   shift as shiftMiddleware,
   useClick,
   useDismiss,
@@ -15,6 +15,7 @@ import {
   FloatingPortal,
   FloatingFocusManager,
 } from '@floating-ui/react';
+
 import {
   cloneElement,
   createContext,
@@ -41,10 +42,8 @@ export const usePopover = ({
   onOpenChange: setControlledOpen,
 }: UsePopoverProps = {}) => {
   const [uncontrolledOpen, setUncontrolledOpen] = useState(initialOpen);
-
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
-
   const offsetSetting: OffsetSetting = useMemo(() => {
     if (Array.isArray(offset)) {
       const [mainAxis, crossAxis] = offset;
@@ -65,19 +64,17 @@ export const usePopover = ({
     whileElementsMounted: autoUpdate,
     middleware: [
       offsetMiddleware(offsetSetting),
-      flipMiddlware(),
+      flipMiddleware(),
       shiftMiddleware(),
     ],
   });
 
   const { context } = data;
-
   const click = useClick(context, {
     enabled: controlledOpen == null,
   });
   const dismiss = useDismiss(context);
   const role = useRole(context);
-
   const interactions = useInteractions([click, dismiss, role]);
 
   return useMemo(
