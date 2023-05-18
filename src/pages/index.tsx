@@ -1,17 +1,19 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
-import { RelayEnvironmentProvider } from 'react-relay/hooks';
 
-import { environment } from '@relay/environment';
+import { useSession, signIn } from 'next-auth/react';
 
 const AuthPage: NextPage = () => {
+  const { data: session } = useSession();
+
+  if (!session) {
+    signIn();
+  }
+
   return (
-    <RelayEnvironmentProvider environment={environment}>
-      <Head>
-        <title>Login | GitStart</title>
-      </Head>
-      <p>LOGIN PAGE</p>
-    </RelayEnvironmentProvider>
+    <Head>
+      <title>Login | GitStart</title>
+    </Head>
   );
 };
 

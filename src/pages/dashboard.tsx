@@ -1,17 +1,17 @@
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import React from 'react';
-import { Home } from '@domains/Home';
+import withAuth from '@oorsig/elements/withAuth';
 
 const HomePage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>GitStart Team Hustle</title>
+        <title>Dashboard Page</title>
       </Head>
-      <Home />
+      <h1>Dashboard Page</h1>
     </>
   );
 };
 
-export default HomePage;
+export default withAuth(HomePage);
