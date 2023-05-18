@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 
-
 export const AuthGateway: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
