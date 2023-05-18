@@ -36,6 +36,13 @@ A string that specifies the placeholder text to be displayed in the dropdown whe
 
 A string representing the label of the dropdown. This label will be displayed above the dropdown. Default value is "Searchable Dropdown".
 
+### imgSize (optional)
+
+a string to set the size of the option image. Defaults to `1.875rem`.
+
+### isSearchable
+a boolean to determine whether the input field for searching should be displayed. Defaults to false.
+
 ## Basic Usage
 
 This is just a basic usage and customization example.
@@ -48,17 +55,17 @@ const options = [
   {
     label: 'Option 1',
     value: 'option1',
-    imgSrc: 'https://placeimg.com/640/480/nature?t=1684216846749',
+    imgSrc: 'profile.jpeg',
   },
   {
     label: 'Option 2',
     value: 'option2',
-    imgSrc: 'https://placeimg.com/640/480/nature?t=1684216846749',
+    imgSrc: 'profile.jpeg',
   },
   {
     label: 'Option 3',
     value: 'option3',
-    imgSrc: 'https://placeimg.com/640/480/nature?t=1684216846749',
+    imgSrc: 'profile.jpeg',
   },
 ];
 
@@ -66,18 +73,22 @@ const options = [
   options={options}
   placeholder="Search Team"
   label="Select Team"
+  imgSize="2rem"
+  isSearchable="true"
 />;
 ```
 
 <x.div>
   <SearchableDropdown
     options={[
-      { label: 'Option 1', value: 'option1', imgSrc: 'https://placeimg.com/640/480/nature?t=1684216846749' },
-      { label: 'Option 2', value: 'option2', imgSrc: 'https://placeimg.com/640/480/nature?t=1684216846749' },
-      { label: 'Option 3', value: 'option3', imgSrc: 'https://placeimg.com/640/480/nature?t=1684216846749'  },
+      { label: 'Option 1', value: 'option1', imgSrc: '/profile.jpeg' },
+      { label: 'Option 2', value: 'option2', imgSrc: '/profile.jpeg' },
+      { label: 'Option 3', value: 'option3', imgSrc: '/profile.jpeg'  },
     ]}
     placeholder="Search Team"
     label="Select Team"
+    imgSize='2rem'
+    isSearchable="true"
   />
 </x.div>
 </MDXWrapper>
