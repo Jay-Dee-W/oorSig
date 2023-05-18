@@ -12,7 +12,7 @@ const AuthPage: NextPage = () => {
 
   return (
     <Head>
-      <title>Login | GitStart</title>
+      <title>Login | OORSIG</title>
     </Head>
   );
 };
