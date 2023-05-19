@@ -80,6 +80,8 @@ export const SearchableDropdown: React.FC<SelectProps> = ({
             color="white"
             pt={isSearchable && '0.625rem'}
             borderRadius="0 0 0.5rem 0.5rem"
+            maxH="12.5rem"
+          overflowY="scroll"
             {...getMenuProps()}
           >
             {items.map((item, index) => (
