@@ -1,8 +1,9 @@
-import { Typography } from '@oorsig/atoms';
-import { SystemProps, Theme, x } from '@xstyled/emotion';
-import Link from 'next/link';
 import { ReactNode, useMemo } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { SystemProps, Theme, x } from '@xstyled/emotion';
+
+import { Typography } from '@oorsig/atoms';
 interface Props extends SystemProps<Theme> {
   href?: string;
   title?: string;
@@ -21,10 +22,10 @@ export const SidebarNavigation: React.FC<Props> = ({
   const router = useRouter();
   const isActive = active?.(router.asPath) ?? router.asPath === href;
   const activeColor = 'gray-250';
-  const backgroundColor = useMemo(() => {
-    if (isActive) return activeColor;
-    return 'transparent';
-  }, [isActive]);
+  const backgroundColor = useMemo(
+    () => (isActive ? activeColor : 'transparent'),
+    [isActive]
+  );
 
   return (
     <x.div display={'flex'} flexDirection={'column'} gap="0.3rem">

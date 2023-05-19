@@ -42,7 +42,7 @@ export const SidebarBottom: React.FC = () => {
               <x.span>Logout</x.span>
             </MenuItem>
             <MenuItem icon={<MdSettings />} onClick={() => {}}>
-              <x.span>setting</x.span>
+              <x.span>Setting</x.span>
             </MenuItem>
           </x.div>
         </PopoverContent>

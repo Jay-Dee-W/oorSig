@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
-import { Logo, Typography } from '@atoms/index';
 import { MdExpandMore } from 'react-icons/md';
+
+import { Logo, Typography } from '@atoms/index';
 
 interface TopNavigationProps {}
 
@@ -22,7 +23,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => (
       color="gray-50"
     >
       <x.img
-        src={'https://avatars.githubusercontent.com/u/31163758?v=4'}
+        src="/logo.png"
         alt={'Main Logo'}
         title={'Logo'}
         h={'45'}
@@ -51,7 +52,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => (
       color="gray-50"
     >
       <x.img
-        src={'https://avatars.githubusercontent.com/t/2919986?s=400&v=4'}
+        src="/undefiend.png"
         alt={'Main Logo'}
         title={'Logo'}
         h={'8'}

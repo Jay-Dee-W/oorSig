@@ -1,17 +1,16 @@
-import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { FC, useCallback } from 'react';
-import { TopNavigation } from './TopNavigation';
-
-import { SidebarNavigation } from './SidebarNavigation';
-import { SidebarBottom } from './SidebarBottom';
-
+import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { MdSpaceDashboard } from 'react-icons/md';
 import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
+
+import { TopNavigation } from './TopNavigation';
+import { SidebarNavigation } from './SidebarNavigation';
+import { SidebarBottom } from './SidebarBottom';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
 export const Sidebar: FC<SidebarProps> = props => {
-  const activeIfIncludes = useCallback(
+  const isActive = useCallback(
     (match: string) => (path: string) => path.includes(match),
     []
   );
@@ -54,7 +53,7 @@ export const Sidebar: FC<SidebarProps> = props => {
                 key={i}
                 title={e.title}
                 icon={<Icon size="1.5rem" />}
-                active={activeIfIncludes(e.href)}
+                active={isActive(e.href)}
               />
             );
           })}
