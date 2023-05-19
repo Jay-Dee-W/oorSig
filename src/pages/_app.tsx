@@ -7,6 +7,7 @@ import { x } from '@xstyled/emotion';
 
 import { ErrorBoundary } from '@elements/ErrorBoundary';
 import { Providers } from '@elements/Providers';
+import { Sidebar } from '@domains/sidebar/Sidebar';
 
 function MyApp(
   { Component, pageProps }: AppProps,
