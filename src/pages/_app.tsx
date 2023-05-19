@@ -5,6 +5,7 @@ import { x } from '@xstyled/emotion';
 
 import { ErrorBoundary } from '@elements/ErrorBoundary';
 import { Providers } from '@elements/Providers';
+import { Sidebar } from '@domains/sidebar/Sidebar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -16,7 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       ) : (
         <x.div h="100vh" display="flex">
-          <x.div bg="gray-800" w={{ lg: 256 }} />
+          <Sidebar w={{ lg: 256 }} />
           <x.div h="full" overflowY="auto" flex={1}>
             <ErrorBoundary>
               <Component {...pageProps} />
