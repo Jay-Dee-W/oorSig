@@ -52,7 +52,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => (
       color="gray-50"
     >
       <x.img
-        src="/undefiend.png"
+        src="/team.png"
         alt={'Main Logo'}
         title={'Logo'}
         h={'8'}
