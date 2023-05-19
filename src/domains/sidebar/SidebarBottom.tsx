@@ -38,16 +38,10 @@ export const SidebarBottom: React.FC = () => {
             p={2}
             spaceY={2}
           >
-            <MenuItem
-              icon={<MdLogout />}
-              onClick = { () => {} }
-            >
+            <MenuItem icon={<MdLogout />} onClick={() => {}}>
               <x.span>Logout</x.span>
             </MenuItem>
-            <MenuItem
-              icon={<MdSettings />}
-              onClick = { () => {} }
-            >
+            <MenuItem icon={<MdSettings />} onClick={() => {}}>
               <x.span>setting</x.span>
             </MenuItem>
           </x.div>
