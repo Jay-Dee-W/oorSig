@@ -1,0 +1,136 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { Table } from '@atoms/Table';
+import { StatusBadge } from '@atoms/StatusBadge';
+import { Button } from '@atoms/Button';
+
+<MDXWrapper>
+<Head>
+	<title>Table Doc | OORSIG</title>
+</Head>
+# Table
+
+## Introduction
+
+The `Table` component is a customizable table that can display data in a user-friendly way. It takes two props:
+
+## Props
+
+### columns:
+
+an array of TableColumn objects which define the columns to be displayed in the table. Each object has the following properties:
+
+- key: a string key to identify the column.
+
+- header: a string to be used as the column header.
+- render (optional): a function that receives the column value as input and returns a React node to be rendered instead of the raw value.
+
+### data:
+
+an array of objects that represent the data to be displayed in the table.
+
+## Basic Usage
+
+Here's an example of how to use the `Table` component:
+
+```
+import { Table } from '@atoms/Table';
+
+or
+
+import { Table } from '@atoms/index';
+
+const columns = [
+  {
+    key: 'image',
+    header: '',
+    render: value => <x.img src={value} alt="Image" w="2rem" h="2rem" />,
+  },
+  { key: 'name', header: 'Name' },
+  { key: 'teams', header: 'Teams' },
+  { key: 'repositories', header: 'Repositories' },
+  {
+    key: 'administer',
+    header: 'Administer',
+    render: value => <StatusBadge size="xs" isActive={value} />,
+  },
+  {
+    key: 'action',
+    header: '',
+    render: value => (
+      <Button
+        variant="secondary"
+        w="5rem"
+        h="2rem"
+      >
+        {value}
+      </Button>
+    ),
+  },
+];
+
+const data = [
+  {
+    image: 'https://placeimg.com/640/480/nature?t=1684216846749',
+    name: 'Gitsart HQ',
+    teams: 25,
+    repositories: 100,
+    administer: true,
+    action: 'Open',
+  },
+  {
+    image: 'https://placeimg.com/640/480/nature?t=1684216846749',
+    name: 'Meta',
+    teams: 30,
+    repositories: 50,
+    administer: false,
+    action: 'Close',
+  },
+];
+
+<Table columns={columns} data={data} />;
+```
+
+<Table
+  columns={[
+    {
+      key: 'image',
+      header: '',
+      render: value => <x.img src={value} alt="Image" w="2rem" h="2rem" />,
+    },
+    { key: 'name', header: 'Name' },
+    { key: 'teams', header: 'Teams' },
+    { key: 'repositories', header: 'Repositories' },
+    {
+      key: 'administer',
+      header: 'Administer',
+      render: value => <StatusBadge size="xs" isActive={value} />,
+    },
+    {
+      key: 'action',
+      header: '',
+      render: value => <Button variant="secondary">{value}</Button>,
+    },
+  ]}
+  data={[
+    {
+      image: 'https://placeimg.com/640/480/nature?t=1684216846749',
+      name: 'Gitsart HQ',
+      teams: 25,
+      repositories: 100,
+      administer: true,
+      action: 'Open',
+    },
+    {
+      image: 'https://placeimg.com/640/480/nature?t=1684216846749',
+      name: 'Meta',
+      teams: 30,
+      repositories: 50,
+      administer: false,
+      action: 'Close',
+    },
+  ]}
+/>
+
+</MDXWrapper>

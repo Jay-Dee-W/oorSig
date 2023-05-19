@@ -11,3 +11,5 @@ export { SearchIcon } from './SearchIcon';
 export { Alert } from './Alert';
 export { Dropdown } from './Dropdown';
 export { SearchableDropdown } from './SearchableDropdown';
+export { Table } from './Table';
+export * from './Popover';
