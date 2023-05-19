@@ -14,6 +14,28 @@ export const Sidebar: FC<SidebarProps> = props => {
     (match: string) => (path: string) => path.includes(match),
     []
   );
+  const routes = [
+    {
+      icon: MdSpaceDashboard,
+      title: 'Dashboard',
+      href: '/home',
+    },
+    {
+      icon: GoRepo,
+      title: 'Repositories',
+      href: '#',
+    },
+    {
+      icon: GoGitPullRequest,
+      title: 'Pull Requests',
+      href: '#',
+    },
+    {
+      icon: GoIssueOpened,
+      title: 'Issues',
+      href: '#',
+    },
+  ];
   return (
     <Container
       {...props}
@@ -24,28 +46,7 @@ export const Sidebar: FC<SidebarProps> = props => {
       <x.div flex={1}>
         <TopNavigation />
         <x.div mt="3rem">
-          {[
-            {
-              icon: MdSpaceDashboard,
-              title: 'Dashboard',
-              href: '/home',
-            },
-            {
-              icon: GoRepo,
-              title: 'Repositories',
-              href: '#',
-            },
-            {
-              icon: GoGitPullRequest,
-              title: 'Pull Requests',
-              href: '#',
-            },
-            {
-              icon: GoIssueOpened,
-              title: 'Issues',
-              href: '#',
-            },
-          ].map((e, i) => {
+          {routes.map((e, i) => {
             const Icon = e.icon;
             return (
               <SidebarNavigation
