@@ -5,6 +5,8 @@ import { th, defaultTheme, ThemeProvider, Preflight } from '@xstyled/emotion';
 export const GlobalStyle = createGlobalStyle`
   :root, body, #root {
     height: 100%;
+    margin: 0;
+    padding: 0;
   }
   a {
     text-decoration: none;
@@ -25,8 +27,10 @@ const theme = {
     ['primary-200']: '#007AFF',
     ['primary-300']: '#016ADC',
     ['primary-400']: '#0052AB',
+    ['gray-50']: '#A0A2A2',
     ['gray-100']: '#5B5B5B',
     ['gray-200']: '#44494B',
+    ['gray-250']: '#373B3D',
     ['gray-300']: '#2C2F30',
     ['gray-400']: '#1C1E1F',
     ['red-100']: '#F3D8DB',
