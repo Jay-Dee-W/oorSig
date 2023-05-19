@@ -40,13 +40,13 @@ export const SidebarBottom: React.FC = () => {
           >
             <MenuItem
               icon={<MdLogout />}
-              // onClick={function for setting}
+              onClick = { () => {} }
             >
               <x.span>Logout</x.span>
             </MenuItem>
             <MenuItem
               icon={<MdSettings />}
-              // onClick={ function for setting}
+              onClick = { () => {} }
             >
               <x.span>setting</x.span>
             </MenuItem>
