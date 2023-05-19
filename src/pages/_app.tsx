@@ -23,7 +23,7 @@ function MyApp(
           <Component {...pageProps} />
         ) : (
           <x.div h="100vh" display="flex">
-            <x.div bg="gray-800" w={{ lg: 256 }} />
+            <Sidebar />
             <x.div h="full" overflowY="auto" flex={1}>
               <ErrorBoundary>
                 <Component {...pageProps} />
