@@ -56,7 +56,7 @@ export const SearchableDropdown: React.FC<SelectProps> = ({
     <x.div>
       <x.div display="flex" w="full" flexDirection="column">
         <x.label
-          bg="gray-200"
+          bg="gray-500"
           color="white"
           w="fit"
           borderRadius="0.5rem 0.5rem 0 0"
