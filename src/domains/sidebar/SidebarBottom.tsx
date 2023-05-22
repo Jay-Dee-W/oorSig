@@ -1,11 +1,18 @@
-import { x } from '@xstyled/emotion';
 import { MdLogout, MdOutlineMoreVert, MdSettings } from 'react-icons/md';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { x } from '@xstyled/emotion';
 import { Avatar } from '@atoms/Avatar';
 import { Popover, PopoverContent, PopoverTrigger } from '@atoms/Popover';
 import { Typography } from '@atoms/Typography';
 
 export const SidebarBottom: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const router = useRouter();
+  const clickSignOut = async () => {
+    await signOut();
+    router.replace('/');
+  };
 
   return (
     <x.div>
@@ -38,7 +45,7 @@ export const SidebarBottom: React.FC = () => {
             p={2}
             spaceY={2}
           >
-            <MenuItem icon={<MdLogout />} onClick={() => {}}>
+            <MenuItem icon={<MdLogout />} onClick={clickSignOut}>
               <x.span>Logout</x.span>
             </MenuItem>
             <MenuItem icon={<MdSettings />} onClick={() => {}}>
