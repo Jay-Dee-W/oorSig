@@ -3,6 +3,7 @@ import { x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
 import { Input } from '@atoms/Input';
 import { SearchIcon } from '@atoms/SearchIcon';
+import styled from '@emotion/styled';
 
 interface SelectOption {
   label: string;
@@ -18,6 +19,22 @@ interface SelectProps {
   isSearchable?: boolean;
 }
 
+const StyledDiv = styled(x.div)`
+  max-height: 12.5rem;
+  overflow-y: auto;
+  display: block;
+  &::-webkit-scrollbar {
+    width: 0.625rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #a0a2a2;
+    border-radius: 0.3125rem;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: white;
+    border-radius: 0.3125rem;
+  }
+`;
 export const SearchableDropdown: React.FC<SelectProps> = ({
   options,
   label = 'Searchable Dropdown',
@@ -75,47 +92,47 @@ export const SearchableDropdown: React.FC<SelectProps> = ({
               {...getInputProps()}
             />
           )}
-          <x.ul
-            bg="gray-300"
-            color="white"
-            pt={isSearchable && '0.625rem'}
-            borderRadius="0 0 0.5rem 0.5rem"
-            maxH="12.5rem"
-            overflowY="scroll"
-            {...getMenuProps()}
-          >
-            {items.map((item, index) => (
-              <x.li
-                alignContent="center"
-                py="0.625rem"
-                px="0.5rem"
-                bg={highlightedIndex === index ? 'gray-200' : 'transparent'}
-                borderRadius={highlightedIndex === index ? '0.367rem' : ''}
-                display="flex"
-                flexDirection="row"
-                cursor="pointer"
-                key={`${index}`}
-                {...getItemProps({ item, index })}
-              >
-                {item.imgSrc && (
-                  <x.img
-                    src={item.imgSrc}
-                    borderRadius="0.25rem"
-                    w={imgSize}
-                    h={imgSize}
-                  />
-                )}
-                <x.span
-                  pl="0.5rem"
-                  fontSize="base"
+          <StyledDiv>
+            <x.ul
+              bg="gray-300"
+              color="white"
+              pt={isSearchable && '0.625rem'}
+              borderRadius="0 0 0.5rem 0.5rem"
+              {...getMenuProps()}
+            >
+              {items.map((item, index) => (
+                <x.li
+                  alignContent="center"
+                  py="0.625rem"
+                  px="0.5rem"
+                  bg={highlightedIndex === index ? 'gray-200' : 'transparent'}
+                  borderRadius={highlightedIndex === index ? '0.367rem' : ''}
                   display="flex"
-                  alignItems="center"
+                  flexDirection="row"
+                  cursor="pointer"
+                  key={`${index}`}
+                  {...getItemProps({ item, index })}
                 >
-                  {item.label}
-                </x.span>
-              </x.li>
-            ))}
-          </x.ul>
+                  {item.imgSrc && (
+                    <x.img
+                      src={item.imgSrc}
+                      borderRadius="0.25rem"
+                      w={imgSize}
+                      h={imgSize}
+                    />
+                  )}
+                  <x.span
+                    pl="0.5rem"
+                    fontSize="base"
+                    display="flex"
+                    alignItems="center"
+                  >
+                    {item.label}
+                  </x.span>
+                </x.li>
+              ))}
+            </x.ul>
+          </StyledDiv>
         </x.div>
       </x.div>
     </x.div>
