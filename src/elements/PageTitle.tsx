@@ -8,6 +8,7 @@ interface PageTitleProps {
 export const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
   return (
     <Head>
+      <link rel="icon" href="/oorsigIcon.png" type="image/x-icon" />
       <title>{title} | OORSIG</title>
     </Head>
   );
