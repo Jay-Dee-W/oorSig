@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import { x } from '@xstyled/emotion';
+import styled, { x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
+
 import { Input } from '@atoms/Input';
 import { SearchIcon } from '@atoms/SearchIcon';
-import styled from '@emotion/styled';
 
-interface SelectOption {
+interface SelectOptionProps {
   label: string;
   value: string;
   imgSrc?: string;
 }
 
 interface SelectProps {
-  options: SelectOption[];
+  options: SelectOptionProps[];
   placeholder?: string;
   label?: string;
   imgSize?: string;
@@ -27,7 +27,7 @@ const StyledDiv = styled(x.div)`
     width: 0.625rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #a0a2a2;
+    background-color: gray-50;
     border-radius: 0.3125rem;
   }
   &::-webkit-scrollbar-track {
@@ -35,25 +35,26 @@ const StyledDiv = styled(x.div)`
     border-radius: 0.3125rem;
   }
 `;
-export const SearchableDropdown: React.FC<SelectProps> = ({
+
+function getOptionsFilter(inputValue: string) {
+  const lowerCasedInputValue = inputValue.toLowerCase();
+
+  return function optionsFilter(option: SelectOptionProps) {
+    return (
+      !inputValue ||
+      option.label.toLowerCase().includes(lowerCasedInputValue) ||
+      option.value.toLowerCase().includes(lowerCasedInputValue)
+    );
+  };
+}
+
+export const SearchableList: React.FC<SelectProps> = ({
   options,
-  label = 'Searchable Dropdown',
+  label = 'Searchable List',
   placeholder = 'Search option',
   imgSize = '1.875rem',
   isSearchable = false,
 }) => {
-  function getOptionsFilter(inputValue: string) {
-    const lowerCasedInputValue = inputValue.toLowerCase();
-
-    return function optionsFilter(option: SelectOption) {
-      return (
-        !inputValue ||
-        option.label.toLowerCase().includes(lowerCasedInputValue) ||
-        option.value.toLowerCase().includes(lowerCasedInputValue)
-      );
-    };
-  }
-
   const [items, setItems] = useState(options);
   const {
     getLabelProps,

@@ -1,23 +1,23 @@
 import Head from 'next/head';
 import { x } from '@xstyled/emotion';
 import { MDXWrapper } from '@elements/MDXWrapper';
-import { SearchableDropdown } from '@atoms/index';
+import { SearchableList } from '@atoms/index';
 
 <MDXWrapper>
 <Head>
-	<title>Searchable Dropdown Doc | OORSIG</title>
+	<title>Searchable List Doc | OORSIG</title>
 </Head>
-# Searchable Dropdown
+# Searchable List
 
 ## Introduction
 
-The `Searchable Dropdown` component is a custom dropdown implementation using `downshift` and `@xstyled/emotion` libraries.
+The `Searchable List` component is a custom Searchable List implementation using `downshift` and `@xstyled/emotion` libraries.
 
 ## Props
 
 ### options (required)
 
-An array of objects representing the options in the dropdown.
+An array of objects representing the options in the list.
 Each object should have a label, value and imgSrc property. For example:
 
 ```
@@ -30,11 +30,11 @@ const options = [
 
 ### placeholder (optional)
 
-A string that specifies the placeholder text to be displayed in the dropdown when no option is selected. Default value is "Search option".
+A string that specifies the placeholder text to be displayed in the input search when no option is selected. Default value is "Search option".
 
 ### label (optional)
 
-A string representing the label of the dropdown. This label will be displayed above the dropdown. Default value is "Searchable Dropdown".
+A string representing the label of the list. This label will be displayed above the list. Default value is "Searchable List".
 
 ### imgSize (optional)
 
@@ -50,7 +50,7 @@ This is just a basic usage and customization example.
 
 ```jsx
 import React from 'react';
-import { SearchableDropdown } from '@atoms/index';
+import { SearchableList } from '@atoms/index';
 
 const options = [
   {
@@ -70,7 +70,7 @@ const options = [
   },
 ];
 
-<SearchableDropdown
+<SearchableList
   options={options}
   placeholder="Search Team"
   label="Select Team"
@@ -80,7 +80,7 @@ const options = [
 ```
 
 <x.div>
-  <SearchableDropdown
+  <SearchableList
     options={[
       { label: 'Option 1', value: 'option1', imgSrc: '/profile.jpeg' },
       { label: 'Option 2', value: 'option2', imgSrc: '/profile.jpeg' },
