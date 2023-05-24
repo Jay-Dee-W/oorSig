@@ -20,22 +20,22 @@ export const DailyProgress: React.FC<DailyProgressProps> = ({
       borderColor={bgColor}
       fontFamily="inter"
       borderRadius="8px"
-      w="273.93px"
-      h="159.57px"
+      w="17.21rem"
+      h="9.97rem"
       bg={bgColor}
     >
-      <x.div p="17px 19px 0 19px">
+      <x.div p="1.06rem 1.19rem 0 1.19rem">
         <x.p fontSize="20px" fontWeight="400px">
           Active Pr(s)
         </x.p>
-        <x.p fontSize="48px" fontWeight="bold" lineHeight="48px" pb="14px">
+        <x.p fontSize="48px" fontWeight="bold" lineHeight="48px" pb="0.88rem">
           {prs}
         </x.p>
       </x.div>
       <x.div
         borderTop="1px solid"
-        borderColor="#FFFFFF"
-        p="10px 19px 17px 19px"
+        borderColor="white"
+        p="0.63rem 1.19rem 1.06rem 1.19rem"
         display="flex"
         flexDirection="row"
         fontSize="16px"
