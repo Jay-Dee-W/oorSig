@@ -9,4 +9,21 @@ export default NextAuth({
     }),
   ],
   secret: process.env.NEXT_PUBLIC_JWT_SECRET,
+  session: {
+    strategy: 'jwt'
+  },
+    callbacks: {
+      async jwt({token, account}) {
+        if (account) {
+          token = Object.assign({}, token, { access_token: account.access_token });
+        }
+        return token
+      },
+      async session({session, token}) {
+      if(session) {
+        session = Object.assign({}, session, {access_token: token.access_token})
+        }
+      return session
+      }
+    }
 });
