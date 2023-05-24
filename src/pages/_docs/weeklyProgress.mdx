@@ -15,13 +15,17 @@ The `WeeklyProgress` omponent is a progress card that displays total PRs and ave
 
 ## Props
 
+### `progress`: `number`
+
+- The progress value of the progress bar (0-100).
+
 ### `total`: `number`
 
 - The total number of PRs.
 
-### `avg`: `number` 
+### `avg`: `number`
 
-- The average weekly goal. 
+- The average weekly goal.
 
 ## Basic Usage
 
@@ -31,10 +35,10 @@ Here's an example of how to use the `WeeklyProgress` component:
 import React from 'react';
 import { WeeklyProgress } from '@atoms/WeeklyProgress';
 
-<WeeklyProgress total={5} avg={3} />;
+<WeeklyProgress total={5} avg={3} progress={10} />;
 ```
 
 <x.div>
-<WeeklyProgress total={5} avg={3} />
+<WeeklyProgress total={5} avg={3} progress={10}/>
 </x.div>
 </MDXWrapper>
