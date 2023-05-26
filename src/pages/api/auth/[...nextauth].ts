@@ -4,8 +4,8 @@ import NextAuth from 'next-auth';
 export default NextAuth({
   providers: [
     GithubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_ID ?? "",
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET ?? "",
+      clientId: process.env.NEXT_PUBLIC_GITHUB_ID ?? '',
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET ?? '',
       authorization: {
         params: {
           // Request additional permission scopes.
@@ -14,7 +14,7 @@ export default NextAuth({
       },
     }),
   ],
-  secret: process.env.NEXT_PUBLIC_JWT_SECRET ?? "",
+  secret: process.env.NEXT_PUBLIC_JWT_SECRET ?? '',
   session: {
     strategy: 'jwt',
   },
