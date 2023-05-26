@@ -11,7 +11,7 @@ export { SearchIcon } from './SearchIcon';
 export { Alert } from './Alert';
 export { Dropdown } from './Dropdown';
 export { Table } from './Table';
-export { RadialProgressBar } from './RadialProgressBar';
+export { CircularProgressbar } from './CircularProgressbar';
 export { DailyProgress } from './DailyProgress';
 export { WeeklyProgress } from './WeeklyProgress';
 export * from './Popover';
