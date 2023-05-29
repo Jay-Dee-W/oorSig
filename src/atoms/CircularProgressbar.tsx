@@ -7,12 +7,18 @@ import {
 
 interface CircularProgressbarProps {
   percentage: number;
-  pathColor?: string;
-  trailColor?: string;
+  pathColor?: any;
+  trailColor?: any;
   textColor?: string;
   textSize?: number;
   strokeWidth?: number;
   strokeLinecap?: 'round' | 'butt';
+}
+
+interface ExtendedTheme {
+  colors: {
+    [key: string]: string;
+  };
 }
 
 export const CircularProgressbar: React.FC<CircularProgressbarProps> = ({
@@ -24,9 +30,12 @@ export const CircularProgressbar: React.FC<CircularProgressbarProps> = ({
   strokeWidth,
   strokeLinecap,
 }) => {
-  const theme = useTheme();
-  trailColor = trailColor || theme.colors['gray-50'];
-  pathColor = pathColor || theme.colors['primary-200'];
+  const theme = useTheme() as ExtendedTheme;
+  trailColor =
+    theme.colors[trailColor] || trailColor || theme.colors['gray-50'];
+  pathColor =
+    theme.colors[pathColor] || pathColor || theme.colors['primary-200'];
+
   return (
     <CircularProgressbarWithChildren
       value={percentage}
