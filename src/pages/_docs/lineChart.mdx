@@ -1,0 +1,175 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { LineChart } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>LineChart Doc | OORSIG</title>
+</Head>
+# LineChart
+
+## Introduction
+
+The `LineChart` component is a wrapper around the `react-chartjs-2` library, providing a convenient way to render line charts in React applications.
+
+## Props
+
+### `options`: `ChartOptions` (optional)
+
+- The options for configuring the line chart. It includes properties for responsiveness, legends, background grid lines, and titles.
+
+### `data`: `ChartData`
+
+- The data for the line chart. It includes an array of labels and an array of datasets, where each dataset contains the label, data points, border color, and background color.
+
+## Basic Usage
+
+Here's an example of how to use the `LineChart` component:
+
+```jsx
+import { LineChart } from '@atoms/LineChart';
+
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+      position: 'top',
+    },
+    title: {
+      display: false,
+      text: '',
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      border: {
+        display: false,
+      },
+    },
+    y: {
+      grid: {
+        display: true,
+        color: 'gray',
+      },
+      border: {
+        display: false,
+      },
+    },
+  },
+};
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+const data = {
+  labels,
+  datasets: [
+    {
+      label: 'Open PRs',
+      data: [100, 200, 300, 333, 89, 600, 700],
+      borderColor: 'green',
+      backgroundColor: 'green',
+      pointRadius: 0,
+    },
+    {
+      label: 'Closed PRs',
+      data: [700, 600, 500, 400, 300, 200, 100],
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointRadius: 0,
+    },
+    {
+      label: 'Merged PRs',
+      data: [400, 500, 500, 200, 100, 10, 50],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointRadius: 0,
+    },
+  ],
+};
+
+<LineChart options={options} data={data} />;
+```
+
+ <LineChart
+        options={{
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+              position: 'top',
+            },
+            title: {
+              display: false,
+              text: '',
+            },
+          },
+          scales: {
+      x: {
+        grid: {
+          display: false,
+          color: '',
+        },
+        border: {
+          display: false,
+        },
+         ticks: {
+        color: 'gray',
+        fontFamily: 'Inter',
+      }
+      },
+      y: {
+        grid: {
+          display: true,
+          color: 'gray',
+        },
+        border: {
+          display: false,
+        },
+         ticks: {
+        color: 'gray',
+        fontFamily: 'Inter',
+      }
+      },
+    },
+        }}
+        data={{
+          labels: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+          ],
+          datasets: [
+            {
+              label: 'Open PRs',
+              data: [100, 200, 300, 333, 89, 600, 700],
+              borderColor: 'green',
+              backgroundColor: 'green',
+              pointRadius: 0,
+            },
+            {
+              label: 'Closed PRs',
+              data: [700, 600, 500, 400, 300, 200, 100],
+              borderColor: 'red',
+              backgroundColor: 'red',
+              pointRadius: 0,
+            },
+            {
+              label: 'Merged PRs',
+              data: [400, 500, 500, 200, 100, 10, 50],
+              borderColor: 'blue',
+              backgroundColor: 'blue',
+              pointRadius: 0,
+            },
+          ],
+        }}
+      />
+</MDXWrapper>
