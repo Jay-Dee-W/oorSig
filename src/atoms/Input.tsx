@@ -70,6 +70,7 @@ export const Input: React.FC<InputProps> = React.forwardRef<
             onBlur={onBlur}
             ref={ref}
             placeholder={placeholder}
+            {...systemProps}
           />
         </x.div>
         {error?.message && (

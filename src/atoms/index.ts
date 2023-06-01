@@ -10,6 +10,7 @@ export { Input } from './Input';
 export { SearchIcon } from './SearchIcon';
 export { Alert } from './Alert';
 export { Dropdown } from './Dropdown';
+export { SearchableList } from './SearchableList';
 export { Table } from './Table';
 export { CircularProgressbar } from './CircularProgressbar';
 export { DailyProgress } from './DailyProgress';
