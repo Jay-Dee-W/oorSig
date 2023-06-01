@@ -11,7 +11,7 @@ import React from 'react';
 import { Session } from 'next-auth';
 import { getSession } from 'next-auth/react';
 
-interface session extends Session {
+interface ISession extends Session {
   accessToken?: string | null;
 }
 export const LOCAL_STORAGE_RELAY_RECORDS_KEY = 'relay_records';
