@@ -1,7 +1,7 @@
 import { x, SystemProps } from '@xstyled/emotion';
 
 interface DividerProps extends SystemProps {
-  borderColor?: 'gray-300' | 'gray-200' | 'gray-100';
+  borderColor?: 'gray-300' | 'gray-200' | 'gray-100' | string;
 }
 
 export const Divider: React.FC<DividerProps> = ({
