@@ -21,7 +21,7 @@ export default NextAuth({
     async jwt({ token, account }) {
       if (account) {
         token = Object.assign({}, token, {
-          access_token: account.access_token,
+          accessToken: account.access_token,
         });
       }
       return token;
@@ -29,7 +29,7 @@ export default NextAuth({
     async session({ session, token }) {
       if (session) {
         session = Object.assign({}, session, {
-          access_token: token.access_token,
+          accessToken: token.accessToken,
         });
       }
       return session;
