@@ -8,7 +8,6 @@ export default NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET ?? '',
       authorization: {
         params: {
-          // Request additional permission scopes.
           scope: 'read:org read:discussion read:repo read:user user:email',
         },
       },
