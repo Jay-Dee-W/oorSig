@@ -27,18 +27,21 @@ The `DailyProgress` component displays daily progress information in a card form
 
 - The background color of the progress card. The dafault color is `primary-200`.
 
+### `title`: `string`
+
+- The title of daily progress card.
+
 ## Basic Usage
 
 Here's an example of how to use the `DailyProgress` component:
 
 ```jsx
-import React from 'react';
 import { DailyProgress } from '@atoms/DailyProgress';
 
-<DailyProgress prs={5} avg={3} bgColor="primary-300" />;
+<DailyProgress prs={5} avg={3} bgColor="primary-300" title="Active Pr(s)" />;
 ```
 
 <x.div>
-<DailyProgress prs={5} avg={3} bgColor="primary-300" />
+<DailyProgress prs={5} avg={3} bgColor="primary-300" title="Active Pr(s)"/>
 </x.div>
 </MDXWrapper>

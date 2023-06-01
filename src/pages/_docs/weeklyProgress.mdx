@@ -11,7 +11,7 @@ import { WeeklyProgress } from '@atoms/WeeklyProgress';
 
 ## Introduction
 
-The `WeeklyProgress` omponent is a progress card that displays total PRs and average weekly goals.
+The `WeeklyProgress` component is a progress card that displays total PRs and average weekly goals.
 
 ## Props
 
@@ -27,18 +27,21 @@ The `WeeklyProgress` omponent is a progress card that displays total PRs and ave
 
 - The average weekly goal.
 
+### `title`: `string`
+
+- The title ot Weekly progress card.
+
 ## Basic Usage
 
 Here's an example of how to use the `WeeklyProgress` component:
 
 ```jsx
-import React from 'react';
 import { WeeklyProgress } from '@atoms/WeeklyProgress';
 
-<WeeklyProgress total={5} avg={3} percentage={10} />;
+<WeeklyProgress total={5} avg={3} percentage={10} title="My Pr(s)" />;
 ```
 
 <x.div>
-<WeeklyProgress total={5} avg={3} percentage={10}/>
+<WeeklyProgress total={5} avg={3} percentage={10} title='My Pr(s)'/>
 </x.div>
 </MDXWrapper>

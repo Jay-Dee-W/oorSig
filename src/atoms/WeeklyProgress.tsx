@@ -6,12 +6,14 @@ interface WeeklyProgressProps {
   percentage: number;
   total: number;
   avg: number;
+  title: string;
 }
 
 export const WeeklyProgress: React.FC<WeeklyProgressProps> = ({
   percentage,
   total,
   avg,
+  title,
 }) => {
   return (
     <Card
@@ -27,7 +29,7 @@ export const WeeklyProgress: React.FC<WeeklyProgressProps> = ({
         alignItems="center"
         fontFamily="inter"
       >
-        <x.div>
+        <x.div w="14.41rem" h="14.41rem">
           <CircularProgressbar percentage={percentage} strokeLinecap="round" />
         </x.div>
         <x.div pl="1.25rem">
@@ -37,7 +39,7 @@ export const WeeklyProgress: React.FC<WeeklyProgressProps> = ({
             lineHeight="36px"
             pb="0.94rem"
           >
-            My Pr(s)
+            {title}
           </x.p>
           <x.div borderBottom="1px solid" borderColor="gray-50" pb="0.81rem">
             <x.p fontSize="18px" fontWeight="700px" color="gray-50">

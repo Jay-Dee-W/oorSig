@@ -1,14 +1,13 @@
-import React from 'react';
-import { useTheme } from '@xstyled/emotion';
 import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from 'react-circular-progressbar';
-
+import React from 'react';
+import { useTheme } from '@xstyled/emotion';
 interface CircularProgressbarProps {
   percentage: number;
-  pathColor?: any;
-  trailColor?: any;
+  pathColor?: string;
+  trailColor?: string;
   textColor?: string;
   textSize?: number;
   strokeWidth?: number;
@@ -32,9 +31,9 @@ export const CircularProgressbar: React.FC<CircularProgressbarProps> = ({
 }) => {
   const theme = useTheme() as ExtendedTheme;
   trailColor =
-    theme.colors[trailColor] || trailColor || theme.colors['gray-50'];
+    theme.colors[trailColor || ''] || trailColor || theme.colors['gray-50'];
   pathColor =
-    theme.colors[pathColor] || pathColor || theme.colors['primary-200'];
+    theme.colors[pathColor || ''] || pathColor || theme.colors['primary-200'];
 
   return (
     <CircularProgressbarWithChildren
