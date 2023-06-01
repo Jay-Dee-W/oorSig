@@ -1,34 +1,51 @@
 import Head from 'next/head';
-import { x } from '@xstyled/emotion';
 import { MDXWrapper } from '@elements/MDXWrapper';
-import { LineChart } from '@atoms/index';
+import { Line } from 'react-chartjs-2';
 
 <MDXWrapper>
 <Head>
-	<title>LineChart Doc | OORSIG</title>
+	<title>React Chart Doc | OORSIG</title>
 </Head>
-# LineChart
+## react-chartjs-2 library
 
 ## Introduction
 
-The `LineChart` component is a wrapper around the `react-chartjs-2` library, providing a convenient way to render line charts in React applications.
+`react-chartjs-2` is a React library that serves as a wrapper for the Chart.js library. It allows you to easily create and display various types of interactive charts in your React applications.
 
-## Props
+### Installation
 
-### `options`: `ChartOptions` (optional)
+To use the `react-chartjs-2`, you need to install the `react-chartjs-2` library:
 
-- The options for configuring the line chart. It includes properties for responsiveness, legends, background grid lines, and titles.
+```
+npm install react-chartjs-2
+```
 
-### `data`: `ChartData`
+## Example of react-chartjs-2
 
-- The data for the line chart. It includes an array of labels and an array of datasets, where each dataset contains the label, data points, border color, and background color.
-
-## Basic Usage
-
-Here's an example of how to use the `LineChart` component:
+Here's an example of how to use the `LineChart`:
 
 ```jsx
-import { LineChart } from '@atoms/LineChart';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const options = {
   responsive: true,
@@ -92,10 +109,10 @@ const data = {
   ],
 };
 
-<LineChart options={options} data={data} />;
+<Line options={options} data={data} />;
 ```
 
- <LineChart
+ <Line
         options={{
           responsive: true,
           plugins: {
