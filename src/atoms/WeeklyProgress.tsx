@@ -1,7 +1,7 @@
 import React from 'react';
 import { x } from '@xstyled/emotion';
-import { CircularProgressbar } from './CircularProgressbar';
-import { Card } from './Card';
+import { CircularProgressbar } from '@atoms/CircularProgressbar';
+import { Card } from '@atoms/Card';
 interface WeeklyProgressProps {
   percentage: number;
   total: number;

@@ -15,11 +15,11 @@ The `DailyProgress` component displays daily progress information in a card form
 
 ## Props
 
-### `prs`: `number`
+### `pullRequestsCount`: `number`
 
 - The number of active PRs.
 
-### `avg`: `number`
+### `averageDailyGoal`: `number`
 
 - The average daily goal.
 
@@ -38,10 +38,10 @@ Here's an example of how to use the `DailyProgress` component:
 ```jsx
 import { DailyProgress } from '@atoms/DailyProgress';
 
-<DailyProgress prs={5} avg={3} bgColor="primary-300" title="Active Pr(s)" />;
+<DailyProgress pullRequestsCount={5} averageDailyGoal={3} bgColor="primary-300" title="Active Pr(s)" />;
 ```
 
 <x.div>
-<DailyProgress prs={5} avg={3} bgColor="primary-300" title="Active Pr(s)"/>
+<DailyProgress pullRequestsCount={5} averageDailyGoal={3} bgColor="primary-300" title="Active Pr(s)"/>
 </x.div>
 </MDXWrapper>

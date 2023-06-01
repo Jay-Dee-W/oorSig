@@ -4,6 +4,7 @@ import {
 } from 'react-circular-progressbar';
 import React from 'react';
 import { useTheme } from '@xstyled/emotion';
+
 interface CircularProgressbarProps {
   percentage: number;
   pathColor?: string;

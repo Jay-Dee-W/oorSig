@@ -1,17 +1,18 @@
 import React from 'react';
 import { x } from '@xstyled/emotion';
-import { Card } from './Card';
+import { Card } from '@atoms/Card';
 import { Divider } from '@atoms/Divider';
+
 interface DailyProgressProps {
-  prs: number;
-  avg: number;
+  pullRequestsCount: number;
+  averageDailyGoal: number;
   bgColor?: string;
   title: string;
 }
 
 export const DailyProgress: React.FC<DailyProgressProps> = ({
-  prs,
-  avg,
+  pullRequestsCount,
+  averageDailyGoal,
   bgColor = 'primary-200',
   title,
 }) => {
@@ -29,7 +30,7 @@ export const DailyProgress: React.FC<DailyProgressProps> = ({
             {title}
           </x.p>
           <x.p fontSize="48px" fontWeight="bold" lineHeight="48px" pb="0.88rem">
-            {prs}
+            {pullRequestsCount}
           </x.p>
         </x.div>
         <Divider borderColor="white" />
@@ -43,7 +44,7 @@ export const DailyProgress: React.FC<DailyProgressProps> = ({
         >
           <x.p color="gray-50">Average daily goal:</x.p>
           <x.p color="white" fontWeight="bold">
-            {avg}
+            {averageDailyGoal}
           </x.p>
         </x.div>
       </x.div>
