@@ -1,0 +1,61 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { CircularProgressbar } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Circula rProgressbar Doc | OORSIG</title>
+</Head>
+# Circular Progressbar
+
+## Introduction
+
+A `circular progress bar` component that displays a percentage value. The CircularProgressbar component should be wrapped in a container element with a fixed width and height.
+
+## Props
+
+### percentage (required):
+
+- A number representing the percentage of progress to be displayed.
+
+### pathColor (optional):
+
+- A string representing the color of the progress bar path. Default value is 'primary-200'.
+
+### trailColor (optional):
+
+- A string representing the color of the progress bar trail. Default value is 'gray-50'.
+
+### textColor (optional):
+
+- A string representing the color of the text inside the progress bar. If not provided, the default color will be used (white).
+
+### textSize (optional):
+
+- A number representing the font size of the text inside the progress bar. If not provided, the default font size will be used (16px).
+
+### strokeWidth (optional):
+
+- A number representing the width of the progress bar stroke. If not provided, the default width will be used (8px).
+
+### strokeLinecap (optional):
+
+- A string specifying the style of the progress bar stroke linecap. Valid values are 'round' and 'butt'. If not provided, the default value will be used wich is `butt`.
+
+## Basic Usage
+
+Here's an example of how to use the `CircularProgressbar` component:
+
+```jsx
+import { CircularProgressbar } from '@atoms/CircularProgressbar';
+
+<x.div w='12rem' h='12rem'>
+    <CircularProgressbar percentage={60} strokeLinecap="round" />
+<x.div>
+```
+
+<x.div w='12rem' h='12rem'>
+    <CircularProgressbar percentage={60} strokeLinecap='round'/>
+</x.div>
+</MDXWrapper>
