@@ -1,0 +1,47 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { WeeklyProgress } from '@atoms/WeeklyProgress';
+
+<MDXWrapper>
+<Head>
+	<title>Daily Progress Doc | OORSIG</title>
+</Head>
+# Weekly Progress
+
+## Introduction
+
+The `WeeklyProgress` component is a progress card that displays total PRs and average weekly goals.
+
+## Props
+
+### `percentage`: `number`
+
+- The percentage value of the progress bar (0-100).
+
+### `total`: `number`
+
+- The total number of PRs.
+
+### `avg`: `number`
+
+- The average weekly goal.
+
+### `title`: `string`
+
+- The title ot Weekly progress card.
+
+## Basic Usage
+
+Here's an example of how to use the `WeeklyProgress` component:
+
+```jsx
+import { WeeklyProgress } from '@atoms/WeeklyProgress';
+
+<WeeklyProgress total={5} avg={3} percentage={10} title="My Pr(s)" />;
+```
+
+<x.div>
+<WeeklyProgress total={5} avg={3} percentage={10} title='My Pr(s)'/>
+</x.div>
+</MDXWrapper>
