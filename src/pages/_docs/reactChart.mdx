@@ -1,4 +1,4 @@
-import { ChartJS } from './chartConfig.js';
+import { Chart } from './chartConfig.js';
 import Head from 'next/head';
 import { Line } from 'react-chartjs-2';
 import { MDXWrapper } from '@elements/MDXWrapper';
@@ -25,9 +25,9 @@ npm install react-chartjs-2
 
 Here's an example of how to use the `LineChart`:
 
-```jsx
+```tsx
 import {
-  Chart as ChartJS,
+  Chart,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -38,7 +38,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-ChartJS.register(
+Chart.register(
   CategoryScale,
   LinearScale,
   PointElement,
@@ -48,17 +48,33 @@ ChartJS.register(
   Legend
 );
 
-interface ChartData {
-  labels: string[];
-  datasets: ChartDataset[];
-}
-
 interface ChartDataset {
   label: string;
   data: number[];
   borderColor?: string;
   backgroundColor?: string;
   pointRadius?: number;
+}
+
+interface ChartData {
+  labels: string[];
+  datasets: ChartDataset[];
+}
+
+interface Axes {
+  grid?: {
+    display?: boolean,
+    color?: string,
+  };
+  border?: {
+    display: boolean,
+    color?: string,
+  };
+  ticks?: {
+    color?: string,
+    fontSize?: string | number,
+    fontFamily?: string,
+  };
 }
 
 interface ChartOptions {
@@ -79,28 +95,8 @@ interface ChartOptions {
   };
 }
 
-interface Axes {
-  grid?: {
-    display?: boolean,
-    color?: string,
-  };
-  border?: {
-    display: boolean,
-    color?: string,
-  };
-  ticks?: {
-    color?: string,
-    fontSize?: string | number,
-    fontFamily?: string,
-  };
-}
 
-interface LineChartProps {
-  options?: ChartOptions;
-  data: ChartData;
-}
-
-const options = {
+const options?: ChartOptions  = {
   responsive: true,
   plugins: {
     legend: {
@@ -135,7 +131,7 @@ const options = {
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-const data = {
+const data:ChartData  = {
   labels,
   datasets: [
     {

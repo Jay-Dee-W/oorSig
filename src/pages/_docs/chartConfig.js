@@ -1,5 +1,5 @@
 import {
-  Chart as ChartJS,
+  Chart,
   CategoryScale,
   LinearScale,
   PointElement,
@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 
-ChartJS.register(
+Chart.register(
   CategoryScale,
   LinearScale,
   PointElement,
@@ -19,4 +19,4 @@ ChartJS.register(
   Legend
 );
 
-export default ChartJS;
+export default Chart;
