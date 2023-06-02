@@ -48,6 +48,58 @@ ChartJS.register(
   Legend
 );
 
+interface ChartData {
+  labels: string[];
+  datasets: ChartDataset[];
+}
+
+interface ChartDataset {
+  label: string;
+  data: number[];
+  borderColor?: string;
+  backgroundColor?: string;
+  pointRadius?: number;
+}
+
+interface ChartOptions {
+  responsive?: boolean;
+  plugins?: {
+    legend?: {
+      display?: boolean,
+      position?: 'top' | 'bottom' | 'left' | 'right',
+    },
+    title?: {
+      display?: boolean,
+      text?: string,
+    },
+  };
+  scales?: {
+    x?: Axes,
+    y?: Axes,
+  };
+}
+
+interface Axes {
+  grid?: {
+    display?: boolean,
+    color?: string,
+  };
+  border?: {
+    display: boolean,
+    color?: string,
+  };
+  ticks?: {
+    color?: string,
+    fontSize?: string | number,
+    fontFamily?: string,
+  };
+}
+
+interface LineChartProps {
+  options?: ChartOptions;
+  data: ChartData;
+}
+
 const options = {
   responsive: true,
   plugins: {
