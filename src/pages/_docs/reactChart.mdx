@@ -1,4 +1,5 @@
 import { Chart } from './chartConfig.js';
+import { ChartData, ChartOptions } from 'chart.js';
 import Head from 'next/head';
 import { Line } from 'react-chartjs-2';
 import { MDXWrapper } from '@elements/MDXWrapper';
@@ -15,15 +16,29 @@ import { MDXWrapper } from '@elements/MDXWrapper';
 
 ### Installation
 
-To use the `react-chartjs-2`, you need to install the `react-chartjs-2` library:
+To use the `react-chartjs-2`, you need to install the `react-chartjs-2` and 'chart.js' libraries:
 
 ```
-npm install react-chartjs-2
+npm install react-chartjs-2 chart.js
 ```
 
-## Example of react-chartjs-2
+## Line Chart Example
 
-Here's an example of how to use the `LineChart`:
+The following example demonstrates how to create a line chart using `Chart.js` and `react-chartjs-2` in a React component:
+
+## Props
+
+### options
+
+Type: ChartOptions `<'line'>`
+
+- The options object for configuring the line chart.
+
+### data
+
+Type: ChartData `<'line'>`
+
+-The data object containing the labels and datasets for the line chart.
 
 ```tsx
 import {
@@ -37,6 +52,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { ChartData, ChartOptions } from 'chart.js';
 
 Chart.register(
   CategoryScale,
@@ -48,55 +64,8 @@ Chart.register(
   Legend
 );
 
-interface ChartDataset {
-  label: string;
-  data: number[];
-  borderColor?: string;
-  backgroundColor?: string;
-  pointRadius?: number;
-}
 
-interface ChartData {
-  labels: string[];
-  datasets: ChartDataset[];
-}
-
-interface Axes {
-  grid?: {
-    display?: boolean,
-    color?: string,
-  };
-  border?: {
-    display: boolean,
-    color?: string,
-  };
-  ticks?: {
-    color?: string,
-    fontSize?: string | number,
-    fontFamily?: string,
-  };
-}
-
-interface ChartOptions {
-  responsive?: boolean;
-  plugins?: {
-    legend?: {
-      display?: boolean,
-      position?: 'top' | 'bottom' | 'left' | 'right',
-    },
-    title?: {
-      display?: boolean,
-      text?: string,
-    },
-  };
-  scales?: {
-    x?: Axes,
-    y?: Axes,
-  };
-}
-
-
-const options?: ChartOptions  = {
+const options?: ChartOptions<'line'>  = {
   responsive: true,
   plugins: {
     legend: {
@@ -131,7 +100,7 @@ const options?: ChartOptions  = {
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-const data:ChartData  = {
+const data: ChartData<'line'>  = {
   labels,
   datasets: [
     {
