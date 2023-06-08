@@ -1,0 +1,95 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { SearchableList } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Searchable List Doc | OORSIG</title>
+</Head>
+# Searchable List
+
+## Introduction
+
+The `Searchable List` component is a custom Searchable List implementation using `downshift` and `@xstyled/emotion` libraries.
+
+## Props
+
+### options (required)
+
+An array of objects representing the options in the list.
+Each object should have a label, value and imgSrc property. For example:
+
+```
+const options = [
+  { label: 'Option 1', value: 'option1', imgSrc: 'src1' },
+  { label: 'Option 2', value: 'option2', imgSrc: 'src2' },
+  { label: 'Option 3', value: 'option3', imgSrc: 'src3' },
+];
+```
+
+### placeholder (optional)
+
+A string that specifies the placeholder text to be displayed in the input search when no option is selected. Default value is "Search option".
+
+### label (optional)
+
+A string representing the label of the list. This label will be displayed above the list. Default value is "Searchable List".
+
+### imgSize (optional)
+
+a string to set the size of the option image. Defaults to `1.875rem`.
+
+### isSearchable
+
+a boolean to determine whether the input field for searching should be displayed. Defaults to false.
+
+## Basic Usage
+
+This is just a basic usage and customization example.
+
+```jsx
+import React from 'react';
+import { SearchableList } from '@atoms/index';
+
+const options = [
+  {
+    label: 'Option 1',
+    value: 'option1',
+    imgSrc: 'profile.jpeg',
+  },
+  {
+    label: 'Option 2',
+    value: 'option2',
+    imgSrc: 'profile.jpeg',
+  },
+  {
+    label: 'Option 3',
+    value: 'option3',
+    imgSrc: 'profile.jpeg',
+  },
+];
+
+<SearchableList
+  options={options}
+  placeholder="Search Team"
+  label="Select Team"
+  imgSize="2rem"
+  isSearchable={true}
+/>;
+```
+
+<x.div>
+  <SearchableList
+    options={[
+      { label: 'Option 1', value: 'option1', imgSrc: '/team.png' },
+      { label: 'Option 2', value: 'option2', imgSrc: '/team.png' },
+      { label: 'Option 3', value: 'option3', imgSrc: '/team.png'  },
+    ]}
+    placeholder="Search Team"
+    label="Select Team"
+    imgSize='2rem'
+    isSearchable={true}
+  />
+</x.div>
+</MDXWrapper>

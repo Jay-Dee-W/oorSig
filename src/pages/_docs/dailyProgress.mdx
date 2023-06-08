@@ -1,0 +1,52 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { DailyProgress } from '@atoms/DailyProgress';
+
+<MDXWrapper>
+<Head>
+	<title>Daily Progress Doc | OORSIG</title>
+</Head>
+# Daily Progress
+
+## Introduction
+
+The `DailyProgress` component displays daily progress information in a card format.
+
+## Props
+
+### `pullRequestsCount`: `number`
+
+- The number of active PRs.
+
+### `averageDailyGoal`: `number`
+
+- The average daily goal.
+
+### `bgColor`: `string`
+
+- The background color of the progress card. The dafault color is `primary-200`.
+
+### `title`: `string`
+
+- The title of daily progress card.
+
+## Basic Usage
+
+Here's an example of how to use the `DailyProgress` component:
+
+```jsx
+import { DailyProgress } from '@atoms/DailyProgress';
+
+<DailyProgress
+  pullRequestsCount={5}
+  averageDailyGoal={3}
+  bgColor="primary-300"
+  title="Active Pr(s)"
+/>;
+```
+
+<x.div>
+<DailyProgress pullRequestsCount={5} averageDailyGoal={3} bgColor="primary-300" title="Active Pr(s)"/>
+</x.div>
+</MDXWrapper>
