@@ -17,6 +17,7 @@ interface SelectProps {
   label?: string;
   imgSize?: string;
   isSearchable?: boolean;
+  onSelect?: (org: string) => void;
 }
 
 const StyledDiv = styled(x.div)`
