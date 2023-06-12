@@ -3,7 +3,7 @@ import Card from '@oorsig/atoms/Card';
 // import { LineChart } from '@oorsig/atoms/Chart';
 import styled, { x } from '@xstyled/emotion';
 import React from 'react';
- 
+
 const Table = styled(x.table)`
   width: 100%;
   border-collapse: collapse;
