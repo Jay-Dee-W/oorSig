@@ -61,37 +61,30 @@ export const Dashboard: React.FC = () => {
         </x.div>
       </x.div>
 
-      <x.div
-        p="1rem"
-        backgroundColor="gray-300"
-        w="100%"
-      >     
-      <x.div display="flex" mb="3" gap="2" alignItems="center">
-            <Typography size="3xl">🤖</Typography>
-            <Typography size="sm">
-              Lorem ipsum dolor sit amet consectetur. Tellus pellentesque
-              tincidunt <br /> id velit pellentesque. Est senectus fusce donec
-              sed.
-            </Typography>
-          </x.div>
-
+      <x.div p="1rem" backgroundColor="gray-300" w="100%">
+        <x.div display="flex" mb="3" gap="2" alignItems="center">
+          <Typography size="3xl">🤖</Typography>
+          <Typography size="sm">
+            Lorem ipsum dolor sit amet consectetur. Tellus pellentesque
+            tincidunt <br /> id velit pellentesque. Est senectus fusce donec
+            sed.
+          </Typography>
+        </x.div>
 
         <x.div display="flex">
-     
-
           <x.div h="300" flex="1">
             {/* <LineChart /> */}
           </x.div>
-       
-        <x.div display="grid" gridTemplateColumns="2" col gap="5" maxW="340">
-          <Card title="Merged PRs" value="120" theme="success" />
-          <Card title="Organizations" value="3" />
-          <Card title="Open PRs" value="120" theme="primary" />
-          <Card title="My Repo's" value="120" />
-          <Card title="Closed PRs" value="120" theme="danger" />
-          <Card title="Contribution" value="120" />
+
+          <x.div display="grid" gridTemplateColumns="2" col gap="5" maxW="340">
+            <Card> Merged PRs </Card>
+            <Card> Organizations </Card>
+            <Card> Open PRs </Card>
+            <Card> My Repos </Card>
+            <Card> Closed PRs</Card>
+            <Card> Contribution </Card>
+          </x.div>
         </x.div>
-      </x.div> 
       </x.div>
 
       <x.div maxW="1200" mx="auto" px="4">
