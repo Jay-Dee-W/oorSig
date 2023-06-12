@@ -1,48 +1,38 @@
 import React from 'react';
 import { x } from '@xstyled/emotion';
-import { Typography } from './Typography';
 
 interface CardProps {
-  title: string;
-  value: string;
-  theme?: 'gray' | 'danger' | 'success' | 'secondary' | 'primary';
+  children: React.ReactNode;
+  bg?: string;
+  borderRadius?: number | string;
+  p?: number | string;
+  m?: number | string;
+  boxShadow?: string;
+  height?: number | string;
+  width?: number | string;
 }
 
-const CardTheme = {
-  gray: {
-    color: 'white',
-    background: 'gray-250',
-  },
-  danger: {
-    color: 'red-400',
-    background: 'red-100',
-  },
-  success: {
-    color: 'green-400',
-    background: 'green-100',
-  },
-  secondary: {
-    color: 'secondary-100',
-    background: 'secondary-400',
-  },
-  primary: {
-    color: 'primary-400',
-    background: 'primary-100',
-  },
-};
-
-export const Card: React.FC<CardProps> = ({ title, value, theme = 'gray' }) => {
+export const Card: React.FC<CardProps> = ({
+  children,
+  bg = 'white',
+  borderRadius = 4,
+  p = 4,
+  m = 0,
+  boxShadow = 'lg',
+  height,
+  width,
+}) => {
   return (
     <x.div
-      p="0.8rem"
-      backgroundColor={CardTheme[theme].background}
-      color={CardTheme[theme].color}
-      borderRadius="0.2rem"
-      maxH="5.6rem"
-      w="10rem"
+      bg={bg}
+      borderRadius={borderRadius}
+      p={p}
+      m={m}
+      boxShadow={boxShadow}
+      h={height}
+      w={width}
     >
-      <Typography>{title}</Typography>
-      <Typography size="4xl">{value}</Typography>
+      {children}
     </x.div>
   );
 };
