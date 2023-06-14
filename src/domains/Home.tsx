@@ -1,6 +1,5 @@
 import { Typography } from '@oorsig/atoms';
 import Card from '@oorsig/atoms/Card';
-// import { LineChart } from '@oorsig/atoms/Chart';
 import styled, { x } from '@xstyled/emotion';
 import React from 'react';
 
@@ -73,7 +72,7 @@ export const Home: React.FC = () => {
 
         <x.div display="flex">
           <x.div h="300" flex="1">
-            {/* <LineChart /> */}
+            {/* TODO: <LineChart /> */}
           </x.div>
 
           <x.div display="grid" gridTemplateColumns="2" col gap="5" maxW="340">
