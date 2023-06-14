@@ -71,7 +71,6 @@ const theme = {
     '6xl': '1',
   },
 };
-
 interface StyledProviderProps {
   children: JSX.Element;
 }
