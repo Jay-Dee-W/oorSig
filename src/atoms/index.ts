@@ -1,4 +1,3 @@
-export { Alert } from './Alert';
 export { Avatar } from './Avatar';
 export { Card } from './Card';
 export { Logo } from './Logo';
@@ -9,6 +8,7 @@ export { Divider } from './Divider';
 export { Typography } from './Typography';
 export { Input } from './Input';
 export { SearchIcon } from './SearchIcon';
+export { Alert } from './Alert';
 export { Dropdown } from './Dropdown';
 export { SearchableList } from './SearchableList';
 export { Table } from './Table';
