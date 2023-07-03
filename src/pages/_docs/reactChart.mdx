@@ -1,0 +1,210 @@
+import { Chart } from './chartConfig.js';
+import { ChartData, ChartOptions } from 'chart.js';
+import Head from 'next/head';
+import { Line } from 'react-chartjs-2';
+import { MDXWrapper } from '@elements/MDXWrapper';
+
+<MDXWrapper>
+<Head>
+	<title>React Chart Doc | OORSIG</title>
+</Head>
+## react-chartjs-2 library
+
+## Introduction
+
+`react-chartjs-2` is a React library that serves as a wrapper for the Chart.js library. It allows you to easily create and display various types of interactive charts in your React applications.
+
+### Installation
+
+To use the `react-chartjs-2`, you need to install the `react-chartjs-2` and 'chart.js' libraries:
+
+```
+npm install react-chartjs-2 chart.js
+```
+
+## Line Chart Example
+
+The following example demonstrates how to create a line chart using `Chart.js` and `react-chartjs-2` in a React component:
+
+## Props
+
+### options
+
+Type: ChartOptions `<'line'>`
+
+- The options object for configuring the line chart.
+
+### data
+
+Type: ChartData `<'line'>`
+
+-The data object containing the labels and datasets for the line chart.
+
+```tsx
+import {
+  Chart,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { ChartData, ChartOptions } from 'chart.js';
+
+Chart.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+
+const options?: ChartOptions<'line'>  = {
+  responsive: true,
+  plugins: {
+    legend: {
+      display: false,
+      position: 'top',
+    },
+    title: {
+      display: false,
+      text: '',
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+      border: {
+        display: false,
+      },
+    },
+    y: {
+      grid: {
+        display: true,
+        color: 'gray',
+      },
+      border: {
+        display: false,
+      },
+    },
+  },
+};
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+const data: ChartData<'line'>  = {
+  labels,
+  datasets: [
+    {
+      label: 'Open PRs',
+      data: [100, 200, 300, 333, 89, 600, 700],
+      borderColor: 'green',
+      backgroundColor: 'green',
+      pointRadius: 0,
+    },
+    {
+      label: 'Closed PRs',
+      data: [700, 600, 500, 400, 300, 200, 100],
+      borderColor: 'red',
+      backgroundColor: 'red',
+      pointRadius: 0,
+    },
+    {
+      label: 'Merged PRs',
+      data: [400, 500, 500, 200, 100, 10, 50],
+      borderColor: 'blue',
+      backgroundColor: 'blue',
+      pointRadius: 0,
+    },
+  ],
+};
+
+<Line options={options} data={data} />;
+```
+
+ <Line
+        options={{
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false,
+              position: 'top',
+            },
+            title: {
+              display: false,
+              text: '',
+            },
+          },
+          scales: {
+      x: {
+        grid: {
+          display: false,
+          color: '',
+        },
+        border: {
+          display: false,
+        },
+         ticks: {
+        color: 'gray',
+        fontFamily: 'Inter',
+      }
+      },
+      y: {
+        grid: {
+          display: true,
+          color: 'gray',
+        },
+        border: {
+          display: false,
+        },
+         ticks: {
+        color: 'gray',
+        fontFamily: 'Inter',
+      }
+      },
+    },
+        }}
+        data={{
+          labels: [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+          ],
+          datasets: [
+            {
+              label: 'Open PRs',
+              data: [100, 200, 300, 333, 89, 600, 700],
+              borderColor: 'green',
+              backgroundColor: 'green',
+              pointRadius: 0,
+            },
+            {
+              label: 'Closed PRs',
+              data: [700, 600, 500, 400, 300, 200, 100],
+              borderColor: 'red',
+              backgroundColor: 'red',
+              pointRadius: 0,
+            },
+            {
+              label: 'Merged PRs',
+              data: [400, 500, 500, 200, 100, 10, 50],
+              borderColor: 'blue',
+              backgroundColor: 'blue',
+              pointRadius: 0,
+            },
+          ],
+        }}
+      />
+</MDXWrapper>
