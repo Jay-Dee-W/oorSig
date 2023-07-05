@@ -55,6 +55,7 @@ export const SearchableList: React.FC<SelectProps> = ({
   placeholder = 'Search option',
   imgSize = '1.875rem',
   isSearchable = false,
+  onSelect,
 }) => {
   const [items, setItems] = useState(options);
   const {
@@ -114,6 +115,7 @@ export const SearchableList: React.FC<SelectProps> = ({
                   cursor="pointer"
                   key={`${index}`}
                   {...getItemProps({ item, index })}
+                  onClick={() => onSelect && onSelect(item.value)}
                 >
                   {item.imgSrc && (
                     <x.img
