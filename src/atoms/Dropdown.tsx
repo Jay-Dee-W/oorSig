@@ -60,7 +60,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
             flex="none"
             display="flex"
             alignItems="center"
-            ml="2px"
+            ml="20px"
             transform={isOpen ? 'rotate(-180deg)' : ''}
             transition="all 0.2s ease-in-out"
           >
