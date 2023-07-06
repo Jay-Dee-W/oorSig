@@ -78,6 +78,11 @@ const chartLabels = [
   'May',
   'June',
   'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 const chartData: ChartData<'line'> = {
@@ -85,38 +90,26 @@ const chartData: ChartData<'line'> = {
   datasets: [
     {
       label: 'Open PRs',
-      data: [100, 200, 300, 333, 89, 600, 700],
+      data: [100, 200, 300, 333, 89, 600, 700, 400, 300, 200, 700, 700],
       borderColor: 'green',
       backgroundColor: 'green',
       pointRadius: 0,
     },
     {
       label: 'Closed PRs',
-      data: [700, 600, 500, 400, 300, 200, 100],
+      data: [700, 600, 500, 400, 300, 200, 400, 400, 300, 200, 700, 200],
       borderColor: 'red',
       backgroundColor: 'red',
       pointRadius: 0,
     },
     {
       label: 'Merged PRs',
-      data: [400, 500, 500, 200, 100, 10, 50],
+      data: [400, 500, 500, 200, 200, 200, 500, 400, 300, 200, 400, 500],
       borderColor: 'blue',
       backgroundColor: 'blue',
       pointRadius: 0,
     },
   ],
-};
-
-const pullRequestsData = {
-  closedPullRequests: {
-    issueCount: 34,
-  },
-  mergedPullRequests: {
-    issueCount: 17,
-  },
-  openPullRequests: {
-    issueCount: 6,
-  },
 };
 
 const tableColumns = [
@@ -202,7 +195,7 @@ export const Home: React.FC = () => {
                 Merged PRs
               </x.p>
               <Typography fontSize="4xl" color="green-400">
-                {pullRequestsData.mergedPullRequests.issueCount}
+                12
               </Typography>
             </Card>
             <Card bg="gray-200">
@@ -214,7 +207,7 @@ export const Home: React.FC = () => {
                 Open PRs
               </x.p>
               <Typography fontSize="4xl" color="primary-400">
-                {pullRequestsData.openPullRequests.issueCount}
+                10
               </Typography>
             </Card>
             <Card bg="gray-200">
@@ -226,7 +219,7 @@ export const Home: React.FC = () => {
                 Closed PRs
               </x.p>
               <Typography fontSize="4xl" color="red-400">
-                {pullRequestsData.closedPullRequests.issueCount}
+                20
               </Typography>
             </Card>
             <Card bg="gray-200">
