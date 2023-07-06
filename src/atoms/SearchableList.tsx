@@ -18,6 +18,7 @@ interface SelectProps {
   imgSize?: string;
   isSearchable?: boolean;
   onSelect?: (org: string) => void;
+  selectedValue?: string;
 }
 
 const StyledDiv = styled(x.div)`
@@ -56,6 +57,7 @@ export const SearchableList: React.FC<SelectProps> = ({
   imgSize = '1.875rem',
   isSearchable = false,
   onSelect,
+  selectedValue,
 }) => {
   const [items, setItems] = useState(options);
   const {
@@ -108,8 +110,17 @@ export const SearchableList: React.FC<SelectProps> = ({
                   alignContent="center"
                   py="0.625rem"
                   px="0.5rem"
-                  bg={highlightedIndex === index ? 'gray-200' : 'transparent'}
-                  borderRadius={highlightedIndex === index ? '0.367rem' : ''}
+                  my="0.2rem"
+                  bg={
+                    item.value === selectedValue || highlightedIndex === index
+                      ? 'gray-200'
+                      : 'transparent'
+                  }
+                  borderRadius={
+                    item.value === selectedValue || highlightedIndex === index
+                      ? '0.367rem'
+                      : ''
+                  }
                   display="flex"
                   flexDirection="row"
                   cursor="pointer"
