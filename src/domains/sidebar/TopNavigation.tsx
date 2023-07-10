@@ -7,43 +7,121 @@ import { Logo, Typography } from '@atoms/index';
 import { SearchableList } from '@atoms/index';
 
 interface TopNavigationProps {}
+interface Organization {
+  label: string;
+  value: string;
+  imgSrc: string;
+}
+
+interface Team {
+  label: string;
+  value: string;
+  imgSrc: string;
+}
 
 export const TopNavigation: React.FC<TopNavigationProps> = () => {
-  const Dummy_orgnization_data = [
-    {
-      label: 'Gitstart',
-      value: 'Gitstart',
-      imgSrc: 'team.png',
+  const dummy_result_data = {
+    viewer: {
+      login: 'WajihaNiazi',
+      organizations: {
+        edges: [
+          {
+            node: {
+              name: 'GitStart',
+              label: 'GitStart',
+              avatarUrl: 'https://avatars.githubusercontent.com/u/31163758?v=4',
+              teams: {
+                edges: [
+                  {
+                    node: {
+                      name: 'Community',
+                      slug: 'community',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/2910644?s=400&v=4',
+                    },
+                  },
+                  {
+                    node: {
+                      name: 'Team Hustle',
+                      slug: 'team-hustle',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/3877268?s=400&v=4',
+                    },
+                  },
+                  {
+                    node: {
+                      name: 'GitStartFrontend_Team',
+                      slug: 'gitstartfrontend_team',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/6508005?s=400&v=4',
+                    },
+                  },
+                  {
+                    node: {
+                      name: 'BlueMeg Team',
+                      slug: 'bluemeg-team',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/6824319?s=400&v=4',
+                    },
+                  },
+                  {
+                    node: {
+                      name: 'Pabio_Team',
+                      slug: 'pabio_team',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/7661705?s=400&v=4',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+          {
+            node: {
+              name: 'CodeToInspire',
+              label: 'CTI',
+              avatarUrl: 'https://avatars.githubusercontent.com/u/31163758?v=4',
+              teams: {
+                edges: [
+                  {
+                    node: {
+                      name: 'Full-Stak',
+                      slug: 'full-stack',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/2910644?s=400&v=4',
+                    },
+                  },
+                  {
+                    node: {
+                      name: 'Game',
+                      slug: 'game',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/6824319?s=400&v=4',
+                    },
+                  },
+                  {
+                    node: {
+                      name: 'Blockchine',
+                      slug: 'blockchine',
+                      avatarUrl:
+                        'https://avatars.githubusercontent.com/t/7661705?s=400&v=4',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
     },
-    {
-      label: 'CodeToInsprie',
-      value: 'CTI',
-      imgSrc: 'team.png',
-    },
-    {
-      label: 'TutiaTech',
-      value: 'TutiaTech',
-      imgSrc: 'team.png',
-    },
-  ];
+  };
 
-  const Dummy_team_data = [
-    {
-      label: 'Airful',
-      value: 'Airful',
-      imgSrc: 'team.png',
-    },
-    {
-      label: 'Hustle',
-      value: 'Hustle',
-      imgSrc: 'team.png',
-    },
-    {
-      label: 'BlueMeg',
-      value: 'BlueMeg',
-      imgSrc: 'team.png',
-    },
-  ];
+  const organizationData: Organization[] =
+    dummy_result_data.viewer.organizations?.edges?.map((edge: any) => ({
+      label: edge.node.label,
+      value: edge.node.name,
+      imgSrc: edge.node.avatarUrl,
+    })) ?? [];
 
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
   const [selectedOrganization, setSelectedOrganization] = useState('');
@@ -56,10 +134,40 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
   const toggleShowTeamList = () => {
     setShowTeamList(!showTeamList);
   };
+
   const handleOrganizationSelect = (org: string) => {
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
+
+    const selectedOrg = dummy_result_data.viewer.organizations.edges.find(
+      (edge: any) => edge.node.name === org
+    );
+
+    const newTeamData: Team[] =
+      selectedOrg?.node.teams.edges?.map((edge: any) => ({
+        label: edge.node.name,
+        value: edge.node.slug,
+        imgSrc: edge.node.avatarUrl,
+      })) ?? [];
+
+    if (!newTeamData.some(team => team.value === selectedTeam)) {
+      setSelectedTeam('Select Team');
+    }
+
+    setTeamData(newTeamData);
   };
+
+  const [teamData, setTeamData] = useState<Team[]>(() => {
+    const defaultOrg = dummy_result_data.viewer.organizations.edges[0];
+    const defaultTeamData =
+      defaultOrg?.node.teams.edges?.map((edge: any) => ({
+        label: edge.node.name,
+        value: edge.node.slug,
+        imgSrc: edge.node.avatarUrl,
+      })) ?? [];
+
+    return defaultTeamData;
+  });
   const handleTeamSelect = (team: string) => {
     setSelectedTeam(team);
     setShowTeamList(false);
@@ -126,7 +234,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
             zIndex={2}
           >
             <SearchableList
-              options={Dummy_orgnization_data}
+              options={organizationData}
               placeholder="Search Organization"
               label="Select Organization"
               imgSize="2rem"
@@ -137,63 +245,64 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           </x.div>
         </x.div>
       )}
-      {!showTeamList ? (
-        <x.div
-          backgroundColor="gray-250"
-          p="0.4rem"
-          borderRadius="0 0 0.6rem 0.6rem"
-          display={'flex'}
-          alignItems={'center'}
-          gap="0.4rem"
-          color="gray-50"
-          onClick={toggleShowTeamList}
-        >
-          <x.img
-            src="/team.png"
-            alt="Main Logo"
-            title="Logo"
-            h="8"
-            w="8"
-            borderRadius="0.4rem"
-            borderColor="gray-50"
-          />
-          <x.div flex={1}>
-            <Typography variant="h4" size="base" color="white">
-              {selectedTeam}
-            </Typography>
-          </x.div>
-          <MdExpandMore size="1.6rem" />
-        </x.div>
-      ) : (
-        <x.div position="relative">
+      {selectedOrganization &&
+        (!showTeamList ? (
           <x.div
-            position="fixed"
-            top="0"
-            left="0"
-            right="0"
-            bottom="0"
-            onClick={handleBackdropClick}
-          />
-          <x.div
-            position="absolute"
-            w="15.9rem"
-            border="1px solid"
-            borderColor="gray-250"
-            borderRadius="0.5rem"
-            zIndex={2}
+            backgroundColor="gray-250"
+            p="0.4rem"
+            borderRadius="0 0 0.6rem 0.6rem"
+            display={'flex'}
+            alignItems={'center'}
+            gap="0.4rem"
+            color="gray-50"
+            onClick={toggleShowTeamList}
           >
-            <SearchableList
-              options={Dummy_team_data}
-              placeholder="Search Team"
-              label="Select Team"
-              imgSize="2rem"
-              isSearchable={true}
-              onSelect={handleTeamSelect}
-              selectedValue={selectedTeam}
+            <x.img
+              src="/team.png"
+              alt="Main Logo"
+              title="Logo"
+              h="8"
+              w="8"
+              borderRadius="0.4rem"
+              borderColor="gray-50"
             />
+            <x.div flex={1}>
+              <Typography variant="h4" size="base" color="white">
+                {selectedTeam}
+              </Typography>
+            </x.div>
+            <MdExpandMore size="1.6rem" />
           </x.div>
-        </x.div>
-      )}
+        ) : (
+          <x.div position="relative">
+            <x.div
+              position="fixed"
+              top="0"
+              left="0"
+              right="0"
+              bottom="0"
+              onClick={handleBackdropClick}
+            />
+            <x.div
+              position="absolute"
+              w="15.9rem"
+              border="1px solid"
+              borderColor="gray-250"
+              borderRadius="0.5rem"
+              zIndex={2}
+            >
+              <SearchableList
+                options={teamData}
+                placeholder="Search Team"
+                label="Select Team"
+                imgSize="2rem"
+                isSearchable={true}
+                onSelect={handleTeamSelect}
+                selectedValue={selectedTeam}
+              />
+            </x.div>
+          </x.div>
+        ))}
     </x.div>
   );
 };
