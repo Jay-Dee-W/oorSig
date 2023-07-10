@@ -232,10 +232,13 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
             borderColor="gray-250"
             borderRadius="0.5rem"
             zIndex={2}
-            >
-              <x.div position="absolute" right="5px">
-                <MdExpandLess size="1.6rem" onClick={toggleShowOrganizationList} />
-              </x.div>
+          >
+            <x.div position="absolute" right="5px">
+              <MdExpandLess
+                size="1.6rem"
+                onClick={toggleShowOrganizationList}
+              />
+            </x.div>
             <SearchableList
               options={organizationData}
               placeholder="Search Organization"
