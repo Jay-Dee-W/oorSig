@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
-import { MdExpandMore } from 'react-icons/md';
+import { MdExpandLess, MdExpandMore } from 'react-icons/md';
 
 import { Logo, Typography } from '@atoms/index';
 import { SearchableList } from '@atoms/index';
@@ -232,7 +232,10 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
             borderColor="gray-250"
             borderRadius="0.5rem"
             zIndex={2}
-          >
+            >
+              <x.div position="absolute" right="5px">
+                <MdExpandLess size="1.6rem" onClick={toggleShowOrganizationList} />
+              </x.div>
             <SearchableList
               options={organizationData}
               placeholder="Search Organization"
@@ -291,6 +294,9 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
               borderRadius="0.5rem"
               zIndex={2}
             >
+              <x.div position="absolute" right="5px">
+                <MdExpandLess size="1.6rem" onClick={toggleShowTeamList} />
+              </x.div>
               <SearchableList
                 options={teamData}
                 placeholder="Search Team"
