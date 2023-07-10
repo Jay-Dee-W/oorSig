@@ -154,6 +154,46 @@ const tableData = [
     action: 'Close',
   },
 ];
+const userGithubStatistics = [
+  {
+    label: 'Merged PRs',
+    value: 12,
+    bgColor: 'green-100',
+    txtColor: 'green-400',
+  },
+
+  {
+    label: 'My Repos',
+    value: 5,
+    bgColor: 'gray-200',
+    txtColor: 'white',
+  },
+  {
+    label: 'Open PRs',
+    value: 20,
+    bgColor: 'primary-100',
+    txtColor: 'primary-400',
+  },
+  {
+    label: 'Organizations',
+    value: 10,
+    bgColor: 'gray-200',
+    txtColor: 'white',
+  },
+
+  {
+    label: 'Closed PRs',
+    value: 15,
+    bgColor: 'red-100',
+    txtColor: 'red-400',
+  },
+  {
+    label: 'Contribution',
+    value: 20,
+    bgColor: 'gray-200',
+    txtColor: 'white',
+  },
+];
 export const Home: React.FC = () => {
   return (
     <x.div className="App">
@@ -190,42 +230,16 @@ export const Home: React.FC = () => {
             <Line options={options} data={chartData} />
           </x.div>
           <x.div display="grid" gridTemplateColumns="2" col gap="5" maxW="340">
-            <Card bg="green-100">
-              <x.p color="green-400" pb="0.5rem">
-                Merged PRs
-              </x.p>
-              <Typography fontSize="4xl" color="green-400">
-                12
-              </Typography>
-            </Card>
-            <Card bg="gray-200">
-              <x.p pb="0.5rem">Organizations</x.p>
-              <Typography fontSize="4xl">3</Typography>
-            </Card>
-            <Card bg="primary-100">
-              <x.p color="primary-400" pb="0.5rem">
-                Open PRs
-              </x.p>
-              <Typography fontSize="4xl" color="primary-400">
-                10
-              </Typography>
-            </Card>
-            <Card bg="gray-200">
-              <x.p pb="0.5rem">My Repos</x.p>
-              <Typography fontSize="4xl">5</Typography>
-            </Card>
-            <Card bg="red-100">
-              <x.p color="red-400" pb="0.5rem">
-                Closed PRs
-              </x.p>
-              <Typography fontSize="4xl" color="red-400">
-                20
-              </Typography>
-            </Card>
-            <Card bg="gray-200">
-              <x.p pb="0.5rem">Contribution</x.p>
-              <Typography fontSize="4xl">20</Typography>
-            </Card>
+            {userGithubStatistics.map(item => (
+              <Card key="" bg={item.bgColor}>
+                <x.p color={item.txtColor} pb="0.5rem">
+                  {item.label}
+                </x.p>
+                <Typography fontSize="4xl" color={item.txtColor}>
+                  {item.value}
+                </Typography>
+              </Card>
+            ))}
           </x.div>
         </x.div>
       </x.div>
