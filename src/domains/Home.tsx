@@ -1,23 +1,23 @@
+import React from 'react';
+import { ChartData, ChartOptions } from 'chart.js';
+import { Line } from 'react-chartjs-2';
+import { x } from '@xstyled/emotion';
 import { Button } from '@atoms/Button';
 import { Card } from '@atoms/Card';
-import { ChartData, ChartOptions } from 'chart.js';
-import { Dropdown } from '@oorsig/atoms/Dropdown';
-import { Line } from 'react-chartjs-2';
-import React from 'react';
+import { Dropdown } from '@atoms/Dropdown';
 import { StatusBadge } from '@atoms/StatusBadge';
 import { Table } from '@atoms/Table';
-import { Typography } from '@oorsig/atoms';
-import { x } from '@xstyled/emotion';
+import { Typography } from '@atoms/Typography';
 
 import {
   Chart,
   CategoryScale,
   LinearScale,
-  PointElement,
   LineElement,
+  Legend,
+  PointElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
 
 Chart.register(
