@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
-import { MdExpandLess, MdExpandMore } from 'react-icons/md';
+import { MdClose, MdExpandMore } from 'react-icons/md';
 
 import { Logo, Typography } from '@atoms/index';
 import { SearchableList } from '@atoms/index';
@@ -187,8 +187,10 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
       {!showOrgnizationList ? (
         <x.div
           backgroundColor="gray-200"
-          p="0.4rem"
-          borderRadius="0.6rem 0.6rem 0 0"
+          p="0.6rem"
+          borderRadius={
+            selectedOrganization === '' ? ' 0.6rem' : '0.6rem 0.6rem 0 0'
+          }
           display="flex"
           alignItems="center"
           gap="0.3rem"
@@ -218,14 +220,6 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
       ) : (
         <x.div position="relative">
           <x.div
-            position="fixed"
-            top="0"
-            left="0"
-            right="0"
-            bottom="0"
-            onClick={handleBackdropClick}
-          />
-          <x.div
             position="absolute"
             w="15.9rem"
             border="1px solid"
@@ -233,20 +227,28 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
             borderRadius="0.5rem"
             zIndex={2}
           >
-            <x.div position="absolute" right="5px">
-              <MdExpandLess
-                size="1.6rem"
-                onClick={toggleShowOrganizationList}
-              />
+            <x.div position="absolute" right="5px" color="gray-50">
+              <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
             </x.div>
             <SearchableList
               options={organizationData}
               placeholder="Search Organization"
               label="Select Organization"
-              imgSize="2rem"
-              isSearchable={true}
+              imgSize="2.3rem"
+              isSearchable={organizationData.length > 3 && true}
               onSelect={handleOrganizationSelect}
               selectedValue={selectedOrganization}
+              zIndex={4}
+            />
+            <x.div
+              position="fixed"
+              top="0"
+              left="0"
+              right="0"
+              bottom="0"
+              bg="rgba(0,0,0,0.2)"
+              zIndex={-1}
+              onClick={handleBackdropClick}
             />
           </x.div>
         </x.div>
@@ -282,14 +284,6 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
         ) : (
           <x.div position="relative">
             <x.div
-              position="fixed"
-              top="0"
-              left="0"
-              right="0"
-              bottom="0"
-              onClick={handleBackdropClick}
-            />
-            <x.div
               position="absolute"
               w="15.9rem"
               border="1px solid"
@@ -297,17 +291,28 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
               borderRadius="0.5rem"
               zIndex={2}
             >
-              <x.div position="absolute" right="5px">
-                <MdExpandLess size="1.6rem" onClick={toggleShowTeamList} />
+              <x.div position="absolute" right="5px" color="gray-50">
+                <MdClose size="1.6rem" onClick={toggleShowTeamList} />
               </x.div>
               <SearchableList
                 options={teamData}
                 placeholder="Search Team"
                 label="Select Team"
-                imgSize="2rem"
-                isSearchable={true}
+                imgSize="1.8rem"
+                isSearchable={teamData.length > 4 && true}
                 onSelect={handleTeamSelect}
                 selectedValue={selectedTeam}
+                zIndex={4}
+              />
+              <x.div
+                position="fixed"
+                top="0"
+                left="0"
+                right="0"
+                bottom="0"
+                bg="rgba(0,0,0,0.2)"
+                zIndex={-1}
+                onClick={handleBackdropClick}
               />
             </x.div>
           </x.div>

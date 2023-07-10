@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { x } from '@xstyled/emotion';
+import styled, { SystemProps, x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
 
 import { Input } from '@atoms/Input';
@@ -11,7 +11,7 @@ interface SelectOptionProps {
   imgSrc?: string;
 }
 
-interface SelectProps {
+interface SelectProps extends SystemProps {
   options: SelectOptionProps[];
   placeholder?: string;
   label?: string;
@@ -58,6 +58,7 @@ export const SearchableList: React.FC<SelectProps> = ({
   isSearchable = false,
   onSelect,
   selectedValue,
+  ...systemProps
 }) => {
   const [items, setItems] = useState(options);
   const {
@@ -76,7 +77,7 @@ export const SearchableList: React.FC<SelectProps> = ({
 
   return (
     <x.div>
-      <x.div display="flex" w="full" flexDirection="column">
+      <x.div display="flex" w="full" flexDirection="column" {...systemProps}>
         <x.label
           bg="gray-250"
           color="white"
