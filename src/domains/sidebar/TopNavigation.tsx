@@ -227,7 +227,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
             borderRadius="0.5rem"
             zIndex={2}
           >
-            <x.div position="absolute" right="5px" color="gray-50">
+            <x.div position="absolute" right="5px" color="gray-50" pt="0.3rem">
               <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
             </x.div>
             <SearchableList
@@ -291,7 +291,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
               borderRadius="0.5rem"
               zIndex={2}
             >
-              <x.div position="absolute" right="5px" color="gray-50">
+              <x.div position="absolute" right="5px" color="gray-50" pt="0.3rem">
                 <MdClose size="1.6rem" onClick={toggleShowTeamList} />
               </x.div>
               <SearchableList
