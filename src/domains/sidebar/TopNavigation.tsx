@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
 
-import { Logo, Typography } from '@atoms/index';
-import { SearchableList } from '@atoms/index';
+import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
 
 interface TopNavigationProps {}
 interface Organization {
@@ -184,6 +183,9 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           <Logo w="100%" />
         </x.div>
       </Link>
+      {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
+        <Backdrop onClick={handleBackdropClick} />
+      )}
       {!showOrgnizationList ? (
         <x.div
           backgroundColor="gray-200"
@@ -199,8 +201,14 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           zIndex={1}
         >
           <x.img
-            src="/logo.png"
-            alt="Main Logo"
+            src={
+              selectedOrganization
+                ? organizationData.find(
+                    org => org.value === selectedOrganization
+                  )?.imgSrc
+                : '/logo.png'
+            }
+            alt={`${selectedOrganization} logo`}
             title="Logo"
             h="45"
             w="45"
@@ -209,7 +217,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           />
           <x.div flex={1}>
             <Typography variant="h6" size="xs">
-              Selecte organization
+              Selected organization
             </Typography>
             <Typography variant="h4" size="base" color="white">
               {selectedOrganization}
@@ -235,20 +243,9 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
               placeholder="Search Organization"
               label="Select Organization"
               imgSize="2.3rem"
-              isSearchable={organizationData.length > 3 && true}
+              isSearchable={organizationData.length > 3}
               onSelect={handleOrganizationSelect}
               selectedValue={selectedOrganization}
-              zIndex={4}
-            />
-            <x.div
-              position="fixed"
-              top="0"
-              left="0"
-              right="0"
-              bottom="0"
-              bg="rgba(0,0,0,0.2)"
-              zIndex={-1}
-              onClick={handleBackdropClick}
             />
           </x.div>
         </x.div>
@@ -266,8 +263,12 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
             onClick={toggleShowTeamList}
           >
             <x.img
-              src="/team.png"
-              alt="Main Logo"
+              src={
+                selectedTeam !== 'Select Team'
+                  ? teamData.find(team => team.value === selectedTeam)?.imgSrc
+                  : '/team.png'
+              }
+              alt={`${selectedTeam} logo`}
               title="Logo"
               h="8"
               w="8"
@@ -291,7 +292,12 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
               borderRadius="0.5rem"
               zIndex={2}
             >
-              <x.div position="absolute" right="5px" color="gray-50" pt="0.3rem">
+              <x.div
+                position="absolute"
+                right="5px"
+                color="gray-50"
+                pt="0.3rem"
+              >
                 <MdClose size="1.6rem" onClick={toggleShowTeamList} />
               </x.div>
               <SearchableList
@@ -299,20 +305,9 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
                 placeholder="Search Team"
                 label="Select Team"
                 imgSize="1.8rem"
-                isSearchable={teamData.length > 4 && true}
+                isSearchable={teamData.length > 4}
                 onSelect={handleTeamSelect}
                 selectedValue={selectedTeam}
-                zIndex={4}
-              />
-              <x.div
-                position="fixed"
-                top="0"
-                left="0"
-                right="0"
-                bottom="0"
-                bg="rgba(0,0,0,0.2)"
-                zIndex={-1}
-                onClick={handleBackdropClick}
               />
             </x.div>
           </x.div>
