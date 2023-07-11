@@ -121,6 +121,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
       value: edge.node.name,
       imgSrc: edge.node.avatarUrl,
     })) ?? [];
+  const [teamData, setTeamData] = useState<Team[]>([]);
 
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
   const [selectedOrganization, setSelectedOrganization] = useState('');
@@ -155,22 +156,11 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
 
     setTeamData(newTeamData);
   };
-
-  const [teamData, setTeamData] = useState<Team[]>(() => {
-    const defaultOrg = dummy_result_data.viewer.organizations.edges[0];
-    const defaultTeamData =
-      defaultOrg?.node.teams.edges?.map((edge: any) => ({
-        label: edge.node.name,
-        value: edge.node.slug,
-        imgSrc: edge.node.avatarUrl,
-      })) ?? [];
-
-    return defaultTeamData;
-  });
   const handleTeamSelect = (team: string) => {
     setSelectedTeam(team);
     setShowTeamList(false);
   };
+
   const handleBackdropClick = () => {
     setShowOrgnizationList(false);
     setShowTeamList(false);
