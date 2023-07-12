@@ -71,14 +71,14 @@ export const Dropdown: React.FC<DropdownProps> = ({
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
+                d="M18.4912 1.91467L9.74561 10.6602L1 1.91467"
                 stroke="#C8CACB"
                 strokeWidth="1.92"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
+                d="M18.4912 1.91467L9.74561 10.6602L1 1.91467"
                 stroke="black"
                 strokeOpacity="0.2"
                 strokeWidth="1.92"
