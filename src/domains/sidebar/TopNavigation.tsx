@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { graphql, usePreloadedQuery } from 'react-relay';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
@@ -18,7 +19,45 @@ interface Team {
   imgSrc: string;
 }
 
+const organizationFragment = graphql`
+  fragment TopNavigationOrganizationFragment on Organization {
+    name
+    label: name
+    avatarUrl
+  }
+`;
+
+const teamFragment = graphql`
+  fragment TopNavigationTeamFragment on Team {
+    name
+    slug
+    avatarUrl
+  }
+`;
+const TopNavigationQuery = graphql`
+  query TopNavigationQuery {
+    viewer {
+      login
+      organizations(first: 100) {
+        edges {
+          node {
+            ...TopNavigationOrganizationFragment
+            teams(first: 100, userLogins: ["WajihaNiazi"]) {
+              edges {
+                node {
+                  ...TopNavigationTeamFragment
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const TopNavigation: React.FC<TopNavigationProps> = () => {
+  // const data = usePreloadedQuery(TopNavigationQuery);
   const dummy_result_data = {
     viewer: {
       login: 'WajihaNiazi',
