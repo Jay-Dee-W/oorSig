@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled, { x } from '@xstyled/emotion';
+import styled, { SystemProps, x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
 
 import { Input } from '@atoms/Input';
@@ -11,12 +11,14 @@ interface SelectOptionProps {
   imgSrc?: string;
 }
 
-interface SelectProps {
+interface SelectProps extends SystemProps {
   options: SelectOptionProps[];
   placeholder?: string;
   label?: string;
   imgSize?: string;
   isSearchable?: boolean;
+  onSelect?: (org: string) => void;
+  selectedValue?: string;
 }
 
 const StyledDiv = styled(x.div)`
@@ -54,6 +56,9 @@ export const SearchableList: React.FC<SelectProps> = ({
   placeholder = 'Search option',
   imgSize = '1.875rem',
   isSearchable = false,
+  onSelect,
+  selectedValue,
+  ...systemProps
 }) => {
   const [items, setItems] = useState(options);
   const {
@@ -72,7 +77,7 @@ export const SearchableList: React.FC<SelectProps> = ({
 
   return (
     <x.div>
-      <x.div display="flex" w="full" flexDirection="column">
+      <x.div display="flex" w="full" flexDirection="column" {...systemProps}>
         <x.label
           bg="gray-250"
           color="white"
@@ -106,13 +111,23 @@ export const SearchableList: React.FC<SelectProps> = ({
                   alignContent="center"
                   py="0.625rem"
                   px="0.5rem"
-                  bg={highlightedIndex === index ? 'gray-200' : 'transparent'}
-                  borderRadius={highlightedIndex === index ? '0.367rem' : ''}
+                  my="0.2rem"
+                  bg={
+                    item.value === selectedValue || highlightedIndex === index
+                      ? 'gray-200'
+                      : 'transparent'
+                  }
+                  borderRadius={
+                    item.value === selectedValue || highlightedIndex === index
+                      ? '0.367rem'
+                      : ''
+                  }
                   display="flex"
                   flexDirection="row"
                   cursor="pointer"
                   key={`${index}`}
                   {...getItemProps({ item, index })}
+                  onClick={() => onSelect && onSelect(item.value)}
                 >
                   {item.imgSrc && (
                     <x.img

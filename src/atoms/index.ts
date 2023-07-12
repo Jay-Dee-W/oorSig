@@ -15,4 +15,5 @@ export { Table } from './Table';
 export { CircularProgressbar } from './CircularProgressbar';
 export { DailyProgress } from './DailyProgress';
 export { WeeklyProgress } from './WeeklyProgress';
+export { Backdrop } from './Backdrop';
 export * from './Popover';
