@@ -96,8 +96,6 @@ export const Button: React.FC<ButtonProps> = ({
       display="inline-flex"
       alignItems="center"
       justifyContent="center"
-      w="130px"
-      h="57px"
       px={paddingForSize[size].px}
       py={paddingForSize[size].py}
       border

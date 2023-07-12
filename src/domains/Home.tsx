@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import { useTheme } from '@xstyled/emotion';
 import { x } from '@xstyled/emotion';
 import { Button } from '@atoms/Button';
 import { Card } from '@atoms/Card';
@@ -20,6 +21,12 @@ import {
   Tooltip,
 } from 'chart.js';
 
+interface ExtendedTheme {
+  colors: {
+    [key: string]: string;
+  };
+}
+
 Chart.register(
   CategoryScale,
   LinearScale,
@@ -30,7 +37,6 @@ Chart.register(
   Legend
 );
 const options: ChartOptions<'line'> = {
-  responsive: true,
   plugins: {
     legend: {
       display: false,
@@ -49,6 +55,9 @@ const options: ChartOptions<'line'> = {
       grid: {
         display: false,
       },
+      ticks: {
+        color: 'white',
+      },
       border: {
         display: false,
       },
@@ -57,6 +66,9 @@ const options: ChartOptions<'line'> = {
       grid: {
         display: true,
         color: 'gray',
+      },
+      ticks: {
+        color: 'white',
       },
       border: {
         display: false,
@@ -84,33 +96,6 @@ const chartLabels = [
   'November',
   'December',
 ];
-
-const chartData: ChartData<'line'> = {
-  labels: chartLabels,
-  datasets: [
-    {
-      label: 'Open PRs',
-      data: [100, 200, 300, 333, 89, 600, 700, 400, 300, 200, 700, 700],
-      borderColor: 'green',
-      backgroundColor: 'green',
-      pointRadius: 0,
-    },
-    {
-      label: 'Closed PRs',
-      data: [700, 600, 500, 400, 300, 200, 400, 400, 300, 200, 700, 200],
-      borderColor: 'red',
-      backgroundColor: 'red',
-      pointRadius: 0,
-    },
-    {
-      label: 'Merged PRs',
-      data: [400, 500, 500, 200, 200, 200, 500, 400, 300, 200, 400, 500],
-      borderColor: 'blue',
-      backgroundColor: 'blue',
-      pointRadius: 0,
-    },
-  ],
-};
 
 const tableColumns = [
   {
@@ -185,7 +170,7 @@ const userGithubStatistics = [
     label: 'Closed PRs',
     value: 15,
     bgColor: 'red-100',
-    txtColor: 'red-400',
+    txtColor: 'red-200',
   },
   {
     label: 'Contribution',
@@ -195,6 +180,30 @@ const userGithubStatistics = [
   },
 ];
 export const Home: React.FC = () => {
+  const theme = useTheme() as ExtendedTheme;
+  const chartData: ChartData<'line'> = {
+    labels: chartLabels,
+    datasets: [
+      {
+        label: 'Open PRs',
+        data: [100, 200, 300, 333, 89, 600, 700, 400, 300, 200, 700, 700],
+        borderColor: theme.colors['green-100'],
+        pointRadius: 0,
+      },
+      {
+        label: 'Closed PRs',
+        data: [700, 600, 500, 400, 300, 200, 400, 400, 300, 200, 700, 200],
+        borderColor: theme.colors['red-200'],
+        pointRadius: 0,
+      },
+      {
+        label: 'Merged PRs',
+        data: [400, 500, 500, 200, 200, 200, 500, 400, 300, 200, 400, 500],
+        borderColor: theme.colors['primary-200'],
+        pointRadius: 0,
+      },
+    ],
+  };
   return (
     <x.div className="App">
       <x.div
@@ -225,11 +234,24 @@ export const Home: React.FC = () => {
             productivity.
           </Typography>
         </x.div>
-        <x.div display="flex">
-          <x.div flex="1">
+        <x.div
+          display="flex"
+          flexDirection={{ base: 'column', md: 'row' }}
+          flexWrap="wrap"
+          justifyContent="space-between"
+          w="100%"
+        >
+          <x.div flex="1" mb={{ base: '4', md: '0' }} w="100%">
             <Line options={options} data={chartData} />
           </x.div>
-          <x.div display="grid" gridTemplateColumns="2" col gap="5" maxW="340">
+          <x.div
+            display="grid"
+            gridTemplateColumns="repeat(2, minmax(0, 1fr))"
+            gap="5"
+            maxW="100%"
+            w="25vw"
+            minWidth="300px"
+          >
             {userGithubStatistics.map(item => (
               <Card key="" bg={item.bgColor}>
                 <x.p color={item.txtColor} pb="0.5rem">
@@ -243,11 +265,18 @@ export const Home: React.FC = () => {
           </x.div>
         </x.div>
       </x.div>
-      <x.div maxW="1200" mx="auto" p="1rem">
+      <x.div p="1rem">
         <Typography size="3xl" mb="2">
           Organizations
         </Typography>
-        <Table columns={tableColumns} data={tableData} />
+        <x.div overflowX="auto" mb="3rem">
+          <Table
+            columns={tableColumns}
+            data={tableData}
+            alignLastColumn="right"
+            firstColumnLeftPadding="0.8rem"
+          />
+        </x.div>
       </x.div>
     </x.div>
   );
