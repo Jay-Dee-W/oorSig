@@ -112,47 +112,104 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           <Logo w="100%" />
         </x.div>
       </Link>
-      <Suspense fallback={<Spinner />}>
-        {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
-          <Backdrop onClick={handleBackdropClick} />
-        )}
-        {!showOrgnizationList ? (
-          <x.div
-            backgroundColor="gray-200"
-            p="0.6rem"
-            borderRadius={
-              teamData.length === 0 || !selectedOrganization
-                ? ' 0.6rem'
-                : '0.6rem 0.6rem 0 0'
+      {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
+        <Backdrop onClick={handleBackdropClick} />
+      )}
+      {!showOrgnizationList ? (
+        <x.div
+          backgroundColor="gray-200"
+          p="0.6rem"
+          borderRadius={
+            teamData.length === 0 || !selectedOrganization
+              ? ' 0.6rem'
+              : '0.6rem 0.6rem 0 0'
+          }
+          display="flex"
+          alignItems="center"
+          gap="0.3rem"
+          color="gray-50"
+          onClick={toggleShowOrganizationList}
+          zIndex={1}
+        >
+          <x.img
+            src={
+              selectedOrganization
+                ? organizationData.find(
+                    org => org.value === selectedOrganization
+                  )?.imgSrc
+                : '/logo.png'
             }
-            display="flex"
-            alignItems="center"
-            gap="0.3rem"
+            alt={`${selectedOrganization} logo`}
+            title="Logo"
+            h="45"
+            w="45"
+            borderRadius="0.4rem"
+            borderColor="gray-50"
+          />
+          <x.div flex={1}>
+            <Typography variant="h6" size="xs">
+              Selected organization
+            </Typography>
+            <Typography variant="h4" size="base" color="white">
+              {selectedOrganization}
+            </Typography>
+          </x.div>
+          <MdExpandMore size="1.6rem" />
+        </x.div>
+      ) : (
+        <x.div position="relative">
+          <x.div
+            position="absolute"
+            w="15.9rem"
+            border="1px solid"
+            borderColor="gray-250"
+            borderRadius="0.5rem"
+            zIndex={2}
+          >
+            <x.div position="absolute" right="5px" color="gray-50" pt="0.3rem">
+              <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
+            </x.div>
+            <SearchableList
+              options={organizationData}
+              placeholder="Search Organization"
+              label="Select Organization"
+              imgSize="2.3rem"
+              isSearchable={organizationData.length > 3}
+              onSelect={handleOrganizationSelect}
+              selectedValue={selectedOrganization}
+            />
+          </x.div>
+        </x.div>
+      )}
+      {teamData.length > 0 &&
+        selectedOrganization &&
+        (!showTeamList ? (
+          <x.div
+            backgroundColor="gray-250"
+            p="0.4rem"
+            borderRadius="0 0 0.6rem 0.6rem"
+            display={'flex'}
+            alignItems={'center'}
+            gap="0.4rem"
             color="gray-50"
-            onClick={toggleShowOrganizationList}
-            zIndex={1}
+            onClick={toggleShowTeamList}
           >
             <x.img
               src={
-                selectedOrganization
-                  ? organizationData.find(
-                      org => org.value === selectedOrganization
-                    )?.imgSrc
-                  : '/logo.png'
+                selectedTeam !== 'Select Team'
+                  ? teamData.find(team => team.value === selectedTeam)?.imgSrc
+                  : '/team.png'
               }
-              alt={`${selectedOrganization} logo`}
+              alt={`${selectedTeam} logo`}
               title="Logo"
-              h="45"
-              w="45"
+              h="8"
+              w="8"
               borderRadius="0.4rem"
               borderColor="gray-50"
             />
             <x.div flex={1}>
-              <Typography variant="h6" size="xs">
-                Selected organization
-              </Typography>
               <Typography variant="h4" size="base" color="white">
-                {selectedOrganization}
+                {selectedTeam}
               </Typography>
             </x.div>
             <MdExpandMore size="1.6rem" />
@@ -173,84 +230,20 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
                 color="gray-50"
                 pt="0.3rem"
               >
-                <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
+                <MdClose size="1.6rem" onClick={toggleShowTeamList} />
               </x.div>
               <SearchableList
-                options={organizationData}
-                placeholder="Search Organization"
-                label="Select Organization"
-                imgSize="2.3rem"
-                isSearchable={organizationData.length > 3}
-                onSelect={handleOrganizationSelect}
-                selectedValue={selectedOrganization}
+                options={teamData}
+                placeholder="Search Team"
+                label="Select Team"
+                imgSize="1.8rem"
+                isSearchable={teamData.length > 4}
+                onSelect={handleTeamSelect}
+                selectedValue={selectedTeam}
               />
             </x.div>
           </x.div>
-        )}
-        {teamData.length > 0 &&
-          selectedOrganization &&
-          (!showTeamList ? (
-            <x.div
-              backgroundColor="gray-250"
-              p="0.4rem"
-              borderRadius="0 0 0.6rem 0.6rem"
-              display={'flex'}
-              alignItems={'center'}
-              gap="0.4rem"
-              color="gray-50"
-              onClick={toggleShowTeamList}
-            >
-              <x.img
-                src={
-                  selectedTeam !== 'Select Team'
-                    ? teamData.find(team => team.value === selectedTeam)?.imgSrc
-                    : '/team.png'
-                }
-                alt={`${selectedTeam} logo`}
-                title="Logo"
-                h="8"
-                w="8"
-                borderRadius="0.4rem"
-                borderColor="gray-50"
-              />
-              <x.div flex={1}>
-                <Typography variant="h4" size="base" color="white">
-                  {selectedTeam}
-                </Typography>
-              </x.div>
-              <MdExpandMore size="1.6rem" />
-            </x.div>
-          ) : (
-            <x.div position="relative">
-              <x.div
-                position="absolute"
-                w="15.9rem"
-                border="1px solid"
-                borderColor="gray-250"
-                borderRadius="0.5rem"
-                zIndex={2}
-              >
-                <x.div
-                  position="absolute"
-                  right="5px"
-                  color="gray-50"
-                  pt="0.3rem"
-                >
-                  <MdClose size="1.6rem" onClick={toggleShowTeamList} />
-                </x.div>
-                <SearchableList
-                  options={teamData}
-                  placeholder="Search Team"
-                  label="Select Team"
-                  imgSize="1.8rem"
-                  isSearchable={teamData.length > 4}
-                  onSelect={handleTeamSelect}
-                  selectedValue={selectedTeam}
-                />
-              </x.div>
-            </x.div>
-          ))}
-      </Suspense>
+        ))}
     </x.div>
   );
 };
