@@ -1,16 +1,10 @@
-import React, { Suspense, useState } from 'react';
+import React, { useState } from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
 
-import {
-  Backdrop,
-  Logo,
-  Typography,
-  SearchableList,
-  Spinner,
-} from '@atoms/index';
+import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
 
 import type { TopNavigationQuery as TopNavigationQueryType } from '@relay/__generated__/TopNavigationQuery.graphql';
 
