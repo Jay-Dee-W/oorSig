@@ -4,9 +4,15 @@ import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
 
-import { Backdrop, Logo, Typography, SearchableList, Spinner } from '@atoms/index';
+import {
+  Backdrop,
+  Logo,
+  Typography,
+  SearchableList,
+  Spinner,
+} from '@atoms/index';
 
-import type { TopNavigationQuery as TopNavigationQueryType } from '@relay/__generated__/TopNavigationQuery.graphql'
+import type { TopNavigationQuery as TopNavigationQueryType } from '@relay/__generated__/TopNavigationQuery.graphql';
 
 interface TopNavigationProps {}
 interface Organization {
@@ -22,19 +28,20 @@ interface Team {
 }
 const TopNavigationQuery = graphql`
   query TopNavigationQuery {
-     viewer {
-    organizations(first: 100) {
-      edges {
-        node {
-          name,
-          avatarUrl,
-          label:name
-          teams(first: 100) {
-            edges {
-              node {
-                name,
-                slug,
-                avatarUrl
+    viewer {
+      organizations(first: 100) {
+        edges {
+          node {
+            name
+            avatarUrl
+            label: name
+            teams(first: 100) {
+              edges {
+                node {
+                  name
+                  slug
+                  avatarUrl
+                }
               }
             }
           }
@@ -42,12 +49,11 @@ const TopNavigationQuery = graphql`
       }
     }
   }
-  }
 `;
 
 export const TopNavigation: React.FC<TopNavigationProps> = () => {
-  const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {})
-  
+  const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {});
+
   const organizationData: Organization[] =
     data.viewer.organizations?.edges?.map((edge: any) => ({
       label: edge.node.label,
@@ -106,102 +112,47 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           <Logo w="100%" />
         </x.div>
       </Link>
-      <Suspense fallback={<Spinner/>}>
-      {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
-        <Backdrop onClick={handleBackdropClick} />
-      )}
-      {!showOrgnizationList ? (
-        <x.div
-          backgroundColor="gray-200"
-          p="0.6rem"
-          borderRadius={
-            (teamData.length === 0 || !selectedOrganization ) ? ' 0.6rem' : '0.6rem 0.6rem 0 0'
-          }
-          display="flex"
-          alignItems="center"
-          gap="0.3rem"
-          color="gray-50"
-          onClick={toggleShowOrganizationList}
-          zIndex={1}
-        >
-          <x.img
-            src={
-              selectedOrganization
-                ? organizationData.find(
-                    org => org.value === selectedOrganization
-                  )?.imgSrc
-                : '/logo.png'
+      <Suspense fallback={<Spinner />}>
+        {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
+          <Backdrop onClick={handleBackdropClick} />
+        )}
+        {!showOrgnizationList ? (
+          <x.div
+            backgroundColor="gray-200"
+            p="0.6rem"
+            borderRadius={
+              teamData.length === 0 || !selectedOrganization
+                ? ' 0.6rem'
+                : '0.6rem 0.6rem 0 0'
             }
-            alt={`${selectedOrganization} logo`}
-            title="Logo"
-            h="45"
-            w="45"
-            borderRadius="0.4rem"
-            borderColor="gray-50"
-          />
-          <x.div flex={1}>
-            <Typography variant="h6" size="xs">
-              Selected organization
-            </Typography>
-            <Typography variant="h4" size="base" color="white">
-              {selectedOrganization}
-            </Typography>
-          </x.div>
-          <MdExpandMore size="1.6rem" />
-        </x.div>
-      ) : (
-        <x.div position="relative">
-          <x.div
-            position="absolute"
-            w="15.9rem"
-            border="1px solid"
-            borderColor="gray-250"
-            borderRadius="0.5rem"
-            zIndex={2}
-          >
-            <x.div position="absolute" right="5px" color="gray-50" pt="0.3rem">
-              <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
-            </x.div>
-            <SearchableList
-              options={organizationData}
-              placeholder="Search Organization"
-              label="Select Organization"
-              imgSize="2.3rem"
-              isSearchable={organizationData.length > 3}
-              onSelect={handleOrganizationSelect}
-              selectedValue={selectedOrganization}
-            />
-          </x.div>
-        </x.div>
-      )}
-      {( teamData.length > 0 && selectedOrganization ) &&
-        (!showTeamList ? (
-          <x.div
-            backgroundColor="gray-250"
-            p="0.4rem"
-            borderRadius="0 0 0.6rem 0.6rem"
-            display={'flex'}
-            alignItems={'center'}
-            gap="0.4rem"
+            display="flex"
+            alignItems="center"
+            gap="0.3rem"
             color="gray-50"
-            onClick={toggleShowTeamList}
+            onClick={toggleShowOrganizationList}
+            zIndex={1}
           >
             <x.img
               src={
-                selectedTeam !== 'Select Team'
-                  ? teamData.find(team => team.value === selectedTeam)?.imgSrc
-                  : '/team.png'
+                selectedOrganization
+                  ? organizationData.find(
+                      org => org.value === selectedOrganization
+                    )?.imgSrc
+                  : '/logo.png'
               }
-              alt={`${selectedTeam} logo`}
+              alt={`${selectedOrganization} logo`}
               title="Logo"
-              h="8"
-              w="8"
+              h="45"
+              w="45"
               borderRadius="0.4rem"
               borderColor="gray-50"
             />
             <x.div flex={1}>
+              <Typography variant="h6" size="xs">
+                Selected organization
+              </Typography>
               <Typography variant="h4" size="base" color="white">
-                {selectedTeam}
+                {selectedOrganization}
               </Typography>
             </x.div>
             <MdExpandMore size="1.6rem" />
@@ -222,21 +173,84 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
                 color="gray-50"
                 pt="0.3rem"
               >
-                <MdClose size="1.6rem" onClick={toggleShowTeamList} />
+                <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
               </x.div>
               <SearchableList
-                options={teamData}
-                placeholder="Search Team"
-                label="Select Team"
-                imgSize="1.8rem"
-                isSearchable={teamData.length > 4}
-                onSelect={handleTeamSelect}
-                selectedValue={selectedTeam}
+                options={organizationData}
+                placeholder="Search Organization"
+                label="Select Organization"
+                imgSize="2.3rem"
+                isSearchable={organizationData.length > 3}
+                onSelect={handleOrganizationSelect}
+                selectedValue={selectedOrganization}
               />
             </x.div>
           </x.div>
+        )}
+        {teamData.length > 0 &&
+          selectedOrganization &&
+          (!showTeamList ? (
+            <x.div
+              backgroundColor="gray-250"
+              p="0.4rem"
+              borderRadius="0 0 0.6rem 0.6rem"
+              display={'flex'}
+              alignItems={'center'}
+              gap="0.4rem"
+              color="gray-50"
+              onClick={toggleShowTeamList}
+            >
+              <x.img
+                src={
+                  selectedTeam !== 'Select Team'
+                    ? teamData.find(team => team.value === selectedTeam)?.imgSrc
+                    : '/team.png'
+                }
+                alt={`${selectedTeam} logo`}
+                title="Logo"
+                h="8"
+                w="8"
+                borderRadius="0.4rem"
+                borderColor="gray-50"
+              />
+              <x.div flex={1}>
+                <Typography variant="h4" size="base" color="white">
+                  {selectedTeam}
+                </Typography>
+              </x.div>
+              <MdExpandMore size="1.6rem" />
+            </x.div>
+          ) : (
+            <x.div position="relative">
+              <x.div
+                position="absolute"
+                w="15.9rem"
+                border="1px solid"
+                borderColor="gray-250"
+                borderRadius="0.5rem"
+                zIndex={2}
+              >
+                <x.div
+                  position="absolute"
+                  right="5px"
+                  color="gray-50"
+                  pt="0.3rem"
+                >
+                  <MdClose size="1.6rem" onClick={toggleShowTeamList} />
+                </x.div>
+                <SearchableList
+                  options={teamData}
+                  placeholder="Search Team"
+                  label="Select Team"
+                  imgSize="1.8rem"
+                  isSearchable={teamData.length > 4}
+                  onSelect={handleTeamSelect}
+                  selectedValue={selectedTeam}
+                />
+              </x.div>
+            </x.div>
           ))}
-        </Suspense>
+      </Suspense>
     </x.div>
   );
 };
