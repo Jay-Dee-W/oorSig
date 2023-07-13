@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { graphql, usePreloadedQuery } from 'react-relay';
+import React, { Suspense, useState } from 'react';
+import { graphql, useLazyLoadQuery } from 'react-relay';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
 
-import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
+import { Backdrop, Logo, Typography, SearchableList, Spinner } from '@atoms/index';
+
+import type { TopNavigationQuery as TopNavigationQueryType } from '@relay/__generated__/TopNavigationQuery.graphql'
 
 interface TopNavigationProps {}
 interface Organization {
@@ -18,35 +20,21 @@ interface Team {
   value: string;
   imgSrc: string;
 }
-
-const organizationFragment = graphql`
-  fragment TopNavigationOrganizationFragment on Organization {
-    name
-    label: name
-    avatarUrl
-  }
-`;
-
-const teamFragment = graphql`
-  fragment TopNavigationTeamFragment on Team {
-    name
-    slug
-    avatarUrl
-  }
-`;
 const TopNavigationQuery = graphql`
   query TopNavigationQuery {
-    viewer {
-      login
-      organizations(first: 100) {
-        edges {
-          node {
-            ...TopNavigationOrganizationFragment
-            teams(first: 100, userLogins: ["WajihaNiazi"]) {
-              edges {
-                node {
-                  ...TopNavigationTeamFragment
-                }
+     viewer {
+    organizations(first: 100) {
+      edges {
+        node {
+          name,
+          avatarUrl,
+          label:name
+          teams(first: 100) {
+            edges {
+              node {
+                name,
+                slug,
+                avatarUrl
               }
             }
           }
@@ -54,108 +42,14 @@ const TopNavigationQuery = graphql`
       }
     }
   }
+  }
 `;
 
 export const TopNavigation: React.FC<TopNavigationProps> = () => {
-  // const data = usePreloadedQuery(TopNavigationQuery);
-  const dummy_result_data = {
-    viewer: {
-      login: 'WajihaNiazi',
-      organizations: {
-        edges: [
-          {
-            node: {
-              name: 'GitStart',
-              label: 'GitStart',
-              avatarUrl: 'https://avatars.githubusercontent.com/u/31163758?v=4',
-              teams: {
-                edges: [
-                  {
-                    node: {
-                      name: 'Community',
-                      slug: 'community',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/2910644?s=400&v=4',
-                    },
-                  },
-                  {
-                    node: {
-                      name: 'Team Hustle',
-                      slug: 'team-hustle',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/3877268?s=400&v=4',
-                    },
-                  },
-                  {
-                    node: {
-                      name: 'GitStartFrontend_Team',
-                      slug: 'gitstartfrontend_team',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/6508005?s=400&v=4',
-                    },
-                  },
-                  {
-                    node: {
-                      name: 'BlueMeg Team',
-                      slug: 'bluemeg-team',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/6824319?s=400&v=4',
-                    },
-                  },
-                  {
-                    node: {
-                      name: 'Pabio_Team',
-                      slug: 'pabio_team',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/7661705?s=400&v=4',
-                    },
-                  },
-                ],
-              },
-            },
-          },
-          {
-            node: {
-              name: 'CodeToInspire',
-              label: 'CTI',
-              avatarUrl: 'https://avatars.githubusercontent.com/u/31163758?v=4',
-              teams: {
-                edges: [
-                  {
-                    node: {
-                      name: 'Full-Stak',
-                      slug: 'full-stack',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/2910644?s=400&v=4',
-                    },
-                  },
-                  {
-                    node: {
-                      name: 'Game',
-                      slug: 'game',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/6824319?s=400&v=4',
-                    },
-                  },
-                  {
-                    node: {
-                      name: 'Blockchine',
-                      slug: 'blockchine',
-                      avatarUrl:
-                        'https://avatars.githubusercontent.com/t/7661705?s=400&v=4',
-                    },
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    },
-  };
-
+  const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {})
+  
   const organizationData: Organization[] =
-    dummy_result_data.viewer.organizations?.edges?.map((edge: any) => ({
+    data.viewer.organizations?.edges?.map((edge: any) => ({
       label: edge.node.label,
       value: edge.node.name,
       imgSrc: edge.node.avatarUrl,
@@ -178,12 +72,12 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
 
-    const selectedOrg = dummy_result_data.viewer.organizations.edges.find(
+    const selectedOrg = data.viewer.organizations.edges?.find(
       (edge: any) => edge.node.name === org
     );
 
     const newTeamData: Team[] =
-      selectedOrg?.node.teams.edges?.map((edge: any) => ({
+      selectedOrg?.node?.teams.edges?.map((edge: any) => ({
         label: edge.node.name,
         value: edge.node.slug,
         imgSrc: edge.node.avatarUrl,
@@ -212,6 +106,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           <Logo w="100%" />
         </x.div>
       </Link>
+      <Suspense fallback={<Spinner/>}>
       {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
         <Backdrop onClick={handleBackdropClick} />
       )}
@@ -220,7 +115,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           backgroundColor="gray-200"
           p="0.6rem"
           borderRadius={
-            selectedOrganization === '' ? ' 0.6rem' : '0.6rem 0.6rem 0 0'
+            (teamData.length === 0 || !selectedOrganization ) ? ' 0.6rem' : '0.6rem 0.6rem 0 0'
           }
           display="flex"
           alignItems="center"
@@ -279,7 +174,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
           </x.div>
         </x.div>
       )}
-      {selectedOrganization &&
+      {( teamData.length > 0 && selectedOrganization ) &&
         (!showTeamList ? (
           <x.div
             backgroundColor="gray-250"
@@ -340,7 +235,8 @@ export const TopNavigation: React.FC<TopNavigationProps> = () => {
               />
             </x.div>
           </x.div>
-        ))}
+          ))}
+        </Suspense>
     </x.div>
   );
 };
