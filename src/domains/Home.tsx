@@ -100,8 +100,9 @@ const chartLabels = [
 const tableColumns = [
   {
     key: 'image',
+    paddingLeft: '0.8rem',
     header: '',
-    render: (value: string | undefined) => (
+    render: (value: string) => (
       <x.img src={value} alt="Image" w="2rem" h="2rem" />
     ),
   },
@@ -111,13 +112,12 @@ const tableColumns = [
   {
     key: 'administer',
     header: 'Administer',
-    render: (value: boolean | undefined) => (
-      <StatusBadge size="xs" isActive={value} />
-    ),
+    render: (value: boolean) => <StatusBadge size="sm" isActive={value} />,
   },
   {
     key: 'action',
     header: '',
+    alignment: 'right',
     render: (value: string) => <Button variant="secondary">{value}</Button>,
   },
 ];
@@ -270,12 +270,7 @@ export const Home: React.FC = () => {
           Organizations
         </Typography>
         <x.div overflowX="auto" mb="3rem">
-          <Table
-            columns={tableColumns}
-            data={tableData}
-            alignLastColumn="right"
-            firstColumnLeftPadding="0.8rem"
-          />
+          <Table columns={tableColumns} data={tableData} />
         </x.div>
       </x.div>
     </x.div>

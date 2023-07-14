@@ -4,13 +4,13 @@ import styled, { x } from '@xstyled/emotion';
 interface TableColumn {
   key: string;
   header: string;
+  paddingLeft?: string | number;
+  alignment?: string;
   render?: (value: any) => React.ReactNode;
 }
 interface TableProps {
   columns: TableColumn[];
   data: any[];
-  alignLastColumn?: 'left' | 'center' | 'right';
-  firstColumnLeftPadding?: string | number;
 }
 const StyledTable = styled(x.table)`
   border-collapse: collapse;
@@ -34,12 +34,7 @@ const StyledTable = styled(x.table)`
     background-color: gray-200;
   }
 `;
-export const Table: React.FC<TableProps> = ({
-  columns,
-  data,
-  alignLastColumn = 'left',
-  firstColumnLeftPadding = '0',
-}) => {
+export const Table: React.FC<TableProps> = ({ columns, data }) => {
   return (
     <StyledTable w="full">
       <thead>
@@ -52,17 +47,13 @@ export const Table: React.FC<TableProps> = ({
       <tbody>
         {data.map((item, index) => (
           <tr key={index}>
-            {columns.map((column, columnIndex) => (
+            {columns.map(column => (
               <x.td
                 key={column.key}
                 style={{
-                  textAlign:
-                    columnIndex === columns.length - 1
-                      ? alignLastColumn
-                      : undefined,
-                  paddingLeft:
-                    columnIndex === 0 ? firstColumnLeftPadding : undefined,
+                  paddingLeft: column.paddingLeft || '0.8rem',
                 }}
+                textAlign={column.alignment}
               >
                 {column.render
                   ? column.render(item[column.key])
