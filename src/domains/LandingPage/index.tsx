@@ -2,6 +2,9 @@ import React from 'react';
 import { Navigation } from './Navigation';
 import { Hero } from './Hero';
 import { Features } from './Features';
+import { FAQ } from './Faq';
+import { CTA } from './Cta';
+import { Footer } from './Footer';
 
 export const LandingPage: React.FC = () => {
   return (
@@ -9,6 +12,9 @@ export const LandingPage: React.FC = () => {
       <Navigation />
       <Hero />
       <Features />
+      <FAQ />
+      <CTA />
+      <Footer />
     </>
   );
 };

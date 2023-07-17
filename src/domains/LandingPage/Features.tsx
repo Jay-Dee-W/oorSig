@@ -3,6 +3,8 @@ import styled, { x } from '@xstyled/emotion';
 import { Typography } from '@oorsig/atoms';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { AskAi } from './AskAi';
+import { About } from './About';
 
 const FeatureSectionAnimation: React.FC<{ children: React.ReactElement }> = ({
   children,
@@ -27,7 +29,7 @@ export const Features: React.FC = () => {
         <Container>
           <ContainerImage>
             <Image
-              src={'/GraphImage.png'}
+              src="/GraphImage.png"
               width={500}
               height={400}
               alt="Chart graphs"
@@ -67,9 +69,9 @@ export const Features: React.FC = () => {
               your organizations.
             </Typography>
           </ContainerTypography>
-          <ContainerImage textAlign={'center'}>
+          <ContainerImage textAlign="center">
             <Image
-              src={'/SelectOrganization.png'}
+              src="/SelectOrganization.png"
               width={400}
               height={400}
               alt="Chart graphs"
@@ -80,14 +82,9 @@ export const Features: React.FC = () => {
 
       <FeatureSectionAnimation>
         <Container>
-          <ContainerImage>
-            <Image
-              src={'/GraphImage.png'}
-              width={500}
-              height={400}
-              alt="Chart graphs"
-            />
-          </ContainerImage>
+          {/* <ContainerImage> */}
+          <AskAi />
+          {/* </ContainerImage> */}
           <ContainerTypography>
             <Typography variant="h3" size="4xl" lineHeight="4xl" mb="1rem">
               Ask questions and get answers from your data with AI.
@@ -96,7 +93,7 @@ export const Features: React.FC = () => {
               We are excited to announce the integration of AI-powered data
               discovery on our website. With this new feature, you can now ask
               questions about your GitHub metrics and get answers in a simple
-              and natural way
+              and natural way.
             </Typography>
           </ContainerTypography>
         </Container>
@@ -104,14 +101,7 @@ export const Features: React.FC = () => {
 
       <FeatureSectionAnimation>
         <ContainerTransparent>
-          <ContainerImage>
-            <Image
-              src={'/GraphImage.png'}
-              width={500}
-              height={400}
-              alt="Chart graphs"
-            />
-          </ContainerImage>
+          <About />
           <ContainerTypography>
             <Typography variant="h3" size="4xl" lineHeight="4xl" mb="1rem">
               Ask questions and get answers from your data with AI.

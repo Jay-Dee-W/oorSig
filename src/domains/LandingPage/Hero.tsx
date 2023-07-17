@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
 
   const zIndex = useTransform(scrollYProgress, [0, 0.5], [1, -1]);
   const skew = useTransform(scrollYProgress, [0, 0.2, 1], [20, 0, 1]);
-  const scaleImage = useTransform(scrollYProgress, [0, 0.2, 1], [0.8, 1, 2]);
+  const scaleImage = useTransform(scrollYProgress, [0, 0.2, 1], [0.8, 1, 8]);
   const display = useTransform(scrollYProgress, pos => {
     return pos >= 0.5 ? 'hidden' : 'block';
   });

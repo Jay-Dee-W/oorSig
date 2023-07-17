@@ -70,6 +70,9 @@ const theme = {
     '5xl': '1',
     '6xl': '1',
   },
+  containerWidth: {
+    width: '23px',
+  },
 };
 
 interface StyledProviderProps {
