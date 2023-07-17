@@ -24,7 +24,7 @@ const FeatureSectionAnimation: React.FC<{ children: React.ReactElement }> = ({
 
 export const Features: React.FC = () => {
   return (
-    <>
+    <x.div bg="gray-400" pt="2rem" zIndex="1111" position="relative">
       <FeatureSectionAnimation>
         <Container>
           <ContainerImage>
@@ -115,7 +115,7 @@ export const Features: React.FC = () => {
           </ContainerTypography>
         </ContainerTransparent>
       </FeatureSectionAnimation>
-    </>
+    </x.div>
   );
 };
 

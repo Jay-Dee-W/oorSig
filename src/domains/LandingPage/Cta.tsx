@@ -1,24 +1,24 @@
 import styled, { x } from '@xstyled/emotion';
 import React from 'react';
-import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useRef } from 'react';
 import { Button, Typography } from '@oorsig/atoms';
 
 export const CTA: React.FC = () => {
   return (
-    <Container>
-      <div className="graphic"></div>
-      <div>
-        <Typography variant="h4">
-          Start visualizing <br /> your information
-        </Typography>
-        <Typography>
-          We are excited to announce the integration of AI-powered data
-          discovery on our website. With this new feature, y
-        </Typography>
-        <Button>Yey login</Button>
-      </div>
-    </Container>
+    <>
+      <Container>
+        <div className="graphic"></div>
+        <div>
+          <Typography variant="h4">
+            Start visualizing <br /> your information
+          </Typography>
+          <Typography>
+            We are excited to announce the integration of AI-powered data
+            discovery on our website. With this new feature, y
+          </Typography>
+          <Button>Yey login</Button>
+        </div>
+      </Container>
+    </>
   );
 };
 

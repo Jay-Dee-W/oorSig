@@ -91,7 +91,7 @@ export const FAQ: React.FC = () => {
 };
 
 const ContainerSection = styled(x.section)`
-  background-color: gray-300;
+  /* background-color: gray-300; */
   padding: 6rem 0;
 
   .container {
@@ -121,7 +121,7 @@ const CollapsibleHeader = styled(x.div)`
   }
 `;
 const CollapsibleItem = styled(x.div)`
-  background-color: gray-300;
+  background-color: gray-400;
   border-bottom: 1px solid gray;
   overflow: hidden;
 
