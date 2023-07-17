@@ -1,0 +1,28 @@
+.box {
+  /* width: 150px;
+    height: 150px; */
+  /* width: 0;
+    height: 0; */
+
+  width: 0;
+  height: 0;
+  box-shadow: 0 0 32rem 12rem;
+  position: fixed;
+  overflow: hidden;
+  top: 17rem;
+  left: 18rem;
+  border-radius: 90rem;
+}
+
+.box-shadow-1 {
+  /* box-shadow: 0 0 32rem 12rem red; */
+  box-shadow: 0 0 32rem 12rem #007aff;
+}
+
+.box-shadow-2 {
+  box-shadow: 0 0 32rem 12rem #72cf71;
+}
+
+.box-shadow-3 {
+  box-shadow: 0 0 32rem 12rem #fff02d;
+}
