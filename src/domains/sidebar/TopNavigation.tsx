@@ -20,16 +20,30 @@ interface Team {
   value: string;
   imgSrc: string;
 }
+
 const TopNavigationQuery = graphql`
-  query TopNavigationQuery {
+  query TopNavigationQuery(
+    $organizationsFirst: Int
+    $teamsFirst: Int
+    $organizationsAfter: String
+    $teamsAfter: String
+  ) {
     viewer {
-      organizations(first: 100) {
+      organizations(first: $organizationsFirst, after: $organizationsAfter) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
         edges {
           node {
             name
             avatarUrl
             label: name
-            teams(first: 100) {
+            teams(first: $teamsFirst, after: $teamsAfter) {
+              pageInfo {
+                hasNextPage
+                endCursor
+              }
               edges {
                 node {
                   name
@@ -46,7 +60,13 @@ const TopNavigationQuery = graphql`
 `;
 
 export const TopNavigation: React.FC<TopNavigationProps> = () => {
-  const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {});
+  // const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {});
+  const variables = {
+  organizationsFirst: 4,
+  teamsFirst: 5,
+};
+
+const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, variables);
 
   const organizationData: Organization[] =
     data.viewer.organizations?.edges?.map((edge: any) => ({

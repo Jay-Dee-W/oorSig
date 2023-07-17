@@ -27,7 +27,8 @@ export const environment = new Environment({
     }),
     authMiddleware({
       // this middleware automatically adds 'Bearer ' at the start of the Authorization header
-      token: async () => {
+      token: 
+        async () => {
         const session: ISession | null = await getSession();
         return session?.accessToken ?? '';
       },
