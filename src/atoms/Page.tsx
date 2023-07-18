@@ -1,35 +1,24 @@
 import React, { Suspense } from 'react';
-import Head from 'next/head';
-import { x } from '@xstyled/emotion';
 import { ErrorBoundary } from '@elements/ErrorBoundary';
+import { PageTitle } from '@elements/PageTitle';
 import { Spinner } from './Spinner';
 
 export interface PageProps {
   children: React.ReactNode;
-  title: string;
-  customFallback?: React.ReactNode;
+  title?: string;
+  fallback?: React.ReactNode;
 }
 
-export const Page: React.FC<PageProps> = ({
-  children,
-  title,
-  customFallback,
-}) => {
+export const Page: React.FC<PageProps> = ({ children, title, fallback }) => {
   const formattedTitle = title ? `${title} | OORSIG` : 'OORSIG';
-  const fallbackNode = customFallback || <Spinner />;
+  const fallbackNode = fallback || <Spinner />;
 
   return (
-    <x.div minHeight="100vh">
-      <Head>
-        <title>{formattedTitle}</title>
-      </Head>
+    <>
+      <PageTitle title={formattedTitle} />
       <ErrorBoundary>
-        <Suspense fallback={fallbackNode}>
-          <x.div display="flex" flexGrow={1} maxWidth="100%" minH="100vh">
-            {children}
-          </x.div>
-        </Suspense>
+        <Suspense fallback={fallbackNode}>{children}</Suspense>
       </ErrorBoundary>
-    </x.div>
+    </>
   );
 };
