@@ -23,12 +23,7 @@ export const Page: React.FC<PageProps> = ({
   const childrenNode = noPadding ? (
     <x.div minH="100vh"> {children}</x.div>
   ) : (
-    <x.div
-      display="flex"
-      flexGrow={1}
-      maxWidth="100%"
-      minH="100vh"
-    >
+    <x.div display="flex" flexGrow={1} maxWidth="100%" minH="100vh">
       {children}
     </x.div>
   );

@@ -17,11 +17,12 @@ The `Page` component is a layout component that provides a consistent page struc
 To use the `Page` atom, you need to import it as follows:
 
 ```jsx
-import { Page } from "@atoms/index";
-import { Page } from "@atoms/page";
+import { Page } from '@atoms/index';
+import { Page } from '@atoms/page';
 ```
 
 ## Inside your JSX code, you can use the `Page` component like this:
+
 ```jsx
 <Page title="My Page Title">
   <p>This is the content of my page.</p>
@@ -29,6 +30,7 @@ import { Page } from "@atoms/page";
 ```
 
 ## Props
+
 The Page atom accepts the following props:
 
 `children (required):` The content to be rendered inside the page layout.
@@ -38,4 +40,5 @@ The Page atom accepts the following props:
 `noPadding (optional):` When set to true, the page content will have no padding.
 
 `customFallback (optional):` A custom fallback content to be displayed during suspense fallbacks (e.g., when asynchronous loading is happening).
+
 </MDXWrapper>
