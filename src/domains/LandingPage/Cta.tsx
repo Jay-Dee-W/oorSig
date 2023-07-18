@@ -1,13 +1,34 @@
+import React, { useRef } from 'react';
 import styled, { x } from '@xstyled/emotion';
-import React from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button, Typography } from '@oorsig/atoms';
+import { CtaVector } from './CtaVector';
 
 export const CTA: React.FC = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['center end', 'center center'],
+  });
+
+  const translateX = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [-500, -200, 0]
+  );
+
+  const translateXContent = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [600, 200, 0]
+  );
   return (
     <>
-      <Container>
-        <div className="graphic"></div>
-        <div>
+      <Container ref={ref}>
+        <motion.div className="graphic" style={{ translateX: translateX }}>
+          <CtaVector w="90%" />
+        </motion.div>
+        <motion.div style={{ translateX: translateXContent }}>
           <Typography variant="h4">
             Start visualizing <br /> your information
           </Typography>
@@ -16,7 +37,7 @@ export const CTA: React.FC = () => {
             discovery on our website. With this new feature, y
           </Typography>
           <Button>Yey login</Button>
-        </div>
+        </motion.div>
       </Container>
     </>
   );
@@ -26,7 +47,6 @@ const Container = styled(x.div)`
   width: 100%;
   max-width: 1100px;
   margin: auto;
-
   border-radius: 0.5rem;
   padding: 2rem;
   margin-top: 3rem;
@@ -34,17 +54,10 @@ const Container = styled(x.div)`
   display: flex;
   gap: 6;
   align-items: center;
+  overflow: hidden;
 
   div {
     flex: 1;
-  }
-
-  div.graphic {
-    height: 20rem;
-    background-image: url('cta.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 90%;
   }
 
   h4 {
