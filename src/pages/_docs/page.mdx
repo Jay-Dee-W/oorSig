@@ -1,0 +1,41 @@
+import Head from 'next/head';
+import { x } from '@xstyled/emotion';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { Page } from '@atoms/Page';
+
+<MDXWrapper>
+<Head>
+	<title>Page | OORSIG</title>
+</Head>
+
+## Introduction
+
+The `Page` component is a layout component that provides a consistent page structure and functionalities. It can be used to wrap content and handle common features such as setting the page title, handling errors with an error boundary, and controlling padding.
+
+## Basic Usage
+
+To use the `Page` atom, you need to import it as follows:
+
+```jsx
+import { Page } from "@atoms/index";
+import { Page } from "@atoms/page";
+```
+
+## Inside your JSX code, you can use the `Page` component like this:
+```jsx
+<Page title="My Page Title">
+  <p>This is the content of my page.</p>
+</Page>
+```
+
+## Props
+The Page atom accepts the following props:
+
+`children (required):` The content to be rendered inside the page layout.
+
+`title (required):` The title of the page, which will be displayed in the browser's title bar.
+
+`noPadding (optional):` When set to true, the page content will have no padding.
+
+`customFallback (optional):` A custom fallback content to be displayed during suspense fallbacks (e.g., when asynchronous loading is happening).
+</MDXWrapper>
