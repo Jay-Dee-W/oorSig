@@ -10,6 +10,7 @@ export { Dropdown } from './Dropdown';
 export { Input } from './Input';
 export { Logo } from './Logo';
 export { Page } from './Page';
+export { Popover } from './Popover';
 export { SearchIcon } from './SearchIcon';
 export { SearchableList } from './SearchableList';
 export { StatusBadge } from './StatusBadge';

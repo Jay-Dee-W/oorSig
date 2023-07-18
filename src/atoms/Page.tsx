@@ -7,28 +7,16 @@ import { Spinner } from './Spinner';
 export interface PageProps {
   children: React.ReactNode;
   title: string;
-  noPadding?: boolean;
   customFallback?: React.ReactNode;
 }
 
 export const Page: React.FC<PageProps> = ({
   children,
   title,
-  noPadding,
   customFallback,
 }) => {
-  const formattedTitle =
-    title && title.length > 0 ? `${title} | OORSIG` : 'OORSIG';
-
-  const childrenNode = noPadding ? (
-    <x.div minH="100vh"> {children}</x.div>
-  ) : (
-    <x.div display="flex" flexGrow={1} maxWidth="100%" minH="100vh">
-      {children}
-    </x.div>
-  );
-
-  const fallbackNode = customFallback ?? <Spinner />;
+  const formattedTitle = title ? `${title} | OORSIG` : 'OORSIG';
+  const fallbackNode = customFallback || <Spinner />;
 
   return (
     <x.div minHeight="100vh">
@@ -36,7 +24,11 @@ export const Page: React.FC<PageProps> = ({
         <title>{formattedTitle}</title>
       </Head>
       <ErrorBoundary>
-        <Suspense fallback={fallbackNode}>{childrenNode}</Suspense>
+        <Suspense fallback={fallbackNode}>
+          <x.div display="flex" flexGrow={1} maxWidth="100%" minH="100vh">
+            {children}
+          </x.div>
+        </Suspense>
       </ErrorBoundary>
     </x.div>
   );
