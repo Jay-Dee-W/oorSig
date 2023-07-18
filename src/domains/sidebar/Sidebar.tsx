@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, Suspense, useCallback } from 'react';
 import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { MdSpaceDashboard } from 'react-icons/md';
 import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
@@ -6,6 +6,7 @@ import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
 import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
+import { Spinner } from '@oorsig/atoms';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
@@ -37,6 +38,7 @@ export const Sidebar: FC<SidebarProps> = props => {
     },
   ];
   return (
+      <Suspense fallback={<Spinner />}>
     <Container
       {...props}
       display={'flex'}
@@ -61,7 +63,8 @@ export const Sidebar: FC<SidebarProps> = props => {
         </x.div>
       </x.div>
       <SidebarBottom />
-    </Container>
+      </Container>
+      </Suspense>
   );
 };
 

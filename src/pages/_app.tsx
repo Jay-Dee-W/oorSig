@@ -8,8 +8,6 @@ import { x } from '@xstyled/emotion';
 import { ErrorBoundary } from '@elements/ErrorBoundary';
 import { Providers } from '@elements/Providers';
 import { Sidebar } from '@domains/sidebar/Sidebar';
-import { Spinner } from '@atoms/index';
-
 function MyApp(
   { Component, pageProps }: AppProps,
   session: Session | null | undefined
@@ -19,7 +17,6 @@ function MyApp(
   return (
     <SessionProvider session={session}>
       <Providers>
-        <Suspense fallback={<Spinner />}>
           {router.asPath === '/' ? (
             // Auth page (login or signup)
             <Component {...pageProps} />
@@ -33,7 +30,6 @@ function MyApp(
               </x.div>
             </x.div>
           )}
-        </Suspense>
       </Providers>
     </SessionProvider>
   );
