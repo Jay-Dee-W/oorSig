@@ -1,13 +1,25 @@
 import styled, { x } from '@xstyled/emotion';
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button, Logo, Typography } from '@oorsig/atoms';
 import Link from 'next/link';
 
 export const Footer: React.FC = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end end'],
+  });
+
+  const translateY = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    [-500, -300, 0]
+  );
+
   return (
-    <Container>
-      <ContentsContainer>
+    <Container ref={ref}>
+      <motion.div className="content-container" style={{ translateY }}>
         <div>
           <Logo w="50%" />
         </div>
@@ -54,7 +66,7 @@ export const Footer: React.FC = () => {
         <x.div textAlign="right">
           <Button>Start process</Button>
         </x.div>
-      </ContentsContainer>
+      </motion.div>
 
       <x.div>
         <Typography textAlign="center">
@@ -69,6 +81,21 @@ const Container = styled(x.footer)`
   padding: 2rem;
   background-color: gray-900;
   margin-top: 2rem;
+  overflow: hidden;
+
+  .content-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid gray;
+    margin-bottom: 2rem;
+
+    div {
+      flex: 1;
+    }
+  }
 
   h5 {
     font-size: 2xl;
@@ -88,19 +115,5 @@ const Container = styled(x.footer)`
     &:hover {
       color: white;
     }
-  }
-`;
-
-const ContentsContainer = styled(x.div)`
-  width: 100%;
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid gray;
-  margin-bottom: 2rem;
-
-  div {
-    flex: 1;
   }
 `;
