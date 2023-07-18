@@ -44,9 +44,9 @@ const Nav = styled(x.nav)`
   margin: auto;
   top: 1rem;
   border-radius: 4rem;
-  z-index: 60;
+  z-index: 111111;
 
-  background-color: #4444445a; /* Replace with your desired background color */
+  background-color: #4444445a;
   backdrop-filter: blur(8px);
 
   svg {

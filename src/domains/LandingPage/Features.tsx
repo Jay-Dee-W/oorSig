@@ -1,31 +1,15 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled, { x } from '@xstyled/emotion';
 import { Typography } from '@oorsig/atoms';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { AskAi } from './AskAi';
 import { About } from './About';
-
-const FeatureSectionAnimation: React.FC<{ children: React.ReactElement }> = ({
-  children,
-}) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start center', 'center start'],
-  });
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.6]);
-  return (
-    <motion.div ref={ref} style={{ scale }}>
-      {children}
-    </motion.div>
-  );
-};
+import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 
 export const Features: React.FC = () => {
   return (
     <x.div bg="gray-400" pt="2rem" zIndex="1111" position="relative">
-      <FeatureSectionAnimation>
+      <ScrollScaleAnimation>
         <Container>
           <ContainerImage>
             <Image
@@ -51,9 +35,9 @@ export const Features: React.FC = () => {
             </Typography>
           </ContainerTypography>
         </Container>
-      </FeatureSectionAnimation>
+      </ScrollScaleAnimation>
 
-      <FeatureSectionAnimation>
+      <ScrollScaleAnimation>
         <Container>
           <ContainerTypography>
             <Typography variant="h3" size="4xl" lineHeight="4xl" mb="1rem">
@@ -78,9 +62,9 @@ export const Features: React.FC = () => {
             />
           </ContainerImage>
         </Container>
-      </FeatureSectionAnimation>
+      </ScrollScaleAnimation>
 
-      <FeatureSectionAnimation>
+      <ScrollScaleAnimation>
         <Container>
           {/* <ContainerImage> */}
           <AskAi />
@@ -97,9 +81,9 @@ export const Features: React.FC = () => {
             </Typography>
           </ContainerTypography>
         </Container>
-      </FeatureSectionAnimation>
+      </ScrollScaleAnimation>
 
-      <FeatureSectionAnimation>
+      <ScrollScaleAnimation>
         <ContainerTransparent>
           <About />
           <ContainerTypography>
@@ -114,7 +98,7 @@ export const Features: React.FC = () => {
             </Typography>
           </ContainerTypography>
         </ContainerTransparent>
-      </FeatureSectionAnimation>
+      </ScrollScaleAnimation>
     </x.div>
   );
 };
