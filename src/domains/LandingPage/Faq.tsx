@@ -3,6 +3,7 @@ import styled, { x } from '@xstyled/emotion';
 import { motion } from 'framer-motion';
 import { Typography } from '@oorsig/atoms';
 import { ScrollScaleAnimation } from './ScrollScaleAnimation';
+import { SectionContainer } from './SectionContainer';
 
 const FaqList = [
   {
@@ -46,50 +47,52 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <ScrollScaleAnimation>
-      <ContainerSection>
-        <div className="container">
-          <FaqTitle>
-            <Typography variant="h1">FAQ</Typography>
+    <SectionContainer>
+      <ScrollScaleAnimation>
+        <ContainerSection>
+          <div className="container">
+            <FaqTitle>
+              <Typography variant="h1">FAQ</Typography>
+              <div>
+                <Typography variant="h2">Frequently asked</Typography>
+                <Typography variant="h3">Questions</Typography>
+              </div>
+            </FaqTitle>
+
             <div>
-              <Typography variant="h2">Frequently asked</Typography>
-              <Typography variant="h3">Questions</Typography>
-            </div>
-          </FaqTitle>
+              {FaqList.map((el, i) => (
+                <CollapsibleItem key={i}>
+                  <CollapsibleHeader onClick={() => toggleCollapse(el.id)}>
+                    <Typography variant="h4" size="2xl">
+                      {el.title}
+                    </Typography>
 
-          <div>
-            {FaqList.map((el, i) => (
-              <CollapsibleItem key={i}>
-                <CollapsibleHeader onClick={() => toggleCollapse(el.id)}>
-                  <Typography variant="h4" size="2xl">
-                    {el.title}
-                  </Typography>
-
+                    <motion.div
+                      className="arrow"
+                      initial={expandedItm === el.id ? 'rotated' : 'default'}
+                      animate={expandedItm === el.id ? 'rotated' : 'default'}
+                      variants={rotationVariant}
+                    />
+                  </CollapsibleHeader>
                   <motion.div
-                    className="arrow"
-                    initial={expandedItm === el.id ? 'rotated' : 'default'}
-                    animate={expandedItm === el.id ? 'rotated' : 'default'}
-                    variants={rotationVariant}
-                  />
-                </CollapsibleHeader>
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{
-                    height: expandedItm === el.id ? 'auto' : 0,
-                    opacity: expandedItm === el.id ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="content">
-                    <Typography>{el.description}</Typography>
-                  </div>
-                </motion.div>
-              </CollapsibleItem>
-            ))}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{
+                      height: expandedItm === el.id ? 'auto' : 0,
+                      opacity: expandedItm === el.id ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="content">
+                      <Typography>{el.description}</Typography>
+                    </div>
+                  </motion.div>
+                </CollapsibleItem>
+              ))}
+            </div>
           </div>
-        </div>
-      </ContainerSection>
-    </ScrollScaleAnimation>
+        </ContainerSection>
+      </ScrollScaleAnimation>
+    </SectionContainer>
   );
 };
 

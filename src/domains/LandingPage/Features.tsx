@@ -8,7 +8,7 @@ import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 
 export const Features: React.FC = () => {
   return (
-    <x.div bg="gray-400" pt="2rem" zIndex="1111" position="relative">
+    <>
       <ScrollScaleAnimation>
         <Container>
           <ContainerImage>
@@ -99,7 +99,7 @@ export const Features: React.FC = () => {
           </ContainerTypography>
         </ContainerTransparent>
       </ScrollScaleAnimation>
-    </x.div>
+    </>
   );
 };
 

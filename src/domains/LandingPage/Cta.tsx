@@ -3,6 +3,7 @@ import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button, Typography } from '@oorsig/atoms';
 import { CtaVector } from './CtaVector';
+import { SectionContainer } from './SectionContainer';
 
 export const CTA: React.FC = () => {
   const ref = useRef(null);
@@ -24,21 +25,23 @@ export const CTA: React.FC = () => {
   );
   return (
     <>
-      <Container ref={ref}>
-        <motion.div className="graphic" style={{ translateX: translateX }}>
-          <CtaVector w="90%" />
-        </motion.div>
-        <motion.div style={{ translateX: translateXContent }}>
-          <Typography variant="h4">
-            Start visualizing <br /> your information
-          </Typography>
-          <Typography>
-            We are excited to announce the integration of AI-powered data
-            discovery on our website. With this new feature, y
-          </Typography>
-          <Button>Yey login</Button>
-        </motion.div>
-      </Container>
+      <SectionContainer>
+        <Container ref={ref}>
+          <motion.div className="graphic" style={{ translateX: translateX }}>
+            <CtaVector w="90%" />
+          </motion.div>
+          <motion.div style={{ translateX: translateXContent }}>
+            <Typography variant="h4">
+              Start visualizing <br /> your information
+            </Typography>
+            <Typography>
+              We are excited to announce the integration of AI-powered data
+              discovery on our website. With this new feature, y
+            </Typography>
+            <Button>Yey login</Button>
+          </motion.div>
+        </Container>
+      </SectionContainer>
     </>
   );
 };

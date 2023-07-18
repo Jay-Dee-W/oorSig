@@ -80,7 +80,6 @@ export const Footer: React.FC = () => {
 const Container = styled(x.footer)`
   padding: 2rem;
   background-color: gray-900;
-  margin-top: 2rem;
   overflow: hidden;
 
   .content-container {

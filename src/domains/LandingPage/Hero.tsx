@@ -5,18 +5,13 @@ import { Typography } from '@oorsig/atoms';
 import Image from 'next/image';
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-// import { useFollowPointer } from '@utils/userFlowPointer';
+import { useFollowPointer } from '@utils/userFlowPointer';
 
 export const Hero: React.FC = () => {
   const ref = useRef(null);
   const typographyRef = useRef(null);
-  //   const { x, y } = useFollowPointer(ref);
-  //   const { scrollYProgress } = useScroll({
-  //     target: typographyRef,
-  //     offset: ['end end', 'end start'],
-  //   });
+  const { x, y } = useFollowPointer(ref);
   const { scrollYProgress } = useScroll();
-  //   const scale = useTransform(scrollYProgress, [0, 1], [0.2, 2]);
 
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0, 0]);
   const scale = useTransform(
@@ -33,11 +28,10 @@ export const Hero: React.FC = () => {
   });
 
   return (
-    <HeroSection>
+    <HeroSection ref={typographyRef}>
       <motion.section
         style={{ opacity, scale, zIndex, display }}
         className="typography-section"
-        ref={typographyRef}
       >
         <div>
           <Typography variant="h1">
@@ -61,8 +55,6 @@ export const Hero: React.FC = () => {
         </div>
       </motion.section>
 
-      {/* <HeroVector /> */}
-
       <motion.div
         style={{
           marginTop: '16rem',
@@ -85,11 +77,48 @@ export const Hero: React.FC = () => {
           }}
         />
       </motion.div>
+
+      <div className="blur-overlay"></div>
+
+      <motion.div
+        ref={ref}
+        className="box box-shadow-2 mouse-gradient"
+        animate={{ x, y }}
+        transition={{
+          type: 'spring',
+          damping: 3,
+          stiffness: 2,
+          restDelta: 0.001,
+        }}
+      />
+
+      <motion.div
+        ref={ref}
+        className="box box-shadow-3 mouse-gradient"
+        animate={{ x, y }}
+        transition={{
+          type: 'spring',
+          damping: 100,
+          stiffness: 15,
+          restDelta: 0.001,
+        }}
+      />
+
+      <motion.div
+        ref={ref}
+        className="box box-shadow-1 mouse-gradient"
+        animate={{ x, y }}
+        transition={{
+          type: 'spring',
+          damping: 10,
+          stiffness: 20,
+          restDelta: 0.001,
+        }}
+      />
     </HeroSection>
   );
 };
 const HeroSection = styled(x.section)`
-  background-color: gray-200;
   padding-top: 10rem;
   text-align: center;
   overflow: hidden;
@@ -131,80 +160,56 @@ const HeroSection = styled(x.section)`
     margin: auto;
     /* margin-top: 3rem; */
   }
-`;
 
-const ImageContainer = styled(x.div)`
-  margin-top: 30rem;
-  transform: skew(15deg, 15deg);
-  margin-right: auto;
-  margin-left: auto;
+  .blur-overlay {
+    background-color: #00000054;
+    /* height: 200px;
+    width: 100; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
 
-  img {
-    /* display: block;
-    width: 100% !important;
-    display: none; */
+  .mouse-gradient {
+    width: 0;
+    height: 0;
+    position: fixed;
+    overflow: hidden;
+    border-radius: 90rem;
+    z-index: -111;
+  }
+
+  .box-shadow-1 {
+    box-shadow: 0 0 32rem 12rem #007aff;
+  }
+
+  .box-shadow-2 {
+    box-shadow: 0 0 32rem 12rem #72cf71;
+  }
+
+  .box-shadow-3 {
+    box-shadow: 0 0 32rem 12rem #fff02d;
   }
 `;
 
+// const ImageContainer = styled(x.div)`
+//   margin-top: 30rem;
+//   transform: skew(15deg, 15deg);
+//   margin-right: auto;
+//   margin-left: auto;
+
+//   img {
+//     /* display: block;
+//     width: 100% !important;
+//     display: none; */
+//   }
+// `;
+
 {
   /* 
-      <motion.div
-        ref={ref}
-        className="box box-shadow-2"
-        animate={{ x, y }}
-        transition={{
-          type: 'spring',
-          damping: 3,
-          stiffness: 2,
-          restDelta: 0.001,
-        }}
-        style={{
-          width: 0,
-          height: 0,
-          position: 'fixed',
-          overflow: 'hidden',
-          borderRadius: '90rem',
-          boxShadow: '0 0 32rem 12rem #72cf71',
-        }}
-      />
 
-      <motion.div
-        ref={ref}
-        className="box box-shadow-3"
-        animate={{ x, y }}
-        transition={{
-          type: 'spring',
-          damping: 100,
-          stiffness: 15,
-          restDelta: 0.001,
-        }}
-        style={{
-          width: 0,
-          height: 0,
-          position: 'fixed',
-          overflow: 'hidden',
-          borderRadius: '90rem',
-          boxShadow: '0 0 32rem 12rem #fff02d',
-        }}
-      />
-
-      <motion.div
-        ref={ref}
-        className="box box-shadow-1"
-        animate={{ x, y }}
-        transition={{
-          type: 'spring',
-          damping: 10,
-          stiffness: 20,
-          restDelta: 0.001,
-        }}
-        style={{
-          width: 0,
-          height: 0,
-          position: 'fixed',
-          overflow: 'hidden',
-          borderRadius: '90rem',
-          boxShadow: '0 0 32rem 12rem #007aff',
-        }}
       /> */
 }

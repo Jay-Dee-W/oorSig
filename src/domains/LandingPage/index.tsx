@@ -5,15 +5,18 @@ import { Features } from './Features';
 import { FAQ } from './Faq';
 import { CTA } from './Cta';
 import { Footer } from './Footer';
+import { SectionContainer } from './SectionContainer';
 
 export const LandingPage: React.FC = () => {
   return (
     <>
       <Navigation />
       <Hero />
-      <Features />
-      <FAQ />
-      <CTA />
+      <SectionContainer>
+        <Features />
+        <FAQ />
+        <CTA />
+      </SectionContainer>
       <Footer />
     </>
   );
