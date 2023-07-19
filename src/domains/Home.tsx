@@ -100,7 +100,9 @@ const chartLabels = [
 const tableColumns = [
   {
     key: 'image',
-    paddingLeft: '0.8rem',
+    style: {
+      paddingLeft: '0.8rem',
+    },
     header: '',
     render: (value: string) => (
       <x.img src={value} alt="Image" w="2rem" h="2rem" />
@@ -117,7 +119,9 @@ const tableColumns = [
   {
     key: 'action',
     header: '',
-    alignment: 'right',
+    style: {
+      textAlign: 'right' as 'right',
+    },
     render: (value: string) => <Button variant="secondary">{value}</Button>,
   },
 ];
@@ -229,7 +233,7 @@ export const Home: React.FC = () => {
           <Typography size="3xl">🤖</Typography>
           <Typography size="sm">
             Access and visualize all your Github metrics in one place with
-            oorSig by GitStart.
+            OorSig by GitStart.
             <br /> Export data for further analysis and optimize your
             productivity.
           </Typography>

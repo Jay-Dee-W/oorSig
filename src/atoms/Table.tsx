@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled, { x } from '@xstyled/emotion';
 
 interface TableColumn {
   key: string;
   header: string;
-  paddingLeft?: string | number;
-  alignment?: string;
+  style?: CSSProperties;
   render?: (value: any) => React.ReactNode;
 }
 interface TableProps {
@@ -38,9 +37,11 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
   return (
     <StyledTable w="full">
       <thead>
-        <x.tr textAlign="left" backgroundColor="gray-200">
+        <x.tr backgroundColor="gray-200">
           {columns.map(column => (
-            <x.th key={column.key}>{column.header}</x.th>
+            <x.th key={column.key} style={column.style}>
+              {column.header}
+            </x.th>
           ))}
         </x.tr>
       </thead>
@@ -48,13 +49,7 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         {data.map((item, index) => (
           <tr key={index}>
             {columns.map(column => (
-              <x.td
-                key={column.key}
-                style={{
-                  paddingLeft: column.paddingLeft || '0.8rem',
-                }}
-                textAlign={column.alignment}
-              >
+              <x.td key={column.key} style={column.style}>
                 {column.render
                   ? column.render(item[column.key])
                   : item[column.key]}
