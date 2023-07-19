@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { graphql, useLazyLoadQuery } from 'react-relay';
+import { graphql,  GraphQLTaggedNode,PreloadedQuery,usePreloadedQuery,useFragment, useLazyLoadQuery } from 'react-relay';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
-
 import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
+import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
+import { TopNavigation_viewer$key } from '@relay/__generated__/TopNavigation_viewer.graphql'
 
-import type { TopNavigationQuery as TopNavigationQueryType } from '@relay/__generated__/TopNavigationQuery.graphql';
 
-interface TopNavigationProps {}
+interface TopNavigationProps {
+  TopNavigationQuery: GraphQLTaggedNode;
+  TopNavigationQueryReference:PreloadedQuery<SidebarQuery>;
+}
 interface Organization {
   label: string;
   value: string;
@@ -21,35 +24,20 @@ interface Team {
   imgSrc: string;
 }
 
-const TopNavigationQuery = graphql`
-  query TopNavigationQuery(
-    $organizationsFirst: Int
-    $teamsFirst: Int
-    $organizationsAfter: String
-    $teamsAfter: String
-  ) {
-    viewer {
-      organizations(first: $organizationsFirst, after: $organizationsAfter) {
-        pageInfo {
-          hasNextPage
-          endCursor
-        }
-        edges {
-          node {
-            name
-            avatarUrl
-            label: name
-            teams(first: $teamsFirst, after: $teamsAfter) {
-              pageInfo {
-                hasNextPage
-                endCursor
-              }
-              edges {
-                node {
-                  name
-                  slug
-                  avatarUrl
-                }
+const TopNavigation_viewer = graphql`
+  fragment TopNavigation_viewer on User {
+    organizations(first: 100) {
+      edges {
+        node {
+          name
+          label: name
+          avatarUrl
+          teams(first: 100) {
+            edges {
+              node {
+                name
+                slug
+                avatarUrl
               }
             }
           }
@@ -59,17 +47,33 @@ const TopNavigationQuery = graphql`
   }
 `;
 
-export const TopNavigation: React.FC<TopNavigationProps> = () => {
-  // const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {});
-  const variables = {
-  organizationsFirst: 4,
-  teamsFirst: 5,
-};
+export const TopNavigation: React.FC<TopNavigationProps> = ({
+  TopNavigationQuery,
+  TopNavigationQueryReference,
+}) => {
 
-const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, variables);
+  
+ const { viewer } = usePreloadedQuery(
+    TopNavigationQuery,
+    TopNavigationQueryReference
+  );
+
+  
+  const data = useFragment<TopNavigation_viewer$key>(
+    TopNavigation_viewer,
+     viewer
+  );
+
+  // const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {});
+//   const variables = {
+//   organizationsFirst: 4,
+//   teamsFirst: 5,
+// };
+
+// const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, variables);
 
   const organizationData: Organization[] =
-    data.viewer.organizations?.edges?.map((edge: any) => ({
+    data.organizations?.edges?.map((edge: any) => ({
       label: edge.node.label,
       value: edge.node.name,
       imgSrc: edge.node.avatarUrl,
@@ -92,7 +96,7 @@ const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, variab
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
 
-    const selectedOrg = data.viewer.organizations.edges?.find(
+    const selectedOrg = data.organizations.edges?.find(
       (edge: any) => edge.node.name === org
     );
 
