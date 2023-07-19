@@ -1,0 +1,45 @@
+import Head from 'next/head';
+import { MDXWrapper } from '@elements/MDXWrapper';
+import { Backdrop } from '@atoms/index';
+
+<MDXWrapper>
+<Head>
+	<title>Backdrop | OORSIG</title>
+</Head>
+
+# Backdrop
+
+## Introduction
+
+The `Backdrop` component is a reusable UI element used to create a semi-transparent overlay behind other elements, often to highlight modals or other dialogs.
+
+## Basic Usage
+
+To use the `Backdrop` component, you need to import it as follows:
+
+```jsx
+import { Backdrop } from '@atoms/Backdrop';
+import { Backdrop } from '@atoms/index';
+```
+
+## Inside your JSX code, you can use the `Backdrop` component like this:
+
+```jsx
+<Backdrop onClick={handleBackdropClick} />
+```
+
+## Props
+
+The Backdrop component accepts the following props:
+
+`onClick (optional):` A function to be called when the backdrop is clicked. This prop is commonly used to handle dismissing modals or other overlays when the backdrop is clicked.
+
+### SystemProps
+
+In addition to the other props, you can further customize backdrop by passing system props. These additional props provide more flexibility in styling.
+
+## Additional Props
+
+The Backdrop component also accepts any additional props that can be applied to a div element, such as className, style, aria-\* attributes, and more.
+
+</MDXWrapper>
