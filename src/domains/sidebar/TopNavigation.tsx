@@ -13,7 +13,7 @@ import { MdClose, MdExpandMore } from 'react-icons/md';
 import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 import { TopNavigation_viewer$key } from '@relay/__generated__/TopNavigation_viewer.graphql';
-import { TopNavigation_viewer$data } from '@relay/__generated__/TopNavigation_viewer.graphql';
+import { TopNavigationRefetchQuery } from '@relay/__generated__/TopNavigationRefetchQuery.graphql';
 
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;
@@ -34,12 +34,13 @@ interface Team {
 
 const TopNavigation_viewer = graphql`
   fragment TopNavigation_viewer on User
+  @refetchable(queryName: "TopNavigationRefetchQuery")
   @argumentDefinitions(
     organizationsFirst: { type: "Int!" }
     organizationsCursor: { type: "String" }
     teamsFirst: { type: "Int!" }
     teamsCursor: { type: "String" }
-  )@refetchable(queryName: "TopNavigationRefetchQuery"){
+  ){
     organizations(first: $organizationsFirst, after: $organizationsCursor)
       @connection(key: "TopNavigation_organizations") {
       edges {
@@ -80,6 +81,10 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
     TopNavigationQuery,
     TopNavigationQueryReference
   );
+  const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<TopNavigationRefetchQuery,TopNavigation_viewer$key>(
+      TopNavigation_viewer,
+      viewer
+    );
 
   const organizationData: Organization[] =
     data.organizations?.edges?.map((edge: any) => ({
