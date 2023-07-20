@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { graphql,  GraphQLTaggedNode,PreloadedQuery,usePreloadedQuery,useFragment, useLazyLoadQuery } from 'react-relay';
+import {
+  graphql,
+  GraphQLTaggedNode,
+  PreloadedQuery,
+  usePreloadedQuery,
+  useFragment,
+  usePaginationFragment,
+} from 'react-relay';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
 import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
-import { TopNavigation_viewer$key } from '@relay/__generated__/TopNavigation_viewer.graphql'
-
+import { TopNavigation_viewer$key } from '@relay/__generated__/TopNavigation_viewer.graphql';
+import { TopNavigation_viewer$data } from '@relay/__generated__/TopNavigation_viewer.graphql';
 
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;
-  TopNavigationQueryReference:PreloadedQuery<SidebarQuery>;
+  TopNavigationQueryReference: PreloadedQuery<SidebarQuery>;
+  loadedItem:number
 }
 interface Organization {
   label: string;
@@ -25,14 +33,22 @@ interface Team {
 }
 
 const TopNavigation_viewer = graphql`
-  fragment TopNavigation_viewer on User {
-    organizations(first: 100) {
+  fragment TopNavigation_viewer on User
+  @argumentDefinitions(
+    organizationsFirst: { type: "Int!" }
+    organizationsCursor: { type: "String" }
+    teamsFirst: { type: "Int!" }
+    teamsCursor: { type: "String" }
+  )@refetchable(queryName: "TopNavigationRefetchQuery"){
+    organizations(first: $organizationsFirst, after: $organizationsCursor)
+      @connection(key: "TopNavigation_organizations") {
       edges {
         node {
           name
           label: name
           avatarUrl
-          teams(first: 100) {
+          teams(first: $teamsFirst, after: $teamsCursor)
+            @connection(key: "TopNavigation_teams") {
             edges {
               node {
                 name
@@ -40,8 +56,16 @@ const TopNavigation_viewer = graphql`
                 avatarUrl
               }
             }
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
           }
         }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
       }
     }
   }
@@ -50,27 +74,12 @@ const TopNavigation_viewer = graphql`
 export const TopNavigation: React.FC<TopNavigationProps> = ({
   TopNavigationQuery,
   TopNavigationQueryReference,
+  loadedItem
 }) => {
-
-  
- const { viewer } = usePreloadedQuery(
+  const { viewer } = usePreloadedQuery(
     TopNavigationQuery,
     TopNavigationQueryReference
   );
-
-  
-  const data = useFragment<TopNavigation_viewer$key>(
-    TopNavigation_viewer,
-     viewer
-  );
-
-  // const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, {});
-//   const variables = {
-//   organizationsFirst: 4,
-//   teamsFirst: 5,
-// };
-
-// const data = useLazyLoadQuery<TopNavigationQueryType>(TopNavigationQuery, variables);
 
   const organizationData: Organization[] =
     data.organizations?.edges?.map((edge: any) => ({
