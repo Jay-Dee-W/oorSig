@@ -81,6 +81,10 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
     TopNavigationQuery,
     TopNavigationQueryReference
   );
+  //  const data = useFragment<TopNavigation_viewer$key>(
+  //   TopNavigation_viewer,
+  //    viewer
+  // );
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<TopNavigationRefetchQuery,TopNavigation_viewer$key>(
       TopNavigation_viewer,
       viewer
