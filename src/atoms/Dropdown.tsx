@@ -1,6 +1,7 @@
 import React from 'react';
 import { x } from '@xstyled/emotion';
 import { useSelect } from 'downshift';
+import { HiOutlineChevronDown } from 'react-icons/hi';
 
 interface DropdownOption {
   label: string;
@@ -35,7 +36,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
         flexDirection="column"
         bg="gray-300"
         border="0.03125rem solid #5B5B5B"
-        p="11px 17px 11px 15px"
+        p="6px 10px"
         cursor="pointer"
         color="white"
         fontStyle="normal"
@@ -60,32 +61,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
             flex="none"
             display="flex"
             alignItems="center"
-            ml="2px"
+            fontSize="3xl"
+            ml="1.25rem"
             transform={isOpen ? 'rotate(-180deg)' : ''}
             transition="all 0.2s ease-in-out"
           >
-            <x.svg
-              w="17.49px"
-              viewBox="0 0 20 12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
-                stroke="#C8CACB"
-                strokeWidth="1.92"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M1 10.6602L9.74561 1.91467L18.4912 10.6602"
-                stroke="black"
-                strokeOpacity="0.2"
-                strokeWidth="1.92"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </x.svg>
+            <HiOutlineChevronDown strokeWidth={1} />
           </x.span>
         </x.div>
       </x.div>
