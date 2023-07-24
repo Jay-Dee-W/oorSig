@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import styled, { SystemProps, x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
 
@@ -82,7 +82,7 @@ export const SearchableList: React.FC<SelectProps> = ({
     itemToString: item => (item ? item.label : ''),
   });
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (
       listContainerRef.current &&
       listContainerRef.current.scrollHeight -
@@ -93,16 +93,17 @@ export const SearchableList: React.FC<SelectProps> = ({
         onScroll();
       }
     }
-  };
+  }, [onScroll]);
 
   useEffect(() => {
     if (onScroll) {
-      listContainerRef.current?.addEventListener('scroll', handleScroll);
+      const refValue = listContainerRef.current;
+      refValue?.addEventListener('scroll', handleScroll);
       return () => {
-        listContainerRef.current?.removeEventListener('scroll', handleScroll);
+        refValue?.removeEventListener('scroll', handleScroll);
       };
     }
-  }, [onScroll]);
+  }, [onScroll, handleScroll]);
 
   return (
     <x.div>
@@ -127,7 +128,7 @@ export const SearchableList: React.FC<SelectProps> = ({
               {...getInputProps()}
             />
           )}
-          <StyledDiv ref={listContainerRef}>
+          <StyledDiv ref={listContainerRef} >
             <x.ul
               bg="gray-300"
               color="white"
