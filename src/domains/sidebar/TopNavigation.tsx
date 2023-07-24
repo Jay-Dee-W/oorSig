@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import {
   graphql,
   GraphQLTaggedNode,
   PreloadedQuery,
   usePreloadedQuery,
-  useFragment,
   usePaginationFragment,
 } from 'react-relay';
 import Link from 'next/link';
@@ -14,11 +13,10 @@ import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 import { TopNavigation_viewer$key } from '@relay/__generated__/TopNavigation_viewer.graphql';
 import { TopNavigationRefetchQuery } from '@relay/__generated__/TopNavigationRefetchQuery.graphql';
-
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;
   TopNavigationQueryReference: PreloadedQuery<SidebarQuery>;
-  loadedItem:number
+  loadedItem: number;
 }
 interface Organization {
   label: string;
@@ -26,11 +24,11 @@ interface Organization {
   imgSrc: string;
 }
 
-interface Team {
-  label: string;
-  value: string;
-  imgSrc: string;
-}
+// interface Team {
+//   label: string;
+//   value: string;
+//   imgSrc: string;
+// }
 
 const TopNavigation_viewer = graphql`
   fragment TopNavigation_viewer on User
@@ -38,9 +36,7 @@ const TopNavigation_viewer = graphql`
   @argumentDefinitions(
     organizationsFirst: { type: "Int!" }
     organizationsCursor: { type: "String" }
-    teamsFirst: { type: "Int!" }
-    teamsCursor: { type: "String" }
-  ){
+  ) {
     organizations(first: $organizationsFirst, after: $organizationsCursor)
       @connection(key: "TopNavigation_organizations") {
       edges {
@@ -48,23 +44,10 @@ const TopNavigation_viewer = graphql`
           name
           label: name
           avatarUrl
-          teams(first: $teamsFirst, after: $teamsCursor)
-            @connection(key: "TopNavigation_teams") {
-            edges {
-              node {
-                name
-                slug
-                avatarUrl
-              }
-            }
-            pageInfo {
-              hasNextPage
-              endCursor
-            }
-          }
         }
       }
       pageInfo {
+        startCursor
         hasNextPage
         endCursor
       }
@@ -75,72 +58,79 @@ const TopNavigation_viewer = graphql`
 export const TopNavigation: React.FC<TopNavigationProps> = ({
   TopNavigationQuery,
   TopNavigationQueryReference,
-  loadedItem
+  loadedItem,
 }) => {
   const { viewer } = usePreloadedQuery(
     TopNavigationQuery,
     TopNavigationQueryReference
   );
-  //  const data = useFragment<TopNavigation_viewer$key>(
-  //   TopNavigation_viewer,
-  //    viewer
-  // );
-  const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<TopNavigationRefetchQuery,TopNavigation_viewer$key>(
-      TopNavigation_viewer,
-      viewer
-    );
 
-  const organizationData: Organization[] =
-    data.organizations?.edges?.map((edge: any) => ({
-      label: edge.node.label,
-      value: edge.node.name,
-      imgSrc: edge.node.avatarUrl,
-    })) ?? [];
-  const [teamData, setTeamData] = useState<Team[]>([]);
+  const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<
+    TopNavigationRefetchQuery,
+    TopNavigation_viewer$key
+  >(TopNavigation_viewer, viewer);
+
+  const organizationData: Organization[] = useMemo(() => {
+    return (
+      data?.organizations.edges?.map((edge: any) => ({
+        label: edge.node.label,
+        value: edge.node.name,
+        imgSrc: edge.node.avatarUrl,
+      })) ?? []
+    );
+  }, [data?.organizations.edges]);
 
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
   const [selectedOrganization, setSelectedOrganization] = useState('');
-  const [showTeamList, setShowTeamList] = useState(false);
-  const [selectedTeam, setSelectedTeam] = useState('Select Team');
+  // const [showTeamList, setShowTeamList] = useState(false);
+  // const [selectedTeam, setSelectedTeam] = useState('Select Team');
 
   const toggleShowOrganizationList = () => {
     setShowOrgnizationList(!showOrgnizationList);
   };
-  const toggleShowTeamList = () => {
-    setShowTeamList(!showTeamList);
-  };
+  // const toggleShowTeamList = () => {
+  //   setShowTeamList(!showTeamList);
+  // };
 
   const handleOrganizationSelect = (org: string) => {
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
 
-    const selectedOrg = data.organizations.edges?.find(
-      (edge: any) => edge.node.name === org
-    );
+    // const selectedOrg = data.organizations.edges?.find(
+    //   (edge: any) => edge.node.name === org
+    // );
 
-    const newTeamData: Team[] =
-      selectedOrg?.node?.teams.edges?.map((edge: any) => ({
-        label: edge.node.name,
-        value: edge.node.slug,
-        imgSrc: edge.node.avatarUrl,
-      })) ?? [];
+    // const newTeamData: Team[] =
+    //   selectedOrg?.node?.teams.edges?.map((edge: any) => ({
+    //     label: edge.node.name,
+    //     value: edge.node.slug,
+    //     imgSrc: edge.node.avatarUrl,
+    //   })) ?? [];
 
-    if (!newTeamData.some(team => team.value === selectedTeam)) {
-      setSelectedTeam('Select Team');
-    }
+    // if (!newTeamData.some(team => team.value === selectedTeam)) {
+    //   setSelectedTeam('Select Team');
+    // }
 
-    setTeamData(newTeamData);
+    // setTeamData(newTeamData);
   };
-  const handleTeamSelect = (team: string) => {
-    setSelectedTeam(team);
-    setShowTeamList(false);
-  };
+  // const handleTeamSelect = (team: string) => {
+  //   setSelectedTeam(team);
+  //   setShowTeamList(false);
+  // };
 
   const handleBackdropClick = () => {
     setShowOrgnizationList(false);
-    setShowTeamList(false);
+    // setShowTeamList(false);
   };
 
+  const handleLoadMoreOrganizations = useCallback(() => {
+    if (!hasNext || isLoadingNext) {
+      console.log('OOOOOOOO', data.organizations.edges);
+      return;
+    }
+    loadNext(loadedItem);
+    console.log('Loaded!!!!!!!!!!!!!!!!', data.organizations.edges);
+  }, [loadNext, hasNext, isLoadingNext]);
   return (
     <x.div alignItems="center">
       <Link href="/home">
@@ -148,76 +138,87 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
           <Logo w="100%" />
         </x.div>
       </Link>
-      {(showOrgnizationList || (selectedOrganization && showTeamList)) && (
+      {showOrgnizationList && (
+        // || (selectedOrganization && showTeamList)
         <Backdrop onClick={handleBackdropClick} />
       )}
-      {!showOrgnizationList ? (
-        <x.div
-          backgroundColor="gray-200"
-          p="0.6rem"
-          borderRadius={
-            teamData.length === 0 || !selectedOrganization
-              ? ' 0.6rem'
-              : '0.6rem 0.6rem 0 0'
-          }
-          display="flex"
-          alignItems="center"
-          gap="0.3rem"
-          color="gray-50"
-          onClick={toggleShowOrganizationList}
-          zIndex={1}
-        >
-          <x.img
-            src={
-              selectedOrganization
-                ? organizationData.find(
-                    org => org.value === selectedOrganization
-                  )?.imgSrc
-                : '/logo.png'
-            }
-            alt={`${selectedOrganization} logo`}
-            title="Logo"
-            h="45"
-            w="45"
-            borderRadius="0.4rem"
-            borderColor="gray-50"
-          />
-          <x.div flex={1}>
-            <Typography variant="h6" size="xs">
-              Selected organization
-            </Typography>
-            <Typography variant="h4" size="base" color="white">
-              {selectedOrganization}
-            </Typography>
-          </x.div>
-          <MdExpandMore size="1.6rem" />
-        </x.div>
-      ) : (
-        <x.div position="relative">
+      {organizationData.length > 0 &&
+        (!showOrgnizationList ? (
           <x.div
-            position="absolute"
-            w="15.9rem"
-            border="1px solid"
-            borderColor="gray-250"
-            borderRadius="0.5rem"
-            zIndex={2}
+            backgroundColor="gray-200"
+            p="0.6rem"
+            // borderRadius={
+            //   teamData.length === 0 || !selectedOrganization
+            //     ? ' 0.6rem'
+            //     : '0.6rem 0.6rem 0 0'
+            // }
+            borderRadius={' 0.6rem'}
+            display="flex"
+            alignItems="center"
+            gap="0.3rem"
+            color="gray-50"
+            onClick={toggleShowOrganizationList}
+            zIndex={1}
           >
-            <x.div position="absolute" right="5px" color="gray-50" pt="0.3rem">
-              <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
-            </x.div>
-            <SearchableList
-              options={organizationData}
-              placeholder="Search Organization"
-              label="Select Organization"
-              imgSize="2.3rem"
-              isSearchable={organizationData.length > 3}
-              onSelect={handleOrganizationSelect}
-              selectedValue={selectedOrganization}
+            <x.img
+              src={
+                selectedOrganization
+                  ? organizationData.find(
+                      org => org.value === selectedOrganization
+                    )?.imgSrc
+                  : '/logo.png'
+              }
+              alt={`${selectedOrganization} logo`}
+              title="Logo"
+              h="45"
+              w="45"
+              borderRadius="0.4rem"
+              borderColor="gray-50"
             />
+            <x.div flex={1}>
+              <Typography variant="h6" size="xs">
+                Selected organization
+              </Typography>
+              <Typography variant="h4" size="base" color="white">
+                {selectedOrganization}
+              </Typography>
+            </x.div>
+            <MdExpandMore size="1.6rem" />
           </x.div>
-        </x.div>
-      )}
-      {teamData.length > 0 &&
+        ) : (
+          <x.div position="relative">
+            <x.div
+              position="absolute"
+              w="15.9rem"
+              border="1px solid"
+              borderColor="gray-250"
+              borderRadius="0.5rem"
+              zIndex={2}
+            >
+              <x.div
+                position="absolute"
+                right="5px"
+                color="gray-50"
+                pt="0.3rem"
+              >
+                <MdClose size="1.6rem" onClick={toggleShowOrganizationList} />
+              </x.div>
+              <SearchableList
+                options={organizationData}
+                placeholder="Search Organization"
+                label="Select Organization"
+                imgSize="2.3rem"
+                isLoading={isLoadingNext}
+                isSearchable={organizationData.length > 3}
+                onSelect={handleOrganizationSelect}
+                selectedValue={selectedOrganization}
+                onScroll={handleLoadMoreOrganizations}
+              />
+            </x.div>
+          </x.div>
+        ))}
+
+      {/* {teamData.length > 0 &&
         selectedOrganization &&
         (!showTeamList ? (
           <x.div
@@ -279,7 +280,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
               />
             </x.div>
           </x.div>
-        ))}
+        ))} */}
     </x.div>
   );
 };
