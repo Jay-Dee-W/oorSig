@@ -97,11 +97,9 @@ export const FAQ: React.FC = () => {
 };
 
 const ContainerSection = styled(x.section)`
-  /* background-color: gray-300; */
   padding: 6rem 0;
-
   .container {
-    width: 100%;
+    width: 94%;
     max-width: 1100px;
     margin: auto;
   }
@@ -132,7 +130,8 @@ const CollapsibleItem = styled(x.div)`
   overflow: hidden;
 
   p {
-    color: gray-50;
+    color: gray-text;
+    font-size: base;
   }
 
   .content {
@@ -144,22 +143,22 @@ const FaqTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 1;
-
   width: fit-content;
   margin: auto;
   margin-bottom: 2rem;
-  div {
-  }
+
   h1 {
     font-size: 6xl;
     margin: 0;
     color: gray-100;
     font-weight: bold;
   }
+
   h2 {
     font-size: xl;
     margin: 0;
   }
+
   h3 {
     font-size: 4xl;
     margin: 0;

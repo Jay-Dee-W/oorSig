@@ -34,6 +34,7 @@ const theme = {
     ['gray-300']: '#2C2F30',
     ['gray-400']: '#1C1E1F',
     ['gray-900']: '#111313',
+    ['gray-text']: '#cccccc',
     ['red-100']: '#F3D8DB',
     ['red-200']: '#EB5545',
     ['red-300']: '#DC3422',

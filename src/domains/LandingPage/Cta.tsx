@@ -1,9 +1,10 @@
 import React, { useRef } from 'react';
 import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Button, Typography } from '@oorsig/atoms';
+import { Typography } from '@oorsig/atoms';
 import { CtaVector } from './CtaVector';
 import { SectionContainer } from './SectionContainer';
+import { CtaButton } from './CtaButton';
 
 export const CTA: React.FC = () => {
   const ref = useRef(null);
@@ -38,7 +39,7 @@ export const CTA: React.FC = () => {
               We are excited to announce the integration of AI-powered data
               discovery on our website. With this new feature, y
             </Typography>
-            <Button>Yey login</Button>
+            <CtaButton />
           </motion.div>
         </Container>
       </SectionContainer>
@@ -59,6 +60,11 @@ const Container = styled(x.div)`
   align-items: center;
   overflow: hidden;
 
+  @media (max-width: 970px) {
+    flex-direction: column;
+    width: 96%;
+  }
+
   div {
     flex: 1;
   }
@@ -70,7 +76,7 @@ const Container = styled(x.div)`
 
   p {
     margin-top: 0.5rem;
-    color: gray-50;
+    color: gray-text;
     margin-bottom: 1rem;
   }
 `;

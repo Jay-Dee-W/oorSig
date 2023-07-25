@@ -1,9 +1,8 @@
-import styled, { x } from '@xstyled/emotion';
 import React from 'react';
+import styled, { x, useTheme, Theme } from '@xstyled/emotion';
 import { motion } from 'framer-motion';
-import { useTheme, Theme } from '@xstyled/emotion';
 
-export const About: React.FC = () => {
+export const AboutVector: React.FC = () => {
   const theme: Theme = useTheme();
 
   return (

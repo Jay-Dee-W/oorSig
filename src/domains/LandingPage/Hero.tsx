@@ -1,11 +1,10 @@
-import React from 'react';
-import styled, { x } from '@xstyled/emotion';
-import { Typography } from '@oorsig/atoms';
-// import { HeroVector } from '@oorsig/atoms/HeroVector';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { useRef } from 'react';
+import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Typography } from '@oorsig/atoms';
 import { useFollowPointer } from '@utils/userFlowPointer';
+import { CtaButton } from './CtaButton';
 
 export const Hero: React.FC = () => {
   const ref = useRef(null);
@@ -19,7 +18,6 @@ export const Hero: React.FC = () => {
     [0, 0.2, 0.2, 0.5, 0.6],
     [1, 0, 0.3, -1, 0]
   );
-
   const zIndex = useTransform(scrollYProgress, [0, 0.5], [1, -1]);
   const skew = useTransform(scrollYProgress, [0, 0.2, 1], [20, 0, 1]);
   const scaleImage = useTransform(scrollYProgress, [0, 0.2, 1], [0.8, 1, 8]);
@@ -44,25 +42,15 @@ export const Hero: React.FC = () => {
             by Gitstart. Export data for further analysis and optimize your
             productivity.
           </Typography>
-          <button
-            style={{
-              display: 'block',
-              margin: 'auto',
-            }}
-          >
-            Get Started
-          </button>
+          <CtaButton />
         </div>
       </motion.section>
 
       <motion.div
+        className="hero-image-container"
         style={{
-          marginTop: '16rem',
           skew,
           scale: scaleImage,
-          marginRight: 'auto',
-          marginLeft: 'auto',
-          zIndex: 111,
         }}
       >
         <Image
@@ -70,11 +58,6 @@ export const Hero: React.FC = () => {
           width={1300}
           height={600}
           alt="main content"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'fill',
-          }}
         />
       </motion.div>
 
@@ -82,7 +65,7 @@ export const Hero: React.FC = () => {
 
       <motion.div
         ref={ref}
-        className="box box-shadow-2 mouse-gradient"
+        className="circle-2 moving-circle"
         animate={{ x, y }}
         transition={{
           type: 'spring',
@@ -94,7 +77,7 @@ export const Hero: React.FC = () => {
 
       <motion.div
         ref={ref}
-        className="box box-shadow-3 mouse-gradient"
+        className="circle-3 moving-circle"
         animate={{ x, y }}
         transition={{
           type: 'spring',
@@ -106,7 +89,7 @@ export const Hero: React.FC = () => {
 
       <motion.div
         ref={ref}
-        className="box box-shadow-1 mouse-gradient"
+        className="circle-1 moving-circle"
         animate={{ x, y }}
         transition={{
           type: 'spring',
@@ -124,8 +107,20 @@ const HeroSection = styled(x.section)`
   overflow: hidden;
   height: 52rem;
 
+  .hero-image-container {
+    margin-top: 16rem;
+    margin-right: auto;
+    margin-left: auto;
+    z-index: 111;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+  }
+
   .typography-section {
-    /* background-color: red; */
     position: fixed;
     right: 0;
     left: 0;
@@ -133,83 +128,94 @@ const HeroSection = styled(x.section)`
     opacity: 1;
 
     div {
-      /* height: 100vh; */
       padding-top: 6rem;
     }
   }
 
   h1 {
-    text-align: center;
     font-size: 5xl;
     line-height: 5xl;
     margin-bottom: 1rem;
   }
+
   p {
-    text-align: center;
     font-size: base;
     line-height: base;
     margin-bottom: 1rem;
+    color: gray-text;
   }
-  button {
-    padding: 1rem 2rem;
-  }
+
   svg {
     margin-top: 32rem;
     width: 80%;
     display: block;
     margin: auto;
-    /* margin-top: 3rem; */
   }
 
   .blur-overlay {
     background-color: #00000054;
-    /* height: 200px;
-    width: 100; */
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     z-index: -1;
+    filter: blur(12px);
   }
 
-  .mouse-gradient {
-    width: 0;
-    height: 0;
+  .moving-circle {
+    height: 10rem;
+    width: 10rem;
     position: fixed;
     overflow: hidden;
     border-radius: 90rem;
     z-index: -111;
+    opacity: 50%;
+    filter: blur(12px);
   }
 
-  .box-shadow-1 {
-    box-shadow: 0 0 32rem 12rem #007aff;
+  .circle-1 {
+    background-color: #fff02d;
   }
 
-  .box-shadow-2 {
-    box-shadow: 0 0 32rem 12rem #72cf71;
+  .circle-2 {
+    background-color: #72cf71;
+    height: 40rem;
+    width: 40rem;
   }
 
-  .box-shadow-3 {
-    box-shadow: 0 0 32rem 12rem #fff02d;
+  .circle-3 {
+    background-color: #007aff;
+    height: 70rem;
+    width: 70rem;
+  }
+
+  @media (max-width: 1113px) {
+    height: 42rem;
+    h1 {
+      font-size: 4xl;
+      line-height: 4xl;
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 750px) {
+    height: 42rem;
+    display: flex;
+    align-items: center !important;
+    padding: 0;
+    .typography-section {
+      position: relative;
+      margin: auto;
+      padding: 0;
+
+      div {
+        padding: 0;
+      }
+    }
+
+    .hero-image-container {
+      display: none;
+    }
   }
 `;
-
-// const ImageContainer = styled(x.div)`
-//   margin-top: 30rem;
-//   transform: skew(15deg, 15deg);
-//   margin-right: auto;
-//   margin-left: auto;
-
-//   img {
-//     /* display: block;
-//     width: 100% !important;
-//     display: none; */
-//   }
-// `;
-
-{
-  /* 
-
-      /> */
-}

@@ -1,8 +1,8 @@
-import styled, { x } from '@xstyled/emotion';
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Button, Logo, Typography } from '@oorsig/atoms';
 import Link from 'next/link';
+import styled, { x } from '@xstyled/emotion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Logo, Typography } from '@oorsig/atoms';
 
 export const Footer: React.FC = () => {
   const ref = useRef(null);
@@ -10,7 +10,6 @@ export const Footer: React.FC = () => {
     target: ref,
     offset: ['start end', 'end end'],
   });
-
   const translateY = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
@@ -63,14 +62,12 @@ export const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-        <x.div textAlign="right">
-          <Button>Start process</Button>
-        </x.div>
+        <x.div textAlign="right"></x.div>
       </motion.div>
 
       <x.div>
         <Typography textAlign="center">
-          © Copyright - XStyled Emotion Template by @janvier
+          © Copyright - GitStart | Oorsig
         </Typography>
       </x.div>
     </Container>
@@ -79,7 +76,7 @@ export const Footer: React.FC = () => {
 
 const Container = styled(x.footer)`
   padding: 2rem;
-  background-color: gray-900;
+  background-color: #00000084;
   overflow: hidden;
 
   .content-container {
@@ -113,6 +110,17 @@ const Container = styled(x.footer)`
 
     &:hover {
       color: white;
+    }
+  }
+
+  @media (max-width: 970px) {
+    .content-container {
+      flex-direction: column;
+      gap: 8;
+    }
+
+    svg {
+      max-width: 15rem;
     }
   }
 `;
