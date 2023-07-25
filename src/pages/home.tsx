@@ -1,17 +1,13 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import Head from 'next/head';
-
 import { Home } from '@domains/Home';
+import { Page } from '@atoms/index';
 
 const HomePage: NextPage = () => {
   return (
-    <>
-      <Head>
-        <title>GitStart Team Hustle</title>
-      </Head>
+    <Page title="Home">
       <Home />
-    </>
+    </Page>
   );
 };
 
