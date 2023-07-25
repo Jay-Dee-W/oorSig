@@ -13,6 +13,7 @@ import { Backdrop, Logo, Typography, SearchableList } from '@atoms/index';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 import { TopNavigation_viewer$key } from '@relay/__generated__/TopNavigation_viewer.graphql';
 import { TopNavigationRefetchQuery } from '@relay/__generated__/TopNavigationRefetchQuery.graphql';
+import { SidebarTeams } from './SidebarTeams';
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;
   TopNavigationQueryReference: PreloadedQuery<SidebarQuery>;
@@ -24,18 +25,14 @@ interface Organization {
   imgSrc: string;
 }
 
-// interface Team {
-//   label: string;
-//   value: string;
-//   imgSrc: string;
-// }
-
 const TopNavigation_viewer = graphql`
   fragment TopNavigation_viewer on User
   @refetchable(queryName: "TopNavigationRefetchQuery")
   @argumentDefinitions(
     organizationsFirst: { type: "Int!" }
     organizationsCursor: { type: "String" }
+    teamsFirst: { type: "Int!" }
+    teamsCursor: { type: "String" }
   ) {
     organizations(first: $organizationsFirst, after: $organizationsCursor)
       @connection(key: "TopNavigation_organizations") {
@@ -44,6 +41,8 @@ const TopNavigation_viewer = graphql`
           name
           label: name
           avatarUrl
+          ...SidebarTeams_viewer
+            @arguments(teamsFirst: $teamsFirst, teamsCursor: $teamsCursor)
         }
       }
       pageInfo {
@@ -80,56 +79,29 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
     );
   }, [data?.organizations.edges]);
 
+  // console.log('data', data);
+
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
-  const [selectedOrganization, setSelectedOrganization] = useState('');
-  // const [showTeamList, setShowTeamList] = useState(false);
-  // const [selectedTeam, setSelectedTeam] = useState('Select Team');
+  const [selectedOrganization, setSelectedOrganization] = useState(null);
 
   const toggleShowOrganizationList = () => {
     setShowOrgnizationList(!showOrgnizationList);
   };
-  // const toggleShowTeamList = () => {
-  //   setShowTeamList(!showTeamList);
-  // };
-
-  const handleOrganizationSelect = (org: string) => {
+  const handleOrganizationSelect = (org: any) => {
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
-
-    // const selectedOrg = data.organizations.edges?.find(
-    //   (edge: any) => edge.node.name === org
-    // );
-
-    // const newTeamData: Team[] =
-    //   selectedOrg?.node?.teams.edges?.map((edge: any) => ({
-    //     label: edge.node.name,
-    //     value: edge.node.slug,
-    //     imgSrc: edge.node.avatarUrl,
-    //   })) ?? [];
-
-    // if (!newTeamData.some(team => team.value === selectedTeam)) {
-    //   setSelectedTeam('Select Team');
-    // }
-
-    // setTeamData(newTeamData);
   };
-  // const handleTeamSelect = (team: string) => {
-  //   setSelectedTeam(team);
-  //   setShowTeamList(false);
-  // };
-
   const handleBackdropClick = () => {
     setShowOrgnizationList(false);
-    // setShowTeamList(false);
   };
 
   const handleLoadMoreOrganizations = useCallback(() => {
     if (!hasNext || isLoadingNext) {
-      console.log('OOOOOOOO', data.organizations.edges);
+      console.log('completelLoaded', data.organizations.edges);
       return;
     }
     loadNext(loadedItem);
-    console.log('Loaded!!!!!!!!!!!!!!!!', data.organizations.edges);
+    console.log('loaded!!!!!!!!!!!!!!!!', data.organizations.edges);
   }, [loadNext, hasNext, isLoadingNext]);
   return (
     <x.div alignItems="center">
@@ -138,10 +110,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
           <Logo w="100%" />
         </x.div>
       </Link>
-      {showOrgnizationList && (
-        // || (selectedOrganization && showTeamList)
-        <Backdrop onClick={handleBackdropClick} />
-      )}
+      {showOrgnizationList && <Backdrop onClick={handleBackdropClick} />}
       {organizationData.length > 0 &&
         (!showOrgnizationList ? (
           <x.div
@@ -208,79 +177,24 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
                 placeholder="Search Organization"
                 label="Select Organization"
                 imgSize="2.3rem"
-                isLoading={isLoadingNext}
                 isSearchable={organizationData.length > 3}
                 onSelect={handleOrganizationSelect}
                 selectedValue={selectedOrganization}
+                isLoading={isLoadingNext}
                 onScroll={handleLoadMoreOrganizations}
               />
             </x.div>
           </x.div>
         ))}
 
-      {/* {teamData.length > 0 &&
-        selectedOrganization &&
-        (!showTeamList ? (
-          <x.div
-            backgroundColor="gray-250"
-            p="0.4rem"
-            borderRadius="0 0 0.6rem 0.6rem"
-            display={'flex'}
-            alignItems={'center'}
-            gap="0.4rem"
-            color="gray-50"
-            onClick={toggleShowTeamList}
-          >
-            <x.img
-              src={
-                selectedTeam !== 'Select Team'
-                  ? teamData.find(team => team.value === selectedTeam)?.imgSrc
-                  : '/team.png'
-              }
-              alt={`${selectedTeam} logo`}
-              title="Logo"
-              h="8"
-              w="8"
-              borderRadius="0.4rem"
-              borderColor="gray-50"
-            />
-            <x.div flex={1}>
-              <Typography variant="h4" size="base" color="white">
-                {selectedTeam}
-              </Typography>
-            </x.div>
-            <MdExpandMore size="1.6rem" />
-          </x.div>
-        ) : (
-          <x.div position="relative">
-            <x.div
-              position="absolute"
-              w="15.9rem"
-              border="1px solid"
-              borderColor="gray-250"
-              borderRadius="0.5rem"
-              zIndex={2}
-            >
-              <x.div
-                position="absolute"
-                right="5px"
-                color="gray-50"
-                pt="0.3rem"
-              >
-                <MdClose size="1.6rem" onClick={toggleShowTeamList} />
-              </x.div>
-              <SearchableList
-                options={teamData}
-                placeholder="Search Team"
-                label="Select Team"
-                imgSize="1.8rem"
-                isSearchable={teamData.length > 4}
-                onSelect={handleTeamSelect}
-                selectedValue={selectedTeam}
-              />
-            </x.div>
-          </x.div>
-        ))} */}
+      {data.organizations.edges?.map((edge, index) => (
+        <SidebarTeams
+          sidebarTeamsRef={edge?.node}
+          loadedItem={loadedItem}
+          selectedOrganization={selectedOrganization}
+          key={index}
+        />
+      ))}
     </x.div>
   );
 };
