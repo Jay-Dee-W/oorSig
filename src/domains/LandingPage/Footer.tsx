@@ -3,8 +3,9 @@ import Link from 'next/link';
 import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Logo, Typography } from '@oorsig/atoms';
+import { RoutesInterface } from '.';
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<{ routes: RoutesInterface[] }> = ({ routes }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -23,42 +24,26 @@ export const Footer: React.FC = () => {
           <Logo w="50%" />
         </div>
         <div>
-          <Typography variant="h5">Links</Typography>
+          <Typography variant="h5">Navigation</Typography>
           <ul>
-            <li>
-              <Link href="/">
-                <Typography>Home</Typography>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <Typography>About</Typography>
-              </Link>
-            </li>
-            <li>
-              <Link href="/">
-                <Typography>FAQ</Typography>
-              </Link>
-            </li>
+            {routes.map(route => (
+              <li key={route.href}>
+                <Link href={route.href}>{route.title}</Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
-          <Typography variant="h5">Features</Typography>
+          <Typography variant="h5">Others links</Typography>
           <ul>
             <li>
-              <Link href="/#">
-                <Typography>Visualization</Typography>
-              </Link>
+              <Link href="/#">Visualization</Link>
             </li>
             <li>
-              <Link href="/#">
-                <Typography>Organizations</Typography>
-              </Link>
+              <Link href="/#">Organizations</Link>
             </li>
             <li>
-              <Link href="/#">
-                <Typography>Ask AI</Typography>
-              </Link>
+              <Link href="/#">Ask AI</Link>
             </li>
           </ul>
         </div>
@@ -111,6 +96,15 @@ const Container = styled(x.footer)`
     &:hover {
       color: white;
     }
+
+    a {
+      color: #fff;
+      display: block;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   @media (max-width: 970px) {
@@ -121,6 +115,10 @@ const Container = styled(x.footer)`
 
     svg {
       max-width: 15rem;
+    }
+
+    a {
+      padding: 0.5rem 0;
     }
   }
 `;

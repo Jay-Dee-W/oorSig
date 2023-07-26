@@ -8,9 +8,9 @@ import { SectionContainer } from './SectionContainer';
 export const About: React.FC = () => {
   return (
     <>
-      <SectionContainer>
+      <SectionContainer id="aboutUs">
         <ScrollScaleAnimation>
-          <ContainerTransparent id="about">
+          <ContainerTransparent>
             <AboutVector />
             <ContainerTypography>
               <Typography variant="h3">

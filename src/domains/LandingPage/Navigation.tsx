@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import styled, { x } from '@xstyled/emotion';
 import { Logo } from '@oorsig/atoms';
+import { RoutesInterface } from '.';
 
-export const Navigation: React.FC = () => {
+export const Navigation: React.FC<{ routes: RoutesInterface[] }> = ({
+  routes,
+}) => {
   const [open, setOpen] = useState(false);
   const menuToggle = () => setOpen(!open);
 
@@ -13,24 +16,17 @@ export const Navigation: React.FC = () => {
         <Logo w="8rem" />
         <button onClick={menuToggle}>{open ? 'x' : '='}</button>
       </div>
-      <ul>
-        <li>
-          <Link className="nav-link" href="#hero">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link href="#features">Features</Link>
-        </li>
-        <li>
-          <Link href="#about">About</Link>
-        </li>
-        <li>
-          <Link href="#faq">FAQ</Link>
-        </li>
+      <ul onClick={menuToggle}>
+        {routes.map(route => (
+          <li key={route.href}>
+            <Link className="nav-link" href={route.href}>
+              {route.title}
+            </Link>
+          </li>
+        ))}
       </ul>
 
-      <button>Sign in</button>
+      <button className="action-btn">Sign in</button>
     </Nav>
   );
 };
@@ -39,7 +35,7 @@ const Nav = styled(x.nav)`
   padding: 0.3rem;
   border: 1;
   border-color: gray-200;
-  width: 100%;
+  width: 90%;
   max-width: 50rem;
   display: flex;
   align-items: center;
@@ -98,10 +94,29 @@ const Nav = styled(x.nav)`
     }
   }
 
+  .logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   @media (max-width: 970px) {
     ul {
       display: none;
     }
+    .action-btn {
+      display: none;
+    }
+
+    .logo-section {
+      width: 100%;
+      display: flex;
+
+      button {
+        display: block;
+      }
+    }
+
     &.mobile-open {
       flex-direction: column;
       padding: 3rem 1rem;
@@ -112,6 +127,7 @@ const Nav = styled(x.nav)`
       .logo-section {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
       }
 
@@ -133,12 +149,8 @@ const Nav = styled(x.nav)`
           border-bottom: 1px solid white;
         }
       }
-    }
 
-    .logo-section {
-      display: flex;
-
-      button {
+      .action-btn {
         display: block;
       }
     }

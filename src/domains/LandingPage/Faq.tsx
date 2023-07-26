@@ -8,28 +8,45 @@ import { SectionContainer } from './SectionContainer';
 const FaqList = [
   {
     title: 'Do I have to be in GitStart to use Oorsig?',
-    description: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nobis quas molestiae enim ut, tenetur eius quos veritatis? Blanditiis aliquam laudantium perspiciatis a. Necessitatibus perspiciatis ad repellat? Iusto, molestiae sequi.`,
+    description: [
+      `the ultimate GitHub data visualization tool, designed for every developer! While Oorsig is open to all GitHub users, we've optimized it to cater specifically to developers in GitStart and organizations like GitStart. `,
+      `Rest assured, your organization's data remains secure, hidden behind /org:gitstart pages. With Oorsig, effortlessly access and visualize your GitHub metrics, track progress, and optimize productivity. Embrace data-driven insights and take control of your development journey. `,
+    ],
     id: 1,
   },
   {
     title: 'Is Oorsig an open-source?',
-    description: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nobis quas molestiae enim ut, tenetur eius quos veritatis? Blanditiis aliquam laudantium perspiciatis a. Necessitatibus perspiciatis ad repellat? Iusto, molestiae sequi.`,
+    description: [
+      `As of now, Oorsig is not open-source. It is a proprietary tool of GitStart, designed to enhance GitHub data visualization and performance monitoring.`,
+      `While there might be plans to consider open-sourcing it in the future, currently, Oorsig is exclusive to GitStart and is not available as an open-source project.`,
+    ],
     id: 2,
   },
   {
     title: 'Does Oorsig store any of my github data?',
-    description: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nobis quas molestiae enim ut, tenetur eius quos veritatis? Blanditiis aliquam laudantium perspiciatis a. Necessitatibus perspiciatis ad repellat? Iusto, molestiae sequi.`,
+    description: [
+      `Ideally, Oorsig does not store any of your GitHub data. As a tool designed for GitHub data visualization and performance monitoring, its primary function is to provide real-time access and visualization of your GitHub metrics without storing any of your data. `,
+      `Your GitHub data is processed and displayed directly within the platform, ensuring your information remains secure and private within your GitHub account.`,
+      `With a focus on data privacy and security, Oorsig aims to provide a seamless, efficient, and safe user experience for every developer.`,
+    ],
     id: 3,
   },
   {
     title:
       'Is Oorsig a tool for developer or is it a tool for project managers?',
-    description: `
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam nobis quas molestiae enim ut, tenetur eius quos veritatis? Blanditiis aliquam laudantium perspiciatis a. Necessitatibus perspiciatis ad repellat? Iusto, molestiae sequi.`,
+    description: [
+      `Ideally, Oorsig is a versatile tool designed to benefit both developers and project managers alike. It caters to the needs of various stakeholders involved in a development project.`,
+      `Oorsig provides developers with a comprehensive dashboard that visualizes GitHub data in an easy-to-understand manner. It empowers developers to access key performance metrics, monitor code quality, track commit frequencies, and gain insights into their individual or team's progress. Developers can use Oorsig to optimize their workflows, identify areas for improvement, and make data-driven decisions to enhance their productivity.`,
+      `Oorsig equips project managers with valuable data to track the overall health and progress of development projects. It offers a unified view of multiple repositories and organizations, providing project managers with real-time updates on various projects' statuses. With this information, project managers can efficiently allocate resources, identify bottlenecks, and ensure projects stay on track. The platform's advanced analytics and visualizations aid in creating data-backed reports for stakeholders, enabling effective communication and decision-making.`,
+    ],
     id: 4,
+  },
+  {
+    title: 'How does Oorsig benefit me as a developer?',
+    description: [
+      ` Oorsig is a valuable tool for developers, providing a user-friendly platform to access, visualize, and analyze GitHub data. By leveraging Oorsig's capabilities, you can boost your productivity, improve collaboration with your team, and gain insights that drive continuous personal and project development.`,
+    ],
+    id: 5,
   },
 ];
 
@@ -83,7 +100,9 @@ export const FAQ: React.FC = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <div className="content">
-                      <Typography>{el.description}</Typography>
+                      {el.description.map((content, i) => (
+                        <Typography key={i}>{content}</Typography>
+                      ))}
                     </div>
                   </motion.div>
                 </CollapsibleItem>
@@ -132,6 +151,7 @@ const CollapsibleItem = styled(x.div)`
   p {
     color: gray-text;
     font-size: base;
+    margin-bottom: 1rem;
   }
 
   .content {
