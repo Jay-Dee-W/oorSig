@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import { MdClose, MdExpandMore } from 'react-icons/md';
 import { graphql, usePaginationFragment } from 'react-relay';
 import { x } from '@xstyled/emotion';
-import { MdClose, MdExpandMore } from 'react-icons/md';
-import { Backdrop, Typography, SearchableList } from '@atoms/index';
 import { SidebarOrganizations_viewer$key } from '@relay/__generated__/SidebarOrganizations_viewer.graphql';
 import { SidebarOrganizationsRefetchQuery } from '@relay/__generated__/SidebarOrganizationsRefetchQuery.graphql';
+import { Backdrop, Typography, SearchableList } from '@atoms/index';
 import { SidebarTeams } from './SidebarTeams';
 interface SidebarOrganizationsProps {
   SidebarOrganizationsRef: SidebarOrganizations_viewer$key;
@@ -64,8 +64,6 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
     );
   }, [data?.organizations.edges]);
 
-  // // console.log('data', data);
-
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
   const [selectedOrganization, setSelectedOrganization] = useState(null);
 
@@ -81,13 +79,10 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
   };
 
   const handleLoadMoreOrganizations = useCallback(() => {
-    if (!hasNext || isLoadingNext) {
-      console.log('completelLoaded', data.organizations.edges);
-      return;
-    }
+    if (!hasNext || isLoadingNext) return;
     loadNext(loadedItem);
-    console.log('loaded!!!!!!!!!!!!!!!!', data.organizations.edges);
   }, [loadNext, hasNext, isLoadingNext]);
+
   return (
     <x.div alignItems="center">
       {showOrgnizationList && <Backdrop onClick={handleBackdropClick} />}
@@ -96,11 +91,6 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
           <x.div
             backgroundColor="gray-200"
             p="0.6rem"
-            // borderRadius={
-            //   teamData.length === 0 || !selectedOrganization
-            //     ? ' 0.6rem'
-            //     : '0.6rem 0.6rem 0 0'
-            // }
             borderRadius={' 0.6rem'}
             display="flex"
             alignItems="center"

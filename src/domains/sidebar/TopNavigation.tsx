@@ -6,8 +6,8 @@ import {
 } from 'react-relay';
 import Link from 'next/link';
 import { x } from '@xstyled/emotion';
-import { Logo } from '@atoms/index';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
+import { Logo } from '@atoms/index';
 import { SidebarOrganizations } from './SidebarOrganizations';
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;

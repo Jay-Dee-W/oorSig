@@ -96,6 +96,10 @@ export const SearchableList: React.FC<SelectProps> = ({
   }, [onScroll]);
 
   useEffect(() => {
+    setItems(options);
+  }, [options]);
+
+  useEffect(() => {
     if (onScroll) {
       const refValue = listContainerRef.current;
       refValue?.addEventListener('scroll', handleScroll);

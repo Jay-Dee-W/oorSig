@@ -2,9 +2,9 @@ import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { graphql, usePaginationFragment } from 'react-relay';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
-import { Backdrop, Typography, SearchableList } from '@atoms/index';
 import { SidebarTeams_viewer$key } from '@relay/__generated__/SidebarTeams_viewer.graphql';
 import { SidebarTeamsRefetchQuery } from '@relay/__generated__/SidebarTeamsRefetchQuery.graphql';
+import { Backdrop, Typography, SearchableList } from '@atoms/index';
 
 interface SidebarTeamProps {
   sidebarTeamsRef: SidebarTeams_viewer$key;

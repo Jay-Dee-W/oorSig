@@ -1,13 +1,13 @@
 import { FC, Suspense, useCallback } from 'react';
-import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
-import { MdSpaceDashboard } from 'react-icons/md';
 import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
+import { graphql } from 'relay-runtime';
+import { MdSpaceDashboard } from 'react-icons/md';
+import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
+import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
+import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
-import { graphql } from 'relay-runtime';
-import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
-import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
@@ -68,6 +68,7 @@ export const Sidebar: FC<SidebarProps> = props => {
       href: '#',
     },
   ];
+
   return (
     <Suspense>
       {queryRef && (
