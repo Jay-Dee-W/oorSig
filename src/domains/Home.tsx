@@ -254,11 +254,7 @@ export const Home: React.FC = () => {
             productivity.
           </Typography>
         </x.div>
-        <x.div
-          display="flex"
-          flexWrap="wrap"
-          w="100%"
-        >
+        <x.div display="flex" flexWrap="wrap" w="100%">
           <x.div flex="1" className="lineChart">
             <Line options={options} data={chartData} />
           </x.div>
