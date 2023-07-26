@@ -5,8 +5,39 @@ import { x } from '@xstyled/emotion';
 import { Avatar } from '@atoms/Avatar';
 import { Popover, PopoverContent, PopoverTrigger } from '@atoms/Popover';
 import { Typography } from '@atoms/Typography';
+import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
+import {
+  graphql,
+  GraphQLTaggedNode,
+  PreloadedQuery,
+  usePreloadedQuery,
+  useFragment,
+} from 'react-relay';
+import { SidebarBottom_viewer$key } from '@relay/__generated__/SidebarBottom_viewer.graphql';
+interface SidebarBottomProps {
+  SidebarBottomQuery: GraphQLTaggedNode;
+  SidebarBottomQueryReference: PreloadedQuery<SidebarQuery>;
+}
 
-export const SidebarBottom: React.FC = () => {
+const SidebarBottom_viewer = graphql`
+  fragment SidebarBottom_viewer on User {
+    name
+    avatarUrl
+  }
+`;
+export const SidebarBottom: React.FC<SidebarBottomProps> = ({
+  SidebarBottomQuery,
+  SidebarBottomQueryReference,
+}) => {
+  const { viewer } = usePreloadedQuery(
+    SidebarBottomQuery,
+    SidebarBottomQueryReference
+  );
+  const data = useFragment<SidebarBottom_viewer$key>(
+    SidebarBottom_viewer,
+    viewer
+  );
+
   const currentYear = new Date().getFullYear();
   const router = useRouter();
   const clickSignOut = async () => {
@@ -29,9 +60,12 @@ export const SidebarBottom: React.FC = () => {
             gap="2"
             cursor="pointer"
           >
-            <Avatar src={undefined} alt={'unkown'} />
+            <Avatar
+              src={data?.avatarUrl ?? undefined}
+              alt={data?.name || 'NA'}
+            />
             <Typography flex={1} color="white">
-              Username
+              {data?.name}
             </Typography>
             <MdOutlineMoreVert size="1.6rem" />
           </x.div>
