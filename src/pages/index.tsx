@@ -1,15 +1,13 @@
-import Head from 'next/head';
 import type { NextPage } from 'next';
-
 import { LandingPage } from '@domains/LandingPage';
+import { Page } from '@oorsig/atoms';
 
 const AuthPage: NextPage = () => {
   return (
     <>
-      <Head>
-        <title>OORSIG</title>
-      </Head>
-      <LandingPage />
+      <Page title="Home">
+        <LandingPage />
+      </Page>
     </>
   );
 };
