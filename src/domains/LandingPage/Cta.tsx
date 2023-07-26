@@ -15,14 +15,14 @@ export const CTA: React.FC = () => {
 
   const translateX = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [-500, -200, 0]
+    [0, 0.2, 0.5, 1],
+    [-500, -200, 0, 0]
   );
 
   const translateXContent = useTransform(
     scrollYProgress,
-    [0, 0.5, 1],
-    [600, 200, 0]
+    [0, 0.2, 0.5, 1],
+    [600, 200, 0, 0]
   );
   return (
     <>
@@ -48,12 +48,13 @@ export const CTA: React.FC = () => {
 };
 
 const Container = styled(x.div)`
-  width: 100%;
+  width: 92%;
   max-width: 1100px;
   margin: auto;
   border-radius: 0.5rem;
   padding: 2rem;
   margin-top: 3rem;
+  margin-bottom: 4rem;
   background-color: gray-300;
   display: flex;
   gap: 6;

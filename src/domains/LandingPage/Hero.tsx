@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
   });
 
   return (
-    <HeroSection ref={typographyRef}>
+    <HeroSection ref={typographyRef} id="hero">
       <motion.section
         style={{ opacity, scale, zIndex, display }}
         className="typography-section"

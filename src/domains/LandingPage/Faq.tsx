@@ -47,7 +47,7 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <SectionContainer>
+    <SectionContainer id="faq">
       <ScrollScaleAnimation>
         <ContainerSection>
           <div className="container">

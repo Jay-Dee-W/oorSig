@@ -4,13 +4,12 @@ import styled, { x } from '@xstyled/emotion';
 import { Typography } from '@oorsig/atoms';
 import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 import { AskAi } from './AskAi';
-import { AboutVector } from './AboutVector';
 import { SectionContainer } from './SectionContainer';
 
 export const Features: React.FC = () => {
   return (
     <>
-      <SectionContainer>
+      <SectionContainer id="features">
         <ScrollScaleAnimation>
           <Container>
             <ContainerImage>
@@ -82,45 +81,10 @@ export const Features: React.FC = () => {
             </ContainerTypography>
           </Container>
         </ScrollScaleAnimation>
-
-        <ScrollScaleAnimation>
-          <ContainerTransparent>
-            <AboutVector />
-            <ContainerTypography>
-              <Typography variant="h3">
-                Ask questions and get answers from your data with AI.
-              </Typography>
-              <Typography>
-                We are excited to announce the integration of AI-powered data
-                discovery on our website. With this new feature, you can now ask
-                questions about your GitHub metrics and get answers in a simple
-                and natural way
-              </Typography>
-            </ContainerTypography>
-          </ContainerTransparent>
-        </ScrollScaleAnimation>
       </SectionContainer>
     </>
   );
 };
-
-const ContainerTransparent = styled(x.div)`
-  width: 100%;
-  max-width: 1100px;
-  margin: auto;
-  display: flex;
-  border-radius: 0.6rem;
-  align-items: center;
-  margin-top: 2rem;
-
-  @media (max-width: 1150px) {
-    width: 96%;
-  }
-
-  @media (max-width: 970px) {
-    flex-direction: column;
-  }
-`;
 
 const Container = styled(x.div)`
   width: 100%;

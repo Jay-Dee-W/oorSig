@@ -18,7 +18,7 @@ function MyApp(
   return (
     <SessionProvider session={session}>
       <Providers>
-        {router.asPath === '/' ? (
+        {router.asPath.match(/#([a-zA-Z0-9_-]+)/) ? (
           // Auth page (login or signup)
           <Component {...pageProps} />
         ) : (

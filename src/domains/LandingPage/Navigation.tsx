@@ -15,18 +15,18 @@ export const Navigation: React.FC = () => {
       </div>
       <ul>
         <li>
-          <Link className="nav-link" href="/">
+          <Link className="nav-link" href="#hero">
             Home
           </Link>
         </li>
         <li>
-          <Link href="#">Features</Link>
+          <Link href="#features">Features</Link>
         </li>
         <li>
-          <Link href="#">FAQ</Link>
+          <Link href="#about">About</Link>
         </li>
         <li>
-          <Link href="#">Sign Up</Link>
+          <Link href="#faq">FAQ</Link>
         </li>
       </ul>
 
@@ -102,7 +102,6 @@ const Nav = styled(x.nav)`
     ul {
       display: none;
     }
-    /* height: 42rem; */
     &.mobile-open {
       flex-direction: column;
       padding: 3rem 1rem;
@@ -130,9 +129,7 @@ const Nav = styled(x.nav)`
         font-size: xl;
 
         a {
-          /* padding: 2rem 1rem; */
           display: block;
-          /* background-color: red; */
           border-bottom: 1px solid white;
         }
       }
