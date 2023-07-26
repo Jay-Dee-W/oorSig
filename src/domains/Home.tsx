@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import type { NextPage } from 'next';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useTheme } from '@xstyled/emotion';
@@ -8,8 +9,10 @@ import { Card } from '@atoms/Card';
 import { Dropdown } from '@atoms/Dropdown';
 import { StatusBadge } from '@atoms/StatusBadge';
 import { Table } from '@atoms/Table';
+import { TopHeader } from '@atoms/TopHeader';
+import { FiMenu } from 'react-icons/fi';
 import { Typography } from '@atoms/Typography';
-
+// import '../pages/style.css';
 import {
   Chart,
   CategoryScale,
@@ -37,6 +40,7 @@ Chart.register(
   Legend
 );
 const options: ChartOptions<'line'> = {
+  responsive: true,
   plugins: {
     legend: {
       display: false,
@@ -208,26 +212,40 @@ export const Home: React.FC = () => {
       },
     ],
   };
+
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  const checkMobileView = () => {
+    setIsMobileView(window.innerWidth <= 912);
+  };
+
+  useEffect(() => {
+    checkMobileView();
+    window.addEventListener('resize', checkMobileView);
+    return () => {
+      window.removeEventListener('resize', checkMobileView);
+    };
+  }, []);
+
+  const sortGithubStatisticsForMobile = () => {
+    const firstColumnItems = [
+      userGithubStatistics[0],
+      userGithubStatistics[2],
+      userGithubStatistics[4],
+    ];
+    const secondColumnItems = [
+      userGithubStatistics[1],
+      userGithubStatistics[3],
+      userGithubStatistics[5],
+    ];
+    return [...firstColumnItems, ...secondColumnItems];
+  };
+
   return (
     <x.div className="App">
-      <x.div
-        padding="1rem"
-        backgroundColor="gray-300"
-        display="flex"
-        alignItems={'center'}
-        borderBottom="1"
-        borderBottomColor="gray-200"
-      >
-        <x.div flex="1">
-          <Typography fontSize="2xl" fontWeight="bold">
-            Dashboard
-          </Typography>
-          <Typography color="gray-50">Welcome to your dashboard</Typography>
-        </x.div>
-        <x.div>
-          <Dropdown options={dropDownOptions} placeholder="Weekly" />
-        </x.div>
-      </x.div>
+      <TopHeader title="Dashboard" subtitle="Welcome to your dashboard">
+        <Dropdown options={dropDownOptions} placeholder="Weekly" />
+      </TopHeader>
       <x.div p="1rem" backgroundColor="gray-300" w="100%">
         <x.div display="flex" mb="3" gap="2" alignItems="center">
           <Typography size="3xl">🤖</Typography>
@@ -245,27 +263,45 @@ export const Home: React.FC = () => {
           justifyContent="space-between"
           w="100%"
         >
-          <x.div flex="1" mb={{ base: '4', md: '0' }} w="100%">
+          <x.div flex="1" w="100%" maxW="100%" className="lineChart">
             <Line options={options} data={chartData} />
           </x.div>
           <x.div
             display="grid"
-            gridTemplateColumns="repeat(2, minmax(0, 1fr))"
-            gap="5"
-            maxW="100%"
-            w="25vw"
+            gridTemplateColumns={
+              isMobileView
+                ? 'repeat(3, minmax(0, 1fr))'
+                : 'repeat(2, minmax(0, 1fr))'
+            }
+            flexDirection="column"
+            gap="3"
+            maxW="90%"
+            mx="auto"
+            w={isMobileView ? '100%' : '25vw'}
             minWidth="300px"
+            className="wordWrap"
           >
-            {userGithubStatistics.map(item => (
-              <Card key="" bg={item.bgColor}>
-                <x.p color={item.txtColor} pb="0.5rem">
-                  {item.label}
-                </x.p>
-                <Typography fontSize="4xl" color={item.txtColor}>
-                  {item.value}
-                </Typography>
-              </Card>
-            ))}
+            {isMobileView
+              ? sortGithubStatisticsForMobile().map(item => (
+                  <Card key="" bg={item?.bgColor}>
+                    <x.p color={item?.txtColor} pb="0.5rem">
+                      {item?.label}
+                    </x.p>
+                    <Typography fontSize="4xl" color={item?.txtColor}>
+                      {item?.value}
+                    </Typography>
+                  </Card>
+                ))
+              : userGithubStatistics.map(item => (
+                  <Card key="" bg={item.bgColor}>
+                    <x.p color={item.txtColor} pb="0.5rem">
+                      {item.label}
+                    </x.p>
+                    <Typography fontSize="4xl" color={item.txtColor}>
+                      {item.value}
+                    </Typography>
+                  </Card>
+                ))}
           </x.div>
         </x.div>
       </x.div>

@@ -7,9 +7,11 @@ import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
 
-interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
+interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {
+  visible: boolean;
+}
 
-export const Sidebar: FC<SidebarProps> = props => {
+export const Sidebar: FC<SidebarProps> = ({ visible, ...props }) => {
   const isActive = useCallback(
     (match: string) => (path: string) => path.includes(match),
     []
@@ -41,7 +43,8 @@ export const Sidebar: FC<SidebarProps> = props => {
       {...props}
       display={'flex'}
       flexDirection={'column'}
-      w="17.82125rem"
+      h="100vh"
+      className={visible ? 'sidebar is-active' : 'sidebar'}
     >
       <x.div flex={1}>
         <TopNavigation />

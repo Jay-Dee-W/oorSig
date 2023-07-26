@@ -16,6 +16,7 @@ export { SearchableList } from './SearchableList';
 export { StatusBadge } from './StatusBadge';
 export { Spinner } from './Spinner';
 export { Table } from './Table';
+export { TopHeader } from './TopHeader';
 export { Typography } from './Typography';
 export { WeeklyProgress } from './WeeklyProgress';
 export * from './Popover';
