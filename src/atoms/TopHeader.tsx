@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { x } from '@xstyled/emotion';
 import { Typography } from '@atoms/Typography';
 import { Backdrop } from '@atoms/index';
 import { FiMenu } from 'react-icons/fi';
+import { useSidebarContext } from '@domains/sidebar/SidebarContext';
 
 interface TopHeaderProps {
   title: string;
@@ -15,11 +16,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   subtitle,
   children,
 }) => {
-  const [sidebarVisible, setSidebarVisible] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarVisible(prevState => !prevState);
-  };
+  const { sidebarVisible, toggleSidebar } = useSidebarContext();
   return (
     <x.div
       p="1rem"
@@ -35,16 +32,16 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
         onClick={toggleSidebar}
         cursor="pointer"
       />
-      {sidebarVisible && <Backdrop onClick={toggleSidebar} />}
-      <x.div flex="1">
-        <Typography fontSize="2xl" fontWeight="bold">
-          {title}
-        </Typography>
+      <x.div flex="1" className="header">
+        <x.div className="headerTitle">
+          <Typography fontSize="2xl">{title}</Typography>
+        </x.div>
         <x.div className="subtitle">
           <Typography color="gray-50">{subtitle}</Typography>
         </x.div>
       </x.div>
       <x.div>{children}</x.div>
+      {sidebarVisible && <Backdrop onClick={toggleSidebar} />}
     </x.div>
   );
 };

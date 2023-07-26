@@ -6,16 +6,16 @@ import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
 import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
+import { useSidebarContext } from './SidebarContext';
 
-interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {
-  visible: boolean;
-}
+interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
-export const Sidebar: FC<SidebarProps> = ({ visible, ...props }) => {
+export const Sidebar: FC<SidebarProps> = ({ ...props }) => {
   const isActive = useCallback(
     (match: string) => (path: string) => path.includes(match),
     []
   );
+  const { sidebarVisible } = useSidebarContext();
   const routes = [
     {
       icon: MdSpaceDashboard,
@@ -44,7 +44,7 @@ export const Sidebar: FC<SidebarProps> = ({ visible, ...props }) => {
       display={'flex'}
       flexDirection={'column'}
       h="100vh"
-      className={visible ? 'sidebar is-active' : 'sidebar'}
+      className={sidebarVisible ? 'sidebar is-active' : 'sidebar'}
     >
       <x.div flex={1}>
         <TopNavigation />

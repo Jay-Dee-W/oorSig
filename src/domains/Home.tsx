@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
-import type { NextPage } from 'next';
+import React, { useState, useEffect } from 'react';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useTheme } from '@xstyled/emotion';
@@ -10,9 +9,8 @@ import { Dropdown } from '@atoms/Dropdown';
 import { StatusBadge } from '@atoms/StatusBadge';
 import { Table } from '@atoms/Table';
 import { TopHeader } from '@atoms/TopHeader';
-import { FiMenu } from 'react-icons/fi';
 import { Typography } from '@atoms/Typography';
-// import '../pages/style.css';
+
 import {
   Chart,
   CategoryScale,
