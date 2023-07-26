@@ -6,6 +6,9 @@ import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
 import { useSidebarContext } from './SidebarContext';
+
+interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
+
 import { graphql } from 'relay-runtime';
 import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
@@ -59,7 +62,7 @@ export const Sidebar: FC<SidebarProps> = props => {
           {...props}
           display={'flex'}
           flexDirection={'column'}
-          w="17.82125rem"
+          className={sidebarVisible ? 'sidebar is-active' : 'sidebar'}
         >
           <x.div flex={1}>
             <TopNavigation />
@@ -93,5 +96,4 @@ const Container = styled(x.div)`
   border-right: 1;
   border-right-color: gray-200;
   background-color: gray-300;
-  position: relative;
 `;

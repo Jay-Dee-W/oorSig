@@ -256,12 +256,10 @@ export const Home: React.FC = () => {
         </x.div>
         <x.div
           display="flex"
-          flexDirection={{ base: 'column', md: 'row' }}
           flexWrap="wrap"
-          justifyContent="space-between"
           w="100%"
         >
-          <x.div flex="1" w="100%" maxW="100%" className="lineChart">
+          <x.div flex="1" className="lineChart">
             <Line options={options} data={chartData} />
           </x.div>
           <x.div
@@ -273,8 +271,7 @@ export const Home: React.FC = () => {
             }
             flexDirection="column"
             gap="3"
-            maxW="90%"
-            mx="auto"
+            px="1rem"
             w={isMobileView ? '100%' : '25vw'}
             minWidth="300px"
             className="wordWrap"
