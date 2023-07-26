@@ -19,7 +19,7 @@ export const sidebarQuery = graphql`
     $teamsCursor: String
   ) {
     viewer {
-      ...TopNavigation_viewer
+      ...SidebarOrganizations_viewer
         @arguments(
           organizationsFirst: $organizationsFirst
           organizationsCursor: $organizationsCursor

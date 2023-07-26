@@ -89,12 +89,8 @@ export const SidebarTeams: React.FC<SidebarTeamProps> = ({
   };
 
   const handleLoadMoreTeams = useCallback(() => {
-    if (!hasNext || isLoadingNext) {
-      // console.log('completelLoaded', data.organizations.edges);
-      return;
-    }
+    if (!hasNext || isLoadingNext) return;
     loadNext(loadedItem);
-    // console.log('loaded!!!!!!!!!!!!!!!!', data.organizations.edges);
   }, [loadNext, hasNext, isLoadingNext]);
 
   return (

@@ -25,13 +25,16 @@ export function useQueryLoader<TQuery extends OperationType>(
   useEffect(() => {
     // checking for router.isReady ensures that router.query (the object containing the params in the path) is not empty
     if (router.isReady) {
-      loadQuery(variables, loadQueryOptions);
+      loadQuery(variables, {
+        fetchPolicy: 'store-and-network',
+        ...loadQueryOptions,
+      });
     }
 
     return () => {
       disposeQuery();
     };
-  }, [router.isReady, loadQuery, disposeQuery, variables, loadQueryOptions]);
+  }, [router.isReady]);
 
   return { queryRef, loadQuery };
 }

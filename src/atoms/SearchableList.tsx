@@ -19,7 +19,7 @@ interface SelectProps extends SystemProps {
   imgSize?: string;
   isSearchable?: boolean;
   onSelect?: (org: string) => void;
-  selectedValue?: string;
+  selectedValue?: string | null;
   onScroll?: () => void;
   isLoading?: boolean;
 }
@@ -128,7 +128,7 @@ export const SearchableList: React.FC<SelectProps> = ({
               {...getInputProps()}
             />
           )}
-          <StyledDiv ref={listContainerRef} >
+          <StyledDiv ref={listContainerRef}>
             <x.ul
               bg="gray-300"
               color="white"

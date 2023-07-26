@@ -26,7 +26,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
       <meta property="og:site_name" content="OORSIG App" />
       <meta property="og:locale" content="en_US" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" href="/oorsigIcon.ico" type="image/x-icon" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       <meta name="robots" content="index, follow" />
       <title>{title} | OORSIG</title>
     </Head>
