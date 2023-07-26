@@ -26,7 +26,8 @@ export const sidebarQuery = graphql`
           teamsFirst: $teamsFirst
           teamsCursor: $teamsCursor
         )
-    }
+      ...SidebarBottom_viewer
+   }
   }
 `;
 
@@ -97,7 +98,10 @@ export const Sidebar: FC<SidebarProps> = props => {
               })}
             </x.div>
           </x.div>
-          <SidebarBottom />
+          <SidebarBottom
+            SidebarBottomQuery={sidebarQuery}
+            SidebarBottomQueryReference={queryRef}
+          />
         </Container>
       )}
     </Suspense>
