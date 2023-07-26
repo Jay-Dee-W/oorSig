@@ -8,7 +8,6 @@ import { CtaButton } from './CtaButton';
 
 export const Hero: React.FC = () => {
   const ref = useRef(null);
-  const typographyRef = useRef(null);
   const { x, y } = useFollowPointer(ref);
   const { scrollYProgress } = useScroll();
 
@@ -26,7 +25,7 @@ export const Hero: React.FC = () => {
   });
 
   return (
-    <HeroSection ref={typographyRef} id="hero">
+    <HeroSection id="hero">
       <motion.section
         style={{ opacity, scale, zIndex, display }}
         className="typography-section"
@@ -61,7 +60,7 @@ export const Hero: React.FC = () => {
         />
       </motion.div>
 
-      <div className="blur-overlay"></div>
+      <div className="blur-overlay" />
 
       <motion.div
         ref={ref}
