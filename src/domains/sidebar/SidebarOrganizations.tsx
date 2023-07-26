@@ -82,7 +82,6 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
     if (!hasNext || isLoadingNext) return;
     loadNext(loadedItem);
   }, [loadNext, hasNext, isLoadingNext]);
-
   return (
     <x.div alignItems="center">
       {showOrgnizationList && <Backdrop onClick={handleBackdropClick} />}
