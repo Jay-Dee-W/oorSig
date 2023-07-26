@@ -33,11 +33,11 @@ export const CTA: React.FC = () => {
           </motion.div>
           <motion.div style={{ translateX: translateXContent }}>
             <Typography variant="h4">
-              Start visualizing <br /> your information
+              Start visualizing <br /> your information now
             </Typography>
             <Typography>
-              We are excited to announce the integration of AI-powered data
-              discovery on our website. With this new feature, y
+              Unleash data insights through interactive visualizations! Start
+              now!
             </Typography>
             <CtaButton />
           </motion.div>

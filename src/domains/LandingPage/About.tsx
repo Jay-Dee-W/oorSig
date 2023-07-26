@@ -13,14 +13,15 @@ export const About: React.FC = () => {
           <ContainerTransparent>
             <AboutVector />
             <ContainerTypography>
-              <Typography variant="h3">
-                Ask questions and get answers from your data with AI.
-              </Typography>
+              <Typography variant="h3">About Oorsig.</Typography>
               <Typography>
-                We are excited to announce the integration of AI-powered data
-                discovery on our website. With this new feature, you can now ask
-                questions about your GitHub metrics and get answers in a simple
-                and natural way
+                Oorsig is an innovative and powerful platform designed to
+                revolutionize GitHub data visualization and performance
+                monitoring. <br />
+                <br />
+                It offers developers and project managers a comprehensive
+                solution to access, analyze, and understand their GitHub data in
+                a whole new way.
               </Typography>
             </ContainerTypography>
           </ContainerTransparent>
