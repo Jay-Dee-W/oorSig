@@ -1,7 +1,7 @@
 import styled, { x } from '@xstyled/emotion';
 import React from 'react';
 import Image from 'next/image';
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 
 export const AskAi: React.FC = () => {
   return (

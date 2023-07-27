@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styled, { x } from '@xstyled/emotion';
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 import { AskAi } from './AskAi';
 import { SectionContainer } from './SectionContainer';

@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 import { useFollowPointer } from '@utils/userFlowPointer';
 import { CtaButton } from './CtaButton';
 

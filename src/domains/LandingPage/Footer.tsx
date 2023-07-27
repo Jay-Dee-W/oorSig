@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Logo, Typography } from '@oorsig/atoms';
+import { Logo, Typography } from '@atoms/index';
 import { RoutesInterface } from '.';
 
 export const Footer: React.FC<{ routes: RoutesInterface[] }> = ({ routes }) => {

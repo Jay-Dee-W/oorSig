@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { x } from '@xstyled/emotion';
 import { motion } from 'framer-motion';
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 import { SectionContainer } from './SectionContainer';
 

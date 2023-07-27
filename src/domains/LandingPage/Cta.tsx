@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styled, { x } from '@xstyled/emotion';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 import { CtaVector } from './CtaVector';
 import { SectionContainer } from './SectionContainer';
 import { CtaButton } from './CtaButton';

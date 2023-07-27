@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import styled, { x } from '@xstyled/emotion';
 import { MdClose, MdMenu } from 'react-icons/md';
-import { Logo } from '@oorsig/atoms';
+import { Logo } from '@atoms/index';
 import { RoutesInterface } from '.';
 
 export const Navigation: React.FC<{ routes: RoutesInterface[] }> = ({

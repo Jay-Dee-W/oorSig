@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { x } from '@xstyled/emotion';
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 import { AboutVector } from './AboutVector';
 import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 import { SectionContainer } from './SectionContainer';
