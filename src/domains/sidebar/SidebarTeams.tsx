@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { graphql, usePaginationFragment } from 'react-relay';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
-import { SidebarTeams_viewer$key } from '@relay/__generated__/SidebarTeams_viewer.graphql';
+import { SidebarTeams_viewer$key } from '@oorsig/relay/__generated__/SidebarTeams_viewer.graphql';
 import { SidebarTeamsRefetchQuery } from '@relay/__generated__/SidebarTeamsRefetchQuery.graphql';
 import { Backdrop, Typography, SearchableList } from '@atoms/index';
 

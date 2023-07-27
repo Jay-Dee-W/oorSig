@@ -27,7 +27,7 @@ export const sidebarQuery = graphql`
           teamsCursor: $teamsCursor
         )
       ...SidebarBottom_viewer
-   }
+    }
   }
 `;
 

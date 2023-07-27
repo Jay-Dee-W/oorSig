@@ -158,7 +158,7 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
 
       {data.organizations.edges?.map((edge, index) => (
         <SidebarTeams
-          sidebarTeamsRef={edge?.node}
+          sidebarTeamsRef={edge?.node as any}
           loadedItem={loadedItem}
           selectedOrganization={selectedOrganization}
           key={index}
