@@ -37,13 +37,18 @@ export const Footer: React.FC<{ routes: RoutesInterface[] }> = ({ routes }) => {
           <Typography variant="h5">Others links</Typography>
           <ul>
             <li>
-              <Link href="/#">Visualization</Link>
+              <Link href="https://gitstart.com" target="_blank" passHref>
+                <a target="_blank" rel="noopener noreferrer">
+                  GitStart
+                </a>
+              </Link>
             </li>
             <li>
-              <Link href="/#">Organizations</Link>
-            </li>
-            <li>
-              <Link href="/#">Ask AI</Link>
+              <Link href="https://twitter.com/GitStart" passHref>
+                <a target="_blank" rel="noopener noreferrer">
+                  GitStart (Twitter)
+                </a>
+              </Link>
             </li>
           </ul>
         </div>
