@@ -4,6 +4,7 @@ import { graphql, usePaginationFragment } from 'react-relay';
 import { x } from '@xstyled/emotion';
 import { SidebarOrganizations_viewer$key } from '@relay/__generated__/SidebarOrganizations_viewer.graphql';
 import { SidebarOrganizationsRefetchQuery } from '@relay/__generated__/SidebarOrganizationsRefetchQuery.graphql';
+import { SidebarTeams_viewer$key } from '@relay/__generated__/SidebarTeams_viewer.graphql';
 import { Backdrop, Typography, SearchableList } from '@atoms/index';
 import { SidebarTeams } from './SidebarTeams';
 interface SidebarOrganizationsProps {
@@ -158,7 +159,7 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
 
       {data.organizations.edges?.map((edge, index) => (
         <SidebarTeams
-          sidebarTeamsRef={edge?.node as any}
+          sidebarTeamsRef={edge?.node as SidebarTeams_viewer$key}
           loadedItem={loadedItem}
           selectedOrganization={selectedOrganization}
           key={index}
