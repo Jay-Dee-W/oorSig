@@ -6,7 +6,6 @@ interface LogoProps extends SizingProps {}
 export const HeroVector: React.FC<LogoProps> = ({ ...sizingProps }) => (
   <x.svg
     width="2031"
-    // height="982"
     viewBox="0 0 2031 982"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

@@ -7,8 +7,6 @@ export const SectionContainer = styled(x.section)`
   z-index: 1111;
   position: relative;
   width: 100%;
-  /* right: 0;
-  left: 0; */
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin: auto;
