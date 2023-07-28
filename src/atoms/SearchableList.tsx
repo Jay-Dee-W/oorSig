@@ -108,6 +108,7 @@ export const SearchableList: React.FC<SelectProps> = ({
             >
               {items.map((item, index) => (
                 <x.li
+                  key={index}
                   alignContent="center"
                   py="0.625rem"
                   px="0.5rem"
@@ -125,7 +126,6 @@ export const SearchableList: React.FC<SelectProps> = ({
                   display="flex"
                   flexDirection="row"
                   cursor="pointer"
-                  key={`${index}`}
                   {...getItemProps({ item, index })}
                   onClick={() => onSelect && onSelect(item.value)}
                 >
