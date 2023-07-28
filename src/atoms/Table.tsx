@@ -48,8 +48,8 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
         <StyledTable w="full">
           <thead>
             <x.tr backgroundColor="gray-200">
-              {columns.map(column => (
-                <x.th key={column.key} style={column.style}>
+              {columns.map((column, index) => (
+                <x.th key={index} style={column.style}>
                   {column.header}
                 </x.th>
               ))}
@@ -58,8 +58,8 @@ export const Table: React.FC<TableProps> = ({ columns, data }) => {
           <tbody>
             {data.map((item, index) => (
               <tr key={index}>
-                {columns.map(column => (
-                  <x.td key={column.key} style={column.style}>
+                {columns.map((column, index) => (
+                  <x.td key={index} style={column.style}>
                     {column.render
                       ? column.render(item[column.key])
                       : item[column.key]}
