@@ -2,13 +2,13 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { MdClose, MdExpandMore } from 'react-icons/md';
 import { graphql, usePaginationFragment } from 'react-relay';
 import { x } from '@xstyled/emotion';
-import { SidebarOrganizations_viewer$key } from '@relay/__generated__/SidebarOrganizations_viewer.graphql';
-import { SidebarOrganizationsRefetchQuery } from '@relay/__generated__/SidebarOrganizationsRefetchQuery.graphql';
-import { SidebarTeams_viewer$key } from '@relay/__generated__/SidebarTeams_viewer.graphql';
+import { Organizations_viewer$key } from '@relay/__generated__/Organizations_viewer.graphql';
+import { OrganizationsRefetchQuery } from '@relay/__generated__/OrganizationsRefetchQuery.graphql';
+import { Teams_viewer$key } from '@relay/__generated__/Teams_viewer.graphql';
 import { Backdrop, Typography, SearchableList } from '@atoms/index';
-import { SidebarTeams } from './SidebarTeams';
-interface SidebarOrganizationsProps {
-  SidebarOrganizationsRef: SidebarOrganizations_viewer$key;
+import { Teams } from './Teams';
+interface OrganizationsProps {
+  OrganizationsRef: Organizations_viewer$key;
   loadedItem: number;
 }
 interface Organization {
@@ -17,9 +17,9 @@ interface Organization {
   imgSrc: string;
 }
 
-const SidebarOrganizations_viewer = graphql`
-  fragment SidebarOrganizations_viewer on User
-  @refetchable(queryName: "SidebarOrganizationsRefetchQuery")
+const Organizations_viewer = graphql`
+  fragment Organizations_viewer on User
+  @refetchable(queryName: "OrganizationsRefetchQuery")
   @argumentDefinitions(
     organizationsFirst: { type: "Int!" }
     organizationsCursor: { type: "String" }
@@ -27,13 +27,13 @@ const SidebarOrganizations_viewer = graphql`
     teamsCursor: { type: "String" }
   ) {
     organizations(first: $organizationsFirst, after: $organizationsCursor)
-      @connection(key: "SidebarOrganizations_organizations") {
+      @connection(key: "Organizations_organizations") {
       edges {
         node {
           name
           label: name
           avatarUrl
-          ...SidebarTeams_viewer
+          ...Teams_viewer
             @arguments(teamsFirst: $teamsFirst, teamsCursor: $teamsCursor)
         }
       }
@@ -46,14 +46,14 @@ const SidebarOrganizations_viewer = graphql`
   }
 `;
 
-export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
-  SidebarOrganizationsRef,
+export const Organizations: React.FC<OrganizationsProps> = ({
+  OrganizationsRef,
   loadedItem,
 }) => {
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<
-    SidebarOrganizationsRefetchQuery,
-    SidebarOrganizations_viewer$key
-  >(SidebarOrganizations_viewer, SidebarOrganizationsRef);
+    OrganizationsRefetchQuery,
+    Organizations_viewer$key
+  >(Organizations_viewer, OrganizationsRef);
 
   const organizationData: Organization[] = useMemo(() => {
     return (
@@ -158,8 +158,8 @@ export const SidebarOrganizations: React.FC<SidebarOrganizationsProps> = ({
         ))}
 
       {data.organizations.edges?.map((edge, index) => (
-        <SidebarTeams
-          sidebarTeamsRef={edge?.node as SidebarTeams_viewer$key}
+        <Teams
+          TeamsRef={edge?.node as Teams_viewer$key}
           loadedItem={loadedItem}
           selectedOrganization={selectedOrganization}
           key={index}

@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 import { Logo } from '@atoms/index';
-import { SidebarOrganizations } from './SidebarOrganizations';
+import { Organizations } from './Organizations';
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;
   TopNavigationQueryReference: PreloadedQuery<SidebarQuery>;
@@ -32,10 +32,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
           <Logo w="100%" />
         </x.div>
       </Link>
-      <SidebarOrganizations
-        SidebarOrganizationsRef={viewer}
-        loadedItem={loadedItem}
-      />
+      <Organizations OrganizationsRef={viewer} loadedItem={loadedItem} />
     </x.div>
   );
 };

@@ -2,12 +2,12 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { graphql, usePaginationFragment } from 'react-relay';
 import { x } from '@xstyled/emotion';
 import { MdClose, MdExpandMore } from 'react-icons/md';
-import { SidebarTeams_viewer$key } from '@relay/__generated__/SidebarTeams_viewer.graphql';
-import { SidebarTeamsRefetchQuery } from '@relay/__generated__/SidebarTeamsRefetchQuery.graphql';
+import { Teams_viewer$key } from '@relay/__generated__/Teams_viewer.graphql';
+import { TeamsRefetchQuery } from '@relay/__generated__/TeamsRefetchQuery.graphql';
 import { Backdrop, Typography, SearchableList } from '@atoms/index';
 
 interface SidebarTeamProps {
-  sidebarTeamsRef: SidebarTeams_viewer$key;
+  TeamsRef: Teams_viewer$key;
   loadedItem: number;
   selectedOrganization: string | null;
 }
@@ -18,15 +18,15 @@ interface Team {
   imgSrc: string;
 }
 
-const SidebarTeams_viewer = graphql`
-  fragment SidebarTeams_viewer on Organization
-  @refetchable(queryName: "SidebarTeamsRefetchQuery")
+const Teams_viewer = graphql`
+  fragment Teams_viewer on Organization
+  @refetchable(queryName: "TeamsRefetchQuery")
   @argumentDefinitions(
     teamsFirst: { type: "Int!" }
     teamsCursor: { type: "String" }
   ) {
     teams(first: $teamsFirst, after: $teamsCursor)
-      @connection(key: "SidebarTeams_teams") {
+      @connection(key: "Teams_teams") {
       edges {
         node {
           name
@@ -46,15 +46,15 @@ const SidebarTeams_viewer = graphql`
   }
 `;
 
-export const SidebarTeams: React.FC<SidebarTeamProps> = ({
-  sidebarTeamsRef,
+export const Teams: React.FC<SidebarTeamProps> = ({
+  TeamsRef,
   loadedItem,
   selectedOrganization,
 }) => {
   const { data, loadNext, hasNext, isLoadingNext } = usePaginationFragment<
-    SidebarTeamsRefetchQuery,
-    SidebarTeams_viewer$key
-  >(SidebarTeams_viewer, sidebarTeamsRef);
+    TeamsRefetchQuery,
+    Teams_viewer$key
+  >(Teams_viewer, TeamsRef);
 
   const [teamData, setTeamData] = useState<Team[]>([]);
   const [showTeamList, setShowTeamList] = useState(false);
