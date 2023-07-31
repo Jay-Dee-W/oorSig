@@ -25,11 +25,11 @@ function MyApp(
     <SidebarProvider>
       <SessionProvider session={session}>
         <Providers>
-          <Container>
-            {router.asPath === '/' ? (
-              // Auth page (login or signup)
-              <Component {...pageProps} />
-            ) : (
+          {router.asPath === '/' ? (
+            // Auth page (login or signup)
+            <Component {...pageProps} />
+          ) : (
+            <Container>
               <x.div display="flex" overflowY="auto" maxHeight="100vh">
                 <Sidebar position="fixed" top="0" />
                 <x.div className="content" flex="1">
@@ -38,8 +38,8 @@ function MyApp(
                   </ErrorBoundary>
                 </x.div>
               </x.div>
-            )}
-          </Container>
+            </Container>
+          )}
         </Providers>
       </SessionProvider>
     </SidebarProvider>
@@ -47,10 +47,6 @@ function MyApp(
 }
 
 const Container = styled(x.div)`
-  .sidebar {
-    max-width: 300px;
-    height: 100vh;
-  }
   .content {
     margin-left: 300px;
   }
@@ -58,16 +54,6 @@ const Container = styled(x.div)`
       (props.theme as ExtendedTheme).breakpoints['lg']}px) {
     .content {
       margin-left: 0;
-    }
-    .sidebar {
-      left: -300px;
-      height: 100vh;
-      max-width: 300px;
-      transition: 0.2s linear;
-      z-index: 1;
-    }
-    .sidebar.is-active {
-      left: 0;
     }
   }
 `;

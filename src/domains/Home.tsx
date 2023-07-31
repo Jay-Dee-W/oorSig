@@ -253,6 +253,7 @@ export const Home: React.FC = () => {
               gap="3"
               px="1rem"
               minWidth="300px"
+              maxHeight={300}
               className="wordWrap"
             >
               {isMobileView
