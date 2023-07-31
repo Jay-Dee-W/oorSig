@@ -15,7 +15,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
         content="Unlock the power of oorSig by Gitstart – your all-in-one solution for accessing and visualizing all your Github metrics. Simplify your workflow by seamlessly exporting data for in-depth analysis, and supercharge your productivity like never before."
       />
       <link rel="canonical" href={URL} />
-      <meta property="og:title" content={`${title} | OORSIG`} />
+      <meta property="og:title" content={`${title}`} />
       <meta
         property="og:description"
         content="Unlock the power of oorSig by Gitstart – your all-in-one solution for accessing and visualizing all your Github metrics. Simplify your workflow by seamlessly exporting data for in-depth analysis, and supercharge your productivity like never before."
@@ -28,7 +28,7 @@ export const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       <meta name="robots" content="index, follow" />
-      <title>{title} | OORSIG</title>
+      <title>{title}</title>
     </Head>
   );
 };

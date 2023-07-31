@@ -61,9 +61,9 @@ export const StatusBadge: React.FC<StatusBadge> = ({
           <x.path
             d="M26.5248 11.4178L15.5248 22.4178L10.5248 17.4178"
             stroke="#265035"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </x.svg>
       ) : (
