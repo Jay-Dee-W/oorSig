@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { x } from '@xstyled/emotion';
-import { Typography } from '@atoms/Typography';
-import { Backdrop } from '@atoms/index';
+import { Backdrop, Typography } from '@atoms/index';
 import { FiMenu } from 'react-icons/fi';
 import { useSidebarContext } from '@domains/sidebar/SidebarContext';
 
