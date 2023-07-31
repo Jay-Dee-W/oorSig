@@ -1,9 +1,15 @@
 import React from 'react';
-import { x } from '@xstyled/emotion';
+import styled, { x } from '@xstyled/emotion';
 import { Typography } from '@atoms/Typography';
 import { Backdrop } from '@atoms/index';
 import { FiMenu } from 'react-icons/fi';
 import { useSidebarContext } from '@domains/sidebar/SidebarContext';
+
+interface ExtendedTheme {
+  breakpoints: {
+    [key: string]: number;
+  };
+}
 
 interface TopHeaderProps {
   title: string;
@@ -18,15 +24,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
 }) => {
   const { sidebarVisible, toggleSidebar } = useSidebarContext();
   return (
-    <x.div
-      p="1rem"
-      bg="gray-300"
-      display="flex"
-      alignItems="center"
-      backgroundColor="gray-300"
-      borderBottom="1"
-      borderBottomColor="gray-200"
-    >
+    <Container>
       <FiMenu
         className="menu-toggle"
         onClick={toggleSidebar}
@@ -42,6 +40,45 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
       </x.div>
       <x.div>{children}</x.div>
       {sidebarVisible && <Backdrop onClick={toggleSidebar} />}
-    </x.div>
+    </Container>
   );
 };
+
+const Container = styled(x.div)`
+  padding: 1rem;
+  background-color: gray-300;
+  display: flex;
+  alignitems: center;
+  backgroundcolor: gray-300;
+  border-bottom: 1;
+  border-bottom-color: gray-200;
+  .headerTitle {
+    font-weight: bold;
+  }
+  .menu-toggle {
+    display: none;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    margin-right: 1rem;
+  }
+  @media (max-width: ${props =>
+      (props.theme as ExtendedTheme).breakpoints['lg']}px) {
+    .menu-toggle {
+      display: block;
+    }
+  }
+  @media (max-width: ${props =>
+      (props.theme as ExtendedTheme).breakpoints['md']}px) {
+    .subtitle {
+      display: none;
+    }
+    .headerTitle {
+      font-weight: normal;
+    }
+    .menu-toggle {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+`;

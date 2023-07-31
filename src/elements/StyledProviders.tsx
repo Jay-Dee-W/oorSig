@@ -70,6 +70,14 @@ const theme = {
     '5xl': '1',
     '6xl': '1',
   },
+  breakpoints: {
+    ['xs']: 320,
+    ['sm']: 576,
+    ['md']: 768,
+    ['lg']: 970,
+    ['xl']: 1150,
+    ['xxl']: 1400,
+  },
 };
 
 interface StyledProviderProps {

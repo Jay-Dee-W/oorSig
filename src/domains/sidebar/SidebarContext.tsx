@@ -5,7 +5,14 @@ interface SidebarContextValue {
   toggleSidebar: () => void;
 }
 
-const SidebarContext = createContext<SidebarContextValue | null>(null);
+const defaultSidebarContextValue: SidebarContextValue = {
+  sidebarVisible: false,
+  toggleSidebar: () => {},
+};
+
+const SidebarContext = createContext<SidebarContextValue>(
+  defaultSidebarContextValue
+);
 
 interface SidebarProviderProps {
   children: React.ReactNode;
@@ -29,8 +36,5 @@ export const SidebarProvider: React.FC<SidebarProviderProps> = ({
 
 export const useSidebarContext = (): SidebarContextValue => {
   const context = useContext(SidebarContext);
-  if (!context) {
-    throw new Error('useSidebarContext must be used within a SidebarProvider');
-  }
   return context;
 };
