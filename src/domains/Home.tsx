@@ -234,7 +234,7 @@ export const Home: React.FC = () => {
               Access and visualize all your Github metrics in one place with
               OorSig by GitStart.
               <br /> Export data for further analysis and optimize your
-              productivity.{isMobileView}
+              productivity.
             </Typography>
           </x.div>
           <x.div display="flex" flexWrap="wrap" w="100%">
@@ -252,13 +252,12 @@ export const Home: React.FC = () => {
               flexDirection="column"
               gap="3"
               px="1rem"
-              // w={isMobileView ? '100%' : '25vw'}
               minWidth="300px"
               className="wordWrap"
             >
               {isMobileView
-                ? sortGithubStatisticsForMobile().map(item => (
-                    <Card key="" bg={item?.bgColor}>
+                ? sortGithubStatisticsForMobile().map((item, index) => (
+                    <Card key={index} bg={item?.bgColor}>
                       <x.p color={item?.txtColor} pb="0.5rem">
                         {item?.label}
                       </x.p>
@@ -267,8 +266,8 @@ export const Home: React.FC = () => {
                       </Typography>
                     </Card>
                   ))
-                : userGithubStatistics.map(item => (
-                    <Card key="" bg={item.bgColor}>
+                : userGithubStatistics.map((item, index) => (
+                    <Card key={index} bg={item.bgColor}>
                       <x.p color={item.txtColor} pb="0.5rem">
                         {item.label}
                       </x.p>
