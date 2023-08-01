@@ -28,6 +28,7 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
         backgroundColor="gray-300"
         borderBottom="1"
         borderBottomColor="gray-200"
+        className="header"
       >
         <x.span
           display={isMobileView ? 'block' : 'none'}
@@ -57,6 +58,9 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
 };
 
 const HeaderContainer = styled(x.div)`
+  .header {
+    box-sizing: 'border-box';
+  }
   @media (max-width: ${props => props.theme.breakpoints['md']}px) {
     .subtitle {
       display: none;

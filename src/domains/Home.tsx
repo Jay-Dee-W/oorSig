@@ -218,7 +218,7 @@ export const Home: React.FC = () => {
         <TopHeader title="Dashboard" subtitle="Welcome to your dashboard">
           <Dropdown options={dropDownOptions} placeholder="Weekly" />
         </TopHeader>
-        <x.div p="1rem" backgroundColor="gray-300" w="100%">
+        <x.div p="1rem" className="main" backgroundColor="gray-300" w="100%">
           <x.div display="flex" mb="3" gap="2" alignItems="center">
             <Typography size="3xl">🤖</Typography>
             <Typography size="sm">
@@ -228,8 +228,20 @@ export const Home: React.FC = () => {
               productivity.
             </Typography>
           </x.div>
-          <x.div display="flex" flexWrap="wrap" w="100%">
-            <x.div flex={isMobileView ? '100%' : '65%'} className="lineChart">
+          <x.div
+            display="flex"
+            flexWrap={isMobileView ? 'wrap' : 'nowrap'}
+            w="100%"
+          >
+            <x.div
+              flex={isMobileView ? '100%' : '65%'}
+              // maxW="900px"
+              // minWidth="75%"
+              // maxW="100%"
+              // w="100%"
+              // minWidth={isMobileView ? "100%": 'null'}
+              className="lineChart"
+            >
               <Line options={options} data={chartData} />
             </x.div>
             <x.div
@@ -242,8 +254,8 @@ export const Home: React.FC = () => {
               }
               flexDirection="column"
               gap="3"
-              px="1rem"
-              minWidth="300px"
+              // px="1rem"
+              // minWidth="300px"
               maxHeight={300}
               className="wordWrap"
             >
@@ -285,13 +297,16 @@ export const Home: React.FC = () => {
 };
 
 const Container = styled(x.div)`
+  .main {
+    box-sizing: 'border-box';
+  }
   .wordWrap {
     word-wrap: break-word;
   }
   @media (max-width: ${props => props.theme.breakpoints['lg']}px) {
     .lineChart {
       margin-bottom: 2rem;
-      min-width: 100%;
+      min-width: 98%;
     }
   }
   @media (max-width: ${props => props.theme.breakpoints['md']}px) {
