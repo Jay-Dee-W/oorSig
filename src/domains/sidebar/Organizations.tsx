@@ -67,12 +67,14 @@ export const Organizations: React.FC<OrganizationsProps> = ({
   }, [data?.organizations.edges]);
 
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
-  const [selectedOrganization, setSelectedOrganization] = useState<string | null>(null);
+  const [selectedOrganization, setSelectedOrganization] = useState<
+    string | null
+  >(null);
 
   const toggleShowOrganizationList = () => {
     setShowOrgnizationList(!showOrgnizationList);
   };
-  const handleOrganizationSelect = (org:string) => {
+  const handleOrganizationSelect = (org: string) => {
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
   };
