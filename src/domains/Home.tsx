@@ -233,15 +233,7 @@ export const Home: React.FC = () => {
             flexWrap={isMobileView ? 'wrap' : 'nowrap'}
             w="100%"
           >
-            <x.div
-              flex={isMobileView ? '100%' : '65%'}
-              // maxW="900px"
-              // minWidth="75%"
-              // maxW="100%"
-              // w="100%"
-              // minWidth={isMobileView ? "100%": 'null'}
-              className="lineChart"
-            >
+            <x.div flex={isMobileView ? '100%' : '65%'} className="lineChart">
               <Line options={options} data={chartData} />
             </x.div>
             <x.div
@@ -254,8 +246,6 @@ export const Home: React.FC = () => {
               }
               flexDirection="column"
               gap="3"
-              // px="1rem"
-              // minWidth="300px"
               maxHeight={300}
               className="wordWrap"
             >
