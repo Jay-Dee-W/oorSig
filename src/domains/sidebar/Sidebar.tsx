@@ -14,11 +14,6 @@ import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
-interface ExtendedTheme {
-  breakpoints: {
-    [key: string]: number | undefined;
-  };
-}
 
 export const sidebarQuery = graphql`
   query SidebarQuery {
@@ -37,7 +32,7 @@ export const Sidebar: FC<SidebarProps> = props => {
     (match: string) => (path: string) => path.includes(match),
     []
   );
-  const { sidebarVisible } = useSidebarContext();
+  const { isSidebarOpen } = useSidebarContext();
   const routes = [
     {
       icon: MdSpaceDashboard,
@@ -64,11 +59,18 @@ export const Sidebar: FC<SidebarProps> = props => {
     <Suspense>
       {queryRef && (
         <SidebarContainer>
-          <Container
+          <x.div
+            p="1rem"
+            borderRight="1"
+            borderRightColor="gray-200"
+            bg="gray-300"
+            maxW="300px"
+            h="100vh"
+            zIndex="1"
             {...props}
             display={'flex'}
             flexDirection={'column'}
-            className={sidebarVisible ? 'sidebar is-active' : 'sidebar'}
+            className={isSidebarOpen ? 'sidebar is-active' : 'sidebar'}
           >
             <x.div flex={1}>
               <TopNavigation />
@@ -91,32 +93,18 @@ export const Sidebar: FC<SidebarProps> = props => {
               SidebarBottomQuery={sidebarQuery}
               SidebarBottomQueryReference={queryRef}
             />
-          </Container>
+          </x.div>
         </SidebarContainer>
       )}
     </Suspense>
   );
 };
 
-const Container = styled(x.div)`
-  padding: 1rem;
-  border-right: 1;
-  border-right-color: gray-200;
-  background-color: gray-300;
-`;
 const SidebarContainer = styled(x.div)`
-  .sidebar {
-    max-width: 300px;
-    height: 100vh;
-  }
-  @media (max-width: ${props =>
-      (props.theme as ExtendedTheme).breakpoints['lg']}px) {
+  @media (max-width: ${props => props.theme.breakpoints['lg']}px) {
     .sidebar {
       left: -300px;
-      height: 100vh;
-      max-width: 300px;
       transition: 0.2s linear;
-      z-index: 1;
     }
     .sidebar.is-active {
       left: 0;

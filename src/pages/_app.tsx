@@ -9,12 +9,6 @@ import { Providers } from '@elements/Providers';
 import { Sidebar } from '@domains/sidebar/Sidebar';
 import { SidebarProvider } from '@domains/sidebar/SidebarContext';
 
-interface ExtendedTheme {
-  breakpoints: {
-    [key: string]: number | undefined;
-  };
-}
-
 function MyApp(
   { Component, pageProps }: AppProps,
   session: Session | null | undefined
@@ -50,8 +44,7 @@ const Container = styled(x.div)`
   .content {
     margin-left: 300px;
   }
-  @media (max-width: ${props =>
-      (props.theme as ExtendedTheme).breakpoints['lg']}px) {
+  @media (max-width: ${props => props.theme.breakpoints['lg']}px) {
     .content {
       margin-left: 0;
     }

@@ -3,12 +3,7 @@ import styled, { x } from '@xstyled/emotion';
 import { Backdrop, Typography } from '@atoms/index';
 import { FiMenu } from 'react-icons/fi';
 import { useSidebarContext } from '@domains/sidebar/SidebarContext';
-
-interface ExtendedTheme {
-  breakpoints: {
-    [key: string]: number;
-  };
-}
+import useMobileView from '@oorsig/hooks/useMobileView';
 
 interface TopHeaderProps {
   title: string;
@@ -21,54 +16,48 @@ export const TopHeader: React.FC<TopHeaderProps> = ({
   subtitle,
   children,
 }) => {
-  const { sidebarVisible, toggleSidebar } = useSidebarContext();
+  const { isSidebarOpen, toggleSidebar } = useSidebarContext();
+  const isMobileView = useMobileView();
   return (
-    <Container>
-      <FiMenu
-        className="menu-toggle"
-        onClick={toggleSidebar}
-        cursor="pointer"
-      />
-      <x.div flex="1" className="header">
-        <x.div className="headerTitle">
-          <Typography fontSize="2xl">{title}</Typography>
+    <HeaderContainer>
+      <x.div
+        p="1rem"
+        bg="gray-300"
+        display="flex"
+        alignItems="center"
+        backgroundColor="gray-300"
+        borderBottom="1"
+        borderBottomColor="gray-200"
+      >
+        <x.span
+          display={isMobileView ? 'block' : 'none'}
+          cursor="pointer"
+          mr="1rem"
+        >
+          <FiMenu
+            onClick={toggleSidebar}
+            cursor="pointer"
+            className="menu-toggle"
+            fontSize="3rem"
+          />
+        </x.span>
+        <x.div flex="1" className="header">
+          <x.div className="headerTitle" fontWeight="bold">
+            <Typography fontSize="2xl">{title}</Typography>
+          </x.div>
+          <x.div className="subtitle">
+            <Typography color="gray-50">{subtitle}</Typography>
+          </x.div>
         </x.div>
-        <x.div className="subtitle">
-          <Typography color="gray-50">{subtitle}</Typography>
-        </x.div>
+        <x.div>{children}</x.div>
+        {isSidebarOpen && <Backdrop onClick={toggleSidebar} />}
       </x.div>
-      <x.div>{children}</x.div>
-      {sidebarVisible && <Backdrop onClick={toggleSidebar} />}
-    </Container>
+    </HeaderContainer>
   );
 };
 
-const Container = styled(x.div)`
-  padding: 1rem;
-  background-color: gray-300;
-  display: flex;
-  alignitems: center;
-  backgroundcolor: gray-300;
-  border-bottom: 1;
-  border-bottom-color: gray-200;
-  .headerTitle {
-    font-weight: bold;
-  }
-  .menu-toggle {
-    display: none;
-    width: 3rem;
-    height: 3rem;
-    cursor: pointer;
-    margin-right: 1rem;
-  }
-  @media (max-width: ${props =>
-      (props.theme as ExtendedTheme).breakpoints['lg']}px) {
-    .menu-toggle {
-      display: block;
-    }
-  }
-  @media (max-width: ${props =>
-      (props.theme as ExtendedTheme).breakpoints['md']}px) {
+const HeaderContainer = styled(x.div)`
+  @media (max-width: ${props => props.theme.breakpoints['md']}px) {
     .subtitle {
       display: none;
     }
@@ -76,8 +65,7 @@ const Container = styled(x.div)`
       font-weight: normal;
     }
     .menu-toggle {
-      width: 2rem;
-      height: 2rem;
+      font-size: 2rem;
     }
   }
 `;

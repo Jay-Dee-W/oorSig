@@ -1,13 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '@xstyled/emotion';
 
-interface ExtendedTheme {
-  breakpoints: {
-    [key: string]: number;
-  };
-}
 const useMobileView = () => {
-  const theme = useTheme() as ExtendedTheme;
+  const theme = useTheme();
   const [isMobileView, setIsMobileView] = useState(false);
 
   const checkMobileView = useCallback(() => {

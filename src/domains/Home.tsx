@@ -23,15 +23,6 @@ import {
   Tooltip,
 } from 'chart.js';
 
-interface ExtendedTheme {
-  colors: {
-    [key: string]: string;
-  };
-  breakpoints: {
-    [key: string]: number;
-  };
-}
-
 Chart.register(
   CategoryScale,
   LinearScale,
@@ -190,26 +181,26 @@ const userGithubStatistics = [
   },
 ];
 export const Home: React.FC = () => {
-  const theme = useTheme() as ExtendedTheme;
+  const theme = useTheme();
   const chartData: ChartData<'line'> = {
     labels: chartLabels,
     datasets: [
       {
         label: 'Open PRs',
         data: [100, 200, 300, 333, 89, 600, 700, 400, 300, 200, 700, 700],
-        borderColor: theme.colors['green-100'],
+        borderColor: theme.colors['green-100'] as string,
         pointRadius: 0,
       },
       {
         label: 'Closed PRs',
         data: [700, 600, 500, 400, 300, 200, 400, 400, 300, 200, 700, 200],
-        borderColor: theme.colors['red-200'],
+        borderColor: theme.colors['red-200'] as string,
         pointRadius: 0,
       },
       {
         label: 'Merged PRs',
         data: [400, 500, 500, 200, 200, 200, 500, 400, 300, 200, 400, 500],
-        borderColor: theme.colors['primary-200'],
+        borderColor: theme.colors['primary-200'] as string,
         pointRadius: 0,
       },
     ],
@@ -297,15 +288,13 @@ const Container = styled(x.div)`
   .wordWrap {
     word-wrap: break-word;
   }
-  @media (max-width: ${props =>
-      (props.theme as ExtendedTheme).breakpoints['lg']}px) {
+  @media (max-width: ${props => props.theme.breakpoints['lg']}px) {
     .lineChart {
       margin-bottom: 2rem;
       min-width: 100%;
     }
   }
-  @media (max-width: ${props =>
-      (props.theme as ExtendedTheme).breakpoints['md']}px) {
+  @media (max-width: ${props => props.theme.breakpoints['md']}px) {
     .lineChart {
       height: auto;
     }
