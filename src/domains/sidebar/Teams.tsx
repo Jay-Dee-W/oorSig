@@ -64,9 +64,9 @@ export const Teams: React.FC<SidebarTeamProps> = ({
     const newTeamData: Team[] =
       data.teams.edges
         ?.filter(
-          (edge: any) => edge.node.organization.name === selectedOrganization
+          (edge) => edge?.node?.organization.name === selectedOrganization
         )
-        .map((edge: any) => ({
+        .map((edge:any) => ({
           label: edge.node.name,
           value: edge.node.slug,
           imgSrc: edge.node.avatarUrl,

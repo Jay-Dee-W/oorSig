@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import styled, { SystemProps, x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
 
@@ -94,10 +94,9 @@ export const SearchableList: React.FC<SelectProps> = ({
       }
     }
   }, [onScroll]);
-
-  useEffect(() => {
-    setItems(options);
-  }, [options]);
+  
+  useMemo(()=>setItems(options)
+,[options])
 
   useEffect(() => {
     if (onScroll) {

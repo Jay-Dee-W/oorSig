@@ -30,6 +30,7 @@ const Organizations_viewer = graphql`
       @connection(key: "Organizations_organizations") {
       edges {
         node {
+          id
           name
           label: name
           avatarUrl
@@ -66,12 +67,12 @@ export const Organizations: React.FC<OrganizationsProps> = ({
   }, [data?.organizations.edges]);
 
   const [showOrgnizationList, setShowOrgnizationList] = useState(false);
-  const [selectedOrganization, setSelectedOrganization] = useState(null);
+  const [selectedOrganization, setSelectedOrganization] = useState<string | null>(null);
 
   const toggleShowOrganizationList = () => {
     setShowOrgnizationList(!showOrgnizationList);
   };
-  const handleOrganizationSelect = (org: any) => {
+  const handleOrganizationSelect = (org:string) => {
     setSelectedOrganization(org);
     setShowOrgnizationList(false);
   };
@@ -157,12 +158,12 @@ export const Organizations: React.FC<OrganizationsProps> = ({
           </x.div>
         ))}
 
-      {data.organizations.edges?.map((edge, index) => (
+      {data.organizations.edges?.map(edge => (
         <Teams
           TeamsRef={edge?.node as Teams_viewer$key}
           loadedItem={loadedItem}
           selectedOrganization={selectedOrganization}
-          key={index}
+          key={edge?.node?.id}
         />
       ))}
     </x.div>
