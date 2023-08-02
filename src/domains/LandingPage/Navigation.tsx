@@ -4,6 +4,7 @@ import styled, { x } from '@xstyled/emotion';
 import { MdClose, MdMenu } from 'react-icons/md';
 import { Logo } from '@atoms/index';
 import { RoutesInterface } from '.';
+import { SignInButton } from './CtaButton';
 
 export const Navigation: React.FC<{ routes: RoutesInterface[] }> = ({
   routes,
@@ -30,7 +31,7 @@ export const Navigation: React.FC<{ routes: RoutesInterface[] }> = ({
           ))}
         </ul>
 
-        <button className="action-btn">Sign in</button>
+        <SignInButton />
       </Nav>
     </>
   );
@@ -80,17 +81,8 @@ const Nav = styled(x.nav)`
     }
   }
 
-  button {
-    height: 2.5rem;
-    padding: 0 2rem;
+  .nav-toggle-btn {
     background-color: transparent;
-    outline: non;
-    outline-offset: none;
-  }
-
-  .action-btn {
-    background-color: green-100;
-    border-radius: 2rem;
   }
 
   .nav-toggle-btn {
@@ -106,12 +98,6 @@ const Nav = styled(x.nav)`
     &:hover {
       background-color: gray-100;
     }
-  }
-
-  @media (min-width: 768px) {
-  }
-
-  @media (min-width: 1024px) {
   }
 
   .logo-section {
