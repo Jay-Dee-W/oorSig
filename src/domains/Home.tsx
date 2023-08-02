@@ -246,7 +246,7 @@ export const Home: React.FC = () => {
               }
               flexDirection="column"
               gap="3"
-              maxHeight={300}
+              maxHeight={400}
               className="wordWrap"
             >
               {isMobileView
@@ -288,7 +288,7 @@ export const Home: React.FC = () => {
 
 const Container = styled(x.div)`
   .main {
-    box-sizing: 'border-box';
+    box-sizing: border-box;
   }
   .wordWrap {
     word-wrap: break-word;
@@ -302,6 +302,7 @@ const Container = styled(x.div)`
   @media (max-width: ${props => props.theme.breakpoints['md']}px) {
     .lineChart {
       height: auto;
+      min-width: 96%;
     }
   }
 `;
