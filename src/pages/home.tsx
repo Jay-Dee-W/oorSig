@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next';
-import { Home } from '@domains/Home';
+import { Home } from '@domains/Home/Home';
 import { Page } from '@atoms/index';
 
 const HomePage: NextPage = () => {
