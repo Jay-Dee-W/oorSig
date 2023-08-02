@@ -22,7 +22,6 @@ const theme = {
   colors: {
     background: th.color('gray-400'),
     brand: th.color('primary-200'),
-
     ['primary-100']: '#A1CDFF',
     ['primary-200']: '#007AFF',
     ['primary-300']: '#016ADC',
@@ -72,10 +71,6 @@ const theme = {
     '5xl': '1',
     '6xl': '1',
   },
-<<<<<<< HEAD
-  containerWidth: {
-    width: '23px',
-=======
   breakpoints: {
     ['xs']: 320,
     ['sm']: 576,
@@ -83,7 +78,6 @@ const theme = {
     ['lg']: 970,
     ['xl']: 1150,
     ['2xl']: 1400,
->>>>>>> 2821ddfb7e878416d4374dbb98e24fbee95017b1
   },
 };
 
