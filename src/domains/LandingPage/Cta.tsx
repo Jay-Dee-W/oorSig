@@ -1,47 +1,53 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled, { x } from '@xstyled/emotion';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Typography } from '@atoms/index';
 import { CtaVector } from './CtaVector';
 import { SectionContainer } from './SectionContainer';
 import { CtaButton } from './CtaButton';
 
 export const CTA: React.FC = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['center end', 'center center'],
-  });
-
-  const translateX = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 1],
-    [-500, -200, 0, 0]
-  );
-
-  const translateXContent = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 1],
-    [600, 200, 0, 0]
-  );
   return (
     <>
       <SectionContainer>
-        <Container ref={ref}>
-          <motion.div className="graphic" style={{ translateX: translateX }}>
-            <CtaVector w="90%" />
-          </motion.div>
-          <motion.div style={{ translateX: translateXContent }}>
-            <Typography variant="h4">
-              Start visualizing <br /> your information now
-            </Typography>
-            <Typography>
-              Unleash data insights through interactive visualizations! Start
-              now!
-            </Typography>
-            <CtaButton />
-          </motion.div>
-        </Container>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          // viewport={{ once: true }}
+          transition={{ duration: 0.3 }}
+          variants={{
+            visible: { opacity: 1, scale: 1 },
+            hidden: { opacity: 0, scale: 0 },
+          }}
+        >
+          <Container>
+            <motion.div
+              className="graphic"
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.3 }}
+              variants={{
+                visible: { opacity: 1, scale: 1 },
+                hidden: { opacity: 0, scale: 0 },
+              }}
+              // style={{ translateX: translateX }}
+            >
+              <CtaVector w="90%" />
+            </motion.div>
+            <motion.div
+            // style={{ translateX: translateXContent }}
+            >
+              <Typography variant="h4">
+                Start visualizing <br /> your information now
+              </Typography>
+              <Typography>
+                Unleash data insights through interactive visualizations! Start
+                now!
+              </Typography>
+              <CtaButton />
+            </motion.div>
+          </Container>{' '}
+        </motion.div>
       </SectionContainer>
     </>
   );
