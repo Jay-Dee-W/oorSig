@@ -132,7 +132,7 @@ export const Teams: React.FC<SidebarTeamProps> = ({
           <x.div position="relative">
             <x.div
               position="absolute"
-              w="15.9rem"
+              w="16.5rem"
               border="1px solid"
               borderColor="gray-250"
               borderRadius="0.5rem"
