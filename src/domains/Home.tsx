@@ -256,8 +256,8 @@ export const Home: React.FC = () => {
             w="25vw"
             minWidth="300px"
           >
-            {userGithubStatistics.map(item => (
-              <Card key="" bg={item.bgColor}>
+            {userGithubStatistics.map((item, index) => (
+              <Card key={index} bg={item.bgColor}>
                 <x.p color={item.txtColor} pb="0.5rem">
                   {item.label}
                 </x.p>
