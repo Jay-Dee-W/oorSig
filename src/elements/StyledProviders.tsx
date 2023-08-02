@@ -72,8 +72,18 @@ const theme = {
     '5xl': '1',
     '6xl': '1',
   },
+<<<<<<< HEAD
   containerWidth: {
     width: '23px',
+=======
+  breakpoints: {
+    ['xs']: 320,
+    ['sm']: 576,
+    ['md']: 768,
+    ['lg']: 970,
+    ['xl']: 1150,
+    ['2xl']: 1400,
+>>>>>>> 2821ddfb7e878416d4374dbb98e24fbee95017b1
   },
 };
 

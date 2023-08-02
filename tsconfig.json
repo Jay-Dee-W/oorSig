@@ -41,6 +41,6 @@
     },
     "types": ["vitest/globals"]
   },
-  "include": ["src", "test"],
+  "include": ["src", "test", "emotion.d.ts"],
   "exclude": ["node_modules"]
 }
