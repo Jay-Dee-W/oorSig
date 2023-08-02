@@ -9,9 +9,6 @@ import { MdSpaceDashboard } from 'react-icons/md';
 import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
-import { TopNavigation } from './TopNavigation';
-import { SidebarNavigation } from './SidebarNavigation';
-import { SidebarBottom } from './SidebarBottom';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
@@ -92,7 +89,11 @@ export const Sidebar: FC<SidebarProps> = props => {
             className={isSidebarOpen ? 'sidebar is-active' : 'sidebar'}
           >
             <x.div flex={1}>
-              <TopNavigation />
+              <TopNavigation
+                TopNavigationQuery={sidebarQuery}
+                TopNavigationQueryReference={queryRef}
+                loadedItem={loadedItem}
+              />
               <x.div mt="3rem">
                 {routes.map((e, i) => {
                   const Icon = e.icon;
