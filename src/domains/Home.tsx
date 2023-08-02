@@ -2,13 +2,15 @@ import React from 'react';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { useTheme } from '@xstyled/emotion';
-import { x } from '@xstyled/emotion';
+import styled, { x } from '@xstyled/emotion';
 import { Button } from '@atoms/Button';
 import { Card } from '@atoms/Card';
 import { Dropdown } from '@atoms/Dropdown';
 import { StatusBadge } from '@atoms/StatusBadge';
 import { Table } from '@atoms/Table';
+import { TopHeader } from '@atoms/TopHeader';
 import { Typography } from '@atoms/Typography';
+import useMobileView from '@oorsig/hooks/useMobileView';
 
 import {
   Chart,
@@ -21,12 +23,6 @@ import {
   Tooltip,
 } from 'chart.js';
 
-interface ExtendedTheme {
-  colors: {
-    [key: string]: string;
-  };
-}
-
 Chart.register(
   CategoryScale,
   LinearScale,
@@ -37,6 +33,7 @@ Chart.register(
   Legend
 );
 const options: ChartOptions<'line'> = {
+  responsive: true,
   plugins: {
     legend: {
       display: false,
@@ -184,99 +181,128 @@ const userGithubStatistics = [
   },
 ];
 export const Home: React.FC = () => {
-  const theme = useTheme() as ExtendedTheme;
+  const theme = useTheme();
   const chartData: ChartData<'line'> = {
     labels: chartLabels,
     datasets: [
       {
         label: 'Open PRs',
         data: [100, 200, 300, 333, 89, 600, 700, 400, 300, 200, 700, 700],
-        borderColor: theme.colors['green-100'],
+        borderColor: theme.colors['green-100'] as string,
         pointRadius: 0,
       },
       {
         label: 'Closed PRs',
         data: [700, 600, 500, 400, 300, 200, 400, 400, 300, 200, 700, 200],
-        borderColor: theme.colors['red-200'],
+        borderColor: theme.colors['red-200'] as string,
         pointRadius: 0,
       },
       {
         label: 'Merged PRs',
         data: [400, 500, 500, 200, 200, 200, 500, 400, 300, 200, 400, 500],
-        borderColor: theme.colors['primary-200'],
+        borderColor: theme.colors['primary-200'] as string,
         pointRadius: 0,
       },
     ],
   };
+
+  const isMobileView = useMobileView();
+  const sortGithubStatisticsForMobile = () => {
+    const order = [0, 2, 4, 1, 3, 5];
+    return order.map(index => userGithubStatistics[index]);
+  };
+
   return (
-    <x.div className="App">
-      <x.div
-        padding="1rem"
-        backgroundColor="gray-300"
-        display="flex"
-        alignItems={'center'}
-        borderBottom="1"
-        borderBottomColor="gray-200"
-      >
-        <x.div flex="1">
-          <Typography fontSize="2xl" fontWeight="bold">
-            Dashboard
-          </Typography>
-          <Typography color="gray-50">Welcome to your dashboard</Typography>
-        </x.div>
-        <x.div>
+    <Container>
+      <x.div className="App">
+        <TopHeader title="Dashboard" subtitle="Welcome to your dashboard">
           <Dropdown options={dropDownOptions} placeholder="Weekly" />
-        </x.div>
-      </x.div>
-      <x.div p="1rem" backgroundColor="gray-300" w="100%">
-        <x.div display="flex" mb="3" gap="2" alignItems="center">
-          <Typography size="3xl">🤖</Typography>
-          <Typography size="sm">
-            Access and visualize all your Github metrics in one place with
-            OorSig by GitStart.
-            <br /> Export data for further analysis and optimize your
-            productivity.
-          </Typography>
-        </x.div>
-        <x.div
-          display="flex"
-          flexDirection={{ base: 'column', md: 'row' }}
-          flexWrap="wrap"
-          justifyContent="space-between"
-          w="100%"
-        >
-          <x.div flex="1" mb={{ base: '4', md: '0' }} w="100%">
-            <Line options={options} data={chartData} />
+        </TopHeader>
+        <x.div p="1rem" className="main" backgroundColor="gray-300" w="100%">
+          <x.div display="flex" mb="3" gap="2" alignItems="center">
+            <Typography size="3xl">🤖</Typography>
+            <Typography size="sm">
+              Access and visualize all your Github metrics in one place with
+              OorSig by GitStart.
+              <br /> Export data for further analysis and optimize your
+              productivity.
+            </Typography>
           </x.div>
           <x.div
-            display="grid"
-            gridTemplateColumns="repeat(2, minmax(0, 1fr))"
-            gap="5"
-            maxW="100%"
-            w="25vw"
-            minWidth="300px"
+            display="flex"
+            flexWrap={isMobileView ? 'wrap' : 'nowrap'}
+            w="100%"
           >
-            {userGithubStatistics.map((item, index) => (
-              <Card key={index} bg={item.bgColor}>
-                <x.p color={item.txtColor} pb="0.5rem">
-                  {item.label}
-                </x.p>
-                <Typography fontSize="4xl" color={item.txtColor}>
-                  {item.value}
-                </Typography>
-              </Card>
-            ))}
+            <x.div flex={isMobileView ? '100%' : '65%'} className="lineChart">
+              <Line options={options} data={chartData} />
+            </x.div>
+            <x.div
+              flex={isMobileView ? '100%' : '35%'}
+              display="grid"
+              gridTemplateColumns={
+                isMobileView
+                  ? 'repeat(3, minmax(0, 1fr))'
+                  : 'repeat(2, minmax(0, 1fr))'
+              }
+              flexDirection="column"
+              gap="3"
+              maxHeight={400}
+              className="wordWrap"
+            >
+              {isMobileView
+                ? sortGithubStatisticsForMobile().map((item, index) => (
+                    <Card key={index} bg={item?.bgColor}>
+                      <x.p color={item?.txtColor} pb="0.5rem">
+                        {item?.label}
+                      </x.p>
+                      <Typography fontSize="4xl" color={item?.txtColor}>
+                        {item?.value}
+                      </Typography>
+                    </Card>
+                  ))
+                : userGithubStatistics.map((item, index) => (
+                    <Card key={index} bg={item.bgColor}>
+                      <x.p color={item.txtColor} pb="0.5rem">
+                        {item.label}
+                      </x.p>
+                      <Typography fontSize="4xl" color={item.txtColor}>
+                        {item.value}
+                      </Typography>
+                    </Card>
+                  ))}
+            </x.div>
+          </x.div>
+        </x.div>
+        <x.div p="1rem">
+          <Typography size="3xl" mb="2">
+            Organizations
+          </Typography>
+          <x.div overflowX="auto" mb="3rem">
+            <Table columns={tableColumns} data={tableData} />
           </x.div>
         </x.div>
       </x.div>
-      <x.div p="1rem">
-        <Typography size="3xl" mb="2">
-          Organizations
-        </Typography>
-        <x.div overflowX="auto" mb="3rem">
-          <Table columns={tableColumns} data={tableData} />
-        </x.div>
-      </x.div>
-    </x.div>
+    </Container>
   );
 };
+
+const Container = styled(x.div)`
+  .main {
+    box-sizing: border-box;
+  }
+  .wordWrap {
+    word-wrap: break-word;
+  }
+  @media (max-width: ${props => props.theme.breakpoints['lg']}px) {
+    .lineChart {
+      margin-bottom: 2rem;
+      min-width: 98%;
+    }
+  }
+  @media (max-width: ${props => props.theme.breakpoints['md']}px) {
+    .lineChart {
+      height: auto;
+      min-width: 96%;
+    }
+  }
+`;

@@ -5,6 +5,10 @@ import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
 import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
+import { useSidebarContext } from './SidebarContext';
+
+interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
+
 import { graphql } from 'relay-runtime';
 import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
@@ -28,6 +32,7 @@ export const Sidebar: FC<SidebarProps> = props => {
     (match: string) => (path: string) => path.includes(match),
     []
   );
+  const { isSidebarOpen } = useSidebarContext();
   const routes = [
     {
       icon: MdSpaceDashboard,
@@ -53,43 +58,56 @@ export const Sidebar: FC<SidebarProps> = props => {
   return (
     <Suspense>
       {queryRef && (
-        <Container
-          {...props}
-          display={'flex'}
-          flexDirection={'column'}
-          w="17.82125rem"
-        >
-          <x.div flex={1}>
-            <TopNavigation />
-            <x.div mt="3rem">
-              {routes.map((e, i) => {
-                const Icon = e.icon;
-                return (
-                  <SidebarNavigation
-                    href={e.href}
-                    key={i}
-                    title={e.title}
-                    icon={<Icon size="1.5rem" />}
-                    active={isActive(e.href)}
-                  />
-                );
-              })}
+        <SidebarContainer>
+          <x.div
+            p="1rem"
+            borderRight="1"
+            borderRightColor="gray-200"
+            bg="gray-300"
+            maxW="300px"
+            h="100vh"
+            zIndex="1"
+            {...props}
+            display={'flex'}
+            flexDirection={'column'}
+            className={isSidebarOpen ? 'sidebar is-active' : 'sidebar'}
+          >
+            <x.div flex={1}>
+              <TopNavigation />
+              <x.div mt="3rem">
+                {routes.map((e, i) => {
+                  const Icon = e.icon;
+                  return (
+                    <SidebarNavigation
+                      href={e.href}
+                      key={i}
+                      title={e.title}
+                      icon={<Icon size="1.5rem" />}
+                      active={isActive(e.href)}
+                    />
+                  );
+                })}
+              </x.div>
             </x.div>
+            <SidebarBottom
+              SidebarBottomQuery={sidebarQuery}
+              SidebarBottomQueryReference={queryRef}
+            />
           </x.div>
-          <SidebarBottom
-            SidebarBottomQuery={sidebarQuery}
-            SidebarBottomQueryReference={queryRef}
-          />
-        </Container>
+        </SidebarContainer>
       )}
     </Suspense>
   );
 };
 
-const Container = styled(x.div)`
-  padding: 1rem;
-  border-right: 1;
-  border-right-color: gray-200;
-  background-color: gray-300;
-  position: relative;
+const SidebarContainer = styled(x.div)`
+  @media (max-width: ${props => props.theme.breakpoints['lg']}px) {
+    .sidebar {
+      left: -300px;
+      transition: 0.2s linear;
+    }
+    .sidebar.is-active {
+      left: 0;
+    }
+  }
 `;
