@@ -13,7 +13,6 @@ export const CTA: React.FC = () => {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          // viewport={{ once: true }}
           transition={{ duration: 0.3 }}
           variants={{
             visible: { opacity: 1, scale: 1 },
@@ -25,17 +24,22 @@ export const CTA: React.FC = () => {
               className="graphic"
               initial="hidden"
               whileInView="visible"
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 1 }}
               variants={{
-                visible: { opacity: 1, scale: 1 },
-                hidden: { opacity: 0, scale: 0 },
+                visible: { translateX: 1 },
+                hidden: { translateX: -80 },
               }}
-              // style={{ translateX: translateX }}
             >
               <CtaVector w="90%" />
             </motion.div>
             <motion.div
-            // style={{ translateX: translateXContent }}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 1 }}
+              variants={{
+                visible: { translateX: 0 },
+                hidden: { translateX: 80 },
+              }}
             >
               <Typography variant="h4">
                 Start visualizing <br /> your information now
