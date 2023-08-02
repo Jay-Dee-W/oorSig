@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Typography } from '@atoms/index';
 import { ScrollScaleAnimation } from './ScrollScaleAnimation';
 import { SectionContainer } from './SectionContainer';
+import { MdArrowForwardIos } from 'react-icons/md';
 
 const FaqList = [
   {
@@ -59,7 +60,7 @@ export const FAQ: React.FC = () => {
   const [expandedItm, setExpandedId] = useState<number | null>(null);
 
   const toggleCollapse = (id: number) => {
-    if (id === expandedItm) setExpandedId(null);
+    if (id === expandedItm) return setExpandedId(null);
     setExpandedId(id);
   };
 
@@ -89,7 +90,9 @@ export const FAQ: React.FC = () => {
                       initial={expandedItm === el.id ? 'rotated' : 'default'}
                       animate={expandedItm === el.id ? 'rotated' : 'default'}
                       variants={rotationVariant}
-                    />
+                    >
+                      <MdArrowForwardIos size="2rem" />
+                    </motion.div>
                   </CollapsibleHeader>
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -132,15 +135,6 @@ const CollapsibleHeader = styled(x.div)`
 
   h4 {
     flex: 1;
-  }
-
-  div.arrow {
-    width: 1.5rem;
-    height: 1.4rem;
-    background-image: url('/arrow.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
   }
 `;
 const CollapsibleItem = styled(x.div)`

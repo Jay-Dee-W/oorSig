@@ -45,8 +45,8 @@ export const LandingPage: React.FC = () => {
       <Navigation routes={routes} />
       <Hero />
       <Features />
-      <FAQ />
       <About />
+      <FAQ />
       <CTA />
       <Footer routes={routes} />
     </>

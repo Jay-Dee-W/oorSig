@@ -69,6 +69,7 @@ export const Features: React.FC = () => {
           <Container>
             <AskAi />
             <ContainerTypography>
+              <Upcoming>Upcoming</Upcoming>
               <Typography variant="h3">
                 Ask questions and get answers from your data with AI.
               </Typography>
@@ -141,4 +142,15 @@ const ContainerTypography = styled(x.div)`
       margin-bottom: 1rem;
     }
   }
+`;
+
+const Upcoming = styled(x.div)`
+  background-color: green-100;
+  color: green-400;
+  font-weight: bold;
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  font-size: small;
+  border-radius: 999;
+  margin-bottom: 1rem;
 `;
