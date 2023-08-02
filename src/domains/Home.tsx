@@ -231,10 +231,15 @@ export const Home: React.FC = () => {
           <x.div
             display="flex"
             flexWrap={isMobileView ? 'wrap' : 'nowrap'}
+            gap="1rem"
             w="100%"
           >
             <x.div flex={isMobileView ? '100%' : '65%'} className="lineChart">
-              <Line options={options} data={chartData} />
+              <Line
+                options={options}
+                data={chartData}
+                style={{ maxHeight: '300px' }}
+              />
             </x.div>
             <x.div
               flex={isMobileView ? '100%' : '35%'}
