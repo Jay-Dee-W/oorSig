@@ -120,6 +120,7 @@ const HeroSection = styled(x.section)`
   }
 
   .typography-section {
+    width: 92%;
     position: fixed;
     right: 0;
     left: 0;
