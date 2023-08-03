@@ -106,7 +106,7 @@ export const HomeLineChart = () => {
 
   return (
     <>
-      <Line options={options} data={chartData} />
+      <Line options={options} data={chartData} style={{ maxHeight: '300px' }} />
     </>
   );
 };
