@@ -13,20 +13,9 @@ import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
 export const sidebarQuery = graphql`
-  query SidebarQuery(
-    $organizationsFirst: Int!
-    $organizationsCursor: String
-    $teamsFirst: Int!
-    $teamsCursor: String
-  ) {
+  query SidebarQuery($first: Int!, $cursor: String) {
     viewer {
-      ...Organizations_viewer
-        @arguments(
-          organizationsFirst: $organizationsFirst
-          organizationsCursor: $organizationsCursor
-          teamsFirst: $teamsFirst
-          teamsCursor: $teamsCursor
-        )
+      ...Organizations_viewer @arguments(first: $first, cursor: $cursor)
       ...SidebarBottom_viewer
     }
   }
@@ -37,8 +26,7 @@ export const Sidebar: FC<SidebarProps> = props => {
   const { queryRef } = useQueryLoader<SidebarQuery>(
     sidebarQuery,
     {
-      organizationsFirst: loadedItem,
-      teamsFirst: loadedItem,
+      first: loadedItem,
     },
     { fetchPolicy: 'store-and-network' }
   );

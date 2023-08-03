@@ -21,12 +21,8 @@ interface Team {
 const Teams_viewer = graphql`
   fragment Teams_viewer on Organization
   @refetchable(queryName: "TeamsRefetchQuery")
-  @argumentDefinitions(
-    teamsFirst: { type: "Int!" }
-    teamsCursor: { type: "String" }
-  ) {
-    teams(first: $teamsFirst, after: $teamsCursor)
-      @connection(key: "Teams_teams") {
+  @argumentDefinitions(first: { type: "Int!" }, cursor: { type: "String" }) {
+    teams(first: $first, after: $cursor) @connection(key: "Teams_teams") {
       edges {
         node {
           name

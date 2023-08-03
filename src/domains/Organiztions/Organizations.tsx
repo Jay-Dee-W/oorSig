@@ -20,13 +20,8 @@ interface Organization {
 const Organizations_viewer = graphql`
   fragment Organizations_viewer on User
   @refetchable(queryName: "OrganizationsRefetchQuery")
-  @argumentDefinitions(
-    organizationsFirst: { type: "Int!" }
-    organizationsCursor: { type: "String" }
-    teamsFirst: { type: "Int!" }
-    teamsCursor: { type: "String" }
-  ) {
-    organizations(first: $organizationsFirst, after: $organizationsCursor)
+  @argumentDefinitions(first: { type: "Int!" }, cursor: { type: "String" }) {
+    organizations(first: $first, after: $cursor)
       @connection(key: "Organizations_organizations") {
       edges {
         node {
@@ -34,8 +29,7 @@ const Organizations_viewer = graphql`
           name
           label: name
           avatarUrl
-          ...Teams_viewer
-            @arguments(teamsFirst: $teamsFirst, teamsCursor: $teamsCursor)
+          ...Teams_viewer @arguments(first: $first, cursor: $cursor)
         }
       }
       pageInfo {
