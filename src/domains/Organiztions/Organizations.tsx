@@ -6,7 +6,7 @@ import { Organizations_viewer$key } from '@relay/__generated__/Organizations_vie
 import { OrganizationsRefetchQuery } from '@relay/__generated__/OrganizationsRefetchQuery.graphql';
 import { Teams_viewer$key } from '@relay/__generated__/Teams_viewer.graphql';
 import { Backdrop, Typography, SearchableList } from '@atoms/index';
-import { Teams } from './Teams';
+import { Teams } from '@domains/Teams/Teams';
 interface OrganizationsProps {
   OrganizationsRef: Organizations_viewer$key;
   loadedItem: number;

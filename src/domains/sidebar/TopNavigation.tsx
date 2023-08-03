@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { x } from '@xstyled/emotion';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 import { Logo } from '@atoms/index';
-import { Organizations } from './Organizations';
+import { Organizations } from '@domains/Organiztions/Organizations';
 interface TopNavigationProps {
   TopNavigationQuery: GraphQLTaggedNode;
   TopNavigationQueryReference: PreloadedQuery<SidebarQuery>;
