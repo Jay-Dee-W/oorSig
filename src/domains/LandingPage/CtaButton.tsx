@@ -6,7 +6,7 @@ export const CtaButton = () => {
 };
 
 export const SignInButton = () => {
-  return <SignInBtn>Sign in</SignInBtn>;
+  return <SignInBtn className="sign-in-button">Sign in</SignInBtn>;
 };
 
 const CtaBtn = styled(x.button)`

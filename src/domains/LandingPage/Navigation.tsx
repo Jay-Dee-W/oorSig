@@ -120,6 +120,10 @@ const Nav = styled(x.nav)`
       display: none;
     }
 
+    .sign-in-button {
+      display: none;
+    }
+
     .logo-section {
       width: 100%;
       display: flex;
@@ -145,6 +149,10 @@ const Nav = styled(x.nav)`
 
       & > button {
         display: none;
+      }
+
+      .sign-in-button {
+        display: block;
       }
 
       ul {
