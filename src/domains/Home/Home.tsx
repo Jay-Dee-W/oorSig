@@ -36,6 +36,7 @@ export const Home: React.FC = () => {
             display="flex"
             flexWrap={isMobileView ? 'wrap' : 'nowrap'}
             w="100%"
+            gap="1rem"
           >
             <x.div flex={isMobileView ? '100%' : '65%'} className="lineChart">
               <HomeLineChart />
