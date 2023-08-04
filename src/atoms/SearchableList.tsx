@@ -1,4 +1,10 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from 'react';
 import styled, { SystemProps, x } from '@xstyled/emotion';
 import { useCombobox } from 'downshift';
 
@@ -9,6 +15,7 @@ interface SelectOptionProps {
   label: string;
   value: string;
   imgSrc?: string;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 interface SelectProps extends SystemProps {
@@ -18,7 +25,9 @@ interface SelectProps extends SystemProps {
   imgSize?: string;
   isSearchable?: boolean;
   onSelect?: (org: string) => void;
-  selectedValue?: string;
+  selectedValue?: string | null;
+  onScroll?: () => void;
+  isLoading?: boolean;
 }
 
 const StyledDiv = styled(x.div)`
@@ -58,9 +67,13 @@ export const SearchableList: React.FC<SelectProps> = ({
   isSearchable = false,
   onSelect,
   selectedValue,
+  onScroll,
+  isLoading,
   ...systemProps
 }) => {
   const [items, setItems] = useState(options);
+  const listContainerRef = useRef<HTMLDivElement>(null);
+
   const {
     getLabelProps,
     getMenuProps,
@@ -74,6 +87,31 @@ export const SearchableList: React.FC<SelectProps> = ({
     items,
     itemToString: item => (item ? item.label : ''),
   });
+
+  const handleScroll = useCallback(() => {
+    if (
+      listContainerRef.current &&
+      listContainerRef.current.scrollHeight -
+        listContainerRef.current.scrollTop ===
+        listContainerRef.current.clientHeight
+    ) {
+      if (onScroll) {
+        onScroll();
+      }
+    }
+  }, [onScroll]);
+
+  useMemo(() => setItems(options), [options]);
+
+  useEffect(() => {
+    if (onScroll) {
+      const refValue = listContainerRef.current;
+      refValue?.addEventListener('scroll', handleScroll);
+      return () => {
+        refValue?.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [onScroll, handleScroll]);
 
   return (
     <x.div>
@@ -98,7 +136,7 @@ export const SearchableList: React.FC<SelectProps> = ({
               {...getInputProps()}
             />
           )}
-          <StyledDiv>
+          <StyledDiv ref={listContainerRef}>
             <x.ul
               bg="gray-300"
               color="white"
@@ -147,6 +185,11 @@ export const SearchableList: React.FC<SelectProps> = ({
                   </x.span>
                 </x.li>
               ))}
+              {isLoading && (
+                <x.div textAlign="center" py="0.625rem">
+                  Loading...
+                </x.div>
+              )}
             </x.ul>
           </StyledDiv>
         </x.div>
