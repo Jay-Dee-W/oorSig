@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SystemProps, Theme, x } from '@xstyled/emotion';
 
-import { Typography } from '@oorsig/atoms';
+import { Typography } from '@atoms/index';
 interface Props extends SystemProps<Theme> {
   href?: string;
   title?: string;
