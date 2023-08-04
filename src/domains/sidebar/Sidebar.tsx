@@ -1,32 +1,35 @@
 import { FC, Suspense, useCallback } from 'react';
-import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
-import { MdSpaceDashboard } from 'react-icons/md';
 import { GoRepo, GoGitPullRequest, GoIssueOpened } from 'react-icons/go';
 import { TopNavigation } from './TopNavigation';
 import { SidebarNavigation } from './SidebarNavigation';
 import { SidebarBottom } from './SidebarBottom';
 import { useSidebarContext } from './SidebarContext';
-
-interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
-
 import { graphql } from 'relay-runtime';
+import { MdSpaceDashboard } from 'react-icons/md';
+import styled, { SystemProps, Theme, x } from '@xstyled/emotion';
 import { useQueryLoader } from '@oorsig/relay/useQueryLoader';
 import { SidebarQuery } from '@relay/__generated__/SidebarQuery.graphql';
 
 interface SidebarProps extends Omit<SystemProps<Theme>, 'children'> {}
 
 export const sidebarQuery = graphql`
-  query SidebarQuery {
+  query SidebarQuery($first: Int!, $cursor: String) {
     viewer {
+      ...Organizations_viewer @arguments(first: $first, cursor: $cursor)
       ...SidebarBottom_viewer
     }
   }
 `;
 
 export const Sidebar: FC<SidebarProps> = props => {
-  const { queryRef } = useQueryLoader<SidebarQuery>(sidebarQuery, {
-    fetchPolicy: 'store-and-network',
-  });
+  const loadedItem = 4;
+  const { queryRef } = useQueryLoader<SidebarQuery>(
+    sidebarQuery,
+    {
+      first: loadedItem,
+    },
+    { fetchPolicy: 'store-and-network' }
+  );
 
   const isActive = useCallback(
     (match: string) => (path: string) => path.includes(match),
@@ -55,6 +58,7 @@ export const Sidebar: FC<SidebarProps> = props => {
       href: '#',
     },
   ];
+
   return (
     <Suspense>
       {queryRef && (
@@ -73,7 +77,11 @@ export const Sidebar: FC<SidebarProps> = props => {
             className={isSidebarOpen ? 'sidebar is-active' : 'sidebar'}
           >
             <x.div flex={1}>
-              <TopNavigation />
+              <TopNavigation
+                TopNavigationQuery={sidebarQuery}
+                TopNavigationQueryReference={queryRef}
+                loadedItem={loadedItem}
+              />
               <x.div mt="3rem">
                 {routes.map((e, i) => {
                   const Icon = e.icon;
