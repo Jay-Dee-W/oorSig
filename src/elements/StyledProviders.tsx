@@ -22,7 +22,6 @@ const theme = {
   colors: {
     background: th.color('gray-400'),
     brand: th.color('primary-200'),
-
     ['primary-100']: '#A1CDFF',
     ['primary-200']: '#007AFF',
     ['primary-300']: '#016ADC',
@@ -33,6 +32,8 @@ const theme = {
     ['gray-250']: '#373B3D',
     ['gray-300']: '#2C2F30',
     ['gray-400']: '#1C1E1F',
+    ['gray-900']: '#111313',
+    ['gray-text']: '#cccccc',
     ['red-100']: '#F3D8DB',
     ['red-200']: '#EB5545',
     ['red-300']: '#DC3422',
