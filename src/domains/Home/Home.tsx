@@ -7,13 +7,28 @@ import useMobileView from '@oorsig/hooks/useMobileView';
 import { HomeTable } from './HomeTable';
 import { HomeLineChart } from './HomeLineChart';
 import { HomeCard } from './HomeCard';
+import { PreloadedQuery, usePreloadedQuery, graphql } from 'react-relay';
+import { HomeQuery as HomeQueryType } from '@relay/__generated__/HomeQuery.graphql';
+
+interface HomeProps {
+  queryRef: PreloadedQuery<HomeQueryType>;
+}
 
 const dropDownOptions = [
   { label: 'Weekly', value: 'weekly' },
   { label: 'Monthly', value: 'monthly' },
 ];
 
-export const Home: React.FC = () => {
+export const HomeQuery = graphql`
+  query HomeQuery {
+    viewer {
+      ...HomeCard_viewer
+    }
+  }
+`;
+
+export const Home: React.FC<HomeProps> = ({ queryRef }) => {
+  const { viewer } = usePreloadedQuery(HomeQuery, queryRef);
   const isMobileView = useMobileView();
 
   return (
@@ -54,7 +69,7 @@ export const Home: React.FC = () => {
               maxHeight={400}
               className="wordWrap"
             >
-              <HomeCard />
+              <HomeCard HomeCardRef={viewer} />
             </x.div>
           </x.div>
         </x.div>
