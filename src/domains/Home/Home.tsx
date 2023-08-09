@@ -12,6 +12,7 @@ import { HomeQuery as HomeQueryType } from '@relay/__generated__/HomeQuery.graph
 
 interface HomeProps {
   queryRef: PreloadedQuery<HomeQueryType>;
+  loadedItem: number;
 }
 
 const dropDownOptions = [
@@ -20,14 +21,15 @@ const dropDownOptions = [
 ];
 
 export const HomeQuery = graphql`
-  query HomeQuery {
+  query HomeQuery($first: Int!, $cursor: String) {
     viewer {
       ...HomeCard_viewer
+      ...Organizations_viewer @arguments(first: $first, cursor: $cursor)
     }
   }
 `;
 
-export const Home: React.FC<HomeProps> = ({ queryRef }) => {
+export const Home: React.FC<HomeProps> = ({ queryRef, loadedItem }) => {
   const { viewer } = usePreloadedQuery(HomeQuery, queryRef);
   const isMobileView = useMobileView();
 
@@ -78,7 +80,7 @@ export const Home: React.FC<HomeProps> = ({ queryRef }) => {
             Organizations
           </Typography>
           <x.div overflowX="auto" mb="3rem">
-            <HomeTable />
+            <HomeTable HomeTableRef={viewer} loadedItem={loadedItem} />
           </x.div>
         </x.div>
       </x.div>

@@ -17,7 +17,7 @@ interface Organization {
   imgSrc: string;
 }
 
-const Organizations_viewer = graphql`
+export const Organizations_viewer = graphql`
   fragment Organizations_viewer on User
   @refetchable(queryName: "OrganizationsRefetchQuery")
   @argumentDefinitions(first: { type: "Int!" }, cursor: { type: "String" }) {
@@ -29,6 +29,14 @@ const Organizations_viewer = graphql`
           name
           label: name
           avatarUrl
+          viewerCanAdminister
+          viewerCanCreateRepositories
+          repositories {
+            totalCount
+          }
+          teamCount: teams {
+            totalCount
+          }
           ...Teams_viewer @arguments(first: $first, cursor: $cursor)
         }
       }
