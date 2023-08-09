@@ -7,11 +7,21 @@ import { useQueryLoader } from '@relay/useQueryLoader';
 import { HomeQuery as HomeQueryType } from '@relay/__generated__/HomeQuery.graphql';
 
 const HomePage: NextPage = () => {
-  const { queryRef } = useQueryLoader<HomeQueryType>(HomeQuery, {
-    fetchPolicy: 'store-and-network',
-  });
-
-  return <Page title="Home">{queryRef && <Home queryRef={queryRef} />}</Page>;
+  const loadedItem = 5;
+  const { queryRef } = useQueryLoader<HomeQueryType>(
+    HomeQuery,
+    {
+      first: loadedItem,
+    },
+    {
+      fetchPolicy: 'store-and-network',
+    }
+  );
+  return (
+    <Page title="Home">
+      {queryRef && <Home loadedItem={loadedItem} queryRef={queryRef} />}
+    </Page>
+  );
 };
 
 export default HomePage;

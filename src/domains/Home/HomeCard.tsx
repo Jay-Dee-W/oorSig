@@ -12,7 +12,7 @@ interface HomeCardProps {
 
 const HomeCard_viewer = graphql`
   fragment HomeCard_viewer on User {
-    organizations(first: 100) {
+    organization: organizations(first: 100) {
       totalCount
     }
     repositories(first: 100) {
@@ -68,7 +68,7 @@ export const HomeCard: React.FC<HomeCardProps> = ({ HomeCardRef }) => {
     },
     {
       label: 'Organizations',
-      value: data.organizations.totalCount,
+      value: data.organization.totalCount,
       bgColor: 'gray-200',
       txtColor: 'white',
     },
